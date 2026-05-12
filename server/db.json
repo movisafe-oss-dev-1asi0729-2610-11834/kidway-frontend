@@ -1,0 +1,144 @@
+{
+  "currentUser": {
+    "id": 1,
+    "firstName": "Maria",
+    "lastName": "Lopez",
+    "role": "Company Admin",
+    "company": "MoviSafe Transport",
+    "avatarInitials": "ML"
+  },
+  "dashboard": {
+    "activeTrips": 12,
+    "studentsOnBoard": 184,
+    "alerts": 4,
+    "attendanceRate": 96.8,
+    "fleetAvailability": 88,
+    "routeCoverage": 92
+  },
+  "notifications": [
+    {
+      "id": 1,
+      "type": "delay",
+      "title": "Route delay detected",
+      "message": "Vehicle KW-204 is 8 minutes behind schedule.",
+      "priority": "high",
+      "read": false
+    },
+    {
+      "id": 2,
+      "type": "attendance",
+      "title": "Boarding summary ready",
+      "message": "Morning attendance was updated for all active routes.",
+      "priority": "medium",
+      "read": false
+    },
+    {
+      "id": 3,
+      "type": "incident",
+      "title": "Incident follow-up required",
+      "message": "A minor incident requires company review.",
+      "priority": "high",
+      "read": true
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "slug": "dashboard",
+      "title": "Dashboard",
+      "icon": "dashboard",
+      "status": "in-development"
+    },
+    {
+      "id": 2,
+      "slug": "subscriptions",
+      "title": "Subscription & Payments",
+      "icon": "payments",
+      "status": "in-development"
+    },
+    {
+      "id": 3,
+      "slug": "fleet",
+      "title": "Fleet Management",
+      "icon": "directions_bus",
+      "status": "in-development"
+    },
+    {
+      "id": 4,
+      "slug": "drivers",
+      "title": "Driver Management",
+      "icon": "badge",
+      "status": "in-development"
+    },
+    {
+      "id": 5,
+      "slug": "routes",
+      "title": "Route Management",
+      "icon": "alt_route",
+      "status": "in-development"
+    },
+    {
+      "id": 6,
+      "slug": "students",
+      "title": "Student Management",
+      "icon": "school",
+      "status": "in-development"
+    },
+    {
+      "id": 7,
+      "slug": "assignments",
+      "title": "Assignment Management",
+      "icon": "rule",
+      "status": "in-development"
+    },
+    {
+      "id": 8,
+      "slug": "tracking",
+      "title": "Real-Time Tracking",
+      "icon": "location_on",
+      "status": "in-development"
+    },
+    {
+      "id": 9,
+      "slug": "trips",
+      "title": "Trip Management",
+      "icon": "route",
+      "status": "in-development"
+    },
+    {
+      "id": 10,
+      "slug": "attendance",
+      "title": "Attendance Tracking",
+      "icon": "fact_check",
+      "status": "in-development"
+    },
+    {
+      "id": 11,
+      "slug": "notifications",
+      "title": "Alerts & Notifications",
+      "icon": "notifications",
+      "status": "in-development"
+    },
+    {
+      "id": 12,
+      "slug": "incidents",
+      "title": "Incident Management",
+      "icon": "report_problem",
+      "status": "in-development"
+    },
+    {
+      "id": 13,
+      "slug": "analytics",
+      "title": "Analytics & Reports",
+      "icon": "bar_chart",
+      "status": "in-development"
+    },
+    {
+      "id": 14,
+      "slug": "companies",
+      "title": "Company Management",
+      "icon": "business",
+      "status": "in-development"
+    }
+  ]
+}
