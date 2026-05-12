@@ -1,0 +1,10 @@
+<div class="shell" [ngClass]="{ 'sidebar-collapsed': sidebarState.collapsed(), 'mobile-open': sidebarState.mobileOpen() }">
+  <kw-sidebar />
+  <div class="backdrop" (click)="sidebarState.closeMobile()" aria-hidden="true"></div>
+  <section class="workspace">
+    <kw-topbar />
+    <main class="content" id="main-content">
+      <router-outlet />
+    </main>
+  </section>
+</div>
