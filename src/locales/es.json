@@ -1,0 +1,73 @@
+{
+  "app": {
+    "name": "KidWay",
+    "tagline": "Monitoreo de transporte escolar"
+  },
+  "actions": {
+    "viewDetails": "Ver detalles",
+    "openProfile": "Abrir perfil",
+    "toggleMenu": "Mostrar u ocultar menú",
+    "toggleTheme": "Cambiar tema",
+    "search": "Buscar módulos o vistas..."
+  },
+  "topbar": {
+    "notifications": "Notificaciones",
+    "profile": "Perfil",
+    "language": "Idioma"
+  },
+  "layout": {
+    "home": "Inicio",
+    "coreModules": "Módulos principales",
+    "rolePreview": "Vista previa de rol"
+  },
+  "home": {
+    "eyebrow": "KIDWAY FRONTEND",
+    "title": "Panel de Control",
+    "subtitle": "Resumen operativo para monitoreo de transporte escolar, seguridad, viajes y asistencia.",
+    "summary": "Resumen operativo",
+    "coverage": "Cobertura de rutas",
+    "recent": "Notificaciones recientes",
+    "modules": "Módulos visibles",
+    "students": "Estudiantes a bordo",
+    "trips": "Viajes activos",
+    "alerts": "Alertas abiertas",
+    "attendance": "Tasa de asistencia",
+    "fleet": "Disponibilidad de flota",
+    "quick": "Resumen rápido de módulos",
+    "performance": "Indicadores de rendimiento",
+    "cta": "Ver detalles"
+  },
+  "development": {
+    "status": "En desarrollo",
+    "message": "Este módulo está listo para ser implementado en su rama feature correspondiente.",
+    "hint": "La ruta base, carpetas DDD y claves de localización ya están configuradas."
+  },
+  "profile": {
+    "title": "Perfil de Usuario",
+    "subtitle": "La configuración del perfil y preferencias se maneja desde la topbar, no desde la barra lateral.",
+    "status": "En desarrollo"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "subtitle": "Las vistas de Identity & Access Management están configuradas, pero se mantienen fuera de la barra lateral."
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "subscriptions": "Suscripciones y pagos",
+    "fleet": "Gestión de flota",
+    "drivers": "Gestión de conductores",
+    "routes": "Gestión de rutas",
+    "students": "Gestión de estudiantes",
+    "assignments": "Gestión de asignaciones",
+    "tracking": "Seguimiento en tiempo real",
+    "trips": "Gestión de viajes",
+    "attendance": "Control de asistencia",
+    "notifications": "Alertas y notificaciones",
+    "incidents": "Gestión de incidentes",
+    "analytics": "Analítica y reportes",
+    "companies": "Gestión de empresas",
+    "identityAccess": "Identidad y acceso",
+    "profiles": "Perfiles de usuario"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "app": {
+    "name": "KidWay",
+    "tagline": "School transport monitoring"
+  },
+  "actions": {
+    "viewDetails": "View details",
+    "openProfile": "Open profile",
+    "toggleMenu": "Toggle menu",
+    "toggleTheme": "Toggle theme",
+    "search": "Search modules or views..."
+  },
+  "topbar": {
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "language": "Language"
+  },
+  "layout": {
+    "home": "Home",
+    "coreModules": "Core modules",
+    "rolePreview": "Role preview"
+  },
+  "home": {
+    "eyebrow": "KIDWAY FRONTEND",
+    "title": "Control Panel",
+    "subtitle": "Operational overview for school transport monitoring, safety, trips and attendance.",
+    "summary": "Operational summary",
+    "coverage": "Route coverage",
+    "recent": "Recent notifications",
+    "modules": "Visible modules",
+    "students": "Students on board",
+    "trips": "Active trips",
+    "alerts": "Open alerts",
+    "attendance": "Attendance rate",
+    "fleet": "Fleet availability",
+    "quick": "Quick module overview",
+    "performance": "Performance indicators",
+    "cta": "View details"
+  },
+  "development": {
+    "status": "In development",
+    "message": "This module is ready for implementation in its corresponding feature branch.",
+    "hint": "The base route, DDD folders and localization keys are already configured."
+  },
+  "profile": {
+    "title": "User Profile",
+    "subtitle": "Profile settings and preferences are handled from the topbar, not from the sidebar.",
+    "status": "In development"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "subtitle": "Identity & Access Management views are configured but kept outside the sidebar."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "subscriptions": "Subscriptions & Payments",
+    "fleet": "Fleet Management",
+    "drivers": "Driver Management",
+    "routes": "Route Management",
+    "students": "Student Management",
+    "assignments": "Assignment Management",
+    "tracking": "Real-Time Tracking",
+    "trips": "Trip Management",
+    "attendance": "Attendance Tracking",
+    "notifications": "Alerts & Notifications",
+    "incidents": "Incident Management",
+    "analytics": "Analytics & Reports",
+    "companies": "Company Management",
+    "identityAccess": "Identity & Access",
+    "profiles": "User Profiles"
+  }
+}
