@@ -1,0 +1,64 @@
+<div class="parent-view-container">
+    <header class="header">
+        <h1>Mis Hijos</h1>
+        <p>Información de transporte escolar y rutas asignadas</p>
+    </header>
+
+    @if (store.loading()) {
+        <div class="loader">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
+    }
+
+    <div class="kids-grid">
+        @for (kid of myKids(); track kid.id) {
+            <div class="kid-card">
+                <div class="card-main">
+                    <div class="avatar">{{ kid.initials }}</div>
+                    <div class="info">
+                        <h2>{{ kid.fullName }}</h2>
+                        <span class="code">{{ kid.code }}</span>
+                        <span class="grade">{{ kid.grade }}</span>
+                    </div>
+                    <div class="status-pill" [ngClass]="kid.status === 'Activo' ? 'success' : 'warning'">
+                        {{ kid.status }}
+                    </div>
+                </div>
+
+                <div class="transport-info">
+                    <div class="info-row">
+                        <mat-icon>directions_bus</mat-icon>
+                        <div>
+                            <small>Ruta</small>
+                            <p>{{ kid.routeAssigned || 'No asignada todavía' }}</p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <mat-icon>location_on</mat-icon>
+                        <div>
+                            <small>Parada / Punto de encuentro</small>
+                            <p>{{ kid.stopName || 'Por confirmar' }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button mat-flat-button color="primary" [disabled]="!kid.routeAssigned">
+                        <mat-icon>map</mat-icon> Rastrear unidad
+                    </button>
+
+                    <button mat-stroked-button class="edit-btn" (click)="openEditDialog(kid)">
+                        <mat-icon>edit</mat-icon> Editar información
+                    </button>
+                </div>
+            </div>
+        } @empty {
+        @if (!store.loading()) {
+            <div class="empty-state">
+                <mat-icon>child_care</mat-icon>
+                <p>No se encontraron alumnos asociados a tu cuenta.</p>
+            </div>
+        }
+    }
+    </div>
+</div>
