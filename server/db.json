@@ -140,5 +140,90 @@
       "icon": "business",
       "status": "in-development"
     }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "studentName": "Sofía Vega",
+      "studentId": "#AL-001",
+      "initials": "SV",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "status": "Boarded",
+      "checkInTime": "11:15 a. m.",
+      "estimatedArrival": "07:45 AM",
+      "tutorName": "Maria Lopez"
+    },
+    {
+      "id": 2,
+      "studentName": "Diego Ruiz",
+      "studentId": "#AL-002",
+      "initials": "DR",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "status": "Boarded",
+      "checkInTime": "07:20 AM",
+      "estimatedArrival": "08:00 AM",
+      "tutorName": "Juan Ruiz"
+    },
+    {
+      "id": 3,
+      "studentName": "Valeria Cruz",
+      "studentId": "#AL-003",
+      "initials": "VC",
+      "routeName": "Ruta Este",
+      "vehiclePlate": "KW-308",
+      "status": "On board",
+      "checkInTime": "11:15 a. m.",
+      "estimatedArrival": "07:50 AM",
+      "tutorName": "Elena Cruz"
+    },
+    {
+      "id": 4,
+      "studentName": "Mateo Lara",
+      "studentId": "#AL-004",
+      "initials": "ML",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "status": "Absent",
+      "checkInTime": null,
+      "estimatedArrival": null,
+      "tutorName": "Rosa Lara"
+    },
+    {
+      "id": 5,
+      "studentName": "Isabella Pinto",
+      "studentId": "#AL-005",
+      "initials": "IP",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "status": "Absent",
+      "checkInTime": null,
+      "estimatedArrival": "08:10 AM",
+      "tutorName": "Carmen Pinto"
+    }
+  ],
+  "attendanceActions": [
+    {
+      "id": 1,
+      "statusValue": "On board",
+      "label": "Marcar A bordo",
+      "icon": "check_circle",
+      "color": "primary"
+    },
+    {
+      "id": 2,
+      "statusValue": "Boarded",
+      "label": "Llegó a destino",
+      "icon": "where_to_vote",
+      "color": "accent"
+    },
+    {
+      "id": 3,
+      "statusValue": "Absent",
+      "label": "Marcar Ausente",
+      "icon": "cancel",
+      "color": "warn"
+    }
   ]
 }

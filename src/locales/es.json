@@ -69,5 +69,82 @@
     "companies": "Gestión de empresas",
     "identityAccess": "Identidad y acceso",
     "profiles": "Perfiles de usuario"
+  },
+  "attendance": {
+    "management": {
+      "breadcrumbs": "Operaciones / Asistencia",
+      "title": "Control de Asistencia",
+      "subtitle": "Monitoreo en tiempo real del abordaje y estado de los alumnos en ruta",
+      "stats": {
+        "total": "Total Asignados",
+        "total_desc": "Alumnos en padrón",
+        "on_board": "A bordo (Check-in)",
+        "on_board_desc": "En tránsito seguro",
+        "waiting": "Esperando en paradero",
+        "waiting_desc": "Por abordar",
+        "absent": "Ausentes",
+        "absent_desc": "No abordaron"
+      },
+      "tabs": {
+        "all": "Todos",
+        "on_board": "A bordo",
+        "arrived": "Ya llegaron",
+        "waiting": "En espera",
+        "absent": "Ausentes"
+      },
+      "search_placeholder": "Buscar por alumno o placa...",
+      "filter_all": "Todas",
+      "table": {
+        "student": "ALUMNO",
+        "route": "RUTA",
+        "vehicle": "VEHÍCULO",
+        "check_in": "HORA ABORDAJE",
+        "eta": "LLEGADA ESTIMADA",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "status": {
+        "on_board": "A bordo",
+        "boarded": "Llegó a destino",
+        "waiting": "Esperando",
+        "absent": "Ausente"
+      },
+      "actions": {
+        "mark_on_board": "Marcar A bordo",
+        "mark_arrived": "Llegó a destino",
+        "mark_absent": "Marcar Ausente"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / Mis Hijos",
+      "title": "Seguimiento de Viaje",
+      "subtitle": "Monitorea en tiempo real la ruta y seguridad de tus hijos",
+      "stats": {
+        "total": "Total de hijos en padrón",
+        "on_board": "Actualmente en ruta",
+        "arrived": "Llegaron a destino"
+      },
+      "table_title": "Estado actual de movilidad",
+      "table": {
+        "kid": "HIJO/A",
+        "transport": "TRANSPORTE ASIGNADO",
+        "schedules": "HORARIOS DE HOY",
+        "status": "ESTADO DEL VIAJE"
+      },
+      "details": {
+        "code": "Código",
+        "plate": "Placa",
+        "boarded_at": "Abordó",
+        "eta": "Llegada aprox",
+        "pending": "--:--"
+      },
+      "status": {
+        "on_board": "En camino al destino",
+        "boarded": "Llegó seguro",
+        "waiting": "Esperando en paradero",
+        "absent": "Ausente hoy"
+      },
+      "empty": "No tienes hijos asignados a rutas actualmente."
+    }
   }
 }
