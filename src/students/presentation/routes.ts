@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { StudentListComponent } from './views/student-list/student-list.component';
 import {ParentStudentListComponent} from "./views/parent-student-list/parent-student-list.component";
+import {StudentListComponent} from "./views/student-list/student-list.component";
 
 export const STUDENTS_ROUTES: Routes = [
     {
-        path: 'management',
+        path: '',
         component: StudentListComponent,
         data: { titleKey: 'nav.students', boundedContext: 'Student Management', icon: 'school' }
     },

@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentStore } from '../../../application/state/student.store';
 import { Student } from '../../../domain/entities/student.entity';
 import { StudentFormDialogComponent } from '../../components/student-form-dialog/student-form-dialog.component';
-import {StudentDetailDialogComponent} from "../../components/student-dialogs";
+import {StudentDetailDialogComponent} from "../../components/student-dialog";
 
 @Component({
     selector: 'app-student-list',

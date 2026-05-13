@@ -46,7 +46,6 @@
 }
 
 <div class="table-container">
-
     <mat-tab-group animationDuration="0ms" [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)">
         <mat-tab label="Todos ({{ store.totalStudents() }})"></mat-tab>
         <mat-tab label="Con ruta ({{ store.studentsWithRoute() }})"></mat-tab>
@@ -68,7 +67,6 @@
     </div>
 
     <table mat-table [dataSource]="dataSource()" class="kw-table">
-
         <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef> <mat-checkbox></mat-checkbox> </th>
             <td mat-cell *matCellDef="let student"> <mat-checkbox></mat-checkbox> </td>
