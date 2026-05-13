@@ -1,0 +1,149 @@
+@if (store.loading()) {
+    <mat-spinner diameter="40"></mat-spinner>
+}
+@if (store.error()) {
+    <div class="error-msg">{{ store.error() }}</div>
+}
+
+<div class="page-header">
+    <small class="breadcrumbs" [innerHTML]="'attendance.management.breadcrumbs' | translate"></small>
+    <h1>{{ 'attendance.management.title' | translate }}</h1>
+    <p>{{ 'attendance.management.subtitle' | translate }}</p>
+</div>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <small>{{ 'attendance.management.stats.total' | translate }}</small>
+        <strong>{{ store.totalInRoute() }}</strong>
+        <span>{{ 'attendance.management.stats.total_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'attendance.management.stats.on_board' | translate }}</small>
+        <strong class="text-green">{{ store.onBoard() }}</strong>
+        <span>{{ 'attendance.management.stats.on_board_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'attendance.management.stats.waiting' | translate }}</small>
+        <strong class="text-orange">{{ store.waiting() }}</strong>
+        <span>{{ 'attendance.management.stats.waiting_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'attendance.management.stats.absent' | translate }}</small>
+        <strong class="text-red">{{ store.absent() }}</strong>
+        <span>{{ 'attendance.management.stats.absent_desc' | translate }}</span>
+    </article>
+</section>
+
+<div class="table-container">
+    <mat-tab-group animationDuration="0ms" [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)">
+        <mat-tab label="{{ 'attendance.management.tabs.all' | translate }} ({{ store.totalInRoute() }})"></mat-tab>
+        <mat-tab label="{{ 'attendance.management.tabs.on_board' | translate }} ({{ store.onBoard() }})"></mat-tab>
+        <mat-tab label="{{ 'attendance.management.tabs.arrived' | translate }} ({{ store.attendance().length - store.waiting() - store.onBoard() - store.absent() }})"></mat-tab>
+        <mat-tab label="{{ 'attendance.management.tabs.waiting' | translate }} ({{ store.waiting() }})"></mat-tab>
+        <mat-tab label="{{ 'attendance.management.tabs.absent' | translate }} ({{ store.absent() }})"></mat-tab>
+    </mat-tab-group>
+
+    <div class="toolbar">
+        <div class="actions-left">
+            <input type="text" class="search-input" [placeholder]="'attendance.management.search_placeholder' | translate" (keyup)="applySearch($event)">
+        </div>
+        <div class="actions-right">
+            <mat-form-field appearance="outline" class="route-select" subscriptSizing="dynamic">
+                <mat-select [value]="selectedRoute()" (selectionChange)="selectedRoute.set($event.value)">
+                    @for (route of uniqueRoutes(); track route) {
+                        <mat-option [value]="route">
+                            {{ route === 'All' ? ('attendance.management.filter_all' | translate) : route }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource()" class="kw-table">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef> <mat-checkbox></mat-checkbox> </th>
+            <td mat-cell *matCellDef="let attendance"> <mat-checkbox></mat-checkbox> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="student">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.student' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="student-profile">
+                    <div class="avatar" [ngClass]="{'bg-gray': attendance.status === 'Absent', 'bg-blue': attendance.status !== 'Absent'}">
+                        {{ attendance.initials }}
+                    </div>
+                    <div class="student-info">
+                        <strong>{{ attendance.studentName }}</strong>
+                        <small>{{ attendance.studentId }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="route">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.route' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">{{ attendance.routeName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.vehicle' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance"><strong>{{ attendance.vehiclePlate }}</strong></td>
+        </ng-container>
+
+        <ng-container matColumnDef="checkInTime">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.check_in' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <span [class.unassigned]="!attendance.checkInTime">{{ attendance.checkInTime || '--:--' }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estimatedArrival">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.eta' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">{{ attendance.estimatedArrival || '--:--' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.status' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="status-badge"
+                     [ngClass]="{
+                       'status-success': attendance.status === 'On board' || attendance.status === 'Boarded',
+                       'status-warning': attendance.status === 'Waiting',
+                       'status-danger': attendance.status === 'Absent'
+                     }">
+                    <div class="dot"></div>
+                    {{ attendance.status === 'On board' ? ('attendance.management.status.on_board' | translate) :
+                    attendance.status === 'Boarded' ? ('attendance.management.status.boarded' | translate) :
+                        attendance.status === 'Waiting' ? ('attendance.management.status.waiting' | translate) :
+                            ('attendance.management.status.absent' | translate) }}
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.management.table.actions' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="markStatus(attendance, 'On board')">
+                        <mat-icon color="primary">check_circle</mat-icon> {{ 'attendance.management.actions.mark_on_board' | translate }}
+                    </button>
+                    <button mat-menu-item (click)="markStatus(attendance, 'Boarded')">
+                        <mat-icon style="color: #10b981;">where_to_vote</mat-icon> {{ 'attendance.management.actions.mark_arrived' | translate }}
+                    </button>
+                    <button mat-menu-item (click)="markStatus(attendance, 'Absent')">
+                        <mat-icon color="warn">cancel</mat-icon> {{ 'attendance.management.actions.mark_absent' | translate }}
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons></mat-paginator>
+</div>
