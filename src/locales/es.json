@@ -69,5 +69,61 @@
     "companies": "Gestión de empresas",
     "identityAccess": "Identidad y acceso",
     "profiles": "Perfiles de usuario"
+  },
+  "assignments": {
+    "management": {
+      "breadcrumbs": "Operaciones / Asignaciones",
+      "title": "Gestión de Asignaciones",
+      "subtitle": "Administra las asignaciones de alumnos a rutas y vehículos",
+      "stats": {
+        "total": "Asignaciones Totales",
+        "active": "Asignaciones Activas",
+        "inactive": "Inactivas",
+        "morning": "Turno Mañana"
+      },
+      "search_placeholder": "Buscar por alumno o ruta...",
+      "filter_shift": "Todos los Turnos",
+      "filter_status": "Todos los Estados",
+      "new_assignment": "Nueva Asignación",
+      "table": {
+        "student": "ALUMNO",
+        "route": "RUTA",
+        "vehicle": "VEHÍCULO",
+        "shift": "TURNO",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "shift": {
+        "morning": "Mañana",
+        "afternoon": "Tarde"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "actions": {
+        "edit": "Editar Asignación",
+        "toggle_status": "Cambiar Estado",
+        "delete": "Eliminar Asignación"
+      },
+      "form": {
+        "add_title": "Agregar Nueva Asignación",
+        "edit_title": "Editar Asignación",
+        "code": "Código del Alumno",
+        "tutor": "Nombre del Tutor",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / Mis Hijos",
+      "title": "Asignaciones de mis Hijos",
+      "subtitle": "Revisa los detalles de transporte asignados a",
+      "stats": {
+        "total_kids": "Hijos Asignados"
+      },
+      "table_title": "Asignaciones de Transporte Activas",
+      "no_data": "No se encontraron asignaciones para sus hijos."
+    }
   }
 }
