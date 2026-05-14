@@ -9,17 +9,20 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatError } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { StudentStore } from '../../../application/state/student.store';
 import { Student } from '../../../domain/entities/student.entity';
 import { StudentFormDialogComponent } from '../../components/student-form-dialog/student-form-dialog.component';
-import {StudentDetailDialogComponent} from "../../components/student-dialog";
+import { StudentDetailDialogComponent } from "../../components/student-dialog";
 
 @Component({
     selector: 'app-student-list',
     standalone: true,
     imports: [
         CommonModule, MatTableModule, MatIconModule, MatButtonModule,
-        MatTabsModule, MatPaginatorModule, MatCheckboxModule, MatProgressSpinnerModule, MatError
+        MatTabsModule, MatPaginatorModule, MatCheckboxModule, MatProgressSpinnerModule, MatError,
+        TranslateModule
     ],
     templateUrl: './student-list.component.html',
     styleUrl: './student-list.component.css'
@@ -28,22 +31,20 @@ export class StudentListComponent {
     readonly store = inject(StudentStore);
     readonly dialog = inject(MatDialog);
 
-    displayedColumns: string[] = ['select', 'alumno', 'grado', 'tutor', 'contacto', 'ruta', 'parada', 'estado', 'acciones'];
+    displayedColumns: string[] = ['select', 'nombre', 'codigo', 'grado', 'tutor', 'ruta', 'parada', 'estado', 'acciones'];
 
     searchTerm = signal<string>('');
     selectedTabIndex = signal<number>(0);
 
     dataSource = computed(() => {
-        const students = this.store.students();
+        let filteredStudents = this.store.students();
         const term = this.searchTerm().toLowerCase();
         const tabIndex = this.selectedTabIndex();
 
-        let filteredStudents = students;
-
         if (tabIndex === 1) {
-            filteredStudents = filteredStudents.filter(s => s.routeAssigned !== null);
+            filteredStudents = filteredStudents.filter(s => s.status === 'Activo');
         } else if (tabIndex === 2) {
-            filteredStudents = filteredStudents.filter(s => s.routeAssigned === null);
+            filteredStudents = filteredStudents.filter(s => s.status === 'Sin ruta');
         } else if (tabIndex === 3) {
             filteredStudents = filteredStudents.filter(s => s.status === 'Inactivo');
         }
@@ -62,15 +63,18 @@ export class StudentListComponent {
         const filterValue = (event.target as HTMLInputElement).value;
         this.searchTerm.set(filterValue);
     }
+
     goToSinRutaTab() {
         this.selectedTabIndex.set(2);
     }
+
     openDetailDialog(student: Student) {
         this.dialog.open(StudentDetailDialogComponent, {
             data: student,
             width: '450px'
         });
     }
+
     openCreateDialog() {
         const dialogRef = this.dialog.open(StudentFormDialogComponent, {
             width: '450px',
@@ -83,6 +87,7 @@ export class StudentListComponent {
             }
         });
     }
+
     openEditDialog(student: Student) {
         const dialogRef = this.dialog.open(StudentFormDialogComponent, {
             width: '450px',

@@ -1,7 +1,7 @@
 <div class="parent-view-container">
     <header class="header">
-        <h1>Mis Hijos</h1>
-        <p>Información de transporte escolar y rutas asignadas</p>
+        <h1>{{ 'students.tracking.title' | translate }}</h1>
+        <p>{{ 'students.tracking.subtitle' | translate }}</p>
     </header>
 
     @if (store.loading()) {
@@ -21,7 +21,9 @@
                         <span class="grade">{{ kid.grade }}</span>
                     </div>
                     <div class="status-pill" [ngClass]="kid.status === 'Activo' ? 'success' : 'warning'">
-                        {{ kid.status }}
+                        {{ kid.status === 'Activo' ? ('students.management.status.active' | translate) :
+                        kid.status === 'Sin ruta' ? ('students.management.status.unassigned' | translate) :
+                            ('students.management.status.inactive' | translate) }}
                     </div>
                 </div>
 
@@ -29,36 +31,36 @@
                     <div class="info-row">
                         <mat-icon>directions_bus</mat-icon>
                         <div>
-                            <small>Ruta</small>
-                            <p>{{ kid.routeAssigned || 'No asignada todavía' }}</p>
+                            <small>{{ 'students.tracking.route' | translate }}</small>
+                            <p>{{ kid.routeAssigned || ('students.tracking.unassigned_route' | translate) }}</p>
                         </div>
                     </div>
                     <div class="info-row">
                         <mat-icon>location_on</mat-icon>
                         <div>
-                            <small>Parada / Punto de encuentro</small>
-                            <p>{{ kid.stopName || 'Por confirmar' }}</p>
+                            <small>{{ 'students.tracking.stop' | translate }}</small>
+                            <p>{{ kid.stopName || ('students.tracking.unassigned_stop' | translate) }}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="actions">
                     <button mat-flat-button color="primary" [disabled]="!kid.routeAssigned">
-                        <mat-icon>map</mat-icon> Rastrear unidad
+                        <mat-icon>map</mat-icon> {{ 'students.tracking.track_btn' | translate }}
                     </button>
 
                     <button mat-stroked-button class="edit-btn" (click)="openEditDialog(kid)">
-                        <mat-icon>edit</mat-icon> Editar información
+                        <mat-icon>edit</mat-icon> {{ 'students.tracking.edit_btn' | translate }}
                     </button>
                 </div>
             </div>
         } @empty {
-        @if (!store.loading()) {
-            <div class="empty-state">
-                <mat-icon>child_care</mat-icon>
-                <p>No se encontraron alumnos asociados a tu cuenta.</p>
-            </div>
+            @if (!store.loading()) {
+                <div class="empty-state">
+                    <mat-icon>child_care</mat-icon>
+                    <p>{{ 'students.tracking.empty_msg' | translate }}</p>
+                </div>
+            }
         }
-    }
     </div>
 </div>

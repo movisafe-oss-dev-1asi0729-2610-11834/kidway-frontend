@@ -6,50 +6,59 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 import { Student } from '../../../domain/entities/student.entity';
 
 @Component({
     selector: 'app-student-form-dialog',
     standalone: true,
-    imports: [CommonModule, MatDialogModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+    imports: [CommonModule, MatDialogModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, TranslateModule],
     template: `
-        <h2 mat-dialog-title>{{ isEdit ? 'Editar Alumno' : 'Registrar Nuevo Alumno' }}</h2>
+        <h2 mat-dialog-title>{{ (isEdit ? 'students.dialogs.edit_title' : 'students.dialogs.new_title') | translate }}</h2>
         <mat-dialog-content>
             <form [formGroup]="studentForm" class="edit-form">
                 <mat-form-field appearance="outline">
-                    <mat-label>Nombre</mat-label>
+                    <mat-label>{{ 'students.dialogs.name' | translate }}</mat-label>
                     <input matInput formControlName="firstName">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Apellido</mat-label>
+                    <mat-label>{{ 'students.dialogs.last_name' | translate }}</mat-label>
                     <input matInput formControlName="lastName">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Grado</mat-label>
-                    <input matInput formControlName="grade" placeholder="Ej: 3° Primaria">
+                    <mat-label>{{ 'students.dialogs.grade' | translate }}</mat-label>
+                    <input matInput formControlName="grade">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Nombre del Tutor</mat-label>
+                    <mat-label>{{ 'students.dialogs.tutor' | translate }}</mat-label>
                     <input matInput formControlName="tutorName">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Contacto del Tutor</mat-label>
+                    <mat-label>{{ 'students.dialogs.contact' | translate }}</mat-label>
                     <input matInput formControlName="tutorContact">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Estado</mat-label>
+                    <mat-label>{{ 'students.dialogs.status' | translate }}</mat-label>
                     <mat-select formControlName="status">
-                        <mat-option value="Activo">Activo</mat-option>
-                        <mat-option value="Sin ruta">Sin ruta</mat-option>
-                        <mat-option value="Inactivo">Inactivo</mat-option>
+                        <mat-option value="Activo">{{ 'students.management.status.active' | translate }}</mat-option>
+                        <mat-option value="Sin ruta">{{ 'students.management.status.unassigned' | translate }}</mat-option>
+                        <mat-option value="Inactivo">{{ 'students.management.status.inactive' | translate }}</mat-option>
                     </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'students.dialogs.route' | translate }}</mat-label>
+                    <input matInput formControlName="routeAssigned">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'students.dialogs.stop' | translate }}</mat-label>
+                    <input matInput formControlName="stopName">
                 </mat-form-field>
             </form>
         </mat-dialog-content>
         <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close>Cancelar</button>
+            <button mat-button mat-dialog-close>{{ 'students.dialogs.cancel' | translate }}</button>
             <button mat-flat-button color="primary" [disabled]="studentForm.invalid" (click)="save()">
-                {{ isEdit ? 'Guardar Cambios' : 'Registrar' }}
+                {{ (isEdit ? 'students.dialogs.save' : 'students.dialogs.register') | translate }}
             </button>
         </mat-dialog-actions>
     `,
@@ -80,11 +89,12 @@ export class StudentFormDialogComponent {
 
     save() {
         if (this.studentForm.valid) {
-            const studentData = {
-                id: this.isEdit && this.data ? this.data.id : 0,
-                ...this.studentForm.value
+            const formData = this.studentForm.value;
+            const updatedStudent = {
+                ...(this.data || {}),
+                ...formData
             };
-            this.dialogRef.close(new Student(studentData as any));
+            this.dialogRef.close(updatedStudent);
         }
     }
 }

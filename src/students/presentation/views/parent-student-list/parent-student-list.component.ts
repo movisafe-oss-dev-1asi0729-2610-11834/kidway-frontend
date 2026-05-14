@@ -5,15 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { StudentStore } from '../../../application/state/student.store';
 import { Student } from '../../../domain/entities/student.entity';
 import { StudentFormDialogComponent } from '../../components/student-form-dialog/student-form-dialog.component';
-import {environment} from "../../../../environments/environment";
+import { environment } from "../../../../environments/environment";
 
 @Component({
     selector: 'app-parent-student-list',
     standalone: true,
-    imports: [CommonModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule],
+    imports: [CommonModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule, TranslateModule],
     templateUrl: './parent-student-list.component.html',
     styleUrl: './parent-student-list.component.css'
 })
@@ -37,7 +39,7 @@ export class ParentStudentListComponent implements OnInit {
                     this.currentParentName.set(fullName);
                 }
             },
-            error: (err) => console.error('Error al cargar el usuario actual:', err)
+            error: (err) => console.error('Error loading current user:', err)
         });
     }
 
