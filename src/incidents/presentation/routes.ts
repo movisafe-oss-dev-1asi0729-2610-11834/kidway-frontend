@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { IncidentViewComponent } from './views/incident-view.component';
 
 export const INCIDENTS_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
+    component: IncidentViewComponent,
     data: { titleKey: 'nav.incidents', boundedContext: 'Incident Management', icon: 'report_problem' }
   }
 ];
