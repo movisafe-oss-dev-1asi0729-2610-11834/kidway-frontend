@@ -69,5 +69,11 @@
     "companies": "Company Management",
     "identityAccess": "Identity & Access",
     "profiles": "User Profiles"
+  },
+  "notifications": {
+    "title": "Alerts & Notifications",
+    "unread": "New",
+    "empty": "No pending notifications",
+    "mark_all": "Mark all as read"
   }
 }
