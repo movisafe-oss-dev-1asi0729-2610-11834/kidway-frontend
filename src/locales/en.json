@@ -154,5 +154,61 @@
     "unread": "New",
     "empty": "No pending notifications",
     "mark_all": "Mark all as read"
+  },
+  "assignments": {
+    "management": {
+      "breadcrumbs": "Operations / Assignments",
+      "title": "Assignment Management",
+      "subtitle": "Manage student route and vehicle assignments",
+      "stats": {
+        "total": "Total Assignments",
+        "active": "Active Assignments",
+        "inactive": "Inactive",
+        "morning": "Morning Shift"
+      },
+      "search_placeholder": "Search by student or route...",
+      "filter_shift": "All Shifts",
+      "filter_status": "All Statuses",
+      "new_assignment": "New Assignment",
+      "table": {
+        "student": "STUDENT",
+        "route": "ROUTE",
+        "vehicle": "VEHICLE",
+        "shift": "SHIFT",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "shift": {
+        "morning": "Morning",
+        "afternoon": "Afternoon"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "actions": {
+        "edit": "Edit Assignment",
+        "toggle_status": "Change Status",
+        "delete": "Remove Assignment"
+      },
+      "form": {
+        "add_title": "Add New Assignment",
+        "edit_title": "Edit Assignment",
+        "code": "Student Code",
+        "tutor": "Tutor Name",
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / My Kids",
+      "title": "My Kids' Assignments",
+      "subtitle": "Review the transport details assigned to",
+      "stats": {
+        "total_kids": "Children Assigned"
+      },
+      "table_title": "Active Transport Assignments",
+      "no_data": "No assignments found for your children."
+    }
   }
 }
