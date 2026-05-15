@@ -48,7 +48,8 @@ import { Trip } from '../../../domain/models/trip.model';
       </div>
     </div>
   `,
-  styleUrls: ['./trip-list.component.css']
+styles: [`
+  .trips-container { padding: 20px; }`]
 })
 export class TripListComponent implements OnInit {
   trips: Trip[] = [];
