@@ -1,3 +1,5 @@
+@import 'leaflet/dist/leaflet.css';
+
 :root {
   --kw-blue-950: #0b2f5b;
   --kw-blue-900: #135d96;
