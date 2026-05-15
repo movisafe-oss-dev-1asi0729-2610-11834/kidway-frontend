@@ -52,6 +52,14 @@
     "register": "Registrarse",
     "subtitle": "Las vistas de Identity & Access Management están configuradas, pero se mantienen fuera de la barra lateral."
   },
+  "tracking": {
+    "title": "Seguimiento en tiempo real",
+    "unit": "Unidad",
+    "district": "Distrito",
+    "speed": "Velocidad",
+    "searching": "Buscando unidades...",
+    "status": "EN RUTA"
+  },
   "nav": {
     "dashboard": "Panel",
     "subscriptions": "Suscripciones y pagos",
