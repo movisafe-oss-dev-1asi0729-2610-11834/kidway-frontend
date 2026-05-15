@@ -1,0 +1,262 @@
+:host {
+    display: block;
+    padding: 24px;
+    color: var(--kw-ink, #334155);
+}
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.breadcrumbs {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.breadcrumbs .active {
+    color: #1d4ed8;
+}
+
+.page-header h1 {
+    margin: 8px 0 4px;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+}
+
+.page-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-info small {
+    color: #64748b;
+    font-size: 0.80rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stat-info strong {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.bg-blue {
+    background-color: #3b82f6;
+}
+
+.bg-green {
+    background-color: #10b981;
+}
+
+.bg-purple {
+    background-color: #8b5cf6;
+}
+
+.text-green {
+    color: #10b981 !important;
+}
+
+.text-purple {
+    color: #8b5cf6 !important;
+}
+
+.table-container {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.toolbar h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+
+.kw-table {
+    width: 100%;
+    box-shadow: none;
+}
+
+th.mat-header-cell {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+td.mat-cell {
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.student-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.kid-name {
+    font-size: 1.05rem;
+    color: #0f172a;
+}
+
+.student-info small {
+    color: #94a3b8;
+}
+
+.bg-gray {
+    background-color: #94a3b8;
+}
+
+.visual-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cell-icon {
+    color: #94a3b8;
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    opacity: 0.5;
+}
+
+.visual-cell strong {
+    display: block;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.visual-cell small {
+    color: #64748b;
+}
+
+.timeline-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.time-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.small-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #cbd5e1;
+}
+
+.active-icon {
+    color: #10b981;
+}
+
+.time-item strong {
+    color: #0f172a;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-radius: 12px;
+}
+
+.status-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.status-success {
+    color: #065f46;
+    background-color: #d1fae5;
+}
+
+.status-purple {
+    color: #4c1d95;
+    background-color: #ede9fe;
+}
+
+.status-warning {
+    color: #92400e;
+    background-color: #fef3c7;
+}
+
+.status-danger {
+    color: #991b1b;
+    background-color: #fee2e2;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 40px !important;
+    color: #94a3b8;
+    font-style: italic;
+}

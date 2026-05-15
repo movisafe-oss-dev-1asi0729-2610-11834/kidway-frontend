@@ -1,0 +1,115 @@
+@if (store.loading()) {
+    <mat-spinner diameter="40"></mat-spinner>
+}
+
+<div class="page-header">
+    <small class="breadcrumbs" [innerHTML]="'attendance.tracking.breadcrumbs' | translate"></small>
+    <h1>{{ 'attendance.tracking.title' | translate }}</h1>
+    <p>{{ 'attendance.tracking.subtitle' | translate }} <strong>{{ currentParentName() }}</strong>.</p>
+</div>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <div class="stat-icon bg-blue"><mat-icon>family_restroom</mat-icon></div>
+        <div class="stat-info">
+            <small>{{ 'attendance.tracking.stats.total' | translate }}</small>
+            <strong>{{ myKidsTotal() }}</strong>
+        </div>
+    </article>
+    <article class="stat-card">
+        <div class="stat-icon bg-green"><mat-icon>directions_bus</mat-icon></div>
+        <div class="stat-info">
+            <small>{{ 'attendance.tracking.stats.on_board' | translate }}</small>
+            <strong class="text-green">{{ myKidsOnBoard() }}</strong>
+        </div>
+    </article>
+    <article class="stat-card">
+        <div class="stat-icon bg-purple"><mat-icon>school</mat-icon></div>
+        <div class="stat-info">
+            <small>{{ 'attendance.tracking.stats.arrived' | translate }}</small>
+            <strong class="text-purple">{{ myKidsArrived() }}</strong>
+        </div>
+    </article>
+</section>
+
+<div class="table-container">
+    <div class="toolbar">
+        <h3>{{ 'attendance.tracking.table_title' | translate }}</h3>
+    </div>
+
+    <table mat-table [dataSource]="dataSource()" class="kw-table parent-table">
+        <ng-container matColumnDef="kid">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.tracking.table.kid' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="student-profile">
+                    <div class="avatar" [ngClass]="{'bg-gray': attendance.status === 'Absent', 'bg-blue': attendance.status !== 'Absent'}">
+                        {{ attendance.initials }}
+                    </div>
+                    <div class="student-info">
+                        <strong class="kid-name">{{ attendance.studentName }}</strong>
+                        <small>{{ 'attendance.tracking.details.code' | translate }}: {{ attendance.studentId }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="transport">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.tracking.table.transport' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="visual-cell">
+                    <mat-icon class="cell-icon">route</mat-icon>
+                    <div>
+                        <strong>{{ attendance.routeName }}</strong>
+                        <small>{{ 'attendance.tracking.details.plate' | translate }}: {{ attendance.vehiclePlate }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="schedules">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.tracking.table.schedules' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="timeline-cell">
+                    <div class="time-item">
+                        <mat-icon class="small-icon" [ngClass]="{'active-icon': attendance.checkInTime}">login</mat-icon>
+                        <span>{{ 'attendance.tracking.details.boarded_at' | translate }}: <strong>{{ attendance.checkInTime || ('attendance.tracking.details.pending' | translate) }}</strong></span>
+                    </div>
+                    <div class="time-item">
+                        <mat-icon class="small-icon">schedule</mat-icon>
+                        <span>{{ 'attendance.tracking.details.eta' | translate }}: <strong>{{ attendance.estimatedArrival || ('attendance.tracking.details.pending' | translate) }}</strong></span>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>{{ 'attendance.tracking.table.status' | translate }}</th>
+            <td mat-cell *matCellDef="let attendance">
+                <div class="status-badge"
+                     [ngClass]="{
+                       'status-success': attendance.status === 'On board',
+                       'status-purple': attendance.status === 'Boarded',
+                       'status-warning': attendance.status === 'Waiting',
+                       'status-danger': attendance.status === 'Absent'
+                     }">
+                    <mat-icon class="status-icon">
+                        {{ attendance.status === 'On board' ? 'directions_bus' :
+                        attendance.status === 'Boarded' ? 'where_to_vote' :
+                            attendance.status === 'Waiting' ? 'hourglass_empty' : 'cancel' }}
+                    </mat-icon>
+                    {{ attendance.status === 'On board' ? ('attendance.tracking.status.on_board' | translate) :
+                    attendance.status === 'Boarded' ? ('attendance.tracking.status.boarded' | translate) :
+                        attendance.status === 'Waiting' ? ('attendance.tracking.status.waiting' | translate) :
+                            ('attendance.tracking.status.absent' | translate) }}
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell empty-msg" colspan="4">{{ 'attendance.tracking.empty' | translate }}</td>
+        </tr>
+    </table>
+</div>

@@ -210,5 +210,82 @@
       "table_title": "Active Transport Assignments",
       "no_data": "No assignments found for your children."
     }
+  },
+  "attendance": {
+    "management": {
+      "breadcrumbs": "Operations / Attendance",
+      "title": "Attendance Control",
+      "subtitle": "Real-time monitoring of student boarding and route status",
+      "stats": {
+        "total": "Total Assigned",
+        "total_desc": "Students on roster",
+        "on_board": "On Board (Check-in)",
+        "on_board_desc": "In transit",
+        "waiting": "Waiting at stop",
+        "waiting_desc": "To board",
+        "absent": "Absent",
+        "absent_desc": "Did not board"
+      },
+      "tabs": {
+        "all": "All",
+        "on_board": "On Board",
+        "arrived": "Arrived",
+        "waiting": "Waiting",
+        "absent": "Absent"
+      },
+      "search_placeholder": "Search by student or plate...",
+      "filter_all": "All Routes",
+      "table": {
+        "student": "STUDENT",
+        "route": "ROUTE",
+        "vehicle": "VEHICLE",
+        "check_in": "CHECK-IN TIME",
+        "eta": "EST. ARRIVAL",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "status": {
+        "on_board": "On board",
+        "boarded": "Arrived at destination",
+        "waiting": "Waiting",
+        "absent": "Absent"
+      },
+      "actions": {
+        "mark_on_board": "Mark On Board",
+        "mark_arrived": "Mark Arrived",
+        "mark_absent": "Mark Absent"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / My Kids",
+      "title": "Trip Tracking",
+      "subtitle": "Monitor the route and safety of your kids in real-time",
+      "stats": {
+        "total": "Total kids on roster",
+        "on_board": "Currently in route",
+        "arrived": "Arrived at destination"
+      },
+      "table_title": "Current mobility status",
+      "table": {
+        "kid": "KID",
+        "transport": "ASSIGNED TRANSPORT",
+        "schedules": "TODAY'S SCHEDULE",
+        "status": "TRIP STATUS"
+      },
+      "details": {
+        "code": "Code",
+        "plate": "Plate",
+        "boarded_at": "Boarded",
+        "eta": "Est. Arrival",
+        "pending": "--:--"
+      },
+      "status": {
+        "on_board": "On the way to destination",
+        "boarded": "Arrived safely",
+        "waiting": "Waiting at stop",
+        "absent": "Absent today"
+      },
+      "empty": "You have no kids assigned to routes currently."
+    }
   }
 }
