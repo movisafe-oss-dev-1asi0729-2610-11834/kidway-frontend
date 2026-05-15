@@ -52,6 +52,14 @@
     "register": "Register",
     "subtitle": "Identity & Access Management views are configured but kept outside the sidebar."
   },
+  "tracking": {
+    "title": "Real-Time Tracking",
+    "unit": "Unit",
+    "district": "District",
+    "speed": "Speed",
+    "searching": "Searching for units...",
+    "status": "ON ROUTE"
+  },
   "nav": {
     "dashboard": "Dashboard",
     "subscriptions": "Subscriptions & Payments",
