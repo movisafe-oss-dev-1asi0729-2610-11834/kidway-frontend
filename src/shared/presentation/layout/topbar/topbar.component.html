@@ -1,0 +1,32 @@
+<header class="topbar">
+  <button mat-icon-button class="menu-button" type="button" (click)="sidebarState.toggle()" [attr.aria-label]="'actions.toggleMenu' | translate">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <label class="search-box">
+    <mat-icon aria-hidden="true">search</mat-icon>
+    <span class="visually-hidden">{{ 'actions.search' | translate }}</span>
+    <input type="search" [placeholder]="'actions.search' | translate">
+  </label>
+
+  <div class="top-actions">
+    <div class="language-pill" role="group" [attr.aria-label]="'topbar.language' | translate">
+      <button type="button" [class.active]="languageService.current() === 'en'" (click)="setLanguage('en')">EN</button>
+      <button type="button" [class.active]="languageService.current() === 'es'" (click)="setLanguage('es')">ES</button>
+    </div>
+
+    <button mat-icon-button type="button" class="round-button" [attr.aria-label]="'actions.toggleTheme' | translate" (click)="toggleTheme()">
+      <mat-icon>{{ darkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+
+    <a mat-icon-button routerLink="/app/notifications" class="round-button notification" [attr.aria-label]="'topbar.notifications' | translate">
+      <mat-icon>notifications</mat-icon><span aria-hidden="true"></span>
+    </a>
+
+    <a class="profile-button" routerLink="/app/profile" [attr.aria-label]="'actions.openProfile' | translate">
+      <strong>ML</strong>
+      <span><b>Dr. Maria Lopez</b><small>Company Admin</small></span>
+      <mat-icon aria-hidden="true">chevron_right</mat-icon>
+    </a>
+  </div>
+</header>

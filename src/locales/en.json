@@ -1,0 +1,391 @@
+{
+  "app": {
+    "name": "KidWay",
+    "tagline": "School transport monitoring"
+  },
+  "trips": {
+    "title": "Trip Management",
+    "driver": "Driver",
+    "plate": "Plate",
+    "status": "Status",
+    "actions": "Actions",
+    "status_scheduled": "Scheduled",
+    "status_on-progress": "On Progress",
+    "status_completed": "Completed",
+    "start": "Start Trip",
+    "finish": "Finish Trip",
+    "no_actions": "No actions available"
+  },
+  "actions": {
+    "viewDetails": "View details",
+    "openProfile": "Open profile",
+    "toggleMenu": "Toggle menu",
+    "toggleTheme": "Toggle theme",
+    "search": "Search modules or views..."
+  },
+  "topbar": {
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "language": "Language"
+  },
+  "layout": {
+    "home": "Home",
+    "coreModules": "Core modules",
+    "rolePreview": "Role preview"
+  },
+  "home": {
+    "eyebrow": "KIDWAY FRONTEND",
+    "title": "Control Panel",
+    "subtitle": "Operational overview for school transport monitoring, safety, trips and attendance.",
+    "summary": "Operational summary",
+    "coverage": "Route coverage",
+    "recent": "Recent notifications",
+    "modules": "Visible modules",
+    "students": "Students on board",
+    "trips": "Active trips",
+    "alerts": "Open alerts",
+    "attendance": "Attendance rate",
+    "fleet": "Fleet availability",
+    "quick": "Quick module overview",
+    "performance": "Performance indicators",
+    "cta": "View details"
+  },
+  "development": {
+    "status": "In development",
+    "message": "This module is ready for implementation in its corresponding feature branch.",
+    "hint": "The base route, DDD folders and localization keys are already configured."
+  },
+  "profile": {
+    "title": "User Profile",
+    "subtitle": "Profile settings and preferences are handled from the topbar, not from the sidebar.",
+    "status": "In development"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "subtitle": "Identity & Access Management views are configured but kept outside the sidebar."
+  },
+  "tracking": {
+    "title": "Real-Time Tracking",
+    "unit": "Unit",
+    "district": "District",
+    "speed": "Speed",
+    "searching": "Searching for units...",
+    "status": "ON ROUTE"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "subscriptions": "Subscriptions & Payments",
+    "fleet": "Fleet Management",
+    "drivers": "Driver Management",
+    "routes": "Route Management",
+    "students": "Student Management",
+    "assignments": "Assignment Management",
+    "tracking": "Real-Time Tracking",
+    "trips": "Trip Management",
+    "attendance": "Attendance Tracking",
+    "notifications": "Alerts & Notifications",
+    "incidents": "Incident Management",
+    "analytics": "Analytics & Reports",
+    "companies": "Company Management",
+    "identityAccess": "Identity & Access",
+    "profiles": "User Profiles"
+  },
+  "subscriptions": {
+    "breadcrumb": "System / Billing & Plans",
+    "title": "Subscriptions & Payments",
+    "subtitle": "Manage your plan, payment methods and billing history.",
+    "planDescription": "Up to 10 vehicles · Real-time tracking · Priority support",
+    "currentPlan": "Current plan",
+    "customPrice": "Custom",
+    "month": "month",
+    "renewsOn": "Renews on",
+    "managePlan": "Manage plan",
+    "availablePlans": "Available plans",
+    "paymentMethod": "Payment method",
+    "add": "Add",
+    "expires": "Expires",
+    "primary": "Primary",
+    "delete": "Delete",
+    "currentUsage": "Current plan usage",
+    "billingHistory": "Billing history",
+    "exportPdf": "Export PDF",
+    "download": "Download",
+    "unlimited": "unlimited",
+    "status": {
+      "active": "Active plan",
+      "paid": "Paid",
+      "pending": "Pending",
+      "failed": "Failed",
+      "expired": "Expired",
+      "cancelled": "Cancelled"
+    },
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "targets": {
+      "individualOperators": "For individual operators with one unit",
+      "mediumFleets": "For companies with a medium fleet",
+      "specificNeeds": "For fleets with specific operational needs"
+    },
+    "features": {
+      "oneVehicle": "1 vehicle",
+      "thirtyStudents": "Up to 30 students",
+      "basicRoutes": "Basic routes",
+      "manualAttendance": "Manual attendance",
+      "realTimeTracking": "Real-time tracking",
+      "advancedReports": "Advanced reports",
+      "prioritySupport": "Priority support",
+      "tenVehicles": "Up to 10 vehicles",
+      "threeHundredStudents": "Up to 300 students",
+      "advancedRoutes": "Advanced routes",
+      "automaticAttendance": "Automatic attendance",
+      "completeReports": "Complete reports",
+      "unlimitedVehicles": "Unlimited vehicles",
+      "unlimitedStudents": "Unlimited students",
+      "customApi": "Custom API",
+      "sla": "SLA included",
+      "schoolIntegration": "School integration",
+      "support247": "24/7 support",
+      "accountManager": "Account manager"
+    },
+    "actions": {
+      "upgrade": "Switch to Basic",
+      "current": "Current plan",
+      "contact": "Contact sales"
+    },
+    "usage": {
+      "vehicles": "Vehicles",
+      "students": "Students",
+      "users": "Users"
+    },
+    "table": {
+      "date": "Date",
+      "description": "Description",
+      "amount": "Amount",
+      "method": "Method",
+      "status": "Status",
+      "invoice": "Invoice"
+    }
+  },
+  "notifications": {
+    "title": "Alerts & Notifications",
+    "unread": "New",
+    "empty": "No pending notifications",
+    "mark_all": "Mark all as read"
+  },
+  "assignments": {
+    "management": {
+      "breadcrumbs": "Operations / Assignments",
+      "title": "Assignment Management",
+      "subtitle": "Manage student route and vehicle assignments",
+      "stats": {
+        "total": "Total Assignments",
+        "active": "Active Assignments",
+        "inactive": "Inactive",
+        "morning": "Morning Shift"
+      },
+      "search_placeholder": "Search by student or route...",
+      "filter_shift": "All Shifts",
+      "filter_status": "All Statuses",
+      "new_assignment": "New Assignment",
+      "table": {
+        "student": "STUDENT",
+        "route": "ROUTE",
+        "vehicle": "VEHICLE",
+        "shift": "SHIFT",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "shift": {
+        "morning": "Morning",
+        "afternoon": "Afternoon"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "actions": {
+        "edit": "Edit Assignment",
+        "toggle_status": "Change Status",
+        "delete": "Remove Assignment"
+      },
+      "form": {
+        "add_title": "Add New Assignment",
+        "edit_title": "Edit Assignment",
+        "code": "Student Code",
+        "tutor": "Tutor Name",
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / My Kids",
+      "title": "My Kids' Assignments",
+      "subtitle": "Review the transport details assigned to",
+      "stats": {
+        "total_kids": "Children Assigned"
+      },
+      "table_title": "Active Transport Assignments",
+      "no_data": "No assignments found for your children."
+    }
+  },
+  "attendance": {
+    "management": {
+      "breadcrumbs": "Operations / Attendance",
+      "title": "Attendance Control",
+      "subtitle": "Real-time monitoring of student boarding and route status",
+      "stats": {
+        "total": "Total Assigned",
+        "total_desc": "Students on roster",
+        "on_board": "On Board (Check-in)",
+        "on_board_desc": "In transit",
+        "waiting": "Waiting at stop",
+        "waiting_desc": "To board",
+        "absent": "Absent",
+        "absent_desc": "Did not board"
+      },
+      "tabs": {
+        "all": "All",
+        "on_board": "On Board",
+        "arrived": "Arrived",
+        "waiting": "Waiting",
+        "absent": "Absent"
+      },
+      "search_placeholder": "Search by student or plate...",
+      "filter_all": "All Routes",
+      "table": {
+        "student": "STUDENT",
+        "route": "ROUTE",
+        "vehicle": "VEHICLE",
+        "check_in": "CHECK-IN TIME",
+        "eta": "EST. ARRIVAL",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "status": {
+        "on_board": "On board",
+        "boarded": "Arrived at destination",
+        "waiting": "Waiting",
+        "absent": "Absent"
+      },
+      "actions": {
+        "mark_on_board": "Mark On Board",
+        "mark_arrived": "Mark Arrived",
+        "mark_absent": "Mark Absent"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / My Kids",
+      "title": "Trip Tracking",
+      "subtitle": "Monitor the route and safety of your kids in real-time",
+      "stats": {
+        "total": "Total kids on roster",
+        "on_board": "Currently in route",
+        "arrived": "Arrived at destination"
+      },
+      "table_title": "Current mobility status",
+      "table": {
+        "kid": "KID",
+        "transport": "ASSIGNED TRANSPORT",
+        "schedules": "TODAY'S SCHEDULE",
+        "status": "TRIP STATUS"
+      },
+      "details": {
+        "code": "Code",
+        "plate": "Plate",
+        "boarded_at": "Boarded",
+        "eta": "Est. Arrival",
+        "pending": "--:--"
+      },
+      "status": {
+        "on_board": "On the way to destination",
+        "boarded": "Arrived safely",
+        "waiting": "Waiting at stop",
+        "absent": "Absent today"
+      },
+      "empty": "You have no kids assigned to routes currently."
+    }
+  },
+  "students": {
+    "management": {
+      "breadcrumbs": "Operations / Students",
+      "title": "Student Management",
+      "subtitle": "Registration, administration, and tracking of all students",
+      "stats": {
+        "total": "Total students",
+        "total_desc": "+8 this month",
+        "with_route": "With assigned route",
+        "with_route_desc": "93% of total",
+        "without_route": "Without route",
+        "without_route_desc": "Pending assignment",
+        "inactive": "Inactive",
+        "inactive_desc": "No dropouts this month"
+      },
+      "alerts": {
+        "unassigned": "There are students without an assigned route. Please assign a route to keep the system updated.",
+        "assign_now": "Assign Routes"
+      },
+      "tabs": {
+        "all": "All",
+        "active": "Active",
+        "unassigned": "Unassigned",
+        "inactive": "Inactive"
+      },
+      "search_placeholder": "Search by name or tutor...",
+      "new_student": "Register Student",
+      "table": {
+        "name": "NAME",
+        "code": "CODE",
+        "grade": "GRADE",
+        "tutor": "TUTOR",
+        "route": "ROUTE",
+        "stop": "STOP",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "assign": "Assign"
+      },
+      "status": {
+        "active": "Active",
+        "unassigned": "No Route",
+        "inactive": "Inactive"
+      }
+    },
+    "tracking": {
+      "title": "My Kids",
+      "subtitle": "School transport information and assigned routes",
+      "route": "Route",
+      "unassigned_route": "Not assigned yet",
+      "stop": "Stop / Meeting point",
+      "unassigned_stop": "To be confirmed",
+      "track_btn": "Track vehicle",
+      "edit_btn": "Edit information",
+      "empty_msg": "No students associated with your account were found."
+    },
+    "dialogs": {
+      "detail_title": "Student Details",
+      "name": "Name",
+      "last_name": "Last Name",
+      "code": "Code",
+      "grade": "Grade",
+      "tutor": "Tutor",
+      "contact": "Contact",
+      "route": "Route",
+      "stop": "Stop",
+      "status": "Status",
+      "close": "Close",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "register": "Register",
+      "edit_title": "Edit Student",
+      "new_title": "Register New Student",
+      "unassigned": "Unassigned"
+    }
+  }
+}

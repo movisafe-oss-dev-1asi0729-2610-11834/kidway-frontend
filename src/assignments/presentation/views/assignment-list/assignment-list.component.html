@@ -1,0 +1,145 @@
+@if (store.loading()) {
+    <mat-spinner diameter="40"></mat-spinner>
+}
+
+<div class="page-header">
+    <div class="header-content">
+        <div>
+            <small class="breadcrumbs" [innerHTML]="'assignments.management.breadcrumbs' | translate"></small>
+            <h1>{{ 'assignments.management.title' | translate }}</h1>
+            <p>{{ 'assignments.management.subtitle' | translate }}</p>
+        </div>
+
+        @if (!editMode()) {
+            <button mat-flat-button color="primary" (click)="onAddAssignment()">
+                <mat-icon>add</mat-icon> {{ 'assignments.management.new_assignment' | translate }}
+            </button>
+        }
+    </div>
+</div>
+
+@if (editMode()) {
+    <app-assignment-create-and-edit
+            [assignment]="assignmentToEdit()"
+            (editCanceled)="onEditCanceled()"
+            (editSaved)="onEditSaved($event)">
+    </app-assignment-create-and-edit>
+} @else {
+    <section class="stats-grid">
+        <article class="stat-card">
+            <small>{{ 'assignments.management.stats.total' | translate }}</small>
+            <strong>{{ store.totalAssignments() }}</strong>
+        </article>
+        <article class="stat-card">
+            <small>{{ 'assignments.management.stats.active' | translate }}</small>
+            <strong class="text-green">{{ store.activeAssignments() }}</strong>
+        </article>
+        <article class="stat-card">
+            <small>{{ 'assignments.management.stats.inactive' | translate }}</small>
+            <strong class="text-red">{{ store.inactiveAssignments() }}</strong>
+        </article>
+        <article class="stat-card">
+            <small>{{ 'assignments.management.stats.morning' | translate }}</small>
+            <strong>{{ morningAssignmentsCount() }}</strong>
+        </article>
+    </section>
+
+    <div class="table-container">
+        <div class="toolbar">
+            <div class="actions-left">
+                <input type="text" class="search-input" [placeholder]="'assignments.management.search_placeholder' | translate" (keyup)="applySearch($event)">
+            </div>
+            <div class="actions-right">
+                <mat-form-field appearance="outline" class="filter-select" subscriptSizing="dynamic">
+                    <mat-select [value]="selectedShift()" (selectionChange)="selectedShift.set($event.value)">
+                        <mat-option value="All">{{ 'assignments.management.filter_shift' | translate }}</mat-option>
+                        <mat-option value="Morning">{{ 'assignments.management.shift.morning' | translate }}</mat-option>
+                        <mat-option value="Afternoon">{{ 'assignments.management.shift.afternoon' | translate }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="filter-select" subscriptSizing="dynamic">
+                    <mat-select [value]="selectedStatus()" (selectionChange)="selectedStatus.set($event.value)">
+                        <mat-option value="All">{{ 'assignments.management.filter_status' | translate }}</mat-option>
+                        <mat-option value="Active">{{ 'assignments.management.status.active' | translate }}</mat-option>
+                        <mat-option value="Inactive">{{ 'assignments.management.status.inactive' | translate }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="dataSource()" class="kw-table">
+            <ng-container matColumnDef="student">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.student' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment">
+                    <div class="student-profile">
+                        <div class="student-info">
+                            <strong>{{ assignment.studentName }}</strong>
+                            <small>{{ assignment.studentId }}</small>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="route">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.route' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment">
+                    <div class="route-info">
+                        <mat-icon class="route-icon">route</mat-icon>
+                        <span>{{ assignment.routeName }}</span>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="vehicle">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.vehicle' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment"><strong>{{ assignment.vehiclePlate }}</strong></td>
+            </ng-container>
+
+            <ng-container matColumnDef="shift">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.shift' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment">
+                    <div class="shift-tag">
+                        <mat-icon class="shift-icon">{{ assignment.shift === 'Morning' ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+                        {{ assignment.shift === 'Morning' ? ('assignments.management.shift.morning' | translate) : ('assignments.management.shift.afternoon' | translate) }}
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.status' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment">
+                    <div class="status-badge" [ngClass]="{'status-success': assignment.status === 'Active', 'status-danger': assignment.status === 'Inactive'}">
+                        <div class="dot"></div>
+                        {{ assignment.status === 'Active' ? ('assignments.management.status.active' | translate) : ('assignments.management.status.inactive' | translate) }}
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>{{ 'assignments.management.table.actions' | translate }}</th>
+                <td mat-cell *matCellDef="let assignment">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onEditItem(assignment)">
+                            <mat-icon>edit</mat-icon> {{ 'assignments.management.actions.edit' | translate }}
+                        </button>
+                        <button mat-menu-item (click)="toggleStatus(assignment)">
+                            <mat-icon>swap_horiz</mat-icon> {{ 'assignments.management.actions.toggle_status' | translate }}
+                        </button>
+                        <button mat-menu-item (click)="deleteAssignment(assignment.id)">
+                            <mat-icon color="warn">delete</mat-icon> {{ 'assignments.management.actions.delete' | translate }}
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+}

@@ -1,0 +1,555 @@
+{
+  "currentUser": {
+    "id": 1,
+    "firstName": "Maria",
+    "lastName": "Lopez",
+    "role": "Company Admin",
+    "company": "MoviSafe Transport",
+    "avatarInitials": "ML"
+  },
+  "dashboard": {
+    "activeTrips": 12,
+    "studentsOnBoard": 184,
+    "alerts": 4,
+    "attendanceRate": 96.8,
+    "fleetAvailability": 88,
+    "routeCoverage": 92
+  },
+  "notifications": [
+    {
+      "id": 1,
+      "type": "delay",
+      "title": "Route delay detected",
+      "message": "Vehicle KW-204 is 8 minutes behind schedule.",
+      "priority": "high",
+      "read": false
+    },
+    {
+      "id": 2,
+      "type": "attendance",
+      "title": "Boarding summary ready",
+      "message": "Morning attendance was updated for all active routes.",
+      "priority": "medium",
+      "read": false
+    },
+    {
+      "id": 3,
+      "type": "incident",
+      "title": "Incident follow-up required",
+      "message": "A minor incident requires company review.",
+      "priority": "high",
+      "read": true
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "slug": "dashboard",
+      "title": "Dashboard",
+      "icon": "dashboard",
+      "status": "in-development"
+    },
+    {
+      "id": 2,
+      "slug": "subscriptions",
+      "title": "Subscription & Payments",
+      "icon": "payments",
+      "status": "in-development"
+    },
+    {
+      "id": 3,
+      "slug": "fleet",
+      "title": "Fleet Management",
+      "icon": "directions_bus",
+      "status": "in-development"
+    },
+    {
+      "id": 4,
+      "slug": "drivers",
+      "title": "Driver Management",
+      "icon": "badge",
+      "status": "in-development"
+    },
+    {
+      "id": 5,
+      "slug": "routes",
+      "title": "Route Management",
+      "icon": "alt_route",
+      "status": "in-development"
+    },
+    {
+      "id": 6,
+      "slug": "students",
+      "title": "Student Management",
+      "icon": "school",
+      "status": "in-development"
+    },
+    {
+      "id": 7,
+      "slug": "assignments",
+      "title": "Assignment Management",
+      "icon": "rule",
+      "status": "in-development"
+    },
+    {
+      "id": 8,
+      "slug": "tracking",
+      "title": "Real-Time Tracking",
+      "icon": "location_on",
+      "status": "in-development"
+    },
+    {
+      "id": 9,
+      "slug": "trips",
+      "title": "Trip Management",
+      "icon": "route",
+      "status": "in-development"
+    },
+    {
+      "id": 10,
+      "slug": "attendance",
+      "title": "Attendance Tracking",
+      "icon": "fact_check",
+      "status": "in-development"
+    },
+    {
+      "id": 11,
+      "slug": "notifications",
+      "title": "Alerts & Notifications",
+      "icon": "notifications",
+      "status": "in-development"
+    },
+    {
+      "id": 12,
+      "slug": "incidents",
+      "title": "Incident Management",
+      "icon": "report_problem",
+      "status": "in-development"
+    },
+    {
+      "id": 13,
+      "slug": "analytics",
+      "title": "Analytics & Reports",
+      "icon": "bar_chart",
+      "status": "in-development"
+    },
+    {
+      "id": 14,
+      "slug": "companies",
+      "title": "Company Management",
+      "icon": "business",
+      "status": "in-development"
+    }
+  ],
+  "currentSubscription": {
+    "id": "sub-pro-2026",
+    "planName": "Plan Pro",
+    "status": "active",
+    "price": 799,
+    "currency": "USD",
+    "interval": "month",
+    "renewsOn": "2025-06-15",
+    "vehicleLimit": 10,
+    "studentLimit": 300,
+    "userLimit": null,
+    "vehiclesUsed": 8,
+    "studentsUsed": 248,
+    "usersUsed": 5
+  },
+  "subscriptionPlans": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "label": "basic",
+      "price": 299,
+      "currency": "USD",
+      "interval": "month",
+      "target": "individualOperators",
+      "featured": false,
+      "actionType": "upgrade",
+      "features": [
+        {
+          "text": "oneVehicle",
+          "included": true
+        },
+        {
+          "text": "thirtyStudents",
+          "included": true
+        },
+        {
+          "text": "basicRoutes",
+          "included": true
+        },
+        {
+          "text": "manualAttendance",
+          "included": true
+        },
+        {
+          "text": "realTimeTracking",
+          "included": false
+        },
+        {
+          "text": "advancedReports",
+          "included": false
+        },
+        {
+          "text": "prioritySupport",
+          "included": false
+        }
+      ]
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "label": "pro",
+      "price": 799,
+      "currency": "USD",
+      "interval": "month",
+      "target": "mediumFleets",
+      "featured": true,
+      "actionType": "current",
+      "features": [
+        {
+          "text": "tenVehicles",
+          "included": true
+        },
+        {
+          "text": "threeHundredStudents",
+          "included": true
+        },
+        {
+          "text": "advancedRoutes",
+          "included": true
+        },
+        {
+          "text": "realTimeTracking",
+          "included": true
+        },
+        {
+          "text": "automaticAttendance",
+          "included": true
+        },
+        {
+          "text": "completeReports",
+          "included": true
+        },
+        {
+          "text": "prioritySupport",
+          "included": true
+        }
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "label": "enterprise",
+      "price": null,
+      "currency": "USD",
+      "interval": "month",
+      "target": "specificNeeds",
+      "featured": false,
+      "actionType": "contact",
+      "features": [
+        {
+          "text": "unlimitedVehicles",
+          "included": true
+        },
+        {
+          "text": "unlimitedStudents",
+          "included": true
+        },
+        {
+          "text": "customApi",
+          "included": true
+        },
+        {
+          "text": "sla",
+          "included": true
+        },
+        {
+          "text": "schoolIntegration",
+          "included": true
+        },
+        {
+          "text": "support247",
+          "included": true
+        },
+        {
+          "text": "accountManager",
+          "included": true
+        }
+      ]
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": "pm-visa",
+      "brand": "visa",
+      "last4": "4521",
+      "holder": "Ana Torres",
+      "expiresOn": "08/2027",
+      "primary": true
+    },
+    {
+      "id": "pm-mastercard",
+      "brand": "mastercard",
+      "last4": "8834",
+      "holder": "Empresa ABC",
+      "expiresOn": "03/2026",
+      "primary": false
+    }
+  ],
+  "billingHistory": [
+    {
+      "id": "inv-001",
+      "date": "2025-05-15",
+      "description": "Plan Pro — May 2025",
+      "amount": 799,
+      "currency": "USD",
+      "method": "Visa ••4521",
+      "status": "paid",
+      "invoiceUrl": "#"
+    },
+    {
+      "id": "inv-002",
+      "date": "2025-04-15",
+      "description": "Plan Pro — April 2025",
+      "amount": 799,
+      "currency": "USD",
+      "method": "Visa ••4521",
+      "status": "paid",
+      "invoiceUrl": "#"
+    },
+    {
+      "id": "inv-003",
+      "date": "2025-03-15",
+      "description": "Plan Pro — March 2025",
+      "amount": 799,
+      "currency": "USD",
+      "method": "Visa ••4521",
+      "status": "paid",
+      "invoiceUrl": "#"
+    },
+    {
+      "id": "inv-004",
+      "date": "2025-02-15",
+      "description": "Basic → Pro upgrade",
+      "amount": 500,
+      "currency": "USD",
+      "method": "MC ••8834",
+      "status": "paid",
+      "invoiceUrl": "#"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "studentName": "Sofía Vega",
+      "studentId": "#AL-001",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "shift": "Afternoon",
+      "status": "Active",
+      "tutorName": "Maria Lopez"
+    },
+    {
+      "id": 2,
+      "studentName": "Diego Ruiz",
+      "studentId": "#AL-002",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "shift": "Morning",
+      "status": "Active",
+      "tutorName": "Carlos Ruiz"
+    },
+    {
+      "id": 3,
+      "studentName": "Valeria Cruz",
+      "studentId": "#AL-003",
+      "routeName": "Ruta Este",
+      "vehiclePlate": "KW-308",
+      "shift": "Afternoon",
+      "status": "Inactive",
+      "tutorName": "Ana Silva"
+    },
+    {
+      "id": 4,
+      "studentName": "Mateo Lara",
+      "studentId": "#AL-004",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "shift": "Afternoon",
+      "status": "Active",
+      "tutorName": "Maria Lopez"
+    },
+    {
+      "id": 5,
+      "studentName": "Isabella Pinto",
+      "studentId": "#AL-005",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "shift": "Morning",
+      "status": "Inactive",
+      "tutorName": "Jorge Pinto"
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "studentName": "Sofía Vega",
+      "studentId": "#AL-001",
+      "initials": "SV",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "status": "Boarded",
+      "checkInTime": "11:15 a. m.",
+      "estimatedArrival": "07:45 AM",
+      "tutorName": "Maria Lopez"
+    },
+    {
+      "id": 2,
+      "studentName": "Diego Ruiz",
+      "studentId": "#AL-002",
+      "initials": "DR",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "status": "Boarded",
+      "checkInTime": "07:20 AM",
+      "estimatedArrival": "08:00 AM",
+      "tutorName": "Juan Ruiz"
+    },
+    {
+      "id": 3,
+      "studentName": "Valeria Cruz",
+      "studentId": "#AL-003",
+      "initials": "VC",
+      "routeName": "Ruta Este",
+      "vehiclePlate": "KW-308",
+      "status": "On board",
+      "checkInTime": "11:15 a. m.",
+      "estimatedArrival": "07:50 AM",
+      "tutorName": "Elena Cruz"
+    },
+    {
+      "id": 4,
+      "studentName": "Mateo Lara",
+      "studentId": "#AL-004",
+      "initials": "ML",
+      "routeName": "Ruta Norte",
+      "vehiclePlate": "KW-204",
+      "status": "Absent",
+      "checkInTime": null,
+      "estimatedArrival": null,
+      "tutorName": "Rosa Lara"
+    },
+    {
+      "id": 5,
+      "studentName": "Isabella Pinto",
+      "studentId": "#AL-005",
+      "initials": "IP",
+      "routeName": "Ruta Sur",
+      "vehiclePlate": "KW-105",
+      "status": "Absent",
+      "checkInTime": null,
+      "estimatedArrival": "08:10 AM",
+      "tutorName": "Carmen Pinto"
+    }
+  ],
+  "attendanceActions": [
+    {
+      "id": 1,
+      "statusValue": "On board",
+      "label": "Marcar A bordo",
+      "icon": "check_circle",
+      "color": "primary"
+    },
+    {
+      "id": 2,
+      "statusValue": "Boarded",
+      "label": "Llegó a destino",
+      "icon": "where_to_vote",
+      "color": "accent"
+    },
+    {
+      "id": 3,
+      "statusValue": "Absent",
+      "label": "Marcar Ausente",
+      "icon": "cancel",
+      "color": "warn"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "code": "#AL-001",
+      "firstName": "Maria",
+      "lastName": "Vega",
+      "grade": "4° Primaria",
+      "tutorName": "Maria Lopez",
+      "tutorContact": "+51 551 111 222",
+      "routeAssigned": "Ruta Norte",
+      "stopName": "Calle Pino 42",
+      "status": "Activo"
+    },
+    {
+      "id": 2,
+      "code": "#AL-002",
+      "firstName": "Diego",
+      "lastName": "Ruiz",
+      "grade": "5° Primaria",
+      "tutorName": "Juan Ruiz",
+      "tutorContact": "+51 553 333 444",
+      "routeAssigned": "Ruta Sur",
+      "stopName": "Av. Robles 115",
+      "status": "Activo"
+    },
+    {
+      "id": 3,
+      "code": "#AL-003",
+      "firstName": "Valeria",
+      "lastName": "Cruz",
+      "grade": "1° Secundaria",
+      "tutorName": "Elena Cruz",
+      "tutorContact": "+51 555 555 666",
+      "routeAssigned": null,
+      "stopName": null,
+      "status": "Sin ruta"
+    },
+    {
+      "id": 4,
+      "code": "#AL-004",
+      "firstName": "Mateo",
+      "lastName": "Lara",
+      "grade": "2° Primaria",
+      "tutorName": "Rosa Lara",
+      "tutorContact": "+51 557 778 888",
+      "routeAssigned": "Ruta Norte",
+      "stopName": "Plaza Norte",
+      "status": "Activo"
+    },
+    {
+      "id": 5,
+      "code": "#AL-005",
+      "firstName": "Ana",
+      "lastName": "Méndez",
+      "grade": "4° Primaria",
+      "tutorName": "Carlos Méndez",
+      "tutorContact": "+51 559 999 000",
+      "routeAssigned": "Ruta Sur",
+      "stopName": "Col. Las Flores",
+      "status": "Activo"
+    },
+    {
+      "id": 6,
+      "code": "#AL-0073",
+      "firstName": "Alonso",
+      "lastName": "Higa",
+      "grade": "1 Primaria",
+      "tutorName": "Jorge",
+      "tutorContact": "+51 960265099",
+      "routeAssigned": null,
+      "stopName": null,
+      "status": "Activo"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; z-index: 30; width: var(--sidebar-width);
+  padding: 28px 18px 18px; color: #fff;
+  background: linear-gradient(180deg, #136fa8 0%, #0e4f83 48%, #0b315d 100%);
+  box-shadow: 14px 0 36px rgba(8, 49, 90, .18);
+  overflow-y: auto; scrollbar-width: none; transition: width .25s ease, transform .25s ease;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+.brand { display: flex; align-items: center; gap: 14px; padding: 0 8px 22px; border-bottom: 1px solid rgba(255,255,255,.18); }
+.brand img { width: 54px; height: 54px; border-radius: 18px; background: #fff; padding: 7px; }
+.brand strong { display: block; font-size: 1.25rem; letter-spacing: .01em; }
+.brand small { display: block; opacity: .8; max-width: 172px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.section-label { margin: 24px 10px 10px; font-weight: 800; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; opacity: .72; }
+.nav-list { display: grid; gap: 6px; }
+.nav-list a { display: flex; align-items: center; gap: 14px; min-height: 46px; padding: 0 14px; border-radius: 18px; color: rgba(255,255,255,.82); font-weight: 700; }
+.nav-list a:hover, .nav-list a.active { color: #fff; background: rgba(255,255,255,.14); }
+.nav-list mat-icon { font-size: 21px; width: 21px; height: 21px; }
+.role-card { margin-top: 28px; padding: 18px; border-top: 1px solid rgba(255,255,255,.18); }
+.role-card small { display: block; opacity: .72; margin-bottom: 4px; }
+.role-card strong { font-size: .95rem; }
+:host-context(.sidebar-collapsed) .sidebar { width: 92px; }
+:host-context(.sidebar-collapsed) .brand span,
+:host-context(.sidebar-collapsed) .section-label,
+:host-context(.sidebar-collapsed) .nav-list span,
+:host-context(.sidebar-collapsed) .role-card { display: none; }
+:host-context(.sidebar-collapsed) .brand { justify-content: center; padding-left: 0; padding-right: 0; }
+:host-context(.sidebar-collapsed) .nav-list a { justify-content: center; padding: 0; }
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-105%); }
+  :host-context(.mobile-open) .sidebar { transform: translateX(0); }
+  :host-context(.sidebar-collapsed) .sidebar { width: var(--sidebar-width); }
+  :host-context(.sidebar-collapsed) .brand span,
+  :host-context(.sidebar-collapsed) .section-label,
+  :host-context(.sidebar-collapsed) .nav-list span,
+  :host-context(.sidebar-collapsed) .role-card { display: block; }
+}

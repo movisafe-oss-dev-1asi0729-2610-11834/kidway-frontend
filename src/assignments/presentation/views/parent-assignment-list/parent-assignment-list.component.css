@@ -1,0 +1,182 @@
+:host {
+    display: block;
+    padding: 24px;
+    color: var(--kw-ink, #334155);
+}
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.breadcrumbs {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.page-header h1 {
+    margin: 8px 0 4px;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+}
+
+.page-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.stats-grid {
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    min-width: 280px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.bg-blue {
+    background-color: #3b82f6;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-info small {
+    color: #64748b;
+    font-size: 0.80rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stat-info strong {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.table-container {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.toolbar {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.toolbar h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+
+.kw-table {
+    width: 100%;
+}
+
+th.mat-header-cell {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+td.mat-cell {
+    padding: 16px 0;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-info strong {
+    color: #0f172a;
+}
+
+.student-info small {
+    color: #94a3b8;
+}
+
+.visual-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cell-icon {
+    color: #cbd5e1;
+}
+
+.shift-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-success {
+    color: #065f46;
+    background-color: #d1fae5;
+}
+
+.status-success .dot {
+    background-color: #10b981;
+}
+
+.status-danger {
+    color: #991b1b;
+    background-color: #fee2e2;
+}
+
+.status-danger .dot {
+    background-color: #ef4444;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 40px !important;
+    color: #94a3b8;
+}

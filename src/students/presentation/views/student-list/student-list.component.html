@@ -1,0 +1,147 @@
+@if (store.loading()) {
+    <mat-spinner diameter="40"></mat-spinner>
+}
+@if (store.error()) {
+    <mat-error>{{ store.error() }}</mat-error>
+}
+
+<div class="page-header">
+    <small class="breadcrumbs" [innerHTML]="'students.management.breadcrumbs' | translate"></small>
+    <h1>{{ 'students.management.title' | translate }}</h1>
+    <p>{{ 'students.management.subtitle' | translate }}</p>
+</div>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <small>{{ 'students.management.stats.total' | translate }}</small>
+        <strong>{{ store.totalStudents() }}</strong>
+        <span>{{ 'students.management.stats.total_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'students.management.stats.with_route' | translate }}</small>
+        <strong class="text-green">{{ store.studentsWithRoute() }}</strong>
+        <span>{{ 'students.management.stats.with_route_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'students.management.stats.without_route' | translate }}</small>
+        <strong class="text-orange">{{ store.studentsWithoutRoute() }}</strong>
+        <span>{{ 'students.management.stats.without_route_desc' | translate }}</span>
+    </article>
+    <article class="stat-card">
+        <small>{{ 'students.management.stats.inactive' | translate }}</small>
+        <strong class="text-blue">{{ store.inactiveStudents() }}</strong>
+        <span>{{ 'students.management.stats.inactive_desc' | translate }}</span>
+    </article>
+</section>
+
+@if (store.studentsWithoutRoute() > 0) {
+    <div class="alert-banner warning">
+        <mat-icon>warning</mat-icon>
+        <div class="alert-content">
+            <p>{{ 'students.management.alerts.unassigned' | translate }}</p>
+            <button mat-button color="primary" (click)="goToSinRutaTab()">{{ 'students.management.alerts.assign_now' | translate }}</button>
+        </div>
+    </div>
+}
+
+<div class="table-container">
+    <mat-tab-group animationDuration="0ms" [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)">
+        <mat-tab label="{{ 'students.management.tabs.all' | translate }} ({{ store.totalStudents() }})"></mat-tab>
+        <mat-tab label="{{ 'students.management.tabs.active' | translate }} ({{ store.studentsWithRoute() }})"></mat-tab>
+        <mat-tab label="{{ 'students.management.tabs.unassigned' | translate }} ({{ store.studentsWithoutRoute() }})"></mat-tab>
+        <mat-tab label="{{ 'students.management.tabs.inactive' | translate }} ({{ store.inactiveStudents() }})"></mat-tab>
+    </mat-tab-group>
+
+    <div class="toolbar">
+        <div class="actions-left">
+            <input type="text" class="search-input" [placeholder]="'students.management.search_placeholder' | translate" (keyup)="applySearch($event)">
+        </div>
+        <div class="actions-right">
+            <button mat-flat-button color="primary" (click)="openCreateDialog()">
+                <mat-icon>add</mat-icon> {{ 'students.management.new_student' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource()" class="kw-table">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef> <mat-checkbox></mat-checkbox> </th>
+            <td mat-cell *matCellDef="let student"> <mat-checkbox></mat-checkbox> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.name' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <div class="student-profile">
+                    <div class="avatar" [ngClass]="{'bg-gray': student.status === 'Inactivo', 'bg-blue': student.status !== 'Inactivo'}">
+                        {{ student.initials }}
+                    </div>
+                    <strong>{{ student.fullName }}</strong>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.code' | translate }}</th>
+            <td mat-cell *matCellDef="let student">{{ student.code }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="grado">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.grade' | translate }}</th>
+            <td mat-cell *matCellDef="let student">{{ student.grade }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tutor">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.tutor' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <div class="student-info">
+                    <strong>{{ student.tutorName }}</strong>
+                    <small>{{ student.tutorContact }}</small>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ruta">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.route' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <span [class.unassigned]="!student.routeAssigned">{{ student.routeAssigned || '---' }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="parada">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.stop' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <span [class.unassigned]="!student.stopName">{{ student.stopName || '---' }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.status' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <div class="status-badge" [ngClass]="student.status === 'Sin ruta' ? 'status-warning' : 'status-success'">
+                    <div class="dot"></div>
+                    {{ student.status === 'Activo' ? ('students.management.status.active' | translate) :
+                    student.status === 'Sin ruta' ? ('students.management.status.unassigned' | translate) :
+                        ('students.management.status.inactive' | translate) }}
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>{{ 'students.management.table.actions' | translate }}</th>
+            <td mat-cell *matCellDef="let student">
+                <button mat-stroked-button class="action-btn" (click)="openDetailDialog(student)">{{ 'students.management.actions.view' | translate }}</button>
+                <button mat-stroked-button class="action-btn"
+                        [color]="student.status === 'Sin ruta' ? 'primary' : ''"
+                        (click)="openEditDialog(student)">
+                    {{ student.status === 'Sin ruta' ? ('students.management.actions.assign' | translate) : ('students.management.actions.edit' | translate) }}
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons></mat-paginator>
+</div>

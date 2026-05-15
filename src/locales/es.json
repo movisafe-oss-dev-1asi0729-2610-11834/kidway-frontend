@@ -1,0 +1,391 @@
+{
+  "app": {
+    "name": "KidWay",
+    "tagline": "Monitoreo de transporte escolar"
+  },
+  "actions": {
+    "viewDetails": "Ver detalles",
+    "openProfile": "Abrir perfil",
+    "toggleMenu": "Mostrar u ocultar menú",
+    "toggleTheme": "Cambiar tema",
+    "search": "Buscar módulos o vistas..."
+  },
+  "topbar": {
+    "notifications": "Notificaciones",
+    "profile": "Perfil",
+    "language": "Idioma"
+  },
+  "layout": {
+    "home": "Inicio",
+    "coreModules": "Módulos principales",
+    "rolePreview": "Vista previa de rol"
+  },
+  "home": {
+    "eyebrow": "KIDWAY FRONTEND",
+    "title": "Panel de Control",
+    "subtitle": "Resumen operativo para monitoreo de transporte escolar, seguridad, viajes y asistencia.",
+    "summary": "Resumen operativo",
+    "coverage": "Cobertura de rutas",
+    "recent": "Notificaciones recientes",
+    "modules": "Módulos visibles",
+    "students": "Estudiantes a bordo",
+    "trips": "Viajes activos",
+    "alerts": "Alertas abiertas",
+    "attendance": "Tasa de asistencia",
+    "fleet": "Disponibilidad de flota",
+    "quick": "Resumen rápido de módulos",
+    "performance": "Indicadores de rendimiento",
+    "cta": "Ver detalles"
+  },
+  "development": {
+    "status": "En desarrollo",
+    "message": "Este módulo está listo para ser implementado en su rama feature correspondiente.",
+    "hint": "La ruta base, carpetas DDD y claves de localización ya están configuradas."
+  },
+  "trips": {
+    "title": "Gestión de Viajes",
+    "driver": "Conductor",
+    "plate": "Placa",
+    "status": "Estado",
+    "actions": "Acciones",
+    "status_scheduled": "Programado",
+    "status_on-progress": "En Curso",
+    "status_completed": "Finalizado",
+    "start": "Iniciar Viaje",
+    "finish": "Terminar Viaje",
+    "no_actions": "Sin acciones disponibles"
+  },
+  "profile": {
+    "title": "Perfil de Usuario",
+    "subtitle": "La configuración del perfil y preferencias se maneja desde la topbar, no desde la barra lateral.",
+    "status": "En desarrollo"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "subtitle": "Las vistas de Identity & Access Management están configuradas, pero se mantienen fuera de la barra lateral."
+  },
+  "tracking": {
+    "title": "Seguimiento en tiempo real",
+    "unit": "Unidad",
+    "district": "Distrito",
+    "speed": "Velocidad",
+    "searching": "Buscando unidades...",
+    "status": "EN RUTA"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "subscriptions": "Suscripciones y pagos",
+    "fleet": "Gestión de flota",
+    "drivers": "Gestión de conductores",
+    "routes": "Gestión de rutas",
+    "students": "Gestión de estudiantes",
+    "assignments": "Gestión de asignaciones",
+    "tracking": "Seguimiento en tiempo real",
+    "trips": "Gestión de viajes",
+    "attendance": "Control de asistencia",
+    "notifications": "Alertas y notificaciones",
+    "incidents": "Gestión de incidentes",
+    "analytics": "Analítica y reportes",
+    "companies": "Gestión de empresas",
+    "identityAccess": "Identidad y acceso",
+    "profiles": "Perfiles de usuario"
+  },
+  "subscriptions": {
+    "breadcrumb": "Sistema / Facturación y planes",
+    "title": "Suscripción y Pagos",
+    "subtitle": "Administra tu plan, métodos de pago e historial de facturación.",
+    "planDescription": "Hasta 10 vehículos · Seguimiento en tiempo real · Soporte prioritario",
+    "currentPlan": "Plan actual",
+    "customPrice": "Personalizado",
+    "month": "mes",
+    "renewsOn": "Renueva el",
+    "managePlan": "Gestionar plan",
+    "availablePlans": "Planes disponibles",
+    "paymentMethod": "Método de pago",
+    "add": "Agregar",
+    "expires": "Vence",
+    "primary": "Principal",
+    "delete": "Eliminar",
+    "currentUsage": "Uso actual del plan",
+    "billingHistory": "Historial de facturación",
+    "exportPdf": "Exportar PDF",
+    "download": "Descargar",
+    "unlimited": "sin límite",
+    "status": {
+      "active": "Plan activo",
+      "paid": "Pagado",
+      "pending": "Pendiente",
+      "failed": "Fallido",
+      "expired": "Expirado",
+      "cancelled": "Cancelado"
+    },
+    "plans": {
+      "basic": "Básico",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "targets": {
+      "individualOperators": "Para operadores individuales con una unidad",
+      "mediumFleets": "Para empresas con flota mediana",
+      "specificNeeds": "Para flotas con necesidades operativas específicas"
+    },
+    "features": {
+      "oneVehicle": "1 vehículo",
+      "thirtyStudents": "Hasta 30 alumnos",
+      "basicRoutes": "Rutas básicas",
+      "manualAttendance": "Asistencia manual",
+      "realTimeTracking": "Seguimiento en tiempo real",
+      "advancedReports": "Reportes avanzados",
+      "prioritySupport": "Soporte prioritario",
+      "tenVehicles": "Hasta 10 vehículos",
+      "threeHundredStudents": "Hasta 300 alumnos",
+      "advancedRoutes": "Rutas avanzadas",
+      "automaticAttendance": "Asistencia automática",
+      "completeReports": "Reportes completos",
+      "unlimitedVehicles": "Vehículos ilimitados",
+      "unlimitedStudents": "Alumnos ilimitados",
+      "customApi": "API personalizada",
+      "sla": "SLA incluido",
+      "schoolIntegration": "Integración escolar",
+      "support247": "Soporte 24/7",
+      "accountManager": "Account manager"
+    },
+    "actions": {
+      "upgrade": "Cambiar a Básico",
+      "current": "Plan actual",
+      "contact": "Contactar ventas"
+    },
+    "usage": {
+      "vehicles": "Vehículos",
+      "students": "Alumnos",
+      "users": "Usuarios"
+    },
+    "table": {
+      "date": "Fecha",
+      "description": "Descripción",
+      "amount": "Monto",
+      "method": "Método",
+      "status": "Estado",
+      "invoice": "Factura"
+    }
+  },
+  "notifications": {
+    "title": "Alertas y Notificaciones",
+    "unread": "Nuevas",
+    "empty": "No tienes notificaciones pendientes",
+    "mark_all": "Marcar todas como leídas"
+  },
+  "assignments": {
+    "management": {
+      "breadcrumbs": "Operaciones / Asignaciones",
+      "title": "Gestión de Asignaciones",
+      "subtitle": "Administra las asignaciones de alumnos a rutas y vehículos",
+      "stats": {
+        "total": "Asignaciones Totales",
+        "active": "Asignaciones Activas",
+        "inactive": "Inactivas",
+        "morning": "Turno Mañana"
+      },
+      "search_placeholder": "Buscar por alumno o ruta...",
+      "filter_shift": "Todos los Turnos",
+      "filter_status": "Todos los Estados",
+      "new_assignment": "Nueva Asignación",
+      "table": {
+        "student": "ALUMNO",
+        "route": "RUTA",
+        "vehicle": "VEHÍCULO",
+        "shift": "TURNO",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "shift": {
+        "morning": "Mañana",
+        "afternoon": "Tarde"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "actions": {
+        "edit": "Editar Asignación",
+        "toggle_status": "Cambiar Estado",
+        "delete": "Eliminar Asignación"
+      },
+      "form": {
+        "add_title": "Agregar Nueva Asignación",
+        "edit_title": "Editar Asignación",
+        "code": "Código del Alumno",
+        "tutor": "Nombre del Tutor",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / Mis Hijos",
+      "title": "Asignaciones de mis Hijos",
+      "subtitle": "Revisa los detalles de transporte asignados a",
+      "stats": {
+        "total_kids": "Hijos Asignados"
+      },
+      "table_title": "Asignaciones de Transporte Activas",
+      "no_data": "No se encontraron asignaciones para sus hijos."
+    }
+  },
+  "attendance": {
+    "management": {
+      "breadcrumbs": "Operaciones / Asistencia",
+      "title": "Control de Asistencia",
+      "subtitle": "Monitoreo en tiempo real del abordaje y estado de los alumnos en ruta",
+      "stats": {
+        "total": "Total Asignados",
+        "total_desc": "Alumnos en padrón",
+        "on_board": "A bordo (Check-in)",
+        "on_board_desc": "En tránsito seguro",
+        "waiting": "Esperando en paradero",
+        "waiting_desc": "Por abordar",
+        "absent": "Ausentes",
+        "absent_desc": "No abordaron"
+      },
+      "tabs": {
+        "all": "Todos",
+        "on_board": "A bordo",
+        "arrived": "Ya llegaron",
+        "waiting": "En espera",
+        "absent": "Ausentes"
+      },
+      "search_placeholder": "Buscar por alumno o placa...",
+      "filter_all": "Todas",
+      "table": {
+        "student": "ALUMNO",
+        "route": "RUTA",
+        "vehicle": "VEHÍCULO",
+        "check_in": "HORA ABORDAJE",
+        "eta": "LLEGADA ESTIMADA",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "status": {
+        "on_board": "A bordo",
+        "boarded": "Llegó a destino",
+        "waiting": "Esperando",
+        "absent": "Ausente"
+      },
+      "actions": {
+        "mark_on_board": "Marcar A bordo",
+        "mark_arrived": "Llegó a destino",
+        "mark_absent": "Marcar Ausente"
+      }
+    },
+    "tracking": {
+      "breadcrumbs": "MoviSafe / Mis Hijos",
+      "title": "Seguimiento de Viaje",
+      "subtitle": "Monitorea en tiempo real la ruta y seguridad de tus hijos",
+      "stats": {
+        "total": "Total de hijos en padrón",
+        "on_board": "Actualmente en ruta",
+        "arrived": "Llegaron a destino"
+      },
+      "table_title": "Estado actual de movilidad",
+      "table": {
+        "kid": "HIJO/A",
+        "transport": "TRANSPORTE ASIGNADO",
+        "schedules": "HORARIOS DE HOY",
+        "status": "ESTADO DEL VIAJE"
+      },
+      "details": {
+        "code": "Código",
+        "plate": "Placa",
+        "boarded_at": "Abordó",
+        "eta": "Llegada aprox",
+        "pending": "--:--"
+      },
+      "status": {
+        "on_board": "En camino al destino",
+        "boarded": "Llegó seguro",
+        "waiting": "Esperando en paradero",
+        "absent": "Ausente hoy"
+      },
+      "empty": "No tienes hijos asignados a rutas actualmente."
+    }
+  },
+  "students": {
+    "management": {
+      "breadcrumbs": "Operaciones / Estudiantes",
+      "title": "Gestión de Estudiantes",
+      "subtitle": "Registro, administración y seguimiento de todos los estudiantes",
+      "stats": {
+        "total": "Total alumnos",
+        "total_desc": "+8 este mes",
+        "with_route": "Con ruta asignada",
+        "with_route_desc": "93% del total",
+        "without_route": "Sin ruta",
+        "without_route_desc": "Pendiente asignación",
+        "inactive": "Inactivos",
+        "inactive_desc": "Sin bajas este mes"
+      },
+      "alerts": {
+        "unassigned": "Hay estudiantes sin ruta asignada. Por favor, asigne una ruta para mantener el sistema actualizado.",
+        "assign_now": "Asignar Rutas"
+      },
+      "tabs": {
+        "all": "Todos",
+        "active": "Activos",
+        "unassigned": "Sin ruta",
+        "inactive": "Inactivos"
+      },
+      "search_placeholder": "Buscar por nombre o tutor...",
+      "new_student": "Registrar Alumno",
+      "table": {
+        "name": "NOMBRE",
+        "code": "CÓDIGO",
+        "grade": "GRADO",
+        "tutor": "TUTOR",
+        "route": "RUTA",
+        "stop": "PARADA",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "actions": {
+        "view": "Ver",
+        "edit": "Editar",
+        "assign": "Asignar"
+      },
+      "status": {
+        "active": "Activo",
+        "unassigned": "Sin ruta",
+        "inactive": "Inactivo"
+      }
+    },
+    "tracking": {
+      "title": "Mis Hijos",
+      "subtitle": "Información de transporte escolar y rutas asignadas",
+      "route": "Ruta",
+      "unassigned_route": "No asignada todavía",
+      "stop": "Parada / Punto de encuentro",
+      "unassigned_stop": "Por confirmar",
+      "track_btn": "Rastrear unidad",
+      "edit_btn": "Editar información",
+      "empty_msg": "No se encontraron alumnos asociados a tu cuenta."
+    },
+    "dialogs": {
+      "detail_title": "Detalles del Alumno",
+      "name": "Nombre",
+      "last_name": "Apellido",
+      "code": "Código",
+      "grade": "Grado",
+      "tutor": "Tutor",
+      "contact": "Contacto",
+      "route": "Ruta",
+      "stop": "Parada",
+      "status": "Estado",
+      "close": "Cerrar",
+      "cancel": "Cancelar",
+      "save": "Guardar Cambios",
+      "register": "Registrar",
+      "edit_title": "Editar Alumno",
+      "new_title": "Registrar Nuevo Alumno",
+      "unassigned": "Sin asignar"
+    }
+  }
+}
