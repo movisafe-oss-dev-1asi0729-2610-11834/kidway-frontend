@@ -148,5 +148,11 @@
       "status": "Estado",
       "invoice": "Factura"
     }
+  },
+  "notifications": {
+    "title": "Alertas y Notificaciones",
+    "unread": "Nuevas",
+    "empty": "No tienes notificaciones pendientes",
+    "mark_all": "Marcar todas como leídas"
   }
 }

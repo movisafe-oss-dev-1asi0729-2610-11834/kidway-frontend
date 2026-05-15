@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { NotificationListComponent } from './views/notification-list/notification-list.component';
 
 export const NOTIFICATIONS_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.notifications', boundedContext: 'Alerts & Notifications', icon: 'notifications' }
+    component: NotificationListComponent,
+    data: { titleKey: 'notifications.title', boundedContext: 'Alerts', icon: 'notifications' }
   }
 ];
