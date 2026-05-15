@@ -42,6 +42,19 @@
     "message": "Este módulo está listo para ser implementado en su rama feature correspondiente.",
     "hint": "La ruta base, carpetas DDD y claves de localización ya están configuradas."
   },
+  "trips": {
+    "title": "Gestión de Viajes",
+    "driver": "Conductor",
+    "plate": "Placa",
+    "status": "Estado",
+    "actions": "Acciones",
+    "status_scheduled": "Programado",
+    "status_on-progress": "En Curso",
+    "status_completed": "Finalizado",
+    "start": "Iniciar Viaje",
+    "finish": "Terminar Viaje",
+    "no_actions": "Sin acciones disponibles"
+  },
   "profile": {
     "title": "Perfil de Usuario",
     "subtitle": "La configuración del perfil y preferencias se maneja desde la topbar, no desde la barra lateral.",

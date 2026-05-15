@@ -3,6 +3,19 @@
     "name": "KidWay",
     "tagline": "School transport monitoring"
   },
+  "trips": {
+    "title": "Trip Management",
+    "driver": "Driver",
+    "plate": "Plate",
+    "status": "Status",
+    "actions": "Actions",
+    "status_scheduled": "Scheduled",
+    "status_on-progress": "On Progress",
+    "status_completed": "Completed",
+    "start": "Start Trip",
+    "finish": "Finish Trip",
+    "no_actions": "No actions available"
+  },
   "actions": {
     "viewDetails": "View details",
     "openProfile": "Open profile",

@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { TripListComponent } from './views/trip-list/trip-list.component';
 
 export const TRIPS_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.trips', boundedContext: 'Trip Management', icon: 'route' }
+    component: TripListComponent,
+    // Mantenemos la metadata para que el header y el título se actualicen correctamente
+    data: { titleKey: 'trips.title', boundedContext: 'Trip Management', icon: 'route' }
   }
 ];
