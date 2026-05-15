@@ -7,7 +7,8 @@ import { VehicleLocation } from '../../domain/models/location.model';
 export class TrackingService {
   constructor(private socketService: TrackingSocketService) {}
 
-  public subscribeToVehicleTracking(): Observable<VehicleLocation> {
+  // Agregamos los [] para indicar que es una lista de vehículos
+  public subscribeToVehicleTracking(): Observable<VehicleLocation[]> {
     return this.socketService.getLiveUpdates();
   }
 }
