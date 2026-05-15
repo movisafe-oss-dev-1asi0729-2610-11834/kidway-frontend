@@ -69,5 +69,84 @@
     "companies": "Company Management",
     "identityAccess": "Identity & Access",
     "profiles": "User Profiles"
+  },
+  "subscriptions": {
+    "breadcrumb": "System / Billing & Plans",
+    "title": "Subscriptions & Payments",
+    "subtitle": "Manage your plan, payment methods and billing history.",
+    "planDescription": "Up to 10 vehicles · Real-time tracking · Priority support",
+    "currentPlan": "Current plan",
+    "customPrice": "Custom",
+    "month": "month",
+    "renewsOn": "Renews on",
+    "managePlan": "Manage plan",
+    "availablePlans": "Available plans",
+    "paymentMethod": "Payment method",
+    "add": "Add",
+    "expires": "Expires",
+    "primary": "Primary",
+    "delete": "Delete",
+    "currentUsage": "Current plan usage",
+    "billingHistory": "Billing history",
+    "exportPdf": "Export PDF",
+    "download": "Download",
+    "unlimited": "unlimited",
+    "status": {
+      "active": "Active plan",
+      "paid": "Paid",
+      "pending": "Pending",
+      "failed": "Failed",
+      "expired": "Expired",
+      "cancelled": "Cancelled"
+    },
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "targets": {
+      "individualOperators": "For individual operators with one unit",
+      "mediumFleets": "For companies with a medium fleet",
+      "specificNeeds": "For fleets with specific operational needs"
+    },
+    "features": {
+      "oneVehicle": "1 vehicle",
+      "thirtyStudents": "Up to 30 students",
+      "basicRoutes": "Basic routes",
+      "manualAttendance": "Manual attendance",
+      "realTimeTracking": "Real-time tracking",
+      "advancedReports": "Advanced reports",
+      "prioritySupport": "Priority support",
+      "tenVehicles": "Up to 10 vehicles",
+      "threeHundredStudents": "Up to 300 students",
+      "advancedRoutes": "Advanced routes",
+      "automaticAttendance": "Automatic attendance",
+      "completeReports": "Complete reports",
+      "unlimitedVehicles": "Unlimited vehicles",
+      "unlimitedStudents": "Unlimited students",
+      "customApi": "Custom API",
+      "sla": "SLA included",
+      "schoolIntegration": "School integration",
+      "support247": "24/7 support",
+      "accountManager": "Account manager"
+    },
+    "actions": {
+      "upgrade": "Switch to Basic",
+      "current": "Current plan",
+      "contact": "Contact sales"
+    },
+    "usage": {
+      "vehicles": "Vehicles",
+      "students": "Students",
+      "users": "Users"
+    },
+    "table": {
+      "date": "Date",
+      "description": "Description",
+      "amount": "Amount",
+      "method": "Method",
+      "status": "Status",
+      "invoice": "Invoice"
+    }
   }
 }

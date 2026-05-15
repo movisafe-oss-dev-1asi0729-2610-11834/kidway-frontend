@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { SubscriptionPaymentsPageComponent } from './views/subscription-payments-page/subscription-payments-page.component';
 
 export const SUBSCRIPTIONS_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.subscriptions', boundedContext: 'Subscription & Payments', icon: 'payments' }
+    component: SubscriptionPaymentsPageComponent,
+    title: 'KidWay | Subscriptions & Payments'
   }
 ];

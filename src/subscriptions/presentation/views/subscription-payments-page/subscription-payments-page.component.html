@@ -1,0 +1,109 @@
+@if (dashboard$ | async; as vm) {
+  <section class="subscriptions-page" aria-labelledby="subscriptions-title">
+    <header class="page-heading">
+      <div>
+        <p class="breadcrumb">{{ 'subscriptions.breadcrumb' | translate }}</p>
+        <h1 id="subscriptions-title">{{ 'subscriptions.title' | translate }}</h1>
+        <p>{{ 'subscriptions.subtitle' | translate }}</p>
+      </div>
+    </header>
+
+    <article class="current-plan">
+      <div>
+        <span class="status-pill">{{ 'subscriptions.status.' + vm.currentSubscription.status | translate }}</span>
+        <h2>{{ vm.currentSubscription.planName }}</h2>
+        <p>{{ 'subscriptions.planDescription' | translate }}</p>
+      </div>
+      <div class="current-price">
+        <strong>{{ vm.currentSubscription.price | currency: vm.currentSubscription.currency : 'symbol' : '1.0-0' }}</strong>
+        <span>/{{ 'subscriptions.month' | translate }}</span>
+        <small>{{ 'subscriptions.renewsOn' | translate }} {{ vm.currentSubscription.renewsOn | date: 'dd MMM yyyy' }}</small>
+        <button type="button">{{ 'subscriptions.managePlan' | translate }}</button>
+      </div>
+    </article>
+
+    <h2 class="section-title">{{ 'subscriptions.availablePlans' | translate }}</h2>
+    <section class="plans-grid" aria-label="Available subscription plans">
+      @for (plan of vm.plans; track plan.id) {
+        <kw-plan-card [plan]="plan" (selected)="selectPlan($event)" />
+      }
+    </section>
+
+    <section class="details-grid">
+      <article class="panel payment-panel">
+        <div class="panel-header">
+          <h2>{{ 'subscriptions.paymentMethod' | translate }}</h2>
+          <button type="button">+ {{ 'subscriptions.add' | translate }}</button>
+        </div>
+        <div class="payment-list">
+          @for (method of vm.paymentMethods; track method.id) {
+            <div class="payment-method" [class.primary]="method.primary">
+              <span class="brand" [ngClass]="method.brand">{{ method.brand === 'visa' ? 'VISA' : 'MC' }}</span>
+              <div>
+                <strong>•••• •••• •••• {{ method.last4 }}</strong>
+                <p>{{ 'subscriptions.expires' | translate }} {{ method.expiresOn }} · {{ method.holder }}</p>
+              </div>
+              @if (method.primary) {
+                <small>{{ 'subscriptions.primary' | translate }}</small>
+              } @else {
+                <button type="button" class="text-button">{{ 'subscriptions.delete' | translate }}</button>
+              }
+            </div>
+          }
+        </div>
+      </article>
+
+      <article class="panel usage-panel">
+        <h2>{{ 'subscriptions.currentUsage' | translate }}</h2>
+        <div class="usage-row">
+          <span>{{ 'subscriptions.usage.vehicles' | translate }}</span>
+          <strong>{{ vm.currentSubscription.vehiclesUsed }} / {{ vm.currentSubscription.vehicleLimit }}</strong>
+          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.vehiclesUsed, vm.currentSubscription.vehicleLimit)"></i></div>
+        </div>
+        <div class="usage-row">
+          <span>{{ 'subscriptions.usage.students' | translate }}</span>
+          <strong>{{ vm.currentSubscription.studentsUsed }} / {{ vm.currentSubscription.studentLimit }}</strong>
+          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.studentsUsed, vm.currentSubscription.studentLimit)"></i></div>
+        </div>
+        <div class="usage-row">
+          <span>{{ 'subscriptions.usage.users' | translate }}</span>
+          <strong>{{ vm.currentSubscription.usersUsed }} / {{ vm.currentSubscription.userLimit === null ? ('subscriptions.unlimited' | translate) : vm.currentSubscription.userLimit }}</strong>
+          <div class="progress success"><i [style.width.%]="percentage(vm.currentSubscription.usersUsed, vm.currentSubscription.userLimit)"></i></div>
+        </div>
+      </article>
+    </section>
+
+    <article class="panel billing-panel">
+      <div class="panel-header">
+        <h2>{{ 'subscriptions.billingHistory' | translate }}</h2>
+        <button type="button">{{ 'subscriptions.exportPdf' | translate }}</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'subscriptions.table.date' | translate }}</th>
+              <th>{{ 'subscriptions.table.description' | translate }}</th>
+              <th>{{ 'subscriptions.table.amount' | translate }}</th>
+              <th>{{ 'subscriptions.table.method' | translate }}</th>
+              <th>{{ 'subscriptions.table.status' | translate }}</th>
+              <th>{{ 'subscriptions.table.invoice' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (record of vm.billingHistory; track record.id) {
+              <tr>
+                <td>{{ record.date | date: 'dd MMM yyyy' }}</td>
+                <td>{{ record.description }}</td>
+                <td>{{ record.amount | currency: record.currency : 'symbol' : '1.0-0' }}</td>
+                <td>{{ record.method }}</td>
+                <td><span class="paid">{{ 'subscriptions.status.' + record.status | translate }}</span></td>
+                <td><a [href]="record.invoiceUrl">{{ 'subscriptions.download' | translate }}</a></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+}

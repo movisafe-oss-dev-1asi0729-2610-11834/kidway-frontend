@@ -69,5 +69,84 @@
     "companies": "Gestión de empresas",
     "identityAccess": "Identidad y acceso",
     "profiles": "Perfiles de usuario"
+  },
+  "subscriptions": {
+    "breadcrumb": "Sistema / Facturación y planes",
+    "title": "Suscripción y Pagos",
+    "subtitle": "Administra tu plan, métodos de pago e historial de facturación.",
+    "planDescription": "Hasta 10 vehículos · Seguimiento en tiempo real · Soporte prioritario",
+    "currentPlan": "Plan actual",
+    "customPrice": "Personalizado",
+    "month": "mes",
+    "renewsOn": "Renueva el",
+    "managePlan": "Gestionar plan",
+    "availablePlans": "Planes disponibles",
+    "paymentMethod": "Método de pago",
+    "add": "Agregar",
+    "expires": "Vence",
+    "primary": "Principal",
+    "delete": "Eliminar",
+    "currentUsage": "Uso actual del plan",
+    "billingHistory": "Historial de facturación",
+    "exportPdf": "Exportar PDF",
+    "download": "Descargar",
+    "unlimited": "sin límite",
+    "status": {
+      "active": "Plan activo",
+      "paid": "Pagado",
+      "pending": "Pendiente",
+      "failed": "Fallido",
+      "expired": "Expirado",
+      "cancelled": "Cancelado"
+    },
+    "plans": {
+      "basic": "Básico",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "targets": {
+      "individualOperators": "Para operadores individuales con una unidad",
+      "mediumFleets": "Para empresas con flota mediana",
+      "specificNeeds": "Para flotas con necesidades operativas específicas"
+    },
+    "features": {
+      "oneVehicle": "1 vehículo",
+      "thirtyStudents": "Hasta 30 alumnos",
+      "basicRoutes": "Rutas básicas",
+      "manualAttendance": "Asistencia manual",
+      "realTimeTracking": "Seguimiento en tiempo real",
+      "advancedReports": "Reportes avanzados",
+      "prioritySupport": "Soporte prioritario",
+      "tenVehicles": "Hasta 10 vehículos",
+      "threeHundredStudents": "Hasta 300 alumnos",
+      "advancedRoutes": "Rutas avanzadas",
+      "automaticAttendance": "Asistencia automática",
+      "completeReports": "Reportes completos",
+      "unlimitedVehicles": "Vehículos ilimitados",
+      "unlimitedStudents": "Alumnos ilimitados",
+      "customApi": "API personalizada",
+      "sla": "SLA incluido",
+      "schoolIntegration": "Integración escolar",
+      "support247": "Soporte 24/7",
+      "accountManager": "Account manager"
+    },
+    "actions": {
+      "upgrade": "Cambiar a Básico",
+      "current": "Plan actual",
+      "contact": "Contactar ventas"
+    },
+    "usage": {
+      "vehicles": "Vehículos",
+      "students": "Alumnos",
+      "users": "Usuarios"
+    },
+    "table": {
+      "date": "Fecha",
+      "description": "Descripción",
+      "amount": "Monto",
+      "method": "Método",
+      "status": "Estado",
+      "invoice": "Factura"
+    }
   }
 }

@@ -1,0 +1,33 @@
+<article class="plan-card" [ngClass]="{ featured: plan.featured }">
+  @if (plan.featured) {
+    <span class="plan-ribbon">{{ 'subscriptions.currentPlan' | translate }}</span>
+  }
+
+  <p class="plan-label">{{ 'subscriptions.plans.' + plan.label | translate }}</p>
+
+  @if (plan.price !== null) {
+    <div class="price">
+      <span>{{ plan.price | currency: plan.currency : 'symbol' : '1.0-0' }}</span>
+      <small>/{{ 'subscriptions.month' | translate }}</small>
+    </div>
+  } @else {
+    <div class="price custom-price">
+      <span>{{ 'subscriptions.customPrice' | translate }}</span>
+    </div>
+  }
+
+  <p class="target">{{ 'subscriptions.targets.' + plan.target | translate }}</p>
+
+  <ul class="features" aria-label="Subscription features">
+    @for (feature of plan.features; track feature.text) {
+      <li [class.disabled]="!feature.included">
+        <mat-icon aria-hidden="true">{{ feature.included ? 'check' : 'remove' }}</mat-icon>
+        <span>{{ 'subscriptions.features.' + feature.text | translate }}</span>
+      </li>
+    }
+  </ul>
+
+  <button class="plan-action" [class.contact]="plan.actionType === 'contact'" type="button" (click)="onSelect()">
+    {{ 'subscriptions.actions.' + plan.actionType | translate }}
+  </button>
+</article>
