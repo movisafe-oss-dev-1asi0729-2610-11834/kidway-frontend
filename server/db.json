@@ -477,5 +477,79 @@
       "icon": "cancel",
       "color": "warn"
     }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "code": "#AL-001",
+      "firstName": "Maria",
+      "lastName": "Vega",
+      "grade": "4° Primaria",
+      "tutorName": "Maria Lopez",
+      "tutorContact": "+51 551 111 222",
+      "routeAssigned": "Ruta Norte",
+      "stopName": "Calle Pino 42",
+      "status": "Activo"
+    },
+    {
+      "id": 2,
+      "code": "#AL-002",
+      "firstName": "Diego",
+      "lastName": "Ruiz",
+      "grade": "5° Primaria",
+      "tutorName": "Juan Ruiz",
+      "tutorContact": "+51 553 333 444",
+      "routeAssigned": "Ruta Sur",
+      "stopName": "Av. Robles 115",
+      "status": "Activo"
+    },
+    {
+      "id": 3,
+      "code": "#AL-003",
+      "firstName": "Valeria",
+      "lastName": "Cruz",
+      "grade": "1° Secundaria",
+      "tutorName": "Elena Cruz",
+      "tutorContact": "+51 555 555 666",
+      "routeAssigned": null,
+      "stopName": null,
+      "status": "Sin ruta"
+    },
+    {
+      "id": 4,
+      "code": "#AL-004",
+      "firstName": "Mateo",
+      "lastName": "Lara",
+      "grade": "2° Primaria",
+      "tutorName": "Rosa Lara",
+      "tutorContact": "+51 557 778 888",
+      "routeAssigned": "Ruta Norte",
+      "stopName": "Plaza Norte",
+      "status": "Activo"
+    },
+    {
+      "id": 5,
+      "code": "#AL-005",
+      "firstName": "Ana",
+      "lastName": "Méndez",
+      "grade": "4° Primaria",
+      "tutorName": "Carlos Méndez",
+      "tutorContact": "+51 559 999 000",
+      "routeAssigned": "Ruta Sur",
+      "stopName": "Col. Las Flores",
+      "status": "Activo"
+    },
+    {
+      "id": 6,
+      "code": "#AL-0073",
+      "firstName": "Alonso",
+      "lastName": "Higa",
+      "grade": "1 Primaria",
+      "tutorName": "Jorge",
+      "tutorContact": "+51 960265099",
+      "routeAssigned": null,
+      "stopName": null,
+      "status": "Activo"
+    }
   ]
 }

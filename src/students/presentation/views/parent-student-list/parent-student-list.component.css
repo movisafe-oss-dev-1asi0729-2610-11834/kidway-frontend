@@ -1,0 +1,122 @@
+.parent-view-container {
+    padding: 24px;
+}
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+    color: #1a2b49; }
+.header p {
+    color: var(--kw-muted);
+    margin-bottom: 32px;
+}
+
+.kids-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.kid-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--kw-border);
+    padding: 24px;
+    box-shadow: var(--kw-shadow);
+}
+
+.card-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--kw-blue-700);
+    color: white;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.info h2 {
+    margin: 0;
+    font-size: 1.15rem;
+}
+.info span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--kw-muted);
+}
+
+.status-pill {
+    margin-left: auto;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+.warning {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.transport-info {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.info-row:last-child {
+    margin-bottom: 0;
+}
+.info-row mat-icon {
+    color: var(--kw-blue-700);
+}
+.info-row small {
+    color: var(--kw-muted);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: bold; }
+.info-row p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.actions button {
+    width: 100%;
+    border-radius: 10px;
+    height: 45px;
+}
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions button {
+    width: 100%;
+    border-radius: 10px;
+    height: 45px;
+}
+
+.edit-btn {
+    border-color: var(--kw-blue-700);
+    color: var(--kw-blue-700);
+}

@@ -295,5 +295,84 @@
       },
       "empty": "No tienes hijos asignados a rutas actualmente."
     }
+  },
+  "students": {
+    "management": {
+      "breadcrumbs": "Operaciones / Estudiantes",
+      "title": "Gestión de Estudiantes",
+      "subtitle": "Registro, administración y seguimiento de todos los estudiantes",
+      "stats": {
+        "total": "Total alumnos",
+        "total_desc": "+8 este mes",
+        "with_route": "Con ruta asignada",
+        "with_route_desc": "93% del total",
+        "without_route": "Sin ruta",
+        "without_route_desc": "Pendiente asignación",
+        "inactive": "Inactivos",
+        "inactive_desc": "Sin bajas este mes"
+      },
+      "alerts": {
+        "unassigned": "Hay estudiantes sin ruta asignada. Por favor, asigne una ruta para mantener el sistema actualizado.",
+        "assign_now": "Asignar Rutas"
+      },
+      "tabs": {
+        "all": "Todos",
+        "active": "Activos",
+        "unassigned": "Sin ruta",
+        "inactive": "Inactivos"
+      },
+      "search_placeholder": "Buscar por nombre o tutor...",
+      "new_student": "Registrar Alumno",
+      "table": {
+        "name": "NOMBRE",
+        "code": "CÓDIGO",
+        "grade": "GRADO",
+        "tutor": "TUTOR",
+        "route": "RUTA",
+        "stop": "PARADA",
+        "status": "ESTADO",
+        "actions": "ACCIONES"
+      },
+      "actions": {
+        "view": "Ver",
+        "edit": "Editar",
+        "assign": "Asignar"
+      },
+      "status": {
+        "active": "Activo",
+        "unassigned": "Sin ruta",
+        "inactive": "Inactivo"
+      }
+    },
+    "tracking": {
+      "title": "Mis Hijos",
+      "subtitle": "Información de transporte escolar y rutas asignadas",
+      "route": "Ruta",
+      "unassigned_route": "No asignada todavía",
+      "stop": "Parada / Punto de encuentro",
+      "unassigned_stop": "Por confirmar",
+      "track_btn": "Rastrear unidad",
+      "edit_btn": "Editar información",
+      "empty_msg": "No se encontraron alumnos asociados a tu cuenta."
+    },
+    "dialogs": {
+      "detail_title": "Detalles del Alumno",
+      "name": "Nombre",
+      "last_name": "Apellido",
+      "code": "Código",
+      "grade": "Grado",
+      "tutor": "Tutor",
+      "contact": "Contacto",
+      "route": "Ruta",
+      "stop": "Parada",
+      "status": "Estado",
+      "close": "Cerrar",
+      "cancel": "Cancelar",
+      "save": "Guardar Cambios",
+      "register": "Registrar",
+      "edit_title": "Editar Alumno",
+      "new_title": "Registrar Nuevo Alumno",
+      "unassigned": "Sin asignar"
+    }
   }
 }

@@ -295,5 +295,84 @@
       },
       "empty": "You have no kids assigned to routes currently."
     }
+  },
+  "students": {
+    "management": {
+      "breadcrumbs": "Operations / Students",
+      "title": "Student Management",
+      "subtitle": "Registration, administration, and tracking of all students",
+      "stats": {
+        "total": "Total students",
+        "total_desc": "+8 this month",
+        "with_route": "With assigned route",
+        "with_route_desc": "93% of total",
+        "without_route": "Without route",
+        "without_route_desc": "Pending assignment",
+        "inactive": "Inactive",
+        "inactive_desc": "No dropouts this month"
+      },
+      "alerts": {
+        "unassigned": "There are students without an assigned route. Please assign a route to keep the system updated.",
+        "assign_now": "Assign Routes"
+      },
+      "tabs": {
+        "all": "All",
+        "active": "Active",
+        "unassigned": "Unassigned",
+        "inactive": "Inactive"
+      },
+      "search_placeholder": "Search by name or tutor...",
+      "new_student": "Register Student",
+      "table": {
+        "name": "NAME",
+        "code": "CODE",
+        "grade": "GRADE",
+        "tutor": "TUTOR",
+        "route": "ROUTE",
+        "stop": "STOP",
+        "status": "STATUS",
+        "actions": "ACTIONS"
+      },
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "assign": "Assign"
+      },
+      "status": {
+        "active": "Active",
+        "unassigned": "No Route",
+        "inactive": "Inactive"
+      }
+    },
+    "tracking": {
+      "title": "My Kids",
+      "subtitle": "School transport information and assigned routes",
+      "route": "Route",
+      "unassigned_route": "Not assigned yet",
+      "stop": "Stop / Meeting point",
+      "unassigned_stop": "To be confirmed",
+      "track_btn": "Track vehicle",
+      "edit_btn": "Edit information",
+      "empty_msg": "No students associated with your account were found."
+    },
+    "dialogs": {
+      "detail_title": "Student Details",
+      "name": "Name",
+      "last_name": "Last Name",
+      "code": "Code",
+      "grade": "Grade",
+      "tutor": "Tutor",
+      "contact": "Contact",
+      "route": "Route",
+      "stop": "Stop",
+      "status": "Status",
+      "close": "Close",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "register": "Register",
+      "edit_title": "Edit Student",
+      "new_title": "Register New Student",
+      "unassigned": "Unassigned"
+    }
   }
 }
