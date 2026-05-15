@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { DashboardViewComponent } from './views/dashboard-view.component';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
+    component: DashboardViewComponent,
     data: { titleKey: 'nav.dashboard', boundedContext: 'Dashboard', icon: 'dashboard' }
   }
 ];
