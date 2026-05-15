@@ -10,14 +10,14 @@ export class TrackingSocketService {
     { id: 'BUS-303', dist: 'La Molina', lat: -12.071, lng: -76.942 }
   ];
 
-  public getLiveUpdates(): Observable<VehicleLocation[]> { // Ahora devuelve un array
+  public getLiveUpdates(): Observable<VehicleLocation[]> {
     return interval(3000).pipe(
       map(() => this.vehicles.map(v => ({
         vehicleId: v.id,
         district: v.dist,
         latitude: v.lat + (Math.random() * 0.002),
         longitude: v.lng + (Math.random() * 0.002),
-        speed: 20 + Math.random() * 15,
+        speed: 25 + Math.random() * 10,
         updatedAt: new Date()
       })))
     );
