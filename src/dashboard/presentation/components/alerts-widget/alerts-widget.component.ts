@@ -1,44 +1,165 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { Alert } from '../../../application/services/mock-data.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { DashboardAlert } from '../../../domain/models/dashboard.model';
+
+const alertIcons: Record<string, string> = {
+  delay: 'schedule',
+  deviation: 'alt_route',
+  incident: 'report_problem',
+  emergency: 'sos',
+  attendance: 'fact_check',
+  system: 'settings_suggest'
+};
 
 @Component({
-    selector: 'app-alerts-widget',
-    standalone: true,
-    imports: [CommonModule, MatCardModule, MatIconModule, MatListModule],
-    template: `
-    <mat-card class="alerts-card">
-      <mat-card-header>
-        <mat-icon>notifications_active</mat-icon>
-        <mat-card-title>Alertas recientes</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let alert of alerts">
-            <mat-icon matListItemIcon [class]="alert.type">warning</mat-icon>
-            <div matListItemTitle>{{ alert.message }}</div>
-            <div matListItemLine>{{ alert.timestamp | date:'short' }}</div>
-            <div *ngIf="!alert.read" class="unread-badge">Nueva</div>
-          </mat-list-item>
-          <mat-list-item *ngIf="alerts.length === 0">
-            <mat-icon matListItemIcon>check_circle</mat-icon>
-            <div matListItemTitle>No hay alertas activas</div>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
+  selector: 'app-alerts-widget',
+  standalone: true,
+  imports: [NgFor, NgIf, NgClass, MatIconModule, TranslateModule],
+  template: `
+    <section class="alerts-card">
+      <div class="section-heading">
+        <div>
+          <p>{{ 'dashboardPage.alerts.eyebrow' | translate }}</p>
+          <h2>{{ 'dashboardPage.alerts.title' | translate }}</h2>
+        </div>
+        <span class="open-count">{{ alerts.length }} {{ 'dashboardPage.alerts.items' | translate }}</span>
+      </div>
+
+      <div class="alerts-list" *ngIf="alerts.length; else emptyState">
+        <article class="alert-item" *ngFor="let alert of alerts" [ngClass]="alert.priority">
+          <div class="alert-icon">
+            <mat-icon>{{ iconFor(alert.type) }}</mat-icon>
+          </div>
+          <div class="alert-content">
+            <div class="alert-title-row">
+              <strong>{{ alert.title }}</strong>
+              <span [ngClass]="alert.priority">{{ alert.priority }}</span>
+            </div>
+            <p>{{ alert.message }}</p>
+            <small>{{ alert.timestamp }}</small>
+          </div>
+        </article>
+      </div>
+
+      <ng-template #emptyState>
+        <div class="empty-alerts">
+          <mat-icon>verified</mat-icon>
+          <strong>{{ 'dashboardPage.alerts.emptyTitle' | translate }}</strong>
+          <span>{{ 'dashboardPage.alerts.emptyMessage' | translate }}</span>
+        </div>
+      </ng-template>
+    </section>
   `,
-    styles: [`
-    .alerts-card { margin-top: 1rem; }
-    .unread-badge { background: #f44336; color: white; border-radius: 12px; padding: 2px 8px; font-size: 0.7rem; margin-left: 8px; }
-    mat-icon.delay, mat-icon.deviation { color: #ff9800; }
-    mat-icon.incident { color: #f44336; }
-    mat-icon.emergency { color: #d32f2f; }
+  styles: [`
+    .alerts-card {
+      height: 100%;
+      border: 1px solid var(--kw-border);
+      border-radius: 24px;
+      background: var(--kw-card);
+      box-shadow: var(--kw-shadow);
+      padding: 1.2rem;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading p {
+      margin: 0 0 .25rem;
+      color: var(--kw-blue-700);
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 { margin: 0; font-size: clamp(1.25rem, 1.8vw, 1.7rem); }
+    .open-count {
+      border-radius: 999px;
+      background: rgba(34, 131, 198, .12);
+      color: var(--kw-blue-900);
+      font-weight: 900;
+      padding: .32rem .7rem;
+      font-size: .75rem;
+      white-space: nowrap;
+    }
+
+    .alerts-list { display: grid; gap: .85rem; }
+    .alert-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: .85rem;
+      padding: .95rem;
+      border-radius: 18px;
+      background: rgba(248, 251, 255, .86);
+      border: 1px solid rgba(17, 24, 39, .06);
+      border-left: 4px solid #f59e0b;
+    }
+
+    body.dark-theme .alert-item { background: rgba(255,255,255,.04); }
+    .alert-item.high { border-left-color: #f97316; }
+    .alert-item.critical { border-left-color: #ef4444; }
+    .alert-item.medium { border-left-color: var(--kw-yellow-500); }
+    .alert-item.low { border-left-color: #22c55e; }
+
+    .alert-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 181, 46, .17);
+      color: #b45309;
+    }
+
+    .alert-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+
+    .alert-title-row strong { font-size: .95rem; }
+    .alert-title-row span {
+      text-transform: capitalize;
+      border-radius: 999px;
+      padding: .16rem .48rem;
+      font-size: .68rem;
+      font-weight: 900;
+      background: rgba(245, 158, 11, .16);
+      color: #92400e;
+    }
+    .alert-title-row span.high { color: #c2410c; background: rgba(249, 115, 22, .13); }
+    .alert-title-row span.critical { color: #b91c1c; background: rgba(239, 68, 68, .13); }
+    .alert-title-row span.low { color: #166534; background: rgba(34,197,94,.13); }
+
+    .alert-content p { margin: .25rem 0 .35rem; color: var(--kw-muted); font-size: .84rem; line-height: 1.4; }
+    .alert-content small { color: var(--kw-muted); font-weight: 700; }
+
+    .empty-alerts {
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      gap: .35rem;
+      color: var(--kw-muted);
+      border-radius: 18px;
+      background: rgba(34, 131, 198, .07);
+    }
+    .empty-alerts mat-icon { color: #22c55e; }
+    .empty-alerts strong { color: var(--kw-ink); }
   `]
 })
 export class AlertsWidgetComponent {
-    @Input() alerts: Alert[] = [];
+  @Input({ required: true }) alerts: DashboardAlert[] = [];
+
+  iconFor(type: string): string {
+    return alertIcons[type] ?? 'notifications_active';
+  }
 }
