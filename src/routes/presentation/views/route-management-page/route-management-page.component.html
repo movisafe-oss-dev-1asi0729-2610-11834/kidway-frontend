@@ -1,0 +1,185 @@
+@if (dashboard$ | async; as dashboard) {
+  <main class="route-page">
+    <section class="hero-card">
+      <div>
+        <p>{{ 'routesPage.eyebrow' | translate }}</p>
+        <h1>{{ 'routesPage.title' | translate }}</h1>
+        <span>{{ 'routesPage.subtitle' | translate }}</span>
+      </div>
+      <aside>
+        <small>{{ 'routesPage.heroBadge' | translate }}</small>
+        <strong>{{ dashboard.summary.routeCoverage }}%</strong>
+      </aside>
+    </section>
+
+    <section class="kpi-grid" aria-label="Route management KPIs">
+      <kw-route-kpi-card
+        icon="account_tree"
+        [label]="'routesPage.kpis.totalRoutes' | translate"
+        [value]="dashboard.summary.totalRoutes"
+        [helper]="'routesPage.kpis.totalRoutesHelper' | translate"
+      />
+      <kw-route-kpi-card
+        icon="play_circle"
+        tone="green"
+        [label]="'routesPage.kpis.activeRoutes' | translate"
+        [value]="dashboard.summary.activeRoutes"
+        [helper]="'routesPage.kpis.activeRoutesHelper' | translate"
+      />
+      <kw-route-kpi-card
+        icon="pin_drop"
+        [label]="'routesPage.kpis.scheduledStops' | translate"
+        [value]="dashboard.summary.scheduledStops"
+        [helper]="'routesPage.kpis.scheduledStopsHelper' | translate"
+      />
+      <kw-route-kpi-card
+        icon="map"
+        tone="amber"
+        [label]="'routesPage.kpis.districts' | translate"
+        [value]="dashboard.summary.districtsCovered"
+        [helper]="'routesPage.kpis.districtsHelper' | translate"
+      />
+      <kw-route-kpi-card
+        icon="auto_graph"
+        [label]="'routesPage.kpis.optimization' | translate"
+        [value]="dashboard.summary.optimizationScore + '%'"
+        [helper]="'routesPage.kpis.optimizationHelper' | translate"
+      />
+    </section>
+
+    <section class="content-grid">
+      <div class="main-column">
+        <section class="routes-panel">
+          <header>
+            <div>
+              <p>{{ 'routesPage.inventoryEyebrow' | translate }}</p>
+              <h2>{{ 'routesPage.operationalStatus' | translate }}</h2>
+            </div>
+            <button type="button" class="primary-action">
+              <mat-icon>add</mat-icon>
+              {{ 'routesPage.actions.createRoute' | translate }}
+            </button>
+          </header>
+
+          <div class="toolbar">
+            <label class="search-box">
+              <mat-icon>search</mat-icon>
+              <input
+                type="search"
+                [placeholder]="'routesPage.searchPlaceholder' | translate"
+                (input)="onSearch($event)"
+              />
+            </label>
+
+            <div class="filter-group">
+              @for (status of statusFilters; track status) {
+                <button
+                  type="button"
+                  [class.active]="(filters.selectedStatus$ | async) === status"
+                  (click)="setStatus(status)"
+                >
+                  <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                  {{ 'routesPage.filters.' + status | translate }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="route-cards-grid">
+            @for (route of filters.filteredRoutes$ | async; track route.id) {
+              <kw-route-status-card [route]="route" />
+            }
+          </div>
+        </section>
+
+        <kw-route-map-panel [routes]="dashboard.routes" />
+      </div>
+
+      <aside class="side-column">
+        <kw-route-readiness-panel
+          [optimizationScore]="dashboard.summary.optimizationScore"
+          [reviews]="dashboard.reviews"
+        />
+      </aside>
+    </section>
+
+    <section class="bottom-grid">
+      <section class="table-card">
+        <header>
+          <div>
+            <p>{{ 'routesPage.recordsEyebrow' | translate }}</p>
+            <h2>{{ 'routesPage.registryTitle' | translate }}</h2>
+          </div>
+          <button type="button" class="secondary-action">
+            <mat-icon>download</mat-icon>
+            {{ 'routesPage.actions.exportList' | translate }}
+          </button>
+        </header>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ 'routesPage.table.route' | translate }}</th>
+                <th>{{ 'routesPage.table.driver' | translate }}</th>
+                <th>{{ 'routesPage.table.vehicle' | translate }}</th>
+                <th>{{ 'routesPage.table.stops' | translate }}</th>
+                <th>{{ 'routesPage.table.coverage' | translate }}</th>
+                <th>{{ 'routesPage.table.status' | translate }}</th>
+                <th>{{ 'routesPage.table.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (route of dashboard.routes; track route.id) {
+                <tr>
+                  <td>
+                    <strong>{{ route.name }}</strong>
+                    <span>{{ route.code }} · {{ route.district }}</span>
+                  </td>
+                  <td>{{ route.assignedDriver }}</td>
+                  <td>{{ route.assignedVehicle }}</td>
+                  <td>{{ route.stops }}</td>
+                  <td>
+                    <div class="mini-progress">
+                      <strong>{{ route.coveragePercentage }}%</strong>
+                      <span><i [style.width.%]="route.coveragePercentage"></i></span>
+                    </div>
+                  </td>
+                  <td><span class="table-status" [ngClass]="route.status">{{ route.status }}</span></td>
+                  <td>
+                    <button type="button" class="row-action" [attr.aria-label]="'View ' + route.name">
+                      <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="timeline-card">
+        <header>
+          <div>
+            <p>{{ 'routesPage.timelineEyebrow' | translate }}</p>
+            <h2>{{ 'routesPage.timelineTitle' | translate }}</h2>
+          </div>
+          <span>{{ 'routesPage.today' | translate }}</span>
+        </header>
+
+        <div class="timeline-list">
+          @for (activity of dashboard.activities; track activity.id) {
+            <article [ngClass]="activity.status">
+              <span class="dot"></span>
+              <div>
+                <strong>{{ activity.time }} · {{ activity.routeName }}</strong>
+                <h3>{{ activity.title }}</h3>
+                <p>{{ activity.description }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    </section>
+  </main>
+}

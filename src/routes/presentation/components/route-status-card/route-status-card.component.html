@@ -1,0 +1,62 @@
+<article class="route-card">
+  <header>
+    <div class="route-id">
+      <span class="icon-circle"><mat-icon>alt_route</mat-icon></span>
+      <div>
+        <h3>{{ route.name }}</h3>
+        <p>{{ route.code }} · {{ route.district }}</p>
+      </div>
+    </div>
+    <span class="status-pill" [ngClass]="route.status">{{ statusLabel() }}</span>
+  </header>
+
+  <div class="meta-row">
+    <span><mat-icon>directions_bus</mat-icon>{{ route.assignedVehicle }}</span>
+    <span><mat-icon>person</mat-icon>{{ route.assignedDriver }}</span>
+    <span><mat-icon>school</mat-icon>{{ route.school }}</span>
+  </div>
+
+  <div class="metrics-row">
+    <div>
+      <small>Stops</small>
+      <strong>{{ route.stops }}</strong>
+    </div>
+    <div>
+      <small>Students</small>
+      <strong>{{ route.assignedStudents }}/{{ route.vehicleCapacity }}</strong>
+    </div>
+    <div>
+      <small>Duration</small>
+      <strong>{{ route.estimatedDuration }}</strong>
+    </div>
+  </div>
+
+  <section class="progress-group">
+    <div class="progress-label">
+      <span>Coverage</span>
+      <strong>{{ route.coveragePercentage }}%</strong>
+    </div>
+    <div class="progress-track">
+      <span [style.width.%]="route.coveragePercentage"></span>
+    </div>
+  </section>
+
+  <section class="progress-group compact">
+    <div class="progress-label">
+      <span>Capacity usage</span>
+      <strong>{{ capacityUsage() }}%</strong>
+    </div>
+    <div class="progress-track capacity">
+      <span [style.width.%]="capacityUsage()"></span>
+    </div>
+  </section>
+
+  <footer>
+    <span><mat-icon>schedule</mat-icon>{{ route.scheduleLabel }} · {{ route.startTime }} - {{ route.endTime }}</span>
+    @if (route.needsOptimization) {
+      <strong class="warning"><mat-icon>warning</mat-icon>Optimization needed</strong>
+    } @else {
+      <strong class="valid"><mat-icon>verified</mat-icon>Optimized route</strong>
+    }
+  </footer>
+</article>
