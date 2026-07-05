@@ -387,5 +387,238 @@
       "new_title": "Registrar Nuevo Alumno",
       "unassigned": "Sin asignar"
     }
+  },
+  "dashboardPage": {
+    "eyebrow": "4BC · DASHBOARD",
+    "rolePreview": "Vista por rol",
+    "roles": {
+      "operator": {
+        "label": "Conductor independiente",
+        "title": "Panel operativo del conductor",
+        "subtitle": "Resumen de ruta personal, asistencia de estudiantes, avance del viaje y alertas de seguridad del servicio actual."
+      },
+      "company": {
+        "label": "Admin de empresa",
+        "title": "Panel operativo de empresa",
+        "subtitle": "Vista en tiempo real de flota, rutas, estudiantes, viajes, asistencia y calidad del servicio."
+      },
+      "admin": {
+        "label": "Admin KidWay",
+        "title": "Panel de monitoreo de plataforma",
+        "subtitle": "Supervisión global de empresas, actividad operativa, incidencias y salud del sistema."
+      }
+    },
+    "hero": {
+      "operator": "Vehículo asignado",
+      "company": "Confiabilidad de asistencia",
+      "admin": "Empresas activas"
+    },
+    "metrics": {
+      "activeTrips": "Viajes activos",
+      "studentsOnBoard": "Estudiantes a bordo",
+      "openAlerts": "Alertas abiertas",
+      "attendanceRate": "Tasa de asistencia",
+      "fleetAvailability": "Disponibilidad de flota",
+      "routeCoverage": "Cobertura de ruta",
+      "activeCompanies": "Empresas activas",
+      "platformTrips": "Viajes en plataforma",
+      "serviceHealth": "Salud del servicio"
+    },
+    "helpers": {
+      "operatorTrips": "Ruta actual en progreso",
+      "activeTrips": "Rutas en progreso hoy",
+      "students": "Servicio de mañana confirmado",
+      "alerts": "Requiere revisión operativa",
+      "attendance": "Control de abordaje y bajada",
+      "fleet": "Vehículos listos para operar",
+      "coverage": "Paradas cubiertas por rutas activas",
+      "companies": "Empresas con servicio activo",
+      "platformTrips": "Viajes monitoreados hoy",
+      "serviceHealth": "Operación estable de la plataforma"
+    },
+    "map": {
+      "eyebrow": "Operación en vivo",
+      "title": "Mapa de ubicación de flota",
+      "live": "Seguimiento activo",
+      "loading": "Cargando mapa de rutas...",
+      "activeUnits": "Unidades activas"
+    },
+    "kpis": {
+      "eyebrow": "KPIs operativos",
+      "title": "Resumen de rendimiento"
+    },
+    "alerts": {
+      "eyebrow": "Alertas prioritarias",
+      "title": "Alertas recientes",
+      "items": "ítems",
+      "emptyTitle": "Todo está bajo control",
+      "emptyMessage": "No existen alertas activas para este rol."
+    },
+    "activity": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo operativa",
+      "today": "Hoy"
+    }
+  },
+  "fleet": {
+    "eyebrow": "5BC · Gestión de flota",
+    "title": "Gestión de flota",
+    "subtitle": "Monitorea disponibilidad vehicular, capacidad, documentación y mantenimiento para operaciones seguras de transporte escolar.",
+    "heroAvailability": "Disponibilidad de flota",
+    "kpis": {
+      "totalVehicles": "Vehículos totales",
+      "registeredUnits": "Unidades registradas en la empresa",
+      "availableVehicles": "Vehículos disponibles",
+      "readyForService": "Listos para asignación de ruta",
+      "onRouteVehicles": "Vehículos en ruta",
+      "activeRoutes": "Actualmente apoyan rutas activas",
+      "maintenanceVehicles": "En mantenimiento",
+      "requiresReview": "Requiere revisión operativa",
+      "capacityUsage": "Uso de capacidad",
+      "studentCapacity": "Uso promedio de asientos"
+    },
+    "inventory": {
+      "eyebrow": "Inventario de flota",
+      "title": "Estado operativo de vehículos"
+    },
+    "actions": {
+      "registerVehicle": "Registrar vehículo",
+      "export": "Exportar lista",
+      "viewDetails": "Ver detalle del vehículo"
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar por placa, conductor, ruta o modelo...",
+      "all": "Todas las unidades",
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "maintenance": "Mantenimiento",
+      "inactive": "Inactivo"
+    },
+    "status": {
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "maintenance": "Mantenimiento",
+      "inactive": "Inactivo"
+    },
+    "vehicle": {
+      "capacityUsage": "Uso de capacidad",
+      "nextMaintenance": "Próximo mantenimiento:",
+      "documentsValid": "Documentos válidos",
+      "documentsPending": "Revisión documental pendiente"
+    },
+    "availability": {
+      "eyebrow": "Disponibilidad",
+      "title": "Preparación de flota",
+      "ready": "Lista para servicio"
+    },
+    "maintenance": {
+      "eyebrow": "Control de mantenimiento",
+      "title": "Próximas revisiones",
+      "items": "elementos",
+      "due": "Vence:"
+    },
+    "priority": {
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta"
+    },
+    "table": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de flota",
+      "vehicle": "Vehículo",
+      "driver": "Conductor",
+      "route": "Ruta",
+      "capacity": "Capacidad",
+      "status": "Estado",
+      "inspection": "Última inspección",
+      "actions": "Acciones"
+    },
+    "empty": {
+      "title": "No se encontraron vehículos",
+      "message": "Prueba otro término de búsqueda o filtro de estado."
+    }
+  },
+  "drivers": {
+    "eyebrow": "6BC · Gestión de Conductores",
+    "title": "Gestión de Conductores",
+    "subtitle": "Supervisa disponibilidad de conductores, licencias, asignaciones de ruta y preparación operativa para servicios seguros de transporte escolar.",
+    "heroSafety": "Puntaje de seguridad",
+    "kpis": {
+      "totalDrivers": "Conductores totales",
+      "registeredDrivers": "Conductores registrados",
+      "availableDrivers": "Conductores disponibles",
+      "readyForRoutes": "Listos para asignación",
+      "onRouteDrivers": "Conductores en ruta",
+      "currentlyOperating": "Apoyando viajes activos",
+      "pendingReviews": "Revisiones pendientes",
+      "requiresValidation": "Requiere validación administrativa",
+      "licenseCompliance": "Cumplimiento de licencias",
+      "validLicenses": "Licencias y documentos válidos"
+    },
+    "inventory": {
+      "eyebrow": "Registro de conductores",
+      "title": "Estado operativo de conductores"
+    },
+    "actions": {
+      "registerDriver": "Registrar conductor",
+      "export": "Exportar lista",
+      "viewDetails": "Ver detalle del conductor"
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar por conductor, licencia, vehículo, ruta o correo...",
+      "all": "Todos",
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "review": "Revisión",
+      "offDuty": "Fuera de turno"
+    },
+    "empty": {
+      "title": "No se encontraron conductores",
+      "message": "Intenta cambiar el texto de búsqueda o el filtro seleccionado."
+    },
+    "status": {
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "offDuty": "Fuera de turno",
+      "review": "Revisión"
+    },
+    "card": {
+      "years": "años",
+      "students": "estudiantes",
+      "safetyScore": "Puntaje de seguridad",
+      "documentsValid": "Documentos válidos",
+      "documentsPending": "Revisión documental pendiente"
+    },
+    "readiness": {
+      "eyebrow": "Preparación",
+      "title": "Preparación de conductores",
+      "safeOperation": "Operación segura"
+    },
+    "compliance": {
+      "eyebrow": "Control de cumplimiento",
+      "title": "Próximas revisiones",
+      "items": "ítems"
+    },
+    "priority": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "table": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de conductores",
+      "driver": "Conductor",
+      "license": "Licencia",
+      "vehicle": "Vehículo",
+      "route": "Ruta",
+      "punctuality": "Puntualidad",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "timeline": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo de conductores",
+      "today": "Hoy"
+    }
   }
 }

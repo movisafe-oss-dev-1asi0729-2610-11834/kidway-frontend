@@ -1,0 +1,202 @@
+@if (dashboard$ | async; as vm) {
+  <section class="drivers-page" aria-labelledby="drivers-title">
+    <header class="drivers-hero">
+      <div>
+        <p class="eyebrow">{{ 'drivers.eyebrow' | translate }}</p>
+        <h1 id="drivers-title">{{ 'drivers.title' | translate }}</h1>
+        <p class="hero-copy">{{ 'drivers.subtitle' | translate }}</p>
+      </div>
+      <div class="hero-indicator" aria-label="Driver safety score">
+        <span>{{ 'drivers.heroSafety' | translate }}</span>
+        <strong>{{ vm.summary.averageSafetyScore }}%</strong>
+      </div>
+    </header>
+
+    <section class="kpi-grid" aria-label="Driver indicators">
+      <kw-driver-kpi-card
+        icon="groups"
+        [label]="'drivers.kpis.totalDrivers' | translate"
+        [value]="vm.summary.totalDrivers"
+        [helper]="'drivers.kpis.registeredDrivers' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="verified_user"
+        tone="green"
+        [label]="'drivers.kpis.availableDrivers' | translate"
+        [value]="vm.summary.availableDrivers"
+        [helper]="'drivers.kpis.readyForRoutes' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="route"
+        [label]="'drivers.kpis.onRouteDrivers' | translate"
+        [value]="vm.summary.onRouteDrivers"
+        [helper]="'drivers.kpis.currentlyOperating' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="assignment_late"
+        tone="amber"
+        [label]="'drivers.kpis.pendingReviews' | translate"
+        [value]="vm.summary.pendingReviews"
+        [helper]="'drivers.kpis.requiresValidation' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="badge"
+        tone="blue"
+        [label]="'drivers.kpis.licenseCompliance' | translate"
+        [value]="vm.summary.licenseCompliance + '%'"
+        [helper]="'drivers.kpis.validLicenses' | translate"
+      />
+    </section>
+
+    <section class="drivers-content-grid">
+      <article class="driver-panel drivers-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'drivers.inventory.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.inventory.title' | translate }}</h2>
+          </div>
+          <button type="button" class="primary-action">
+            <mat-icon>person_add</mat-icon>
+            {{ 'drivers.actions.registerDriver' | translate }}
+          </button>
+        </div>
+
+        <div class="drivers-toolbar">
+          <label class="search-box">
+            <mat-icon>search</mat-icon>
+            <input
+              type="search"
+              [placeholder]="'drivers.filters.searchPlaceholder' | translate"
+              [value]="filters.searchTerm()"
+              (input)="onSearch($event)"
+            />
+          </label>
+
+          <div class="status-filters" aria-label="Driver status filters">
+            @for (status of statusFilters; track status) {
+              <button type="button" [class.active]="filters.selectedStatus() === status" (click)="setStatus(status)">
+                <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                {{ 'drivers.filters.' + status | translate }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="driver-cards">
+          @for (driver of filters.filteredDrivers(); track driver.id) {
+            <kw-driver-status-card [driver]="driver" />
+          } @empty {
+            <div class="empty-state">
+              <mat-icon>person_search</mat-icon>
+              <h3>{{ 'drivers.empty.title' | translate }}</h3>
+              <p>{{ 'drivers.empty.message' | translate }}</p>
+            </div>
+          }
+        </div>
+      </article>
+
+      <aside class="drivers-side">
+        <article class="driver-panel readiness-panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="eyebrow">{{ 'drivers.readiness.eyebrow' | translate }}</p>
+              <h2>{{ 'drivers.readiness.title' | translate }}</h2>
+            </div>
+            <span>{{ vm.summary.averageSafetyScore }}%</span>
+          </div>
+
+          <div class="readiness-chart">
+            <div class="donut" [style.background]="readinessGradient(vm.summary.averageSafetyScore)">
+              <strong>{{ vm.summary.averageSafetyScore }}%</strong>
+              <small>{{ 'drivers.readiness.safeOperation' | translate }}</small>
+            </div>
+          </div>
+
+          <div class="legend-list">
+            <span><i class="available"></i>{{ 'drivers.status.available' | translate }}</span>
+            <span><i class="on-route"></i>{{ 'drivers.status.onRoute' | translate }}</span>
+            <span><i class="review"></i>{{ 'drivers.status.review' | translate }}</span>
+          </div>
+        </article>
+
+        <kw-driver-compliance-panel [reviews]="vm.reviews" />
+      </aside>
+    </section>
+
+    <section class="lower-grid">
+      <article class="driver-panel table-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'drivers.table.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.table.title' | translate }}</h2>
+          </div>
+          <button type="button" class="secondary-action">
+            <mat-icon>download</mat-icon>
+            {{ 'drivers.actions.export' | translate }}
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ 'drivers.table.driver' | translate }}</th>
+                <th>{{ 'drivers.table.license' | translate }}</th>
+                <th>{{ 'drivers.table.vehicle' | translate }}</th>
+                <th>{{ 'drivers.table.route' | translate }}</th>
+                <th>{{ 'drivers.table.punctuality' | translate }}</th>
+                <th>{{ 'drivers.table.status' | translate }}</th>
+                <th>{{ 'drivers.table.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (driver of filters.filteredDrivers(); track driver.id) {
+                <tr>
+                  <td>
+                    <strong>{{ driver.fullName }}</strong>
+                    <small>{{ driver.code }} · {{ driver.email }}</small>
+                  </td>
+                  <td>
+                    <span>{{ driver.licenseNumber }}</span>
+                    <small>{{ driver.licenseClass }} · {{ driver.licenseExpiresAt | date: 'dd MMM yyyy' }}</small>
+                  </td>
+                  <td>{{ driver.assignedVehicle }}</td>
+                  <td>{{ driver.assignedRoute }}</td>
+                  <td>
+                    <span>{{ driver.punctualityScore }}%</span>
+                    <div class="mini-progress"><i [style.width.%]="scoreWidth(driver)"></i></div>
+                  </td>
+                  <td><span class="table-status" [ngClass]="driver.status">{{ 'drivers.status.' + driver.status | translate }}</span></td>
+                  <td><button type="button" class="icon-action" [attr.aria-label]="'drivers.actions.viewDetails' | translate"><mat-icon>arrow_forward</mat-icon></button></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="driver-panel timeline-panel">
+        <div class="panel-header compact">
+          <div>
+            <p class="eyebrow">{{ 'drivers.timeline.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.timeline.title' | translate }}</h2>
+          </div>
+          <span>{{ 'drivers.timeline.today' | translate }}</span>
+        </div>
+
+        <div class="shift-list">
+          @for (shift of vm.shifts; track shift.id) {
+            <article class="shift-item" [ngClass]="shift.status">
+              <i></i>
+              <div>
+                <small>{{ shift.time }} · {{ shift.driverName }}</small>
+                <strong>{{ shift.title }}</strong>
+                <p>{{ shift.description }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </article>
+    </section>
+  </section>
+}
