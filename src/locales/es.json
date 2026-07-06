@@ -78,7 +78,7 @@
   },
   "nav": {
     "dashboard": "Panel",
-    "subscriptions": "Suscripciones y pagos",
+    "subscriptions": "Facturación y plan",
     "fleet": "Gestión de flota",
     "drivers": "Gestión de conductores",
     "routes": "Gestión de rutas",
@@ -95,10 +95,11 @@
     "profiles": "Perfiles de usuario"
   },
   "subscriptions": {
-    "breadcrumb": "Sistema / Facturación y planes",
-    "title": "Suscripción y Pagos",
-    "subtitle": "Administra tu plan, métodos de pago e historial de facturación.",
-    "planDescription": "Hasta 10 vehículos · Seguimiento en tiempo real · Soporte prioritario",
+    "eyebrow": "3BC · Suscripciones y pagos",
+    "breadcrumb": "Cuenta / Facturación y plan",
+    "title": "Facturación y plan",
+    "subtitle": "Consulta el plan activo de la empresa, método de pago, estado de facturación e historial de recibos. Los cambios de plan se gestionan con soporte KidWay, no directamente desde esta pantalla.",
+    "planDescription": "Contrato de flota empresarial asignado por el equipo comercial de KidWay",
     "currentPlan": "Plan actual",
     "customPrice": "Personalizado",
     "month": "mes",
@@ -115,8 +116,53 @@
     "exportPdf": "Exportar PDF",
     "download": "Descargar",
     "unlimited": "sin límite",
+    "readonly": {
+      "badge": "Plan solo lectura",
+      "title": "Los cambios de plan requieren soporte",
+      "message": "Esta cuenta no puede cambiar su rol comercial o tipo de plan automáticamente pagando. Cualquier cambio de plan, rol o tipo de cuenta debe coordinarse con el administrador de la empresa o soporte comercial de KidWay.",
+      "contact": "Contacto de soporte:",
+      "scopeFallback": "Plan asignado para operaciones de transporte escolar. La facturación solo está habilitada para administradores autorizados."
+    },
+    "metrics": {
+      "usingPlan": "Usando este plan por",
+      "days": "días",
+      "started": "Inició el",
+      "nextCharge": "Próximo ciclo de pago",
+      "lastPayment": "Último pago",
+      "receiptEmail": "Correo de recibos",
+      "receiptHelper": "Los recibos se envían a este contacto de facturación."
+    },
+    "renewal": {
+      "automatic": "Renovación automática activa",
+      "manual": "Renovación con revisión manual",
+      "assisted": "Renovación asistida con soporte KidWay"
+    },
+    "payment": {
+      "eyebrow": "Control de pago",
+      "cardSaved": "Método de pago guardado como actualización mock.",
+      "setPrimary": "Marcar principal",
+      "form": {
+        "holder": "Titular de la tarjeta",
+        "brand": "Marca",
+        "number": "Número de tarjeta",
+        "expires": "Vencimiento",
+        "cancel": "Cancelar",
+        "save": "Guardar tarjeta"
+      }
+    },
+    "history": {
+      "eyebrow": "Registros de facturación",
+      "requestReceipt": "Enviar recibo",
+      "receiptSent": "Solicitud de recibo registrada para"
+    },
+    "actions": {
+      "addCard": "Agregar tarjeta",
+      "upgrade": "Cambiar a Básico",
+      "current": "Plan actual",
+      "contact": "Contactar ventas"
+    },
     "status": {
-      "active": "Plan activo",
+      "active": "Cuenta activa",
       "paid": "Pagado",
       "pending": "Pendiente",
       "failed": "Fallido",
@@ -154,12 +200,8 @@
       "support247": "Soporte 24/7",
       "accountManager": "Account manager"
     },
-    "actions": {
-      "upgrade": "Cambiar a Básico",
-      "current": "Plan actual",
-      "contact": "Contactar ventas"
-    },
     "usage": {
+      "eyebrow": "Límites del plan",
       "vehicles": "Vehículos",
       "students": "Alumnos",
       "users": "Usuarios"
@@ -170,7 +212,7 @@
       "amount": "Monto",
       "method": "Método",
       "status": "Estado",
-      "invoice": "Factura"
+      "invoice": "Recibo"
     }
   },
   "notifications": {
