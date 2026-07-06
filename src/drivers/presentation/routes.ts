@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { DriverManagementPageComponent } from './views/driver-management-page/driver-management-page.component';
 
 export const DRIVERS_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.drivers', boundedContext: 'Driver Management', icon: 'badge' }
+    component: DriverManagementPageComponent
   }
 ];

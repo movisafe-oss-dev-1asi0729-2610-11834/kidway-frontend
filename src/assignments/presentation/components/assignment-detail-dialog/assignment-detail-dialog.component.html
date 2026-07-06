@@ -1,0 +1,55 @@
+<section class="assignment-dialog">
+  <header class="dialog-header">
+    <div>
+      <small>{{ 'assignments.detail.eyebrow' | translate }}</small>
+      <h2>{{ assignment.studentName }}</h2>
+      <p>{{ assignment.studentCode }} · {{ assignment.grade }}</p>
+    </div>
+    <span class="status-pill" [ngClass]="'status-' + assignment.status">
+      {{ statusLabelKey(assignment.status) | translate }}
+    </span>
+  </header>
+
+  <div class="detail-grid">
+    <article>
+      <span>{{ 'assignments.detail.route' | translate }}</span>
+      <strong>{{ assignment.routeName }}</strong>
+      <small>{{ assignment.routeCode }}</small>
+    </article>
+    <article>
+      <span>{{ 'assignments.detail.vehicle' | translate }}</span>
+      <strong>{{ assignment.vehiclePlate }}</strong>
+      <small>{{ assignment.driverName }}</small>
+    </article>
+    <article>
+      <span>{{ 'assignments.detail.pickup' | translate }}</span>
+      <strong>{{ assignment.pickupPoint }}</strong>
+      <small>{{ assignment.pickupWindow }}</small>
+    </article>
+    <article>
+      <span>{{ 'assignments.detail.guardian' | translate }}</span>
+      <strong>{{ assignment.guardianName }}</strong>
+      <small>{{ shiftLabelKey(assignment.shift) | translate }}</small>
+    </article>
+  </div>
+
+  <div class="validation-card">
+    <div class="score-ring" [style.--value]="assignment.validationScore">
+      <strong>{{ assignment.validationScore }}%</strong>
+      <span>{{ 'assignments.detail.score' | translate }}</span>
+    </div>
+    <div>
+      <h3>{{ validationLabelKey(assignment.validation) | translate }}</h3>
+      <p>{{ assignment.notes }}</p>
+      <div class="capacity-line">
+        <span>{{ 'assignments.detail.capacity' | translate }}</span>
+        <strong>{{ assignment.capacityUsage }}%</strong>
+      </div>
+      <div class="progress-track"><span [style.width.%]="assignment.capacityUsage"></span></div>
+    </div>
+  </div>
+
+  <footer>
+    <button mat-flat-button color="primary" (click)="close()">{{ 'shared.close' | translate }}</button>
+  </footer>
+</section>

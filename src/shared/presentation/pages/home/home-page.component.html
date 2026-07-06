@@ -1,48 +1,80 @@
-<section class="hero-card">
-  <div>
-    <p>{{ 'home.eyebrow' | translate }}</p>
-    <h1>{{ 'home.title' | translate }}</h1>
-    <span>{{ 'home.subtitle' | translate }}</span>
-  </div>
-  <a routerLink="/app/dashboard" class="primary-action">{{ 'home.cta' | translate }} <mat-icon>arrow_forward</mat-icon></a>
-</section>
+<section class="home-page">
+  <section class="hero-card">
+    <div>
+      <p>{{ 'home.eyebrow' | translate }}</p>
+      <h1>{{ 'home.title' | translate }}</h1>
+      <span>{{ 'home.subtitle' | translate }}</span>
+    </div>
+    <a routerLink="/app/dashboard" class="primary-action">{{ 'home.cta' | translate }} <mat-icon>arrow_forward</mat-icon></a>
+  </section>
 
-<section class="stats-grid" aria-label="KidWay operational indicators">
-  <article><mat-icon>route</mat-icon><span>{{ 'home.trips' | translate }}</span><strong>12</strong><small>In progress today</small></article>
-  <article><mat-icon>school</mat-icon><span>{{ 'home.students' | translate }}</span><strong>184</strong><small>Morning service</small></article>
-  <article><mat-icon>notifications</mat-icon><span>{{ 'home.alerts' | translate }}</span><strong>4</strong><small>Requires attention</small></article>
-  <article><mat-icon>apps</mat-icon><span>{{ 'home.modules' | translate }}</span><strong>14</strong><small>Ready for roles</small></article>
-</section>
+  <section class="role-panel">
+    <article>
+      <span class="avatar">{{ auth.currentUser()?.avatarInitials ?? 'KW' }}</span>
+      <div>
+        <p>{{ 'home.roleTitle' | translate }}</p>
+        <h2>{{ auth.currentUser()?.role }}</h2>
+        <small>{{ auth.currentUser()?.displayName }} · {{ auth.currentUser()?.company }}</small>
+      </div>
+    </article>
+    <article>
+      <mat-icon>verified_user</mat-icon>
+      <div>
+        <p>{{ 'home.enabledModules' | translate }}</p>
+        <h2>{{ visibleModules().length }}</h2>
+        <small>{{ 'home.staticVersion' | translate }}</small>
+      </div>
+    </article>
+  </section>
 
-<section class="dashboard-grid">
-  <article class="panel coverage-panel">
-    <p>{{ 'home.summary' | translate }}</p>
-    <h2>{{ 'home.coverage' | translate }}</h2>
-    <div class="donut" role="img" aria-label="Route coverage 92 percent"><span>92%</span></div>
-    <div class="legend"><span></span> Safe routes <span></span> Pending review</div>
-  </article>
+  <section class="stats-grid" aria-label="KidWay operational indicators">
+    @for (item of indicators; track item.labelKey) {
+      <article>
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.labelKey | translate }}</span>
+        <strong>{{ item.value }}</strong>
+        <small>{{ item.helper }}</small>
+      </article>
+    }
+  </section>
 
-  <article class="panel">
-    <p>{{ 'home.recent' | translate }}</p>
-    <h2>{{ 'topbar.notifications' | translate }}</h2>
-    <div class="alert-list">
-      @for (alert of alerts; track alert.title) {
-        <div class="alert" [class]="alert.tone"><span></span><b>{{ alert.title }}</b><small>{{ alert.text }}</small></div>
+  <section class="dashboard-grid">
+    <article class="panel coverage-panel">
+      <p>{{ 'home.summary' | translate }}</p>
+      <h2>{{ 'home.coverage' | translate }}</h2>
+      <div class="donut" role="img" aria-label="Route coverage 92 percent"><span>92%</span></div>
+      <div class="legend"><span></span> Safe routes <span></span> Pending review</div>
+    </article>
+
+    <article class="panel actions-panel">
+      <p>{{ 'home.nextActions' | translate }}</p>
+      <h2>{{ 'home.quickAccess' | translate }}</h2>
+      <div class="action-list">
+        @for (action of nextActions; track action.title) {
+          <a [routerLink]="action.route" class="action-item" [class]="action.tone">
+            <span><mat-icon>{{ action.icon }}</mat-icon></span>
+            <div>
+              <strong>{{ action.title }}</strong>
+              <small>{{ action.text }}</small>
+            </div>
+            <mat-icon>chevron_right</mat-icon>
+          </a>
+        }
+      </div>
+    </article>
+  </section>
+
+  <section class="panel module-panel">
+    <p>{{ 'home.quick' | translate }}</p>
+    <h2>{{ 'home.performance' | translate }}</h2>
+    <div class="module-grid">
+      @for (item of visibleModules(); track item.route) {
+        <a [routerLink]="item.route">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <strong>{{ item.labelKey | translate }}</strong>
+          <small>{{ 'development.status' | translate }}</small>
+        </a>
       }
     </div>
-  </article>
-</section>
-
-<section class="panel module-panel">
-  <p>{{ 'home.quick' | translate }}</p>
-  <h2>{{ 'home.performance' | translate }}</h2>
-  <div class="module-grid">
-    @for (item of navigation.items; track item.route) {
-      <a [routerLink]="item.route">
-        <mat-icon>{{ item.icon }}</mat-icon>
-        <strong>{{ item.labelKey | translate }}</strong>
-        <small>{{ 'development.status' | translate }}</small>
-      </a>
-    }
-  </div>
+  </section>
 </section>

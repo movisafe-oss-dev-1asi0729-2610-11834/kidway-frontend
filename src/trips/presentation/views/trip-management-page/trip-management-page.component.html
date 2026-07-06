@@ -1,0 +1,160 @@
+@if (dashboard$ | async; as dashboard) {
+  <main class="trip-page">
+    <section class="trip-hero">
+      <div>
+        <span>{{ 'tripsBc.eyebrow' | translate }}</span>
+        <h1>Trip Management</h1>
+        <p>Control trip lifecycle, route execution, operational status and transport history.</p>
+      </div>
+      <aside>
+        <small>Service reliability</small>
+        <strong>{{ dashboard.summary.serviceReliability }}%</strong>
+      </aside>
+    </section>
+
+    <section class="kpi-grid">
+      <kw-trip-kpi-card icon="route" label="Total trips" [value]="dashboard.summary.totalTrips" helper="Daily operational records" />
+      <kw-trip-kpi-card icon="play_circle" label="Active trips" [value]="dashboard.summary.activeTrips" helper="Running or delayed now" tone="green" />
+      <kw-trip-kpi-card icon="event_available" label="Scheduled trips" [value]="dashboard.summary.scheduledTrips" helper="Waiting for departure" />
+      <kw-trip-kpi-card icon="schedule" label="Delayed trips" [value]="dashboard.summary.delayedTrips" helper="Require operational review" tone="amber" />
+      <kw-trip-kpi-card icon="check_circle" label="Completed trips" [value]="dashboard.summary.completedTrips" helper="Closed transport records" tone="green" />
+    </section>
+
+    @if (dashboard.summary.delayedTrips > 0) {
+      <section class="operation-warning">
+        <mat-icon>warning</mat-icon>
+        <div>
+          <strong>Trips require operational follow-up</strong>
+          <p>Some trips have delay or checklist issues. Review route progress before closing the service day.</p>
+        </div>
+        <button type="button" (click)="setStatus('delayed')">Review delayed trips</button>
+      </section>
+    }
+
+    <section class="trip-main-grid">
+      <div class="trip-roster panel-card">
+        <header class="section-header">
+          <div>
+            <span>Trip control</span>
+            <h2>Trip operational status</h2>
+          </div>
+          <button type="button" class="primary-action" (click)="openCreateTrip()"><mat-icon>add</mat-icon>New trip</button>
+        </header>
+
+        <div class="toolbar-row">
+          <label class="search-box">
+            <mat-icon>search</mat-icon>
+            <input type="search" placeholder="Search by route, vehicle, driver, school or district..." (input)="onSearch($event)" />
+          </label>
+          <div class="filter-group">
+            @for (status of statusFilters; track status) {
+              <button type="button" [class.active]="(filters.status$ | async) === status" (click)="setStatus(status)">
+                <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                {{ status.replace('_', ' ') }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="shift-row">
+          @for (shift of shiftFilters; track shift) {
+            <button type="button" [class.active]="(filters.shift$ | async) === shift" (click)="setShift(shift)">
+              <mat-icon>{{ shiftIcon(shift) }}</mat-icon>
+              {{ shift }}
+            </button>
+          }
+        </div>
+
+        @if (filters.filteredTrips$ | async; as trips) {
+          <section class="trip-card-grid">
+            @for (trip of trips; track trip.id) {
+              <kw-trip-status-card
+                [trip]="trip"
+                (viewTrip)="openTripDetails($event)"
+                (startTrip)="startTrip($event)"
+                (completeTrip)="completeTrip($event)"
+                (cancelTrip)="cancelTrip($event)" />
+            } @empty {
+              <div class="empty-state">
+                <mat-icon>route</mat-icon>
+                <strong>No trips found</strong>
+                <p>Try changing the search term, status filter or shift filter.</p>
+              </div>
+            }
+          </section>
+        }
+      </div>
+
+      <aside>
+        <kw-trip-readiness-panel [score]="dashboard.summary.serviceReliability" [reviews]="dashboard.reviews" />
+      </aside>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="registry-card panel-card">
+        <header class="section-header compact">
+          <div>
+            <span>Operational records</span>
+            <h2>Trip registry</h2>
+          </div>
+          <button type="button" class="export-btn" (click)="exportTrips(dashboard.trips)"><mat-icon>download</mat-icon>Export list</button>
+        </header>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Trip</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>Schedule</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (trip of dashboard.trips; track trip.id) {
+                <tr>
+                  <td><strong>{{ trip.routeName }}</strong><small>{{ trip.code }} · {{ trip.school }}</small></td>
+                  <td>{{ trip.vehiclePlate }}</td>
+                  <td>{{ trip.driverName }}</td>
+                  <td>{{ trip.startTime }} - {{ trip.estimatedEndTime }}</td>
+                  <td><b>{{ trip.progress }}%</b><span class="mini-progress"><i [style.width.%]="trip.progress"></i></span></td>
+                  <td><span class="table-status" [ngClass]="trip.status">{{ trip.status.replace('_', ' ') }}</span></td>
+                  <td class="table-actions">
+                    <button type="button" (click)="openTripDetails(trip)" aria-label="View trip"><mat-icon>visibility</mat-icon></button>
+                    <button type="button" (click)="openEditTrip(trip)" aria-label="Edit trip"><mat-icon>edit</mat-icon></button>
+                    @if (trip.status === 'scheduled') {
+                      <button type="button" (click)="startTrip(trip)" aria-label="Start trip"><mat-icon>play_arrow</mat-icon></button>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="timeline-card panel-card">
+        <header class="section-header compact">
+          <div>
+            <span>Latest activity</span>
+            <h2>Trip timeline</h2>
+          </div>
+          <small>Today</small>
+        </header>
+        <div class="timeline-list">
+          @for (activity of dashboard.activities; track activity.id) {
+            <article [ngClass]="activity.status">
+              <i></i>
+              <div>
+                <strong>{{ activity.time }} · {{ activity.title }}</strong>
+                <p>{{ activity.description }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+}

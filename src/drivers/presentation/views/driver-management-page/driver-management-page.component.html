@@ -1,0 +1,253 @@
+@if (dashboard$ | async; as vm) {
+  <section class="drivers-page" aria-labelledby="drivers-title">
+    <header class="drivers-hero">
+      <div>
+        <p class="eyebrow">{{ 'drivers.eyebrow' | translate }}</p>
+        <h1 id="drivers-title">{{ 'drivers.title' | translate }}</h1>
+        <p class="hero-copy">{{ 'drivers.subtitle' | translate }}</p>
+      </div>
+      <div class="hero-indicator" aria-label="Driver safety score">
+        <span>{{ 'drivers.heroSafety' | translate }}</span>
+        <strong>{{ vm.summary.averageSafetyScore }}%</strong>
+      </div>
+    </header>
+
+    <section class="kpi-grid" aria-label="Driver indicators">
+      <kw-driver-kpi-card
+        icon="groups"
+        [label]="'drivers.kpis.totalDrivers' | translate"
+        [value]="vm.summary.totalDrivers"
+        [helper]="'drivers.kpis.registeredDrivers' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="verified_user"
+        tone="green"
+        [label]="'drivers.kpis.availableDrivers' | translate"
+        [value]="vm.summary.availableDrivers"
+        [helper]="'drivers.kpis.readyForRoutes' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="route"
+        [label]="'drivers.kpis.onRouteDrivers' | translate"
+        [value]="vm.summary.onRouteDrivers"
+        [helper]="'drivers.kpis.currentlyOperating' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="assignment_late"
+        tone="amber"
+        [label]="'drivers.kpis.pendingReviews' | translate"
+        [value]="vm.summary.pendingReviews"
+        [helper]="'drivers.kpis.requiresValidation' | translate"
+      />
+      <kw-driver-kpi-card
+        icon="badge"
+        tone="blue"
+        [label]="'drivers.kpis.licenseCompliance' | translate"
+        [value]="vm.summary.licenseCompliance + '%'"
+        [helper]="'drivers.kpis.validLicenses' | translate"
+      />
+    </section>
+
+    <section class="drivers-content-grid">
+      <article class="driver-panel drivers-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'drivers.inventory.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.inventory.title' | translate }}</h2>
+          </div>
+          <button type="button" class="primary-action" (click)="openRegisterDriver()">
+            <mat-icon>person_add</mat-icon>
+            {{ 'drivers.actions.registerDriver' | translate }}
+          </button>
+        </div>
+
+        <div class="drivers-toolbar">
+          <label class="search-box">
+            <mat-icon>search</mat-icon>
+            <input
+              type="search"
+              [placeholder]="'drivers.filters.searchPlaceholder' | translate"
+              [value]="filters.searchTerm()"
+              (input)="onSearch($event)"
+            />
+          </label>
+
+          <div class="status-filters" aria-label="Driver status filters">
+            @for (status of statusFilters; track status) {
+              <button type="button" [class.active]="filters.selectedStatus() === status" (click)="setStatus(status)">
+                <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                {{ 'drivers.filters.' + status | translate }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="driver-cards">
+          @for (driver of filters.filteredDrivers(); track driver.id) {
+            <kw-driver-status-card [driver]="driver" />
+          } @empty {
+            <div class="empty-state">
+              <mat-icon>person_search</mat-icon>
+              <h3>{{ 'drivers.empty.title' | translate }}</h3>
+              <p>{{ 'drivers.empty.message' | translate }}</p>
+            </div>
+          }
+        </div>
+      </article>
+
+      <aside class="drivers-side">
+        <article class="driver-panel readiness-panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="eyebrow">{{ 'drivers.readiness.eyebrow' | translate }}</p>
+              <h2>{{ 'drivers.readiness.title' | translate }}</h2>
+            </div>
+            <span>{{ vm.summary.averageSafetyScore }}%</span>
+          </div>
+
+          <div class="readiness-chart">
+            <div class="donut" [style.background]="readinessGradient(vm.summary.averageSafetyScore)">
+              <strong>{{ vm.summary.averageSafetyScore }}%</strong>
+              <small>{{ 'drivers.readiness.safeOperation' | translate }}</small>
+            </div>
+          </div>
+
+          <div class="legend-list">
+            <span><i class="available"></i>{{ 'drivers.status.available' | translate }}</span>
+            <span><i class="on-route"></i>{{ 'drivers.status.onRoute' | translate }}</span>
+            <span><i class="review"></i>{{ 'drivers.status.review' | translate }}</span>
+          </div>
+        </article>
+
+        <kw-driver-compliance-panel [reviews]="vm.reviews" />
+      </aside>
+    </section>
+
+    <section class="lower-grid">
+      <article class="driver-panel table-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'drivers.table.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.table.title' | translate }}</h2>
+          </div>
+          <button type="button" class="secondary-action" (click)="exportList()">
+            <mat-icon>download</mat-icon>
+            {{ 'drivers.actions.export' | translate }}
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ 'drivers.table.driver' | translate }}</th>
+                <th>{{ 'drivers.table.license' | translate }}</th>
+                <th>{{ 'drivers.table.vehicle' | translate }}</th>
+                <th>{{ 'drivers.table.route' | translate }}</th>
+                <th>{{ 'drivers.table.punctuality' | translate }}</th>
+                <th>{{ 'drivers.table.status' | translate }}</th>
+                <th>{{ 'drivers.table.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (driver of filters.filteredDrivers(); track driver.id) {
+                <tr>
+                  <td>
+                    <strong>{{ driver.fullName }}</strong>
+                    <small>{{ driver.code }} · {{ driver.email }}</small>
+                  </td>
+                  <td>
+                    <span>{{ driver.licenseNumber }}</span>
+                    <small>{{ driver.licenseClass }} · {{ driver.licenseExpiresAt | date: 'dd MMM yyyy' }}</small>
+                  </td>
+                  <td>{{ driver.assignedVehicle }}</td>
+                  <td>{{ driver.assignedRoute }}</td>
+                  <td>
+                    <span>{{ driver.punctualityScore }}%</span>
+                    <div class="mini-progress"><i [style.width.%]="scoreWidth(driver)"></i></div>
+                  </td>
+                  <td><span class="table-status" [ngClass]="driver.status">{{ 'drivers.status.' + driver.status | translate }}</span></td>
+                  <td><button type="button" class="icon-action" (click)="openDriverDetails(driver)" [attr.aria-label]="'drivers.actions.viewDetails' | translate"><mat-icon>arrow_forward</mat-icon></button></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="driver-panel timeline-panel">
+        <div class="panel-header compact">
+          <div>
+            <p class="eyebrow">{{ 'drivers.timeline.eyebrow' | translate }}</p>
+            <h2>{{ 'drivers.timeline.title' | translate }}</h2>
+          </div>
+          <span>{{ 'drivers.timeline.today' | translate }}</span>
+        </div>
+
+        <div class="shift-list">
+          @for (shift of vm.shifts; track shift.id) {
+            <article class="shift-item" [ngClass]="shift.status">
+              <i></i>
+              <div>
+                <small>{{ shift.time }} · {{ shift.driverName }}</small>
+                <strong>{{ shift.title }}</strong>
+                <p>{{ shift.description }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </article>
+    </section>
+
+    @if (showRegisterDriver()) {
+      <div class="kw-modal-backdrop" (click)="closeRegisterDriver()">
+        <section class="kw-modal-card" (click)="$event.stopPropagation()">
+          <header>
+            <div><p>{{ 'drivers.dialog.registerTitle' | translate }}</p><h2>{{ 'drivers.actions.registerDriver' | translate }}</h2></div>
+            <button class="kw-close-btn" type="button" (click)="closeRegisterDriver()"><mat-icon>close</mat-icon></button>
+          </header>
+          <div class="kw-modal-body">
+            <div class="kw-form-grid">
+              <label><span>{{ 'drivers.dialog.fullName' | translate }}</span><input [(ngModel)]="driverDraft.fullName" /></label>
+              <label><span>{{ 'drivers.dialog.license' | translate }}</span><input [(ngModel)]="driverDraft.licenseNumber" /></label>
+              <label><span>{{ 'drivers.dialog.licenseClass' | translate }}</span><input [(ngModel)]="driverDraft.licenseClass" /></label>
+              <label><span>{{ 'drivers.dialog.phone' | translate }}</span><input [(ngModel)]="driverDraft.phone" /></label>
+              <label><span>{{ 'drivers.dialog.email' | translate }}</span><input [(ngModel)]="driverDraft.email" /></label>
+              <label><span>{{ 'drivers.dialog.vehicle' | translate }}</span><input [(ngModel)]="driverDraft.assignedVehicle" /></label>
+              <label><span>{{ 'drivers.dialog.route' | translate }}</span><input [(ngModel)]="driverDraft.assignedRoute" /></label>
+              <label><span>{{ 'drivers.dialog.status' | translate }}</span><select [(ngModel)]="driverDraft.status"><option value="available">{{ 'drivers.status.available' | translate }}</option><option value="onRoute">{{ 'drivers.status.onRoute' | translate }}</option><option value="review">{{ 'drivers.status.review' | translate }}</option><option value="offDuty">{{ 'drivers.status.offDuty' | translate }}</option></select></label>
+              <label><span>{{ 'drivers.dialog.safety' | translate }}</span><input type="number" [(ngModel)]="driverDraft.safetyScore" /></label>
+              <label><span>{{ 'drivers.dialog.punctuality' | translate }}</span><input type="number" [(ngModel)]="driverDraft.punctualityScore" /></label>
+            </div>
+            <div class="kw-modal-actions"><button class="secondary" type="button" (click)="closeRegisterDriver()">{{ 'shared.cancel' | translate }}</button><button class="primary" type="button" (click)="saveDriver()">{{ 'drivers.dialog.create' | translate }}</button></div>
+          </div>
+        </section>
+      </div>
+    }
+
+    @if (selectedDriver(); as driver) {
+      <div class="kw-modal-backdrop" (click)="closeDriverDetails()">
+        <section class="kw-modal-card" (click)="$event.stopPropagation()">
+          <header>
+            <div><p>{{ 'drivers.dialog.detailTitle' | translate }}</p><h2>{{ driver.fullName }}</h2></div>
+            <button class="kw-close-btn" type="button" (click)="closeDriverDetails()"><mat-icon>close</mat-icon></button>
+          </header>
+          <div class="kw-modal-body">
+            <div class="kw-detail-grid">
+              <article><small>{{ 'drivers.dialog.license' | translate }}</small><strong>{{ driver.licenseNumber }} · {{ driver.licenseClass }}</strong></article>
+              <article><small>{{ 'drivers.dialog.phone' | translate }}</small><strong>{{ driver.phone }}</strong></article>
+              <article><small>{{ 'drivers.dialog.email' | translate }}</small><strong>{{ driver.email }}</strong></article>
+              <article><small>{{ 'drivers.dialog.vehicle' | translate }}</small><strong>{{ driver.assignedVehicle }}</strong></article>
+              <article><small>{{ 'drivers.dialog.route' | translate }}</small><strong>{{ driver.assignedRoute }}</strong></article>
+              <article><small>{{ 'drivers.dialog.status' | translate }}</small><strong>{{ 'drivers.status.' + driver.status | translate }}</strong></article>
+              <article><small>{{ 'drivers.dialog.safety' | translate }}</small><strong>{{ driver.safetyScore }}%</strong></article>
+              <article><small>{{ 'drivers.dialog.punctuality' | translate }}</small><strong>{{ driver.punctualityScore }}%</strong></article>
+            </div>
+            <div class="kw-modal-actions"><button class="primary" type="button" (click)="closeDriverDetails()">{{ 'shared.close' | translate }}</button></div>
+          </div>
+        </section>
+      </div>
+    }
+
+  </section>
+}

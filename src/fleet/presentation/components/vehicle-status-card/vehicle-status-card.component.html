@@ -1,0 +1,39 @@
+<article class="vehicle-card">
+  <div class="vehicle-head">
+    <div class="vehicle-main">
+      <span class="bus-icon"><mat-icon>directions_bus</mat-icon></span>
+      <div>
+        <h3>{{ vehicle.code }}</h3>
+        <p>{{ vehicle.brand }} {{ vehicle.model }} · {{ vehicle.year }}</p>
+      </div>
+    </div>
+    <span class="status-pill" [ngClass]="vehicle.status">
+      {{ 'fleet.status.' + vehicle.status | translate }}
+    </span>
+  </div>
+
+  <div class="vehicle-meta">
+    <span><mat-icon>confirmation_number</mat-icon>{{ vehicle.plate }}</span>
+    <span><mat-icon>person</mat-icon>{{ vehicle.driverName }}</span>
+    <span><mat-icon>route</mat-icon>{{ vehicle.routeName }}</span>
+  </div>
+
+  <div class="usage-block">
+    <div>
+      <span>{{ 'fleet.vehicle.capacityUsage' | translate }}</span>
+      <strong>{{ vehicle.assignedStudents }} / {{ vehicle.capacity }}</strong>
+    </div>
+    <div class="progress"><i [style.width.%]="capacityUsage(vehicle)"></i></div>
+  </div>
+
+  <footer>
+    <small>
+      <mat-icon>event_available</mat-icon>
+      {{ 'fleet.vehicle.nextMaintenance' | translate }} {{ vehicle.nextMaintenanceDate }}
+    </small>
+    <small [class.invalid]="!vehicle.documentsValid">
+      <mat-icon>{{ vehicle.documentsValid ? 'verified' : 'warning' }}</mat-icon>
+      {{ (vehicle.documentsValid ? 'fleet.vehicle.documentsValid' : 'fleet.vehicle.documentsPending') | translate }}
+    </small>
+  </footer>
+</article>

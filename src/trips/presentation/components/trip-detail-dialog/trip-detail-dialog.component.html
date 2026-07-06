@@ -1,0 +1,26 @@
+<section class="trip-detail-dialog">
+  <header>
+    <div>
+      <span>Trip details</span>
+      <h2>{{ trip.routeName }}</h2>
+      <p>{{ trip.code }} · {{ trip.vehiclePlate }} · {{ trip.driverName }}</p>
+    </div>
+    <button type="button" (click)="close()" aria-label="Close"><mat-icon>close</mat-icon></button>
+  </header>
+
+  <div class="detail-grid">
+    <div><small>Status</small><strong class="status" [ngClass]="trip.status">{{ trip.status.replace('_', ' ') }}</strong></div>
+    <div><small>School</small><strong>{{ trip.school }}</strong></div>
+    <div><small>District</small><strong>{{ trip.district }}</strong></div>
+    <div><small>Students</small><strong>{{ trip.students }}/{{ trip.capacity }}</strong></div>
+    <div><small>Schedule</small><strong>{{ trip.startTime }} - {{ trip.estimatedEndTime }}</strong></div>
+    <div><small>Next stop</small><strong>{{ trip.nextStop }}</strong></div>
+    <div><small>Progress</small><strong>{{ trip.progress }}%</strong></div>
+    <div><small>Average speed</small><strong>{{ trip.averageSpeed }} km/h</strong></div>
+  </div>
+
+  <footer>
+    <mat-icon>fact_check</mat-icon>
+    <span>{{ trip.validationMessage }}</span>
+  </footer>
+</section>

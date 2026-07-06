@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { FleetManagementPageComponent } from './views/fleet-management-page/fleet-management-page.component';
 
 export const FLEET_ROUTES: Routes = [
   {
     path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.fleet', boundedContext: 'Fleet Management', icon: 'directions_bus' }
+    component: FleetManagementPageComponent,
+    title: 'KidWay | Fleet Management'
   }
 ];

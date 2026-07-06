@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
-import { TripListComponent } from './views/trip-list/trip-list.component';
+import { TripManagementPageComponent } from './views/trip-management-page/trip-management-page.component';
 
 export const TRIPS_ROUTES: Routes = [
   {
     path: '',
-    component: TripListComponent,
-    // Mantenemos la metadata para que el header y el título se actualicen correctamente
-    data: { titleKey: 'trips.title', boundedContext: 'Trip Management', icon: 'route' }
+    component: TripManagementPageComponent,
+    data: {
+      titleKey: 'tripsBc.title',
+      boundedContext: 'Trip Management',
+      icon: 'route'
+    }
   }
 ];

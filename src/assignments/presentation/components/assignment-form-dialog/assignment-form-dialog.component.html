@@ -1,0 +1,111 @@
+<section class="assignment-form-dialog">
+  <header>
+    <small>{{ 'assignments.form.eyebrow' | translate }}</small>
+    <h2>{{ (data ? 'assignments.form.editTitle' : 'assignments.form.createTitle') | translate }}</h2>
+    <p>{{ 'assignments.form.subtitle' | translate }}</p>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.studentCode' | translate }}</mat-label>
+        <input matInput formControlName="studentCode" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.studentName' | translate }}</mat-label>
+        <input matInput formControlName="studentName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.grade' | translate }}</mat-label>
+        <input matInput formControlName="grade" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.guardianName' | translate }}</mat-label>
+        <input matInput formControlName="guardianName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.routeCode' | translate }}</mat-label>
+        <input matInput formControlName="routeCode" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.routeName' | translate }}</mat-label>
+        <input matInput formControlName="routeName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.vehiclePlate' | translate }}</mat-label>
+        <input matInput formControlName="vehiclePlate" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.driverName' | translate }}</mat-label>
+        <input matInput formControlName="driverName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.shift' | translate }}</mat-label>
+        <mat-select formControlName="shift">
+          @for (shift of shiftOptions; track shift) {
+            <mat-option [value]="shift">{{ shiftLabelKey(shift) | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statusOptions; track status) {
+            <mat-option [value]="status">{{ statusLabelKey(status) | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.pickupPoint' | translate }}</mat-label>
+        <input matInput formControlName="pickupPoint" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.pickupWindow' | translate }}</mat-label>
+        <input matInput formControlName="pickupWindow" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.validation' | translate }}</mat-label>
+        <mat-select formControlName="validation">
+          @for (validation of validationOptions; track validation) {
+            <mat-option [value]="validation">{{ validationLabelKey(validation) | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.validationScore' | translate }}</mat-label>
+        <input matInput type="number" formControlName="validationScore" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'assignments.form.capacityUsage' | translate }}</mat-label>
+        <input matInput type="number" formControlName="capacityUsage" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'assignments.form.notes' | translate }}</mat-label>
+        <textarea matInput rows="3" formControlName="notes"></textarea>
+      </mat-form-field>
+    </div>
+
+    <footer>
+      <button mat-button type="button" (click)="cancel()">{{ 'shared.cancel' | translate }}</button>
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        {{ 'shared.save' | translate }}
+      </button>
+    </footer>
+  </form>
+</section>

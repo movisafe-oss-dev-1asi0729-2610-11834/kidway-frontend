@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { LiveMapComponent } from './views/live-map/live-map.component';
+import { RealTimeTrackingPageComponent } from './views/real-time-tracking-page/real-time-tracking-page.component';
 
 export const TRACKING_ROUTES: Routes = [
   {
     path: '',
-    component: LiveMapComponent
+    component: RealTimeTrackingPageComponent
   }
 ];

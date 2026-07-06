@@ -3,7 +3,8 @@
   padding: 28px 18px 18px; color: #fff;
   background: linear-gradient(180deg, #136fa8 0%, #0e4f83 48%, #0b315d 100%);
   box-shadow: 14px 0 36px rgba(8, 49, 90, .18);
-  overflow-y: auto; scrollbar-width: none; transition: width .25s ease, transform .25s ease;
+  overflow: hidden; scrollbar-width: none; transition: width .25s ease, transform .25s ease;
+  display: flex; flex-direction: column; min-height: 100vh;
 }
 .sidebar::-webkit-scrollbar { display: none; }
 .brand { display: flex; align-items: center; gap: 14px; padding: 0 8px 22px; border-bottom: 1px solid rgba(255,255,255,.18); }
@@ -11,7 +12,7 @@
 .brand strong { display: block; font-size: 1.25rem; letter-spacing: .01em; }
 .brand small { display: block; opacity: .8; max-width: 172px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .section-label { margin: 24px 10px 10px; font-weight: 800; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; opacity: .72; }
-.nav-list { display: grid; gap: 6px; }
+.nav-list { display: grid; gap: 6px; overflow-y: auto; min-height: 0; padding-right: 2px; }
 .nav-list a { display: flex; align-items: center; gap: 14px; min-height: 46px; padding: 0 14px; border-radius: 18px; color: rgba(255,255,255,.82); font-weight: 700; }
 .nav-list a:hover, .nav-list a.active { color: #fff; background: rgba(255,255,255,.14); }
 .nav-list mat-icon { font-size: 21px; width: 21px; height: 21px; }
@@ -34,3 +35,20 @@
   :host-context(.sidebar-collapsed) .nav-list span,
   :host-context(.sidebar-collapsed) .role-card { display: block; }
 }
+
+.sign-out-button {
+  width: 100%; min-height: 50px; margin-top: auto; border: 0; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  color: #fff; background: linear-gradient(135deg, #ef4444, #dc2626);
+  font-weight: 900; cursor: pointer; box-shadow: 0 16px 28px rgba(220, 38, 38, .25);
+}
+.sign-out-button mat-icon { width: 20px; height: 20px; font-size: 20px; }
+.sign-out-button:hover { transform: translateY(-1px); filter: brightness(1.02); }
+:host-context(.sidebar-collapsed) .sign-out-button span { display: none; }
+:host-context(.sidebar-collapsed) .sign-out-button { width: 54px; margin-inline: auto; border-radius: 18px; }
+@media (max-width: 900px) {
+  :host-context(.sidebar-collapsed) .sign-out-button { width: 100%; }
+  :host-context(.sidebar-collapsed) .sign-out-button span { display: inline; }
+}
+
+.sidebar .sign-out-button { flex: 0 0 auto; }

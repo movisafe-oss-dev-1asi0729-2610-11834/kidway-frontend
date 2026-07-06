@@ -1,0 +1,200 @@
+@if (dashboard$ | async; as dashboard) {
+  <main class="student-page">
+    <section class="hero-card">
+      <div>
+        <p>{{ 'studentsPage.eyebrow' | translate }}</p>
+        <h1>{{ 'studentsPage.title' | translate }}</h1>
+        <span>{{ 'studentsPage.subtitle' | translate }}</span>
+      </div>
+      <aside>
+        <small>{{ 'studentsPage.heroBadge' | translate }}</small>
+        <strong>{{ dashboard.summary.attendanceReliability }}%</strong>
+      </aside>
+    </section>
+
+    <section class="kpi-grid" aria-label="Student management KPIs">
+      <kw-student-kpi-card
+        icon="school"
+        [label]="'studentsPage.kpis.totalStudents' | translate"
+        [value]="dashboard.summary.totalStudents"
+        [helper]="'studentsPage.kpis.totalStudentsHelper' | translate"
+      />
+      <kw-student-kpi-card
+        icon="verified_user"
+        tone="green"
+        [label]="'studentsPage.kpis.activeStudents' | translate"
+        [value]="dashboard.summary.activeStudents"
+        [helper]="'studentsPage.kpis.activeStudentsHelper' | translate"
+      />
+      <kw-student-kpi-card
+        icon="route"
+        [label]="'studentsPage.kpis.assignedStudents' | translate"
+        [value]="dashboard.summary.assignedStudents"
+        [helper]="'studentsPage.kpis.assignedStudentsHelper' | translate"
+      />
+      <kw-student-kpi-card
+        icon="warning"
+        tone="amber"
+        [label]="'studentsPage.kpis.unassignedStudents' | translate"
+        [value]="dashboard.summary.unassignedStudents"
+        [helper]="'studentsPage.kpis.unassignedStudentsHelper' | translate"
+      />
+      <kw-student-kpi-card
+        icon="family_restroom"
+        [label]="'studentsPage.kpis.guardianVerified' | translate"
+        [value]="dashboard.summary.guardianVerified + '%'"
+        [helper]="'studentsPage.kpis.guardianVerifiedHelper' | translate"
+      />
+    </section>
+
+    @if (dashboard.summary.unassignedStudents > 0) {
+      <section class="attention-banner">
+        <span><mat-icon>warning</mat-icon></span>
+        <div>
+          <strong>{{ 'studentsPage.bannerTitle' | translate }}</strong>
+          <p>{{ 'studentsPage.bannerText' | translate }}</p>
+        </div>
+        <button type="button" (click)="setStatus('unassigned')">
+          {{ 'studentsPage.actions.reviewUnassigned' | translate }}
+        </button>
+      </section>
+    }
+
+    <section class="content-grid">
+      <div class="main-column">
+        <section class="students-panel">
+          <header>
+            <div>
+              <p>{{ 'studentsPage.inventoryEyebrow' | translate }}</p>
+              <h2>{{ 'studentsPage.operationalStatus' | translate }}</h2>
+            </div>
+            <button type="button" class="primary-action" (click)="openRegisterStudent()">
+              <mat-icon>add</mat-icon>
+              {{ 'studentsPage.actions.registerStudent' | translate }}
+            </button>
+          </header>
+
+          <div class="toolbar">
+            <label class="search-box">
+              <mat-icon>search</mat-icon>
+              <input
+                type="search"
+                [placeholder]="'studentsPage.searchPlaceholder' | translate"
+                (input)="onSearch($event)"
+              />
+            </label>
+
+            <div class="filter-group">
+              @for (status of statusFilters; track status) {
+                <button
+                  type="button"
+                  [class.active]="(filters.selectedStatus$ | async) === status"
+                  (click)="setStatus(status)"
+                >
+                  <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                  {{ 'studentsPage.filters.' + status | translate }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="student-cards-grid">
+            @for (student of filters.filteredStudents$ | async; track student.id) {
+              <kw-student-status-card [student]="student" (viewRequested)="openStudentDetails($event)" />
+            }
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <kw-student-readiness-panel
+          [attendanceReliability]="dashboard.summary.attendanceReliability"
+          [guardianVerified]="dashboard.summary.guardianVerified"
+          [reviews]="dashboard.reviews"
+        />
+      </aside>
+    </section>
+
+    <section class="bottom-grid">
+      <section class="table-card">
+        <header>
+          <div>
+            <p>{{ 'studentsPage.recordsEyebrow' | translate }}</p>
+            <h2>{{ 'studentsPage.registryTitle' | translate }}</h2>
+          </div>
+          <button type="button" class="secondary-action" (click)="exportStudents(dashboard.students)">
+            <mat-icon>download</mat-icon>
+            {{ 'studentsPage.actions.exportList' | translate }}
+          </button>
+        </header>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ 'studentsPage.table.student' | translate }}</th>
+                <th>{{ 'studentsPage.table.guardian' | translate }}</th>
+                <th>{{ 'studentsPage.table.school' | translate }}</th>
+                <th>{{ 'studentsPage.table.route' | translate }}</th>
+                <th>{{ 'studentsPage.table.attendance' | translate }}</th>
+                <th>{{ 'studentsPage.table.status' | translate }}</th>
+                <th>{{ 'studentsPage.table.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (student of dashboard.students; track student.id) {
+                <tr>
+                  <td>
+                    <strong>{{ fullName(student) }}</strong>
+                    <span>{{ student.code }} · {{ student.grade }}</span>
+                  </td>
+                  <td>
+                    <strong>{{ student.guardianName }}</strong>
+                    <span>{{ student.guardianPhone }}</span>
+                  </td>
+                  <td>{{ student.school }}</td>
+                  <td>{{ student.routeName ?? ('studentsPage.unassignedRoute' | translate) }}</td>
+                  <td>
+                    <div class="mini-progress">
+                      <strong>{{ student.attendanceRate }}%</strong>
+                      <span><i [style.width.%]="student.attendanceRate"></i></span>
+                    </div>
+                  </td>
+                  <td><span class="table-status" [ngClass]="student.status">{{ 'studentsPage.status.' + student.status | translate }}</span></td>
+                  <td>
+                    <button type="button" class="row-action" (click)="openStudentDetails(student)" [attr.aria-label]="'View ' + fullName(student)">
+                      <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="timeline-card">
+        <header>
+          <div>
+            <p>{{ 'studentsPage.timelineEyebrow' | translate }}</p>
+            <h2>{{ 'studentsPage.timelineTitle' | translate }}</h2>
+          </div>
+          <span>{{ 'studentsPage.today' | translate }}</span>
+        </header>
+
+        <div class="timeline-list">
+          @for (activity of dashboard.activities; track activity.id) {
+            <article [ngClass]="activity.status">
+              <span class="dot"></span>
+              <div>
+                <strong>{{ activity.time }} · {{ activity.studentName }}</strong>
+                <h3>{{ activity.title }}</h3>
+                <p>{{ activity.description }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    </section>
+  </main>
+}

@@ -1,0 +1,100 @@
+@if (dashboard$ | async; as dashboard) {
+  <section class="attendance-page">
+    <header class="hero-card">
+      <div>
+        <span>{{ 'attendanceBc.title' | translate }}</span>
+        <h1>Attendance Tracking</h1>
+        <p>Control student boarding, drop-off, absences and guardian confirmations during daily school transport operations.</p>
+      </div>
+      <aside><small>Attendance reliability</small><strong>{{ dashboard.summary.attendanceReliability }}%</strong></aside>
+    </header>
+
+    <section class="kpi-grid">
+      <kw-attendance-kpi-card icon="groups" label="Total assigned" [value]="dashboard.summary.totalAssigned" hint="Students scheduled today" />
+      <kw-attendance-kpi-card icon="directions_bus" label="On board" [value]="dashboard.summary.onBoard" hint="Currently in transit" tone="green" />
+      <kw-attendance-kpi-card icon="where_to_vote" label="Arrived" [value]="dashboard.summary.arrived" hint="Drop-off confirmed" tone="green" />
+      <kw-attendance-kpi-card icon="location_on" label="Waiting" [value]="dashboard.summary.waiting" hint="Still at pickup point" tone="amber" />
+      <kw-attendance-kpi-card icon="cancel" label="Absent" [value]="dashboard.summary.absent + dashboard.summary.pendingConfirmation" hint="Require guardian review" tone="red" />
+    </section>
+
+    <section class="notice-card">
+      <mat-icon>warning</mat-icon>
+      <div><strong>Attendance records require operational validation</strong><p>Some students are still waiting, absent or pending guardian confirmation before the trip can be closed.</p></div>
+      <button type="button" (click)="setStatus('pending_confirmation')">Review confirmations</button>
+    </section>
+
+    <section class="main-grid">
+      <div class="content-column">
+        <section class="records-card">
+          <div class="section-title">
+            <div><span>ATTENDANCE CONTROL</span><h2>Student attendance status</h2></div>
+            <button type="button" class="primary-action" (click)="exportAttendance(filters.filteredRecords())"><mat-icon>download</mat-icon>Export list</button>
+          </div>
+
+          <div class="filter-row">
+            <label class="search-box"><mat-icon>search</mat-icon><input type="search" placeholder="Search by student, route, vehicle, guardian or pickup point..." (input)="onSearch($event)" /></label>
+            <select [value]="filters.selectedRoute()" (change)="setRoute($any($event.target).value)">
+              @for (route of filters.routes(); track route) { <option [value]="route">{{ route === 'all' ? 'All routes' : route }}</option> }
+            </select>
+          </div>
+
+          <nav class="chips">
+            @for (status of statusFilters; track status) {
+              <button type="button" [class.active]="filters.selectedStatus() === status" (click)="setStatus(status)">
+                <mat-icon>{{ statusIcon(status) }}</mat-icon>{{ statusLabel(status) }}
+              </button>
+            }
+          </nav>
+
+          <div class="records-grid">
+            @for (record of filters.filteredRecords(); track record.id) {
+              <kw-attendance-status-card [record]="record" (view)="viewDetail($event)" (statusChange)="changeStatus($event)" />
+            }
+          </div>
+        </section>
+
+        <section class="table-card">
+          <div class="section-title compact"><div><span>OPERATIONAL RECORDS</span><h2>Attendance registry</h2></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Student</th><th>Route</th><th>Vehicle</th><th>Check-in</th><th>Drop-off</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                @for (record of filters.filteredRecords(); track record.id) {
+                  <tr>
+                    <td><strong>{{ record.studentName }}</strong><small>{{ record.studentCode }} · {{ record.grade }}</small></td>
+                    <td>{{ record.routeName }}</td>
+                    <td>{{ record.vehiclePlate }}</td>
+                    <td>{{ record.checkInTime ?? '--:--' }}</td>
+                    <td>{{ record.dropOffTime ?? '--:--' }}</td>
+                    <td><span class="table-status" [class]="record.status">{{ statusLabel(record.status) }}</span></td>
+                    <td><button type="button" class="icon-button" (click)="viewDetail(record)"><mat-icon>visibility</mat-icon></button></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <kw-attendance-readiness-panel [percentage]="dashboard.summary.attendanceReliability" />
+
+        <section class="panel-card">
+          <header><span>ATTENDANCE CONTROL</span><strong>{{ dashboard.reviews.length }} items</strong></header>
+          <h2>Pending reviews</h2>
+          @for (review of dashboard.reviews; track review.id) {
+            <article class="review" [class]="review.severity"><mat-icon>priority_high</mat-icon><div><strong>{{ review.title }}</strong><p>{{ review.description }}</p><small>{{ review.studentCode }} · {{ review.dueDate }}</small></div></article>
+          }
+        </section>
+
+        <section class="panel-card">
+          <header><span>LATEST ACTIVITY</span><strong>Today</strong></header>
+          <h2>Attendance timeline</h2>
+          @for (activity of dashboard.activities; track activity.id) {
+            <article class="activity" [class]="activity.status"><span></span><div><small>{{ activity.time }}</small><strong>{{ activity.title }}</strong><p>{{ activity.description }}</p></div></article>
+          }
+        </section>
+      </aside>
+    </section>
+  </section>
+}

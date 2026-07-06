@@ -5,6 +5,6 @@ export const ANALYTICS_ROUTES: Routes = [
   {
     path: '',
     component: AnalyticsViewComponent,
-    data: { titleKey: 'nav.analytics', boundedContext: 'Analytics & Reports', icon: 'bar_chart' }
+    data: { titleKey: 'nav.analytics', boundedContext: 'Monitoring & Analytics', icon: 'bar_chart' }
   }
 ];

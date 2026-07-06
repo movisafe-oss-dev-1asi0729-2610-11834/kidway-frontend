@@ -48,3 +48,224 @@ body.dark-theme {
   white-space: nowrap;
   border: 0;
 }
+/* Shared modal safeguards for frontend-only management dialogs. */
+.kidway-dialog-panel .mat-mdc-dialog-surface,
+.kidway-dialog-panel .mdc-dialog__surface {
+  border-radius: 28px !important;
+  overflow: auto !important;
+  max-height: 90vh !important;
+}
+.kidway-dialog-panel .mat-mdc-dialog-content {
+  max-height: 68vh !important;
+  overflow: auto !important;
+}
+.kw-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, .48);
+  backdrop-filter: blur(8px);
+}
+.kw-modal-card {
+  width: min(940px, 96vw);
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid var(--kw-border);
+  border-radius: 28px;
+  background: var(--kw-card);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, .24);
+  color: var(--kw-ink);
+}
+.kw-modal-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 24px 12px;
+}
+.kw-modal-card header p {
+  margin: 0 0 4px;
+  color: var(--kw-blue-700);
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .78rem;
+}
+.kw-modal-card header h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -.05em; }
+.kw-close-btn { width: 40px; height: 40px; border: 0; border-radius: 14px; background: #e3f4ff; color: var(--kw-blue-700); cursor: pointer; display: grid; place-items: center; }
+.kw-modal-body { padding: 12px 24px 24px; display: grid; gap: 18px; }
+.kw-form-grid, .kw-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 14px; }
+.kw-form-grid label, .kw-detail-grid article {
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+  border: 1px solid var(--kw-border);
+  border-radius: 16px;
+  background: #f8fbfe;
+}
+.kw-form-grid span, .kw-detail-grid small { color: #64748b; font-size: .76rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.kw-form-grid input, .kw-form-grid select, .kw-form-grid textarea {
+  width: 100%; border: 0; outline: 0; background: transparent; color: var(--kw-ink); font-weight: 800;
+}
+.kw-detail-grid strong { color: var(--kw-ink); font-size: 1rem; }
+.kw-modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
+.kw-modal-actions button { border: 0; border-radius: 14px; padding: 12px 16px; font-weight: 900; cursor: pointer; }
+.kw-modal-actions .primary { color: #fff; background: var(--kw-blue-700); }
+.kw-modal-actions .secondary { color: var(--kw-blue-900); background: #e3f4ff; }
+@media (max-width: 700px) { .kw-form-grid, .kw-detail-grid { grid-template-columns: 1fr; } .kw-modal-backdrop { padding: 12px; } }
+
+/* === TB2 final visual polish before IAM === */
+.cdk-overlay-dark-backdrop.cdk-overlay-backdrop-showing {
+  background: rgba(15, 23, 42, .54) !important;
+  backdrop-filter: blur(9px);
+}
+.kidway-dialog-panel .mat-mdc-dialog-surface,
+.kidway-dialog-panel .mdc-dialog__surface {
+  border-radius: 30px !important;
+  background: rgba(255, 255, 255, .97) !important;
+  box-shadow: 0 34px 90px rgba(15, 23, 42, .28) !important;
+  border: 1px solid rgba(226, 232, 240, .95) !important;
+  overflow: hidden !important;
+}
+.kidway-dialog-panel .mat-mdc-dialog-content { overflow-x: hidden !important; }
+.kidway-dialog-panel mat-dialog-actions { padding: 12px 24px 22px !important; }
+.kidway-dialog-panel mat-form-field { width: 100%; }
+.kidway-dialog-panel .mat-mdc-form-field-subscript-wrapper { display: none; }
+.kidway-dialog-panel .mat-mdc-text-field-wrapper {
+  border-radius: 14px !important;
+  background: #f8fbfe !important;
+}
+.kidway-dialog-panel .mat-mdc-dialog-container { --mdc-dialog-container-color: transparent; }
+
+.icon-action,
+.row-action,
+.row-actions button,
+.actions button,
+.card-actions button {
+  border-radius: 14px !important;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.icon-action:hover,
+.row-action:hover,
+.row-actions button:hover,
+.actions button:hover,
+.card-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(14, 116, 189, .14);
+}
+
+body.dark-theme {
+  --kw-bg: #0b1117;
+  --kw-card: rgba(18, 24, 30, .94);
+  --kw-ink: #f8fafc;
+  --kw-muted: #aab8cc;
+  --kw-border: rgba(255, 255, 255, .12);
+  --kw-shadow: 0 20px 54px rgba(0, 0, 0, .45);
+  background:
+    radial-gradient(circle at 85% 18%, rgba(255, 181, 46, .12), transparent 24%),
+    radial-gradient(circle at 34% 0%, rgba(34, 131, 198, .14), transparent 24%),
+    linear-gradient(135deg, #07111d 0%, #0b1117 50%, #171407 100%) !important;
+}
+body.dark-theme .content {
+  background:
+    radial-gradient(circle at 84% 12%, rgba(255, 181, 46, .10), transparent 24%),
+    linear-gradient(135deg, rgba(6, 18, 31, .92), rgba(10, 15, 19, .96));
+}
+body.dark-theme .hero-card,
+body.dark-theme .hero-panel,
+body.dark-theme .primary-card,
+body.dark-theme .metric-card,
+body.dark-theme .review-banner,
+body.dark-theme .panel,
+body.dark-theme .kpi-card,
+body.dark-theme .student-card,
+body.dark-theme .assignment-card,
+body.dark-theme .vehicle-card,
+body.dark-theme .driver-card,
+body.dark-theme .route-card,
+body.dark-theme .trip-card,
+body.dark-theme .alert-card,
+body.dark-theme .incident-card,
+body.dark-theme .company-card,
+body.dark-theme .profile-card,
+body.dark-theme .billing-card,
+body.dark-theme .summary-card,
+body.dark-theme .role-panel article,
+body.dark-theme .module-grid a,
+body.dark-theme .action-item,
+body.dark-theme .selected-unit,
+body.dark-theme .unit-card,
+body.dark-theme .side-card {
+  background: rgba(18, 24, 30, .94) !important;
+  border-color: rgba(255, 255, 255, .11) !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, .34) !important;
+  color: #f8fafc !important;
+}
+body.dark-theme .hero-panel,
+body.dark-theme .hero-card {
+  background:
+    radial-gradient(circle at 86% 22%, rgba(255, 181, 46, .16), transparent 23%),
+    radial-gradient(circle at 44% 0%, rgba(40, 194, 177, .10), transparent 30%),
+    linear-gradient(120deg, rgba(18, 24, 30, .98), rgba(14, 24, 32, .96)) !important;
+}
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme strong,
+body.dark-theme td strong,
+body.dark-theme .section-heading h2,
+body.dark-theme .hero-panel h1,
+body.dark-theme .hero-card h1 { color: #f8fafc !important; }
+body.dark-theme p,
+body.dark-theme small,
+body.dark-theme span,
+body.dark-theme td,
+body.dark-theme .hero-panel p,
+body.dark-theme .hero-card span,
+body.dark-theme .section-heading small { color: #aab8cc; }
+body.dark-theme .section-heading small,
+body.dark-theme .hero-panel small,
+body.dark-theme .hero-card p:first-child { color: #38bdf8 !important; }
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea,
+body.dark-theme .search-box,
+body.dark-theme .form-grid label,
+body.dark-theme .detail-grid article,
+body.dark-theme .kw-form-grid label,
+body.dark-theme .kw-detail-grid article,
+body.dark-theme .assignment-details div,
+body.dark-theme .meta-grid div,
+body.dark-theme .detail-grid div,
+body.dark-theme .grid div,
+body.dark-theme article.notes,
+body.dark-theme .validation-card {
+  background: rgba(30, 41, 59, .78) !important;
+  border-color: rgba(255, 255, 255, .10) !important;
+  color: #f8fafc !important;
+}
+body.dark-theme input::placeholder { color: #7e8da3; }
+body.dark-theme .table-scroll,
+body.dark-theme table { background: transparent !important; }
+body.dark-theme th { background: rgba(30, 41, 59, .9) !important; color: #aab8cc !important; }
+body.dark-theme td { border-bottom-color: rgba(255, 255, 255, .08) !important; }
+body.dark-theme .donut,
+body.dark-theme .score-ring { filter: saturate(.95) brightness(.95); }
+body.dark-theme .kidway-dialog-panel .mat-mdc-dialog-surface,
+body.dark-theme .kidway-dialog-panel .mdc-dialog__surface {
+  background: rgba(18, 24, 30, .98) !important;
+  border-color: rgba(255, 255, 255, .12) !important;
+  color: #f8fafc !important;
+}
+body.dark-theme .kidway-dialog-panel .mat-mdc-text-field-wrapper,
+body.dark-theme .kidway-dialog-panel .mdc-text-field--outlined {
+  background: rgba(30, 41, 59, .78) !important;
+}
+body.dark-theme .mat-mdc-menu-panel {
+  background: rgba(15, 23, 42, .98) !important;
+  color: #f8fafc !important;
+}
+body.dark-theme .mat-mdc-menu-item { color: #f8fafc !important; }
