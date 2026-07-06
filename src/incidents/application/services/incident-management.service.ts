@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { catchError, of } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import {
   INCIDENT_FALLBACK,
   IncidentActivity,
@@ -48,7 +49,7 @@ export class IncidentManagementService {
   });
 
   load(): void {
-    this.http.get<IncidentDashboardData>('/api/incidentManagement')
+    this.http.get<IncidentDashboardData>(`${environment.apiBaseUrl}/incidentManagement`)
       .pipe(catchError(() => of(INCIDENT_FALLBACK)))
       .subscribe((data) => {
         this.incidentsSignal.set(data.incidents ?? INCIDENT_FALLBACK.incidents);

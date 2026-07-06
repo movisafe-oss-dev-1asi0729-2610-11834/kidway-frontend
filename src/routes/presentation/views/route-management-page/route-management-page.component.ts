@@ -90,9 +90,17 @@ export class RouteManagementPageComponent {
       optimizationScore: Number(this.routeDraft.optimizationScore) || 88,
       needsOptimization: Number(this.routeDraft.optimizationScore) < 80
     };
-    this.filters.setRoutes([route, ...this.filters.currentRoutes()]);
-    this.selectedRoute.set(route);
-    this.showCreateRoute.set(false);
+    this.facade.createRoute(route).subscribe({
+      next: (created) => {
+        this.selectedRoute.set(created);
+        this.showCreateRoute.set(false);
+      },
+      error: () => {
+        this.filters.setRoutes([route, ...this.filters.currentRoutes()]);
+        this.selectedRoute.set(route);
+        this.showCreateRoute.set(false);
+      }
+    });
   }
 
   openRouteDetails(route: SchoolRouteEntity): void {

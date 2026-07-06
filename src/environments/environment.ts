@@ -1,1 +1,4 @@
-export const environment = { production: true, apiBaseUrl: 'https://api.kidway.example.com/api' };
+export const environment = {
+  production: true,
+  apiBaseUrl: 'https://kidway-platform-api.onrender.com/api/v1'
+};

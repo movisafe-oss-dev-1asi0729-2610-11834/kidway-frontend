@@ -6,11 +6,12 @@ import { AttendanceDashboardModel } from '../../domain/models/attendance-dashboa
 import { AttendanceStatus } from '../../domain/models/attendance-status.type';
 import { AttendanceDashboardAssembler } from '../attendance-dashboard-assembler';
 import { AttendanceDashboardApiResponse } from '../attendance-dashboard-api';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AttendanceApiService {
   private readonly http = inject(HttpClient);
-  private readonly endpoint = '/api/attendanceDashboard';
+  private readonly endpoint = `${environment.apiBaseUrl}/attendanceDashboard`;
 
   getDashboard(): Observable<AttendanceDashboardModel> {
     return this.http.get<AttendanceDashboardApiResponse>(this.endpoint).pipe(

@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { NotificationCenterDashboard, NotificationItem } from '../../domain/models/notification.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationHttpService {
   private readonly http = inject(HttpClient);
-  private readonly endpoint = '/api/alertNotificationCenter';
+  private readonly endpoint = `${environment.apiBaseUrl}/alertNotificationCenter`;
 
   getDashboard(): Observable<NotificationCenterDashboard> {
     return this.http.get<NotificationCenterDashboard>(this.endpoint).pipe(

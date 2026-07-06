@@ -5,10 +5,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../../../identity-access/application/services/auth.service';
 
 import { AssignmentStore } from '../../../application/state/assignment.store';
 import { Assignment } from '../../../domain/entities/assignment.entity';
-import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -27,6 +27,7 @@ import {environment} from "../../../../environments/environment";
 export class ParentAssignmentListComponent implements OnInit {
     readonly store = inject(AssignmentStore);
     private readonly http = inject(HttpClient);
+    private readonly auth = inject(AuthService);
 
     readonly currentParentName = signal<string>('');
     displayedColumns: string[] = ['kid', 'route', 'vehicle', 'shift', 'status'];
@@ -42,14 +43,10 @@ export class ParentAssignmentListComponent implements OnInit {
     });
 
     readonly myKidsCount = computed(() => this.dataSource().data.length);
-
     ngOnInit() {
-        this.http.get<any>(`${environment.apiBaseUrl}/currentUser`).subscribe({
-            next: (user) => {
-                if (user) {
-                    this.currentParentName.set(`${user.firstName} ${user.lastName}`);
-                }
-            }
-        });
+        const user = this.auth.currentUser();
+        if (user) {
+            this.currentParentName.set(`${user.firstName} ${user.lastName}`);
+        }
     }
 }

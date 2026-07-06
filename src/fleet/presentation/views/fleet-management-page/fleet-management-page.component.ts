@@ -86,9 +86,17 @@ export class FleetManagementPageComponent {
       mileageKm: Number(this.vehicleDraft.mileageKm) || 0,
       availabilityScore: Number(this.vehicleDraft.availabilityScore) || 90
     };
-    this.filters.setVehicles([vehicle, ...this.filters.vehicles()]);
-    this.selectedVehicle.set(vehicle);
-    this.showRegisterVehicle.set(false);
+    this.facade.createVehicle(vehicle).subscribe({
+      next: (created) => {
+        this.selectedVehicle.set(created);
+        this.showRegisterVehicle.set(false);
+      },
+      error: () => {
+        this.filters.setVehicles([vehicle, ...this.filters.vehicles()]);
+        this.selectedVehicle.set(vehicle);
+        this.showRegisterVehicle.set(false);
+      }
+    });
   }
 
   openVehicleDetails(vehicle: VehicleEntity): void {

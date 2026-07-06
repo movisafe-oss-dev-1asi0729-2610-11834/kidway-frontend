@@ -1678,7 +1678,7 @@
       "loading": "Checking access...",
       "remember": "Keep session active",
       "forgot": "Forgot username or password?",
-      "invalid": "Invalid username, email or password. Check the demo accounts or try again.",
+      "invalid": "Invalid username, email or password. Please verify your account credentials.",
       "validation": "Complete username and password before signing in.",
       "noAccount": "Need a new account?",
       "demoEyebrow": "Static demo access",
@@ -1688,7 +1688,7 @@
     "register": {
       "eyebrow": "Account request",
       "title": "Create account",
-      "subtitle": "Register a basic profile request. In this static version the form validates data but does not write to db.json.",
+      "subtitle": "Create a basic profile request prepared for the real backend IAM flow.",
       "submit": "Create mock account",
       "validation": "Complete all required fields and accept the terms.",
       "passwordMismatch": "Both passwords must match before creating the request.",
@@ -1716,7 +1716,7 @@
     "recovery": {
       "eyebrow": "Account recovery",
       "title": "Recover access",
-      "subtitle": "Enter your account email. This static version only simulates the recovery flow.",
+      "subtitle": "Enter your account email. KidWay will generate a recovery request through the backend API.",
       "send": "Send recovery instructions",
       "sentTitle": "Recovery request sent",
       "sentText": "A backend service would send the secure reset link to the registered email."

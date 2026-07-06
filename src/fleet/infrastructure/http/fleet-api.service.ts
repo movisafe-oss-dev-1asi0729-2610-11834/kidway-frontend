@@ -4,6 +4,7 @@ import { Observable, catchError, forkJoin, of } from 'rxjs';
 import { VehicleEntity } from '../../domain/entities/vehicle.entity';
 import { FleetDashboardModel } from '../../domain/models/fleet-dashboard.model';
 import { FleetSummaryModel } from '../../domain/models/fleet-summary.model';
+import { environment } from '../../../environments/environment';
 import { MaintenanceAlertModel } from '../../domain/models/maintenance-alert.model';
 
 const fallbackVehicles: VehicleEntity[] = [
@@ -125,9 +126,9 @@ export class FleetApiService {
 
   getDashboard(): Observable<FleetDashboardModel> {
     return forkJoin({
-      summary: this.http.get<FleetSummaryModel>('/api/fleetSummary'),
-      vehicles: this.http.get<VehicleEntity[]>('/api/fleetVehicles'),
-      maintenanceAlerts: this.http.get<MaintenanceAlertModel[]>('/api/fleetMaintenanceAlerts')
+      summary: this.http.get<FleetSummaryModel>(`${environment.apiBaseUrl}/fleetSummary`),
+      vehicles: this.http.get<VehicleEntity[]>(`${environment.apiBaseUrl}/fleetVehicles`),
+      maintenanceAlerts: this.http.get<MaintenanceAlertModel[]>(`${environment.apiBaseUrl}/fleetMaintenanceAlerts`)
     }).pipe(
       catchError(() =>
         of({
@@ -138,4 +139,16 @@ export class FleetApiService {
       )
     );
   }
+  createVehicle(vehicle: VehicleEntity): Observable<VehicleEntity> {
+    return this.http.post<VehicleEntity>(`${environment.apiBaseUrl}/fleetVehicles`, vehicle);
+  }
+
+  updateVehicle(vehicle: VehicleEntity): Observable<VehicleEntity> {
+    return this.http.patch<VehicleEntity>(`${environment.apiBaseUrl}/fleetVehicles/${vehicle.id}`, vehicle);
+  }
+
+  deleteVehicle(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiBaseUrl}/fleetVehicles/${id}`);
+  }
+
 }

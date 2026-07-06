@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { UserProfileDashboardModel } from '../../domain/models/user-profile.model';
 import { AuthService } from '../../../identity-access/application/services/auth.service';
+import { environment } from '../../../environments/environment';
 
 const fallbackProfileDashboard: UserProfileDashboardModel = {
   profile: {
@@ -108,7 +109,7 @@ export class UserProfileApiService {
 
   getDashboard(): Observable<UserProfileDashboardModel> {
     return this.http
-      .get<UserProfileDashboardModel>('/api/userProfileDashboard')
+      .get<UserProfileDashboardModel>(`${environment.apiBaseUrl}/userProfileDashboard`)
       .pipe(
         catchError(() => of(fallbackProfileDashboard)),
         map((dashboard) => this.applyAuthenticatedUser(dashboard))

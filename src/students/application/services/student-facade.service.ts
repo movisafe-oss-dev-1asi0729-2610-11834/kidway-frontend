@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { StudentEntity } from '../../domain/entities/student.entity';
 import { StudentDashboardModel } from '../../domain/models/student-dashboard.model';
 import { StudentApiService } from '../../infrastructure/http/student-api.service';
 import { StudentFilterState } from '../state/student-filter.state';
@@ -11,5 +12,9 @@ export class StudentFacadeService {
 
   loadDashboard(): Observable<StudentDashboardModel> {
     return this.api.getDashboard().pipe(tap((dashboard) => this.filters.setStudents(dashboard.students)));
+  }
+
+  createStudent(student: StudentEntity): Observable<StudentEntity> {
+    return this.api.createStudentRecord(student);
   }
 }

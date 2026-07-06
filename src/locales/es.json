@@ -1678,7 +1678,7 @@
       "loading": "Validando acceso...",
       "remember": "Mantener sesión activa",
       "forgot": "¿Olvidaste tu usuario o contraseña?",
-      "invalid": "Usuario, correo o contraseña inválidos. Revisa las cuentas demo o intenta nuevamente.",
+      "invalid": "Usuario, correo o contraseña inválidos. Verifica tus credenciales de acceso.",
       "validation": "Completa usuario y contraseña antes de iniciar sesión.",
       "noAccount": "¿Necesitas una cuenta?",
       "demoEyebrow": "Acceso demo estático",
@@ -1688,7 +1688,7 @@
     "register": {
       "eyebrow": "Solicitud de cuenta",
       "title": "Crear cuenta",
-      "subtitle": "Registra una solicitud básica de perfil. En esta versión estática el formulario valida datos, pero no escribe en db.json.",
+      "subtitle": "Crea una solicitud básica de perfil preparada para el flujo IAM real del backend.",
       "submit": "Crear solicitud mock",
       "validation": "Completa todos los campos requeridos y acepta los términos.",
       "passwordMismatch": "Las dos contraseñas deben coincidir antes de crear la solicitud.",
@@ -1716,7 +1716,7 @@
     "recovery": {
       "eyebrow": "Recuperación de cuenta",
       "title": "Recuperar acceso",
-      "subtitle": "Ingresa el correo de tu cuenta. Esta versión estática solo simula el flujo de recuperación.",
+      "subtitle": "Ingresa el correo de tu cuenta. KidWay generará una solicitud de recuperación mediante la API backend.",
       "send": "Enviar instrucciones",
       "sentTitle": "Solicitud enviada",
       "sentText": "Un servicio backend enviaría el enlace seguro al correo registrado."

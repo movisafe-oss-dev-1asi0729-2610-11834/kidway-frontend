@@ -6,6 +6,7 @@ import { StudentActivityModel } from '../../domain/models/student-activity.model
 import { StudentDashboardModel } from '../../domain/models/student-dashboard.model';
 import { StudentReviewModel } from '../../domain/models/student-review.model';
 import { StudentSummaryModel } from '../../domain/models/student-summary.model';
+import { environment } from '../../../environments/environment';
 
 const fallbackSummary: StudentSummaryModel = {
   totalStudents: 248,
@@ -217,10 +218,10 @@ export class StudentApiService {
 
   getDashboard(): Observable<StudentDashboardModel> {
     return forkJoin({
-      summary: this.http.get<StudentSummaryModel>('/api/studentSummary'),
-      students: this.http.get<StudentEntity[]>('/api/studentRecords'),
-      reviews: this.http.get<StudentReviewModel[]>('/api/studentReviews'),
-      activities: this.http.get<StudentActivityModel[]>('/api/studentActivities')
+      summary: this.http.get<StudentSummaryModel>(`${environment.apiBaseUrl}/studentSummary`),
+      students: this.http.get<StudentEntity[]>(`${environment.apiBaseUrl}/studentRecords`),
+      reviews: this.http.get<StudentReviewModel[]>(`${environment.apiBaseUrl}/studentReviews`),
+      activities: this.http.get<StudentActivityModel[]>(`${environment.apiBaseUrl}/studentActivities`)
     }).pipe(
       catchError(() =>
         of({
@@ -232,4 +233,16 @@ export class StudentApiService {
       )
     );
   }
+  createStudentRecord(student: StudentEntity): Observable<StudentEntity> {
+    return this.http.post<StudentEntity>(`${environment.apiBaseUrl}/studentRecords`, student);
+  }
+
+  updateStudentRecord(student: StudentEntity): Observable<StudentEntity> {
+    return this.http.patch<StudentEntity>(`${environment.apiBaseUrl}/studentRecords/${student.id}`, student);
+  }
+
+  deleteStudentRecord(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiBaseUrl}/studentRecords/${id}`);
+  }
+
 }

@@ -6,6 +6,7 @@ import { DriverDashboardModel } from '../../domain/models/driver-dashboard.model
 import { DriverReviewModel } from '../../domain/models/driver-review.model';
 import { DriverShiftModel } from '../../domain/models/driver-shift.model';
 import { DriverSummaryModel } from '../../domain/models/driver-summary.model';
+import { environment } from '../../../environments/environment';
 
 const fallbackSummary: DriverSummaryModel = {
   totalDrivers: 18,
@@ -161,10 +162,10 @@ export class DriverApiService {
 
   getDashboard(): Observable<DriverDashboardModel> {
     return forkJoin({
-      summary: this.http.get<DriverSummaryModel>('/api/driverSummary'),
-      drivers: this.http.get<DriverEntity[]>('/api/drivers'),
-      reviews: this.http.get<DriverReviewModel[]>('/api/driverReviews'),
-      shifts: this.http.get<DriverShiftModel[]>('/api/driverShifts')
+      summary: this.http.get<DriverSummaryModel>(`${environment.apiBaseUrl}/driverSummary`),
+      drivers: this.http.get<DriverEntity[]>(`${environment.apiBaseUrl}/drivers`),
+      reviews: this.http.get<DriverReviewModel[]>(`${environment.apiBaseUrl}/driverReviews`),
+      shifts: this.http.get<DriverShiftModel[]>(`${environment.apiBaseUrl}/driverShifts`)
     }).pipe(
       catchError(() =>
         of({
@@ -176,4 +177,16 @@ export class DriverApiService {
       )
     );
   }
+  createDriver(driver: DriverEntity): Observable<DriverEntity> {
+    return this.http.post<DriverEntity>(`${environment.apiBaseUrl}/drivers`, driver);
+  }
+
+  updateDriver(driver: DriverEntity): Observable<DriverEntity> {
+    return this.http.patch<DriverEntity>(`${environment.apiBaseUrl}/drivers/${driver.id}`, driver);
+  }
+
+  deleteDriver(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiBaseUrl}/drivers/${id}`);
+  }
+
 }

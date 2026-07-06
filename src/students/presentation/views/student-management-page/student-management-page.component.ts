@@ -75,7 +75,11 @@ export class StudentManagementPageComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (!result) return;
-        this.appendStudent(this.buildStudentFromForm(result));
+        const student = this.buildStudentFromForm(result);
+        this.facade.createStudent(student).subscribe({
+          next: (created) => this.appendStudent(created),
+          error: () => this.appendStudent(student)
+        });
       });
   }
 

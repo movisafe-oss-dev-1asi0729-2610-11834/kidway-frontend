@@ -6,6 +6,7 @@ import { RouteActivityModel } from '../../domain/models/route-activity.model';
 import { RouteDashboardModel } from '../../domain/models/route-dashboard.model';
 import { RouteReviewModel } from '../../domain/models/route-review.model';
 import { RouteSummaryModel } from '../../domain/models/route-summary.model';
+import { environment } from '../../../environments/environment';
 
 const fallbackSummary: RouteSummaryModel = {
   totalRoutes: 18,
@@ -165,10 +166,10 @@ export class RouteApiService {
 
   getDashboard(): Observable<RouteDashboardModel> {
     return forkJoin({
-      summary: this.http.get<RouteSummaryModel>('/api/routeSummary'),
-      routes: this.http.get<SchoolRouteEntity[]>('/api/schoolRoutes'),
-      reviews: this.http.get<RouteReviewModel[]>('/api/routeReviews'),
-      activities: this.http.get<RouteActivityModel[]>('/api/routeActivities')
+      summary: this.http.get<RouteSummaryModel>(`${environment.apiBaseUrl}/routeSummary`),
+      routes: this.http.get<SchoolRouteEntity[]>(`${environment.apiBaseUrl}/schoolRoutes`),
+      reviews: this.http.get<RouteReviewModel[]>(`${environment.apiBaseUrl}/routeReviews`),
+      activities: this.http.get<RouteActivityModel[]>(`${environment.apiBaseUrl}/routeActivities`)
     }).pipe(
       catchError(() =>
         of({
@@ -180,4 +181,16 @@ export class RouteApiService {
       )
     );
   }
+  createRoute(route: SchoolRouteEntity): Observable<SchoolRouteEntity> {
+    return this.http.post<SchoolRouteEntity>(`${environment.apiBaseUrl}/schoolRoutes`, route);
+  }
+
+  updateRoute(route: SchoolRouteEntity): Observable<SchoolRouteEntity> {
+    return this.http.patch<SchoolRouteEntity>(`${environment.apiBaseUrl}/schoolRoutes/${route.id}`, route);
+  }
+
+  deleteRoute(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiBaseUrl}/schoolRoutes/${id}`);
+  }
+
 }

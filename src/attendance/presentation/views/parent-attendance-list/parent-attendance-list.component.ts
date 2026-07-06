@@ -5,10 +5,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../../../identity-access/application/services/auth.service';
 
 import { AttendanceStore } from '../../../application/state/attendance.store';
 import { Attendance } from '../../../domain/entities/attendance.entity';
-import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -21,6 +21,7 @@ import {environment} from "../../../../environments/environment";
 export class ParentAttendanceListComponent implements OnInit {
     readonly store = inject(AttendanceStore);
     private readonly http = inject(HttpClient);
+    private readonly auth = inject(AuthService);
 
     readonly currentParentName = signal<string>('');
 
@@ -39,14 +40,10 @@ export class ParentAttendanceListComponent implements OnInit {
     readonly myKidsTotal = computed(() => this.dataSource().data.length);
     readonly myKidsOnBoard = computed(() => this.dataSource().data.filter(a => a.status === 'On board').length);
     readonly myKidsArrived = computed(() => this.dataSource().data.filter(a => a.status === 'Boarded').length);
-
     ngOnInit() {
-        this.http.get<any>(`${environment.apiBaseUrl}/currentUser`).subscribe({
-            next: (user) => {
-                if (user) {
-                    this.currentParentName.set(`${user.firstName} ${user.lastName}`);
-                }
-            }
-        });
+        const user = this.auth.currentUser();
+        if (user) {
+            this.currentParentName.set(`${user.firstName} ${user.lastName}`);
+        }
     }
 }

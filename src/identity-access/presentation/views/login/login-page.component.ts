@@ -34,13 +34,6 @@ export class LoginPageComponent {
     email: ['', [Validators.required, Validators.email]]
   });
 
-  protected readonly demoAccounts = [
-    { role: 'Company Admin', username: 'maria.lopez', password: 'KidWay123$' },
-    { role: 'Parent / Guardian', username: 'juan.ruiz', password: 'Parent123$' },
-    { role: 'Independent Operator', username: 'carlos.perez', password: 'Driver123$' },
-    { role: 'KidWay Administrator', username: 'admin.kidway', password: 'Admin123$' }
-  ];
-
   protected submit(): void {
     this.loginError.set(null);
     if (this.loginForm.invalid) {
@@ -69,15 +62,13 @@ export class LoginPageComponent {
     });
   }
 
-  protected fillDemo(username: string, password: string): void {
-    this.loginForm.patchValue({ identifier: username, password });
-  }
 
   protected sendRecovery(): void {
     if (this.recoveryForm.invalid) {
       this.recoveryForm.markAllAsTouched();
       return;
     }
-    this.recoverySent.set(true);
+    const { email } = this.recoveryForm.getRawValue();
+    this.auth.sendRecovery(email).subscribe(() => this.recoverySent.set(true));
   }
 }

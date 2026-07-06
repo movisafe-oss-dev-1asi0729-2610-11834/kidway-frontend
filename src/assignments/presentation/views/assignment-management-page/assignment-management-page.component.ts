@@ -161,7 +161,10 @@ export class AssignmentManagementPageComponent {
           lastUpdated: 'Just now'
         };
 
-        this.setAssignments([newAssignment, ...this.assignments()]);
+        this.facade.createAssignment(newAssignment).subscribe({
+          next: (created) => this.setAssignments([created, ...this.assignments()]),
+          error: () => this.setAssignments([newAssignment, ...this.assignments()])
+        });
       });
   }
 
@@ -190,7 +193,10 @@ export class AssignmentManagementPageComponent {
           lastUpdated: 'Just now'
         };
 
-        this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? updated : item)));
+        this.facade.updateAssignment(updated).subscribe({
+          next: (saved) => this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? saved : item))),
+          error: () => this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? updated : item)))
+        });
       });
   }
 
@@ -214,11 +220,17 @@ export class AssignmentManagementPageComponent {
       validationScore: Math.max(assignment.validationScore, 91),
       lastUpdated: 'Just now'
     };
-    this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? updated : item)));
+    this.facade.updateAssignment(updated).subscribe({
+      next: (saved) => this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? saved : item))),
+      error: () => this.setAssignments(this.assignments().map((item) => (item.id === assignment.id ? updated : item)))
+    });
   }
 
   removeAssignment(assignment: AssignmentEntity): void {
-    this.setAssignments(this.assignments().filter((item) => item.id !== assignment.id));
+    this.facade.deleteAssignment(assignment.id).subscribe({
+      next: () => this.setAssignments(this.assignments().filter((item) => item.id !== assignment.id)),
+      error: () => this.setAssignments(this.assignments().filter((item) => item.id !== assignment.id))
+    });
   }
 
   exportList(): void {

@@ -6,11 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../../../identity-access/application/services/auth.service';
 
 import { StudentStore } from '../../../application/state/student.store';
 import { Student } from '../../../domain/entities/student.entity';
 import { StudentFormDialogComponent } from '../../components/student-form-dialog/student-form-dialog.component';
-import { environment } from "../../../../environments/environment";
 
 @Component({
     selector: 'app-parent-student-list',
@@ -23,6 +23,7 @@ export class ParentStudentListComponent implements OnInit {
     readonly store = inject(StudentStore);
     readonly dialog = inject(MatDialog);
     private readonly http = inject(HttpClient);
+    private readonly auth = inject(AuthService);
 
     readonly currentParentName = signal<string>('');
     readonly myKids = computed(() => {
@@ -30,17 +31,11 @@ export class ParentStudentListComponent implements OnInit {
         if (!parentName) return [];
         return this.store.students().filter(s => s.tutorName === parentName);
     });
-
     ngOnInit() {
-        this.http.get<any>(`${environment.apiBaseUrl}/currentUser`).subscribe({
-            next: (user) => {
-                if (user) {
-                    const fullName = `${user.firstName} ${user.lastName}`;
-                    this.currentParentName.set(fullName);
-                }
-            },
-            error: (err) => console.error('Error loading current user:', err)
-        });
+        const user = this.auth.currentUser();
+        if (user) {
+            this.currentParentName.set(`${user.firstName} ${user.lastName}`);
+        }
     }
 
     openEditDialog(student: Student) {

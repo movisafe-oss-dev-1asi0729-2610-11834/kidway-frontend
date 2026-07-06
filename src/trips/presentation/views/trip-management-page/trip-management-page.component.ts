@@ -85,7 +85,11 @@ export class TripManagementPageComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (!result) return;
-        this.appendTrip(this.buildTripFromForm(result));
+        const trip = this.buildTripFromForm(result);
+        this.facade.createTrip(trip).subscribe({
+          next: (created) => this.appendTrip(created),
+          error: () => this.appendTrip(trip)
+        });
       });
   }
 
@@ -215,12 +219,19 @@ export class TripManagementPageComponent {
   }
 
   private updateTrip(trip: TripEntity, title = 'Trip updated', description = `${trip.routeName} was updated.`, status: 'completed' | 'active' | 'pending' = 'completed'): void {
-    const current = this.dashboardSubject.value;
-    if (!current) return;
-    const trips = current.trips.map((item) => (item.id === trip.id ? trip : item));
-    const dashboard = this.withTrips(current, trips, title, description, status);
-    this.dashboardSubject.next(dashboard);
-    this.filters.setTrips(trips);
+    const applyUpdate = (saved: TripEntity) => {
+      const current = this.dashboardSubject.value;
+      if (!current) return;
+      const trips = current.trips.map((item) => (item.id === saved.id ? saved : item));
+      const dashboard = this.withTrips(current, trips, title, description, status);
+      this.dashboardSubject.next(dashboard);
+      this.filters.setTrips(trips);
+    };
+
+    this.facade.updateTrip(trip).subscribe({
+      next: (saved) => applyUpdate(saved),
+      error: () => applyUpdate(trip)
+    });
   }
 
   private withTrips(

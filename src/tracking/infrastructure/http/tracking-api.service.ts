@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { TrackingDashboardModel } from '../../domain/models/tracking-dashboard.model';
+import { environment } from '../../../environments/environment';
 
 const TRACKING_FALLBACK: TrackingDashboardModel = {
   summary: {
@@ -151,7 +152,7 @@ const TRACKING_FALLBACK: TrackingDashboardModel = {
 @Injectable({ providedIn: 'root' })
 export class TrackingApiService {
   private readonly http = inject(HttpClient);
-  private readonly endpoint = 'http://localhost:3000/trackingDashboard';
+  private readonly endpoint = `${environment.apiBaseUrl}/trackingDashboard`;
 
   getDashboard(): Observable<TrackingDashboardModel> {
     return this.http.get<TrackingDashboardModel>(this.endpoint).pipe(

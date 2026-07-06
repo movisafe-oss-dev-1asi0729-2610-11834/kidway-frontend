@@ -90,9 +90,17 @@ export class DriverManagementPageComponent {
       punctualityScore: Number(this.driverDraft.punctualityScore) || 90,
       yearsOfExperience: Number(this.driverDraft.yearsOfExperience) || 1
     };
-    this.filters.setDrivers([driver, ...this.filters.drivers()]);
-    this.selectedDriver.set(driver);
-    this.showRegisterDriver.set(false);
+    this.facade.createDriver(driver).subscribe({
+      next: (created) => {
+        this.selectedDriver.set(created);
+        this.showRegisterDriver.set(false);
+      },
+      error: () => {
+        this.filters.setDrivers([driver, ...this.filters.drivers()]);
+        this.selectedDriver.set(driver);
+        this.showRegisterDriver.set(false);
+      }
+    });
   }
 
   openDriverDetails(driver: DriverEntity): void {

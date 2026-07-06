@@ -5,6 +5,7 @@ import { BillingRecordModel } from '../../domain/models/billing-record.model';
 import { CurrentSubscriptionModel } from '../../domain/models/current-subscription.model';
 import { PaymentMethodModel } from '../../domain/models/payment-method.model';
 import { SubscriptionDashboardModel } from '../../domain/models/subscription-dashboard.model';
+import { environment } from '../../../environments/environment';
 import { SubscriptionPlanEntity } from '../../domain/entities/subscription-plan.entity';
 
 const fallbackDashboard: SubscriptionDashboardModel = {
@@ -48,10 +49,10 @@ export class SubscriptionsApiService {
 
   getDashboard(): Observable<SubscriptionDashboardModel> {
     return forkJoin({
-      currentSubscription: this.http.get<CurrentSubscriptionModel>('/api/currentSubscription'),
-      plans: this.http.get<SubscriptionPlanEntity[]>('/api/subscriptionPlans'),
-      paymentMethods: this.http.get<PaymentMethodModel[]>('/api/paymentMethods'),
-      billingHistory: this.http.get<BillingRecordModel[]>('/api/billingHistory')
+      currentSubscription: this.http.get<CurrentSubscriptionModel>(`${environment.apiBaseUrl}/currentSubscription`),
+      plans: this.http.get<SubscriptionPlanEntity[]>(`${environment.apiBaseUrl}/subscriptionPlans`),
+      paymentMethods: this.http.get<PaymentMethodModel[]>(`${environment.apiBaseUrl}/paymentMethods`),
+      billingHistory: this.http.get<BillingRecordModel[]>(`${environment.apiBaseUrl}/billingHistory`)
     }).pipe(catchError(() => of(fallbackDashboard)));
   }
 }
