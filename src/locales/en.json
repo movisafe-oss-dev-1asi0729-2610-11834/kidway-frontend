@@ -87,7 +87,7 @@
     "tracking": "Real-Time Tracking",
     "trips": "Trip Management",
     "attendance": "Attendance Tracking",
-    "notifications": "Alerts Center",
+    "notifications": "Alerts & Notifications",
     "incidents": "Incident Management",
     "analytics": "Analytics & Reports",
     "companies": "Company Management",
@@ -3407,6 +3407,736 @@
     "empty": {
       "title": "No incidents found",
       "message": "Try changing filters or registering a new incident."
+    }
+  }
+}
+  },
+  "dashboardPage": {
+    "eyebrow": "4BC · DASHBOARD",
+    "rolePreview": "Role preview",
+    "roles": {
+      "operator": {
+        "label": "Independent driver",
+        "title": "Driver Operations Dashboard",
+        "subtitle": "Personal route, student attendance, trip progress and safety alerts for the current service."
+      },
+      "company": {
+        "label": "Company admin",
+        "title": "Company Operations Dashboard",
+        "subtitle": "Real-time overview of fleet, routes, students, trips, attendance and service quality."
+      },
+      "admin": {
+        "label": "KidWay admin",
+        "title": "Platform Monitoring Dashboard",
+        "subtitle": "Global supervision of companies, operational activity, incidents and system health."
+      }
+    },
+    "hero": {
+      "operator": "Assigned vehicle",
+      "company": "Attendance reliability",
+      "admin": "Active companies"
+    },
+    "metrics": {
+      "activeTrips": "Active trips",
+      "studentsOnBoard": "Students on board",
+      "openAlerts": "Open alerts",
+      "attendanceRate": "Attendance rate",
+      "fleetAvailability": "Fleet availability",
+      "routeCoverage": "Route coverage",
+      "activeCompanies": "Active companies",
+      "platformTrips": "Platform trips",
+      "serviceHealth": "Service health"
+    },
+    "helpers": {
+      "operatorTrips": "Current route in progress",
+      "activeTrips": "Routes in progress today",
+      "students": "Morning service confirmed",
+      "alerts": "Requires operational review",
+      "attendance": "Boarding and drop-off control",
+      "fleet": "Vehicles ready for service",
+      "coverage": "Stops covered by active routes",
+      "companies": "Companies with active service",
+      "platformTrips": "Trips monitored today",
+      "serviceHealth": "Stable platform operation"
+    },
+    "map": {
+      "eyebrow": "Live operation",
+      "title": "Fleet location map",
+      "live": "Live tracking",
+      "loading": "Loading route map...",
+      "activeUnits": "Active units"
+    },
+    "kpis": {
+      "eyebrow": "Operational KPIs",
+      "title": "Performance summary"
+    },
+    "alerts": {
+      "eyebrow": "Priority alerts",
+      "title": "Recent alerts",
+      "items": "items",
+      "emptyTitle": "Everything is under control",
+      "emptyMessage": "There are no active alerts for this role."
+    },
+    "activity": {
+      "eyebrow": "Latest activity",
+      "title": "Operational timeline",
+      "today": "Today"
+    }
+  },
+  "fleet": {
+    "eyebrow": "5BC · Fleet Management",
+    "title": "Fleet Management",
+    "subtitle": "Monitor vehicle availability, capacity, documentation and maintenance readiness for safe school transport operations.",
+    "heroAvailability": "Fleet availability",
+    "kpis": {
+      "totalVehicles": "Total vehicles",
+      "registeredUnits": "Registered units in company records",
+      "availableVehicles": "Available vehicles",
+      "readyForService": "Ready for route assignment",
+      "onRouteVehicles": "On-route vehicles",
+      "activeRoutes": "Currently supporting active routes",
+      "maintenanceVehicles": "In maintenance",
+      "requiresReview": "Requires operational review",
+      "capacityUsage": "Capacity usage",
+      "studentCapacity": "Average student seat usage"
+    },
+    "inventory": {
+      "eyebrow": "Fleet inventory",
+      "title": "Vehicle operational status"
+    },
+    "actions": {
+      "registerVehicle": "Register vehicle",
+      "export": "Export list",
+      "viewDetails": "View vehicle details"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by plate, driver, route or model...",
+      "all": "All units",
+      "available": "Available",
+      "onRoute": "On route",
+      "maintenance": "Maintenance",
+      "inactive": "Inactive"
+    },
+    "status": {
+      "available": "Available",
+      "onRoute": "On route",
+      "maintenance": "Maintenance",
+      "inactive": "Inactive"
+    },
+    "vehicle": {
+      "capacityUsage": "Capacity usage",
+      "nextMaintenance": "Next maintenance:",
+      "documentsValid": "Documents valid",
+      "documentsPending": "Document review pending"
+    },
+    "availability": {
+      "eyebrow": "Availability",
+      "title": "Fleet readiness",
+      "ready": "Ready for service"
+    },
+    "maintenance": {
+      "eyebrow": "Maintenance control",
+      "title": "Upcoming reviews",
+      "items": "items",
+      "due": "Due:"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "table": {
+      "eyebrow": "Operational records",
+      "title": "Fleet registry",
+      "vehicle": "Vehicle",
+      "driver": "Driver",
+      "route": "Route",
+      "capacity": "Capacity",
+      "status": "Status",
+      "inspection": "Last inspection",
+      "actions": "Actions"
+    },
+    "empty": {
+      "title": "No vehicles found",
+      "message": "Try another search term or status filter."
+    }
+  },
+  "drivers": {
+    "eyebrow": "6BC · Driver Management",
+    "title": "Driver Management",
+    "subtitle": "Supervise driver availability, licenses, route assignments and operational readiness for safe school transport services.",
+    "heroSafety": "Driver safety score",
+    "kpis": {
+      "totalDrivers": "Total drivers",
+      "registeredDrivers": "Registered company drivers",
+      "availableDrivers": "Available drivers",
+      "readyForRoutes": "Ready for route assignment",
+      "onRouteDrivers": "On-route drivers",
+      "currentlyOperating": "Currently supporting active trips",
+      "pendingReviews": "Pending reviews",
+      "requiresValidation": "Requires administrative validation",
+      "licenseCompliance": "License compliance",
+      "validLicenses": "Valid licenses and documents"
+    },
+    "inventory": {
+      "eyebrow": "Driver roster",
+      "title": "Driver operational status"
+    },
+    "actions": {
+      "registerDriver": "Register driver",
+      "export": "Export list",
+      "viewDetails": "View driver details"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by driver, license, vehicle, route or email...",
+      "all": "All drivers",
+      "available": "Available",
+      "onRoute": "On route",
+      "review": "Review",
+      "offDuty": "Off duty"
+    },
+    "empty": {
+      "title": "No drivers found",
+      "message": "Try changing the search term or selected status filter."
+    },
+    "status": {
+      "available": "Available",
+      "onRoute": "On route",
+      "offDuty": "Off duty",
+      "review": "Review"
+    },
+    "card": {
+      "years": "years",
+      "students": "students",
+      "safetyScore": "Safety score",
+      "documentsValid": "Documents valid",
+      "documentsPending": "Document review pending"
+    },
+    "readiness": {
+      "eyebrow": "Readiness",
+      "title": "Driver readiness",
+      "safeOperation": "Safe operation"
+    },
+    "compliance": {
+      "eyebrow": "Compliance control",
+      "title": "Upcoming reviews",
+      "items": "items"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "table": {
+      "eyebrow": "Operational records",
+      "title": "Driver registry",
+      "driver": "Driver",
+      "license": "License",
+      "vehicle": "Vehicle",
+      "route": "Route",
+      "punctuality": "Punctuality",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "timeline": {
+      "eyebrow": "Latest activity",
+      "title": "Driver timeline",
+      "today": "Today"
+    }
+  },
+  "routesPage": {
+    "eyebrow": "7BC • ROUTE MANAGEMENT",
+    "title": "Route Management",
+    "subtitle": "Plan route schedules, stops, coverage areas and optimization readiness for safe school transport operations.",
+    "heroBadge": "Route coverage",
+    "inventoryEyebrow": "ROUTE PLANNING",
+    "operationalStatus": "Route operational status",
+    "searchPlaceholder": "Search by route, district, driver, vehicle or school...",
+    "recordsEyebrow": "OPERATIONAL RECORDS",
+    "registryTitle": "Route registry",
+    "timelineEyebrow": "LATEST ACTIVITY",
+    "timelineTitle": "Route timeline",
+    "today": "Today",
+    "actions": {
+      "createRoute": "Create route",
+      "exportList": "Export list"
+    },
+    "kpis": {
+      "totalRoutes": "Total routes",
+      "totalRoutesHelper": "Registered operational routes",
+      "activeRoutes": "Active routes",
+      "activeRoutesHelper": "Ready for daily service",
+      "scheduledStops": "Scheduled stops",
+      "scheduledStopsHelper": "Pickup and drop-off points",
+      "districts": "Covered districts",
+      "districtsHelper": "Urban service coverage",
+      "optimization": "Optimization score",
+      "optimizationHelper": "Average route efficiency"
+    },
+    "filters": {
+      "all": "All routes",
+      "active": "Active",
+      "scheduled": "Scheduled",
+      "review": "Review",
+      "inactive": "Inactive"
+    },
+    "table": {
+      "route": "Route",
+      "driver": "Driver",
+      "vehicle": "Vehicle",
+      "stops": "Stops",
+      "coverage": "Coverage",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "studentsPage": {
+    "eyebrow": "8BC · Student Management",
+    "title": "Student Management",
+    "subtitle": "Manage student records, guardians, route assignment, pickup points and transport readiness.",
+    "heroBadge": "Attendance reliability",
+    "kpis": {
+      "totalStudents": "Total students",
+      "totalStudentsHelper": "Registered in company records",
+      "activeStudents": "Active students",
+      "activeStudentsHelper": "Ready for daily transport",
+      "assignedStudents": "Assigned students",
+      "assignedStudentsHelper": "Linked to an active route",
+      "unassignedStudents": "Pending assignment",
+      "unassignedStudentsHelper": "Require route or pickup review",
+      "guardianVerified": "Guardian verified",
+      "guardianVerifiedHelper": "Valid contact and authorization records"
+    },
+    "bannerTitle": "Students require operational review",
+    "bannerText": "Some students still need a confirmed route, pickup point or guardian authorization before they can be included in daily trips.",
+    "inventoryEyebrow": "Student roster",
+    "operationalStatus": "Student operational status",
+    "searchPlaceholder": "Search by student, guardian, route, vehicle or school...",
+    "actions": {
+      "registerStudent": "Register student",
+      "reviewUnassigned": "Review pending students",
+      "exportList": "Export list"
+    },
+    "filters": {
+      "all": "All students",
+      "active": "Active",
+      "unassigned": "Unassigned",
+      "review": "Review",
+      "inactive": "Inactive"
+    },
+    "status": {
+      "active": "Active",
+      "unassigned": "Unassigned",
+      "review": "Review",
+      "inactive": "Inactive"
+    },
+    "authorization": {
+      "verified": "Guardian verified",
+      "pending": "Authorization pending",
+      "expired": "Authorization expired"
+    },
+    "card": {
+      "route": "Assigned route",
+      "driver": "Driver",
+      "window": "Pickup window",
+      "attendance": "Attendance reliability"
+    },
+    "readinessEyebrow": "Readiness",
+    "readinessTitle": "Student readiness",
+    "readinessLabel": "Safe records",
+    "readiness": {
+      "assigned": "Assigned",
+      "verified": "Verified",
+      "review": "Review"
+    },
+    "reviewEyebrow": "Student control",
+    "reviewTitle": "Pending reviews",
+    "items": "items",
+    "recordsEyebrow": "Operational records",
+    "registryTitle": "Student registry",
+    "table": {
+      "student": "Student",
+      "guardian": "Guardian",
+      "school": "School",
+      "route": "Route",
+      "attendance": "Attendance",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "timelineEyebrow": "Latest activity",
+    "timelineTitle": "Student timeline",
+    "today": "Today",
+    "emptyValue": "Not assigned",
+    "pendingAssignment": "Pending",
+    "unassignedRoute": "Route not assigned"
+  },
+  "shared": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close"
+  },
+  "trackingBc": {
+    "eyebrow": "Real-time tracking",
+    "title": "Real-Time Tracking",
+    "subtitle": "Monitor live vehicle locations, route progress, ETA, GPS signal and operational deviations.",
+    "signalScore": "GPS signal",
+    "kpis": {
+      "activeUnits": "Active units",
+      "activeUnitsHint": "Vehicles reporting live location",
+      "delayedUnits": "Delayed units",
+      "delayedUnitsHint": "Require operational review",
+      "averageSpeed": "Average speed",
+      "averageSpeedHint": "Across active routes",
+      "routeProgress": "Route progress",
+      "routeProgressHint": "Average completion today",
+      "activeAlerts": "Active alerts",
+      "activeAlertsHint": "Tracking events requiring attention"
+    },
+    "search": "Search by vehicle, route, driver, district or next stop...",
+    "filters": {
+      "all": "All units",
+      "onRoute": "On route",
+      "delayed": "Delayed",
+      "stopped": "Stopped"
+    },
+    "refresh": "Refresh live data",
+    "liveOperation": "Live operation",
+    "mapTitle": "Fleet live map",
+    "liveTracking": "Live tracking",
+    "unitsEyebrow": "Tracking sessions",
+    "unitsTitle": "Active units",
+    "empty": "No units match the current filters.",
+    "unit": {
+      "driver": "Driver",
+      "district": "District",
+      "nextStop": "Next stop",
+      "eta": "ETA",
+      "progress": "Route progress"
+    },
+    "alertsEyebrow": "Priority alerts",
+    "alertsTitle": "Tracking alerts",
+    "activityEyebrow": "Latest activity",
+    "activityTitle": "Tracking timeline",
+    "recordsEyebrow": "Operational records",
+    "recordsTitle": "Tracking registry",
+    "items": "items",
+    "today": "Today",
+    "export": "Export snapshot",
+    "table": {
+      "vehicle": "Vehicle",
+      "driver": "Driver",
+      "route": "Route",
+      "speed": "Speed",
+      "progress": "Progress",
+      "status": "Status",
+      "updated": "Last update",
+      "actions": "Actions"
+    }
+  },
+  "tripsBc": {
+    "title": "Trip Management",
+    "subtitle": "Control trip lifecycle, route execution, operational status and transport history.",
+    "newTrip": "New trip",
+    "search": "Search by route, vehicle, driver, school or district...",
+    "serviceReliability": "Service reliability",
+    "totalTrips": "Total trips",
+    "activeTrips": "Active trips",
+    "scheduledTrips": "Scheduled trips",
+    "delayedTrips": "Delayed trips",
+    "completedTrips": "Completed trips"
+  },
+  "attendanceBc": {
+    "title": "Attendance Tracking",
+    "subtitle": "Control student boarding, drop-off, absences and guardian confirmations during daily school transport operations.",
+    "export": "Export list",
+    "search": "Search by student, route, vehicle, guardian or pickup point..."
+  },
+  "alertsCenter": {
+    "hero": {
+      "eyebrow": "13BC · ALERTS & NOTIFICATIONS",
+      "title": "Alerts & Notifications",
+      "subtitle": "Centralized alert center for delays, incidents, attendance updates, route changes and operational notifications.",
+      "unread": "Unread"
+    },
+    "metrics": {
+      "total": "Total events",
+      "totalHint": "Alerts and notifications today",
+      "critical": "Critical alerts",
+      "criticalHint": "Require immediate action",
+      "unread": "Unread updates",
+      "unreadHint": "Pending user review",
+      "delivery": "Delivery rate",
+      "deliveryHint": "Notification service health",
+      "acknowledged": "Acknowledged",
+      "acknowledgedHint": "Already confirmed by operators"
+    },
+    "banner": {
+      "title": "Critical safety alerts must remain visible",
+      "message": "Notifications can be marked as read, but operational alerts should be acknowledged before closing the shift."
+    },
+    "sections": {
+      "inboxEyebrow": "COMMUNICATION CENTER",
+      "inboxTitle": "Operational alert stream",
+      "detailEyebrow": "SELECTED EVENT",
+      "detailTitle": "Event detail",
+      "timelineEyebrow": "LATEST ACTIVITY",
+      "timelineTitle": "Notification timeline",
+      "today": "Today"
+    },
+    "filters": {
+      "search": "Search by vehicle, route, source, message or alert type...",
+      "all": "All events",
+      "alerts": "Alerts",
+      "notifications": "Notifications",
+      "allPriority": "All priorities",
+      "allStatus": "All status"
+    },
+    "priority": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "new": "New",
+      "read": "Read",
+      "acknowledged": "Acknowledged"
+    },
+    "actions": {
+      "markAll": "Mark all as read",
+      "markAllShort": "Mark all",
+      "markRead": "Mark as read",
+      "acknowledge": "Acknowledge",
+      "remove": "Remove",
+      "export": "Export list"
+    },
+    "detail": {
+      "status": "Status",
+      "priority": "Priority",
+      "source": "Source BC",
+      "vehicle": "Vehicle",
+      "route": "Route",
+      "recipient": "Recipient role"
+    },
+    "empty": {
+      "title": "No events found",
+      "message": "Try changing the filters or search terms."
+    },
+    "topbar": {
+      "unread": "unread",
+      "openCenter": "Open alerts center"
+    }
+  },
+  "incidents": {
+    "hero": {
+      "eyebrow": "14BC · Incident Management",
+      "title": "Incident Management",
+      "subtitle": "Track, escalate and resolve operational incidents affecting routes, students, drivers and vehicles.",
+      "safetyScore": "Safety score"
+    },
+    "metrics": {
+      "total": "Total incidents",
+      "totalHint": "Operational records registered",
+      "open": "Open incidents",
+      "openHint": "Require follow-up",
+      "critical": "Critical incidents",
+      "criticalHint": "Immediate safety priority",
+      "escalated": "Escalated",
+      "escalatedHint": "Sent to company admin",
+      "resolved": "Resolved",
+      "resolvedHint": "Closed or completed"
+    },
+    "banner": {
+      "title": "Critical incidents must be reviewed before closing the route shift",
+      "message": "Escalated incidents can trigger alerts, operational follow-up and evidence review."
+    },
+    "actions": {
+      "reviewCritical": "Review critical",
+      "report": "Report incident",
+      "saveReport": "Save report",
+      "review": "Review",
+      "escalate": "Escalate",
+      "resolve": "Resolve",
+      "remove": "Remove",
+      "startReview": "Start review",
+      "export": "Export list"
+    },
+    "sections": {
+      "formEyebrow": "Quick report",
+      "formTitle": "Register operational incident",
+      "rosterEyebrow": "Incident control",
+      "rosterTitle": "Operational incident flow",
+      "detailEyebrow": "Selected incident",
+      "detailTitle": "Incident detail",
+      "reviewEyebrow": "Incident control",
+      "reviewTitle": "Pending reviews",
+      "timelineEyebrow": "Latest activity",
+      "timelineTitle": "Incident timeline",
+      "registryEyebrow": "Operational records",
+      "registryTitle": "Incident registry",
+      "today": "Today"
+    },
+    "form": {
+      "title": "Incident title",
+      "type": "Incident type",
+      "severity": "Severity",
+      "vehicle": "Vehicle",
+      "route": "Route",
+      "driver": "Driver",
+      "description": "Description"
+    },
+    "filters": {
+      "search": "Search by incident, route, vehicle, driver, student or district..."
+    },
+    "types": {
+      "all": "All types",
+      "delay": "Delay",
+      "routeDeviation": "Route deviation",
+      "mechanical": "Mechanical",
+      "medical": "Medical",
+      "safety": "Safety"
+    },
+    "severity": {
+      "all": "All priority",
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "all": "All status",
+      "reported": "Reported",
+      "inReview": "In review",
+      "escalated": "Escalated",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "labels": {
+      "responseTime": "Response time",
+      "items": "items"
+    },
+    "detail": {
+      "code": "Code",
+      "status": "Status",
+      "severity": "Severity",
+      "vehicle": "Vehicle",
+      "route": "Route",
+      "driver": "Driver",
+      "evidence": "Evidence",
+      "reportedBy": "Reported by",
+      "resolution": "Resolution"
+    },
+    "table": {
+      "incident": "Incident",
+      "vehicle": "Vehicle",
+      "route": "Route",
+      "severity": "Severity",
+      "status": "Status",
+      "response": "Response",
+      "actions": "Actions"
+    },
+    "empty": {
+      "title": "No incidents found",
+      "message": "Try changing filters or registering a new incident."
+    }
+  },
+  "analyticsBc": {
+    "hero": {
+      "eyebrow": "15BC · Monitoring & Analytics",
+      "title": "Monitoring & Analytics",
+      "subtitle": "Unify live operational monitoring, historical analytics and exportable reports for school transport service quality.",
+      "score": "Service quality"
+    },
+    "metrics": {
+      "totalTrips": "Total trips",
+      "totalTripsHint": "Historical operational records",
+      "attendance": "Attendance reliability",
+      "attendanceHint": "Boarding and drop-off consistency",
+      "delay": "Average delay",
+      "delayHint": "Current day monitoring",
+      "fleetUsage": "Fleet usage",
+      "fleetUsageHint": "Vehicles used within capacity",
+      "incidentRate": "Incident rate",
+      "incidentRateHint": "Operational risk indicator"
+    },
+    "banner": {
+      "title": "Monitoring shows what is happening now; analytics explains why it changed.",
+      "message": "Use this module to review live indicators, detect trends and generate management reports without mixing it with real-time map tracking."
+    },
+    "actions": {
+      "refresh": "Refresh monitoring",
+      "export": "Export CSV",
+      "generate": "Generate report",
+      "filterSimilar": "Filter similar routes"
+    },
+    "sections": {
+      "monitoringEyebrow": "Operational monitoring",
+      "monitoringTitle": "Live service health",
+      "analyticsEyebrow": "Analytics",
+      "qualityTitle": "Quality score",
+      "routeEyebrow": "Route analytics",
+      "routeTitle": "Performance by route",
+      "selectedEyebrow": "Selected route",
+      "selectedTitle": "Performance detail",
+      "insightEyebrow": "Decision support",
+      "insightTitle": "Operational insights",
+      "trendEyebrow": "Historical analytics",
+      "trendTitle": "Weekly trend comparison",
+      "reportsEyebrow": "Management reports",
+      "reportsTitle": "Report center",
+      "activityEyebrow": "Monitoring activity",
+      "activityTitle": "Analytics timeline"
+    },
+    "labels": {
+      "updated": "Updated",
+      "safeService": "Safe service",
+      "monitoring": "Monitoring",
+      "analytics": "Analytics",
+      "reports": "Reports",
+      "items": "items",
+      "onTime": "On-time",
+      "attendance": "Attendance",
+      "score": "Score",
+      "delay": "Delay",
+      "currentWeek": "Current week",
+      "today": "Today"
+    },
+    "filters": {
+      "search": "Search by route, district, driver or vehicle...",
+      "allRoutes": "All routes"
+    },
+    "status": {
+      "all": "All",
+      "healthy": "Healthy",
+      "attention": "Attention",
+      "risk": "Risk"
+    },
+    "reports": {
+      "all": "All reports",
+      "fleet": "Fleet",
+      "trip": "Trips",
+      "attendance": "Attendance",
+      "incident": "Incidents",
+      "quality": "Quality"
+    },
+    "detail": {
+      "vehicle": "Vehicle",
+      "completedTrips": "Completed trips",
+      "delayMinutes": "Delay minutes",
+      "incidents": "Incidents",
+      "serviceScore": "Service score"
+    },
+    "table": {
+      "report": "Report",
+      "period": "Period",
+      "records": "Records",
+      "status": "Status",
+      "generated": "Generated",
+      "actions": "Actions"
+    },
+    "empty": {
+      "title": "No analytics records found",
+      "message": "Adjust filters or refresh monitoring data."
     }
   }
 }
