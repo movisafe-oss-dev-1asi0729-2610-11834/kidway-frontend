@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationService } from '../../../application/services/navigation.service';
+import { AuthService } from '../../../../identity-access/application/services/auth.service';
 
 @Component({
   selector: 'kw-home-page',
@@ -13,18 +14,15 @@ import { NavigationService } from '../../../application/services/navigation.serv
 })
 export class HomePageComponent {
   protected readonly navigation = inject(NavigationService);
+  protected readonly auth = inject(AuthService);
 
-  protected readonly currentRole = 'Company Admin';
-
-  protected readonly visibleModules = computed(() =>
-    this.navigation.items.filter((item) => !item.roles || item.roles.includes(this.currentRole))
-  );
+  protected readonly visibleModules = computed(() => this.navigation.visibleItems());
 
   protected readonly indicators = [
     { icon: 'route', labelKey: 'home.trips', value: '12', helper: 'In progress today' },
     { icon: 'school', labelKey: 'home.students', value: '184', helper: 'Morning service' },
     { icon: 'notifications', labelKey: 'home.alerts', value: '4', helper: 'Requires attention' },
-    { icon: 'apps', labelKey: 'home.modules', value: '13', helper: 'Enabled for role' }
+    { icon: 'apps', labelKey: 'home.modules', value: String(this.navigation.visibleItems().length), helper: 'Enabled for role' }
   ];
 
   protected readonly nextActions = [

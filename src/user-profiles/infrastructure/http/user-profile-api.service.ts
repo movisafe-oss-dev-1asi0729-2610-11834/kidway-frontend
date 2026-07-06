@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UserProfileDashboardModel } from '../../domain/models/user-profile.model';
+import { AuthService } from '../../../identity-access/application/services/auth.service';
 
 const fallbackProfileDashboard: UserProfileDashboardModel = {
   profile: {
@@ -103,10 +104,63 @@ const fallbackProfileDashboard: UserProfileDashboardModel = {
 @Injectable({ providedIn: 'root' })
 export class UserProfileApiService {
   private readonly http = inject(HttpClient);
+  private readonly auth = inject(AuthService);
 
   getDashboard(): Observable<UserProfileDashboardModel> {
     return this.http
       .get<UserProfileDashboardModel>('/api/userProfileDashboard')
-      .pipe(catchError(() => of(fallbackProfileDashboard)));
+      .pipe(
+        catchError(() => of(fallbackProfileDashboard)),
+        map((dashboard) => this.applyAuthenticatedUser(dashboard))
+      );
+  }
+
+  private applyAuthenticatedUser(dashboard: UserProfileDashboardModel): UserProfileDashboardModel {
+    const user = this.auth.currentUser();
+    if (!user) {
+      return dashboard;
+    }
+
+    const canManageBilling = this.auth.canAccessBilling();
+
+    return {
+      ...dashboard,
+      profile: {
+        ...dashboard.profile,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        displayName: user.displayName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        country: user.country,
+        role: user.role,
+        company: user.company,
+        avatarInitials: user.avatarInitials,
+        accountStatus: user.accountStatus,
+        bio: this.bioForRole(user.role)
+      },
+      billingAccess: {
+        ...dashboard.billingAccess,
+        canManageBilling,
+        planName: canManageBilling ? dashboard.billingAccess.planName : 'Restricted',
+        helper: canManageBilling
+          ? dashboard.billingAccess.helper
+          : 'Billing and plan data is hidden for this role.'
+      }
+    };
+  }
+
+  private bioForRole(role: string): string {
+    const bios: Record<string, string> = {
+      'Parent / Guardian': 'Guardian account focused on assigned student tracking, notifications and account preferences.',
+      'Company Driver': 'Driver account focused on daily trip execution, route tracking and attendance support.',
+      'Independent Operator': 'Independent operator account for route execution, assigned fleet data and billing access.',
+      'Company Admin': 'Responsible for school transport operations, company users, fleet readiness and daily service quality.',
+      'KidWay Administrator': 'Platform administrator account for company supervision, service health and global configuration.'
+    };
+
+    return bios[role] ?? 'KidWay account configured for role-based access.';
   }
 }

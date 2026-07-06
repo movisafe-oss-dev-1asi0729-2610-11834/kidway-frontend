@@ -10,11 +10,11 @@
 
   <section class="role-panel">
     <article>
-      <span class="avatar">ML</span>
+      <span class="avatar">{{ auth.currentUser()?.avatarInitials ?? 'KW' }}</span>
       <div>
         <p>{{ 'home.roleTitle' | translate }}</p>
-        <h2>Company Admin</h2>
-        <small>{{ 'home.roleDescription' | translate }}</small>
+        <h2>{{ auth.currentUser()?.role }}</h2>
+        <small>{{ auth.currentUser()?.displayName }} · {{ auth.currentUser()?.company }}</small>
       </div>
     </article>
     <article>

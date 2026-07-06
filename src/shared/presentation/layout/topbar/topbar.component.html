@@ -60,15 +60,15 @@
     </mat-menu>
 
     <button class="profile-button" type="button" [matMenuTriggerFor]="profileMenu" [attr.aria-label]="'actions.openProfile' | translate">
-      <strong>{{ accountUser.initials }}</strong>
-      <span><b>{{ accountUser.displayName }}</b><small>{{ accountUser.role }}</small></span>
+      <strong>{{ auth.currentUser()?.avatarInitials ?? 'KW' }}</strong>
+      <span><b>{{ auth.currentUser()?.displayName ?? 'KidWay User' }}</b><small>{{ auth.currentUser()?.role ?? 'Authenticated user' }}</small></span>
       <mat-icon aria-hidden="true">expand_more</mat-icon>
     </button>
 
     <mat-menu #profileMenu="matMenu" xPosition="before" class="kw-profile-menu-panel">
       <section class="profile-menu-head" (click)="$event.stopPropagation()">
-        <strong>{{ accountUser.displayName }}</strong>
-        <small>{{ accountUser.role }}</small>
+        <strong>{{ auth.currentUser()?.displayName ?? 'KidWay User' }}</strong>
+        <small>{{ auth.currentUser()?.role ?? 'Authenticated user' }}</small>
       </section>
       <a mat-menu-item routerLink="/app/profile">
         <mat-icon>person</mat-icon>
@@ -88,7 +88,7 @@
           <span>{{ 'profileMenu.billing' | translate }}</span>
         </a>
       }
-      <button mat-menu-item type="button">
+      <button mat-menu-item type="button" (click)="auth.logout()">
         <mat-icon>logout</mat-icon>
         <span>{{ 'profileMenu.logout' | translate }}</span>
       </button>

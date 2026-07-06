@@ -9,6 +9,7 @@ import { LanguageService } from '../../../application/services/language.service'
 import { SidebarStateService } from '../../../application/state/sidebar-state.service';
 import { NotificationService } from '../../../../notifications/application/services/notification.service';
 import { NotificationItem } from '../../../../notifications/domain/models/notification.model';
+import { AuthService } from '../../../../identity-access/application/services/auth.service';
 
 @Component({
   selector: 'kw-topbar',
@@ -21,26 +22,16 @@ export class TopbarComponent {
   protected readonly sidebarState = inject(SidebarStateService);
   protected readonly languageService = inject(LanguageService);
   protected readonly notificationService = inject(NotificationService);
+  protected readonly auth = inject(AuthService);
   protected readonly darkMode = signal(false);
 
-  protected readonly accountUser = {
-    initials: 'ML',
-    displayName: 'Dr. Maria Lopez',
-    role: 'Company Admin'
-  };
-
-  private readonly billingRoles = new Set([
-    'Independent Operator',
-    'Company Admin',
-    'KidWay Administrator'
-  ]);
 
   constructor() {
     this.notificationService.load();
   }
 
   protected canAccessBilling(): boolean {
-    return this.billingRoles.has(this.accountUser.role);
+    return this.auth.canAccessBilling();
   }
 
   setLanguage(language: 'en' | 'es'): void { this.languageService.use(language); }

@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UnderDevelopmentPageComponent } from '../../shared/presentation/pages/under-development/under-development-page.component';
+import { LoginPageComponent } from './views/login/login-page.component';
+import { RegisterPageComponent } from './views/register/register-page.component';
+import { guestGuard } from '../application/guards/auth.guard';
 
 export const IDENTITY_ACCESS_ROUTES: Routes = [
-  {
-    path: '',
-    component: UnderDevelopmentPageComponent,
-    data: { titleKey: 'nav.identityAccess', boundedContext: 'Identity & Access Management', icon: 'person' }
-  }
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginPageComponent, canActivate: [guestGuard], title: 'KidWay | Login' },
+  { path: 'register', component: RegisterPageComponent, canActivate: [guestGuard], title: 'KidWay | Register' }
 ];
