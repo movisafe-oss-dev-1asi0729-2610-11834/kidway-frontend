@@ -1240,5 +1240,155 @@
       "title": "No contracts found",
       "message": "Adjust the filters or search criteria to review the company service scope."
     }
+  },
+  "profileMenu": {
+    "myProfile": "My profile",
+    "preferences": "Preferences",
+    "security": "Security",
+    "billing": "Billing & plan",
+    "logout": "Log out"
+  },
+  "userProfiles": {
+    "eyebrow": "2BC · USER PROFILES",
+    "title": "User Profile Settings",
+    "subtitle": "Manage personal data, account preferences, password changes, notification rules and role-based access from one modern account view.",
+    "loading": "Loading profile settings...",
+    "sections": {
+      "profile": "Profile",
+      "security": "Security",
+      "notifications": "Notifications",
+      "access": "Access"
+    },
+    "status": {
+      "active": "Active account",
+      "pending": "Pending review",
+      "suspended": "Suspended"
+    },
+    "actions": {
+      "saveChanges": "Save changes",
+      "saveProfile": "Save profile",
+      "savePreferences": "Save preferences",
+      "saved": "Saved"
+    },
+    "hero": {
+      "memberSince": "Member since",
+      "completion": "Profile completion",
+      "completionHelper": "Keep contact, security and preference data updated for safer operations."
+    },
+    "billing": {
+      "eyebrow": "Account billing",
+      "title": "Billing and active plan",
+      "open": "Open billing",
+      "restrictedTitle": "Billing hidden for this role",
+      "restrictedHelper": "Parents and non-admin operational users do not manage payments or subscription settings."
+    },
+    "profileForm": {
+      "eyebrow": "Personal data",
+      "title": "Editable profile information"
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "displayName": "Display name",
+      "username": "Username",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "city": "City",
+      "timezone": "Timezone",
+      "language": "Preferred language",
+      "bio": "Short profile note"
+    },
+    "role": {
+      "eyebrow": "Role and company",
+      "title": "Operational identity",
+      "helper": "Permissions are assigned by IAM. This view only displays the current role context."
+    },
+    "account": {
+      "eyebrow": "Account details",
+      "title": "Account metadata",
+      "lastUpdated": "Last updated",
+      "recoveryEmail": "Recovery email"
+    },
+    "security": {
+      "lastChanged": "Password last changed:",
+      "password": {
+        "eyebrow": "Credential security",
+        "title": "Change password",
+        "helper": "Use a strong password and confirm the temporary verification code before applying the change.",
+        "current": "Current password",
+        "new": "New password",
+        "confirm": "Confirm password",
+        "code": "Verification code",
+        "action": "Update password",
+        "invalid": "Complete all password fields and enter a 6-digit verification code.",
+        "mismatch": "The new password and confirmation do not match.",
+        "success": "Password change request validated locally for this practice version."
+      },
+      "verification": {
+        "eyebrow": "Verification",
+        "title": "Account protection",
+        "email": "Verified email address",
+        "phone": "Verified phone number",
+        "twoFactor": "Two-factor authentication enabled"
+      },
+      "sessions": {
+        "eyebrow": "Active sessions",
+        "title": "Trusted devices"
+      }
+    },
+    "preferences": {
+      "eyebrow": "Preferences",
+      "title": "Notifications and interface",
+      "theme": "Theme preference",
+      "themeOptions": {
+        "system": "Use system setting",
+        "light": "Light mode",
+        "dark": "Dark mode"
+      },
+      "options": {
+        "email": {
+          "title": "Email notifications",
+          "helper": "Receive account and operational summaries by email."
+        },
+        "sms": {
+          "title": "SMS notifications",
+          "helper": "Receive urgent route, security or account messages by SMS."
+        },
+        "push": {
+          "title": "Push notifications",
+          "helper": "Enable in-app alerts for important operational events."
+        },
+        "weekly": {
+          "title": "Weekly reports",
+          "helper": "Send weekly summaries for management and follow-up."
+        },
+        "routes": {
+          "title": "Route alerts",
+          "helper": "Notify me about delays, changes and route risks."
+        },
+        "incidents": {
+          "title": "Incident alerts",
+          "helper": "Notify me when incident follow-up requires attention."
+        },
+        "marketing": {
+          "title": "Product updates",
+          "helper": "Receive non-critical product news and campaigns."
+        }
+      }
+    },
+    "activity": {
+      "eyebrow": "Recent activity",
+      "title": "Profile timeline"
+    },
+    "access": {
+      "eyebrow": "Role-based access",
+      "title": "Permissions summary",
+      "status": {
+        "enabled": "Enabled",
+        "limited": "Limited",
+        "restricted": "Restricted"
+      }
+    }
   }
 }

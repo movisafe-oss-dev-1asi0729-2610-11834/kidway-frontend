@@ -1,0 +1,353 @@
+@if (dashboard(); as vm) {
+  <section class="user-profile-page" aria-labelledby="profile-title">
+    <header class="profile-heading">
+      <div>
+        <p class="eyebrow">{{ 'userProfiles.eyebrow' | translate }}</p>
+        <h1 id="profile-title">{{ 'userProfiles.title' | translate }}</h1>
+        <p>{{ 'userProfiles.subtitle' | translate }}</p>
+      </div>
+      <div class="heading-actions">
+        <span class="status-chip" [ngClass]="vm.profile.accountStatus">
+          <mat-icon>verified_user</mat-icon>
+          {{ 'userProfiles.status.' + vm.profile.accountStatus | translate }}
+        </span>
+        <button class="primary-action" type="button" (click)="saveProfile()">
+          <mat-icon>save</mat-icon>
+          {{ 'userProfiles.actions.saveChanges' | translate }}
+        </button>
+      </div>
+    </header>
+
+    <section class="profile-hero">
+      <article class="identity-card">
+        <div class="avatar-ring">
+          <span>{{ vm.profile.avatarInitials }}</span>
+        </div>
+        <div class="identity-copy">
+          <span class="role-pill">{{ vm.profile.role }}</span>
+          <h2>{{ vm.profile.displayName }}</h2>
+          <p>{{ vm.profile.company }}</p>
+          <small>{{ 'userProfiles.hero.memberSince' | translate }} {{ vm.profile.joinedAt | date: 'dd MMM yyyy' }}</small>
+        </div>
+      </article>
+
+      <article class="completion-card">
+        <div class="score-circle" [style.stroke-dasharray]="completionDash(vm.profile.profileCompletion)">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path class="circle-bg" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 0 1 0-31" />
+            <path class="circle-value" [attr.stroke-dasharray]="completionDash(vm.profile.profileCompletion)" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 0 1 0-31" />
+          </svg>
+          <strong>{{ vm.profile.profileCompletion }}%</strong>
+        </div>
+        <div>
+          <span>{{ 'userProfiles.hero.completion' | translate }}</span>
+          <p>{{ 'userProfiles.hero.completionHelper' | translate }}</p>
+        </div>
+      </article>
+
+      <article class="billing-card" [class.restricted]="!vm.billingAccess.canManageBilling">
+        <span class="billing-icon"><mat-icon>{{ vm.billingAccess.canManageBilling ? 'payments' : 'lock' }}</mat-icon></span>
+        <div>
+          <small>{{ 'userProfiles.billing.eyebrow' | translate }}</small>
+          <strong>{{ vm.billingAccess.canManageBilling ? vm.billingAccess.planName : ('userProfiles.billing.restrictedTitle' | translate) }}</strong>
+          <p>{{ vm.billingAccess.canManageBilling ? vm.billingAccess.helper : ('userProfiles.billing.restrictedHelper' | translate) }}</p>
+        </div>
+        @if (vm.billingAccess.canManageBilling) {
+          <a [routerLink]="vm.billingAccess.route">
+            {{ 'userProfiles.billing.open' | translate }}
+            <mat-icon>chevron_right</mat-icon>
+          </a>
+        }
+      </article>
+    </section>
+
+    <nav class="profile-tabs" aria-label="User profile sections">
+      @for (section of sections; track section.id) {
+        <button type="button" [class.active]="selectedSection() === section.id" (click)="selectSection(section.id)">
+          <mat-icon>{{ section.icon }}</mat-icon>
+          {{ section.labelKey | translate }}
+        </button>
+      }
+    </nav>
+
+    @if (selectedSection() === 'profile') {
+      <section class="content-grid profile-grid">
+        <form class="panel form-panel" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+          <div class="panel-header">
+            <div>
+              <p>{{ 'userProfiles.profileForm.eyebrow' | translate }}</p>
+              <h2>{{ 'userProfiles.profileForm.title' | translate }}</h2>
+            </div>
+            @if (profileSaved()) {
+              <span class="success-message"><mat-icon>check_circle</mat-icon>{{ 'userProfiles.actions.saved' | translate }}</span>
+            }
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span>{{ 'userProfiles.fields.firstName' | translate }}</span>
+              <input type="text" formControlName="firstName">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.lastName' | translate }}</span>
+              <input type="text" formControlName="lastName">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.displayName' | translate }}</span>
+              <input type="text" formControlName="displayName">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.username' | translate }}</span>
+              <input type="text" formControlName="username">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.email' | translate }}</span>
+              <input type="email" formControlName="email">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.phone' | translate }}</span>
+              <input type="tel" formControlName="phone">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.country' | translate }}</span>
+              <input type="text" formControlName="country">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.city' | translate }}</span>
+              <input type="text" formControlName="city">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.timezone' | translate }}</span>
+              <input type="text" formControlName="timezone">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.fields.language' | translate }}</span>
+              <select formControlName="preferredLanguage">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <label class="wide">
+              <span>{{ 'userProfiles.fields.bio' | translate }}</span>
+              <textarea rows="4" formControlName="bio"></textarea>
+            </label>
+          </div>
+
+          <button class="primary-action" type="submit">
+            <mat-icon>save</mat-icon>
+            {{ 'userProfiles.actions.saveProfile' | translate }}
+          </button>
+        </form>
+
+        <aside class="side-stack">
+          <article class="panel role-panel">
+            <p>{{ 'userProfiles.role.eyebrow' | translate }}</p>
+            <h2>{{ 'userProfiles.role.title' | translate }}</h2>
+            <div class="role-box">
+              <mat-icon>badge</mat-icon>
+              <div>
+                <strong>{{ vm.profile.role }}</strong>
+                <span>{{ vm.profile.company }}</span>
+              </div>
+            </div>
+            <p class="muted">{{ 'userProfiles.role.helper' | translate }}</p>
+          </article>
+
+          <article class="panel mini-details">
+            <p>{{ 'userProfiles.account.eyebrow' | translate }}</p>
+            <h2>{{ 'userProfiles.account.title' | translate }}</h2>
+            <div>
+              <span>{{ 'userProfiles.account.lastUpdated' | translate }}</span>
+              <strong>{{ vm.profile.lastUpdatedAt | date: 'dd MMM yyyy' }}</strong>
+            </div>
+            <div>
+              <span>{{ 'userProfiles.account.recoveryEmail' | translate }}</span>
+              <strong>{{ vm.security.recoveryEmail }}</strong>
+            </div>
+          </article>
+        </aside>
+      </section>
+    }
+
+    @if (selectedSection() === 'security') {
+      <section class="content-grid security-grid">
+        <form class="panel form-panel" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+          <div class="panel-header">
+            <div>
+              <p>{{ 'userProfiles.security.password.eyebrow' | translate }}</p>
+              <h2>{{ 'userProfiles.security.password.title' | translate }}</h2>
+            </div>
+          </div>
+          <p class="muted">{{ 'userProfiles.security.password.helper' | translate }}</p>
+
+          <div class="form-grid security-form">
+            <label>
+              <span>{{ 'userProfiles.security.password.current' | translate }}</span>
+              <input type="password" formControlName="currentPassword">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.security.password.new' | translate }}</span>
+              <input type="password" formControlName="newPassword">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.security.password.confirm' | translate }}</span>
+              <input type="password" formControlName="confirmPassword">
+            </label>
+            <label>
+              <span>{{ 'userProfiles.security.password.code' | translate }}</span>
+              <input type="text" maxlength="6" formControlName="verificationCode">
+            </label>
+          </div>
+
+          @if (passwordMessage(); as message) {
+            <div class="feedback" [ngClass]="passwordMessageType()">
+              <mat-icon>{{ passwordMessageType() === 'success' ? 'check_circle' : 'error' }}</mat-icon>
+              {{ message | translate }}
+            </div>
+          }
+
+          <button class="primary-action" type="submit">
+            <mat-icon>lock_reset</mat-icon>
+            {{ 'userProfiles.security.password.action' | translate }}
+          </button>
+        </form>
+
+        <aside class="side-stack">
+          <article class="panel verification-panel">
+            <p>{{ 'userProfiles.security.verification.eyebrow' | translate }}</p>
+            <h2>{{ 'userProfiles.security.verification.title' | translate }}</h2>
+            <div class="verify-row" [class.ok]="vm.security.emailVerified">
+              <mat-icon>{{ vm.security.emailVerified ? 'verified' : 'warning' }}</mat-icon>
+              <span>{{ 'userProfiles.security.verification.email' | translate }}</span>
+            </div>
+            <div class="verify-row" [class.ok]="vm.security.phoneVerified">
+              <mat-icon>{{ vm.security.phoneVerified ? 'verified' : 'warning' }}</mat-icon>
+              <span>{{ 'userProfiles.security.verification.phone' | translate }}</span>
+            </div>
+            <div class="verify-row" [class.ok]="vm.security.twoFactorEnabled">
+              <mat-icon>{{ vm.security.twoFactorEnabled ? 'verified' : 'warning' }}</mat-icon>
+              <span>{{ 'userProfiles.security.verification.twoFactor' | translate }}</span>
+            </div>
+            <small>{{ 'userProfiles.security.lastChanged' | translate }} {{ vm.security.passwordLastChangedAt | date: 'dd MMM yyyy' }}</small>
+          </article>
+
+          <article class="panel sessions-panel">
+            <p>{{ 'userProfiles.security.sessions.eyebrow' | translate }}</p>
+            <h2>{{ 'userProfiles.security.sessions.title' | translate }}</h2>
+            @for (session of vm.security.activeSessions; track session.id) {
+              <div class="session-row">
+                <mat-icon>{{ session.trusted ? 'devices' : 'warning' }}</mat-icon>
+                <div>
+                  <strong>{{ session.device }}</strong>
+                  <span>{{ session.location }} · {{ session.lastAccessAt }}</span>
+                </div>
+              </div>
+            }
+          </article>
+        </aside>
+      </section>
+    }
+
+    @if (selectedSection() === 'notifications') {
+      <section class="content-grid notifications-grid">
+        <form class="panel preferences-panel" [formGroup]="preferencesForm" (ngSubmit)="savePreferences()">
+          <div class="panel-header">
+            <div>
+              <p>{{ 'userProfiles.preferences.eyebrow' | translate }}</p>
+              <h2>{{ 'userProfiles.preferences.title' | translate }}</h2>
+            </div>
+            @if (preferencesSaved()) {
+              <span class="success-message"><mat-icon>check_circle</mat-icon>{{ 'userProfiles.actions.saved' | translate }}</span>
+            }
+          </div>
+
+          <label class="theme-select">
+            <span>{{ 'userProfiles.preferences.theme' | translate }}</span>
+            <select formControlName="theme">
+              <option value="system">{{ 'userProfiles.preferences.themeOptions.system' | translate }}</option>
+              <option value="light">{{ 'userProfiles.preferences.themeOptions.light' | translate }}</option>
+              <option value="dark">{{ 'userProfiles.preferences.themeOptions.dark' | translate }}</option>
+            </select>
+          </label>
+
+          <div class="preference-list">
+            @for (option of preferenceOptions; track option.control) {
+              <label class="switch-row">
+                <span>
+                  <strong>{{ option.titleKey | translate }}</strong>
+                  <small>{{ option.helperKey | translate }}</small>
+                </span>
+                <input type="checkbox" [formControlName]="option.control">
+                <i aria-hidden="true"></i>
+              </label>
+            }
+          </div>
+
+          <button class="primary-action" type="submit">
+            <mat-icon>tune</mat-icon>
+            {{ 'userProfiles.actions.savePreferences' | translate }}
+          </button>
+        </form>
+
+        <aside class="panel activity-panel">
+          <p>{{ 'userProfiles.activity.eyebrow' | translate }}</p>
+          <h2>{{ 'userProfiles.activity.title' | translate }}</h2>
+          @for (activity of vm.activities; track activity.id) {
+            <div class="activity-row" [ngClass]="activity.status">
+              <span></span>
+              <div>
+                <small>{{ activity.time }}</small>
+                <strong>{{ activity.title }}</strong>
+                <p>{{ activity.description }}</p>
+              </div>
+            </div>
+          }
+        </aside>
+      </section>
+    }
+
+    @if (selectedSection() === 'access') {
+      <section class="content-grid access-grid">
+        <article class="panel access-panel">
+          <div class="panel-header">
+            <div>
+              <p>{{ 'userProfiles.access.eyebrow' | translate }}</p>
+              <h2>{{ 'userProfiles.access.title' | translate }}</h2>
+            </div>
+          </div>
+          <div class="access-list">
+            @for (item of vm.access; track item.id) {
+              <article class="access-card" [ngClass]="item.status">
+                <span><mat-icon>{{ item.icon }}</mat-icon></span>
+                <div>
+                  <strong>{{ item.title }}</strong>
+                  <p>{{ item.description }}</p>
+                </div>
+                <small>{{ 'userProfiles.access.status.' + item.status | translate }}</small>
+              </article>
+            }
+          </div>
+        </article>
+
+        <aside class="side-stack">
+          <article class="panel billing-access-panel" [class.restricted]="!vm.billingAccess.canManageBilling">
+            <p>{{ 'userProfiles.billing.eyebrow' | translate }}</p>
+            <h2>{{ vm.billingAccess.canManageBilling ? ('userProfiles.billing.title' | translate) : ('userProfiles.billing.restrictedTitle' | translate) }}</h2>
+            <p class="muted">{{ vm.billingAccess.canManageBilling ? vm.billingAccess.helper : ('userProfiles.billing.restrictedHelper' | translate) }}</p>
+            @if (vm.billingAccess.canManageBilling) {
+              <a class="primary-action link-action" [routerLink]="vm.billingAccess.route">
+                <mat-icon>payments</mat-icon>
+                {{ 'userProfiles.billing.open' | translate }}
+              </a>
+            }
+          </article>
+        </aside>
+      </section>
+    }
+  </section>
+} @else {
+  <section class="loading-profile">
+    <mat-icon>account_circle</mat-icon>
+    <span>{{ 'userProfiles.loading' | translate }}</span>
+  </section>
+}

@@ -23,8 +23,24 @@ export class TopbarComponent {
   protected readonly notificationService = inject(NotificationService);
   protected readonly darkMode = signal(false);
 
+  protected readonly accountUser = {
+    initials: 'ML',
+    displayName: 'Dr. Maria Lopez',
+    role: 'Company Admin'
+  };
+
+  private readonly billingRoles = new Set([
+    'Independent Operator',
+    'Company Admin',
+    'KidWay Administrator'
+  ]);
+
   constructor() {
     this.notificationService.load();
+  }
+
+  protected canAccessBilling(): boolean {
+    return this.billingRoles.has(this.accountUser.role);
   }
 
   setLanguage(language: 'en' | 'es'): void { this.languageService.use(language); }

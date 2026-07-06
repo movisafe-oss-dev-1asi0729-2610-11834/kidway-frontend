@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppShellComponent } from '../shared/presentation/layout/app-shell/app-shell.component';
 import { HomePageComponent } from '../shared/presentation/pages/home/home-page.component';
-import { ProfilePageComponent } from '../shared/presentation/pages/profile/profile-page.component';
 import { AuthPlaceholderComponent } from '../shared/presentation/pages/auth/auth-placeholder.component';
 
 export const routes: Routes = [
@@ -20,7 +19,7 @@ export const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', component: HomePageComponent },
-      { path: 'profile', component: ProfilePageComponent },
+      { path: 'profile', loadChildren: () => import('../user-profiles/presentation/routes').then((m) => m.USER_PROFILES_ROUTES) },
       { path: 'dashboard', loadChildren: () => import('../dashboard/presentation/routes').then((m) => m.DASHBOARD_ROUTES) },
       { path: 'subscriptions', loadChildren: () => import('../subscriptions/presentation/routes').then((m) => m.SUBSCRIPTIONS_ROUTES) },
       { path: 'fleet', loadChildren: () => import('../fleet/presentation/routes').then((m) => m.FLEET_ROUTES) },
