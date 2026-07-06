@@ -1,0 +1,48 @@
+<section class="readiness-card">
+  <header>
+    <div>
+      <p>{{ 'studentsPage.readinessEyebrow' | translate }}</p>
+      <h2>{{ 'studentsPage.readinessTitle' | translate }}</h2>
+    </div>
+    <span>{{ attendanceReliability }}%</span>
+  </header>
+
+  <div class="donut" [style.--value.%]="attendanceReliability">
+    <div class="donut-content">
+      <strong>{{ attendanceReliability }}%</strong>
+      <small>{{ 'studentsPage.readinessLabel' | translate }}</small>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="green"></i>{{ 'studentsPage.readiness.assigned' | translate }}</span>
+    <span><i class="blue"></i>{{ 'studentsPage.readiness.verified' | translate }}</span>
+    <span><i class="amber"></i>{{ 'studentsPage.readiness.review' | translate }}</span>
+  </div>
+</section>
+
+<section class="review-card">
+  <header>
+    <div>
+      <p>{{ 'studentsPage.reviewEyebrow' | translate }}</p>
+      <h2>{{ 'studentsPage.reviewTitle' | translate }}</h2>
+    </div>
+    <span>{{ reviews.length }} {{ 'studentsPage.items' | translate }}</span>
+  </header>
+
+  <div class="review-list">
+    @for (review of reviews; track review.id) {
+      <article>
+        <span class="review-icon" [ngClass]="review.priority">
+          <mat-icon>{{ review.priority === 'high' ? 'priority_high' : 'fact_check' }}</mat-icon>
+        </span>
+        <div>
+          <h3>{{ review.title }}</h3>
+          <p>{{ review.description }}</p>
+          <strong>{{ review.studentCode }} · {{ review.studentName }} · {{ review.dueDate }}</strong>
+        </div>
+        <em [ngClass]="review.priority">{{ review.priority }}</em>
+      </article>
+    }
+  </div>
+</section>

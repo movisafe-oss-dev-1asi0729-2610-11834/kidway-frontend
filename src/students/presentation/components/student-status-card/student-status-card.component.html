@@ -1,0 +1,56 @@
+<article class="student-card" [ngClass]="student.status">
+  <header>
+    <div class="student-main">
+      <span class="avatar">{{ initials }}</span>
+      <div>
+        <h3>{{ fullName }}</h3>
+        <p>{{ student.code }} · {{ student.grade }}</p>
+      </div>
+    </div>
+    <span class="status-pill" [ngClass]="student.status">{{ 'studentsPage.status.' + student.status | translate }}</span>
+  </header>
+
+  <div class="meta-grid">
+    <span><mat-icon>school</mat-icon>{{ student.school }}</span>
+    <span><mat-icon>supervisor_account</mat-icon>{{ student.guardianName }}</span>
+    <span><mat-icon>directions_bus</mat-icon>{{ student.assignedVehicle ?? ('studentsPage.emptyValue' | translate) }}</span>
+    <span><mat-icon>person_pin_circle</mat-icon>{{ student.pickupPoint ?? ('studentsPage.emptyValue' | translate) }}</span>
+  </div>
+
+  <section class="assignment-block">
+    <div>
+      <small>{{ 'studentsPage.card.route' | translate }}</small>
+      @if (student.routeName) {
+        <strong>{{ student.routeName }}</strong>
+      } @else {
+        <strong class="muted">{{ 'studentsPage.unassignedRoute' | translate }}</strong>
+      }
+    </div>
+    <div>
+      <small>{{ 'studentsPage.card.driver' | translate }}</small>
+      <strong>{{ student.assignedDriver ?? ('studentsPage.pendingAssignment' | translate) }}</strong>
+    </div>
+    <div>
+      <small>{{ 'studentsPage.card.window' | translate }}</small>
+      <strong>{{ student.pickupWindow ?? ('studentsPage.pendingAssignment' | translate) }}</strong>
+    </div>
+  </section>
+
+  <div class="progress-row">
+    <div>
+      <span>{{ 'studentsPage.card.attendance' | translate }}</span>
+      <strong>{{ student.attendanceRate }}%</strong>
+    </div>
+    <span class="bar"><i [style.width.%]="attendanceWidth"></i></span>
+  </div>
+
+  <footer>
+    <span [ngClass]="student.authorizationStatus">
+      <mat-icon>{{ student.authorizationStatus === 'verified' ? 'verified' : 'priority_high' }}</mat-icon>
+      {{ 'studentsPage.authorization.' + student.authorizationStatus | translate }}
+    </span>
+    <button type="button" (click)="openDetails()" [attr.aria-label]="'View ' + fullName">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </footer>
+</article>
