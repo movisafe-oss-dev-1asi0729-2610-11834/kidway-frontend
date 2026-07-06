@@ -12,6 +12,7 @@ export class RouteFilterState {
   private readonly searchSubject = new BehaviorSubject<string>('');
 
   readonly selectedStatus$ = this.statusSubject.asObservable();
+  readonly routes$ = this.routesSubject.asObservable();
 
   readonly filteredRoutes$ = combineLatest([
     this.routesSubject,
@@ -43,6 +44,10 @@ export class RouteFilterState {
 
   setRoutes(routes: SchoolRouteEntity[]): void {
     this.routesSubject.next(routes);
+  }
+
+  currentRoutes(): SchoolRouteEntity[] {
+    return this.routesSubject.value;
   }
 
   setStatus(status: RouteStatusFilter): void {

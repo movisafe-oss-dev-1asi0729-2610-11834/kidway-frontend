@@ -55,7 +55,7 @@
               <p>{{ 'routesPage.inventoryEyebrow' | translate }}</p>
               <h2>{{ 'routesPage.operationalStatus' | translate }}</h2>
             </div>
-            <button type="button" class="primary-action">
+            <button type="button" class="primary-action" (click)="openCreateRoute()">
               <mat-icon>add</mat-icon>
               {{ 'routesPage.actions.createRoute' | translate }}
             </button>
@@ -110,7 +110,7 @@
             <p>{{ 'routesPage.recordsEyebrow' | translate }}</p>
             <h2>{{ 'routesPage.registryTitle' | translate }}</h2>
           </div>
-          <button type="button" class="secondary-action">
+          <button type="button" class="secondary-action" (click)="exportList()">
             <mat-icon>download</mat-icon>
             {{ 'routesPage.actions.exportList' | translate }}
           </button>
@@ -130,7 +130,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (route of dashboard.routes; track route.id) {
+              @for (route of (filters.routes$ | async) ?? []; track route.id) {
                 <tr>
                   <td>
                     <strong>{{ route.name }}</strong>
@@ -145,9 +145,9 @@
                       <span><i [style.width.%]="route.coveragePercentage"></i></span>
                     </div>
                   </td>
-                  <td><span class="table-status" [ngClass]="route.status">{{ route.status }}</span></td>
+                  <td><span class="table-status" [ngClass]="route.status">{{ 'routesPage.status.' + route.status | translate }}</span></td>
                   <td>
-                    <button type="button" class="row-action" [attr.aria-label]="'View ' + route.name">
+                    <button type="button" class="row-action" (click)="openRouteDetails(route)" [attr.aria-label]="'View ' + route.name">
                       <mat-icon>arrow_forward</mat-icon>
                     </button>
                   </td>
@@ -181,5 +181,56 @@
         </div>
       </section>
     </section>
+
+    @if (showCreateRoute()) {
+      <div class="kw-modal-backdrop" (click)="closeCreateRoute()">
+        <section class="kw-modal-card" (click)="$event.stopPropagation()">
+          <header>
+            <div><p>{{ 'routesPage.dialog.createTitle' | translate }}</p><h2>{{ 'routesPage.actions.createRoute' | translate }}</h2></div>
+            <button class="kw-close-btn" type="button" (click)="closeCreateRoute()"><mat-icon>close</mat-icon></button>
+          </header>
+          <div class="kw-modal-body">
+            <div class="kw-form-grid">
+              <label><span>{{ 'routesPage.dialog.code' | translate }}</span><input [(ngModel)]="routeDraft.code" /></label>
+              <label><span>{{ 'routesPage.dialog.name' | translate }}</span><input [(ngModel)]="routeDraft.name" /></label>
+              <label><span>{{ 'routesPage.dialog.district' | translate }}</span><input [(ngModel)]="routeDraft.district" /></label>
+              <label><span>{{ 'routesPage.dialog.school' | translate }}</span><input [(ngModel)]="routeDraft.school" /></label>
+              <label><span>{{ 'routesPage.dialog.driver' | translate }}</span><input [(ngModel)]="routeDraft.assignedDriver" /></label>
+              <label><span>{{ 'routesPage.dialog.vehicle' | translate }}</span><input [(ngModel)]="routeDraft.assignedVehicle" /></label>
+              <label><span>{{ 'routesPage.dialog.students' | translate }}</span><input type="number" [(ngModel)]="routeDraft.assignedStudents" /></label>
+              <label><span>{{ 'routesPage.dialog.capacity' | translate }}</span><input type="number" [(ngModel)]="routeDraft.vehicleCapacity" /></label>
+              <label><span>{{ 'routesPage.dialog.stops' | translate }}</span><input type="number" [(ngModel)]="routeDraft.stops" /></label>
+              <label><span>{{ 'routesPage.dialog.status' | translate }}</span><select [(ngModel)]="routeDraft.status"><option value="active">{{ 'routesPage.status.active' | translate }}</option><option value="scheduled">{{ 'routesPage.status.scheduled' | translate }}</option><option value="review">{{ 'routesPage.status.review' | translate }}</option><option value="inactive">{{ 'routesPage.status.inactive' | translate }}</option></select></label>
+            </div>
+            <div class="kw-modal-actions"><button class="secondary" type="button" (click)="closeCreateRoute()">{{ 'shared.cancel' | translate }}</button><button class="primary" type="button" (click)="saveRoute()">{{ 'routesPage.dialog.create' | translate }}</button></div>
+          </div>
+        </section>
+      </div>
+    }
+
+    @if (selectedRoute(); as route) {
+      <div class="kw-modal-backdrop" (click)="closeRouteDetails()">
+        <section class="kw-modal-card" (click)="$event.stopPropagation()">
+          <header>
+            <div><p>{{ 'routesPage.dialog.detailTitle' | translate }}</p><h2>{{ route.name }}</h2></div>
+            <button class="kw-close-btn" type="button" (click)="closeRouteDetails()"><mat-icon>close</mat-icon></button>
+          </header>
+          <div class="kw-modal-body">
+            <div class="kw-detail-grid">
+              <article><small>{{ 'routesPage.dialog.code' | translate }}</small><strong>{{ route.code }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.district' | translate }}</small><strong>{{ route.district }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.school' | translate }}</small><strong>{{ route.school }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.driver' | translate }}</small><strong>{{ route.assignedDriver }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.vehicle' | translate }}</small><strong>{{ route.assignedVehicle }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.schedule' | translate }}</small><strong>{{ route.scheduleLabel }} · {{ route.startTime }} - {{ route.endTime }}</strong></article>
+              <article><small>{{ 'routesPage.dialog.coverage' | translate }}</small><strong>{{ route.coveragePercentage }}%</strong></article>
+              <article><small>{{ 'routesPage.dialog.optimization' | translate }}</small><strong>{{ route.optimizationScore }}%</strong></article>
+            </div>
+            <div class="kw-modal-actions"><button class="primary" type="button" (click)="closeRouteDetails()">{{ 'shared.close' | translate }}</button></div>
+          </div>
+        </section>
+      </div>
+    }
+
   </main>
 }

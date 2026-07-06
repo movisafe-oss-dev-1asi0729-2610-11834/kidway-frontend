@@ -140,10 +140,13 @@ export class AssignmentManagementPageComponent {
   openCreateDialog(): void {
     this.dialog
       .open<AssignmentFormDialogComponent, AssignmentEntity | null, AssignmentFormResult>(AssignmentFormDialogComponent, {
-        width: '920px',
-        maxWidth: '94vw',
+        width: '1040px',
+        maxWidth: '96vw',
+        maxHeight: '90vh',
         data: null,
-        autoFocus: false
+        autoFocus: false,
+        restoreFocus: false,
+        panelClass: 'kidway-dialog-panel'
       })
       .afterClosed()
       .pipe(take(1))
@@ -165,10 +168,13 @@ export class AssignmentManagementPageComponent {
   openEditDialog(assignment: AssignmentEntity): void {
     this.dialog
       .open<AssignmentFormDialogComponent, AssignmentEntity, AssignmentFormResult>(AssignmentFormDialogComponent, {
-        width: '920px',
-        maxWidth: '94vw',
+        width: '1040px',
+        maxWidth: '96vw',
+        maxHeight: '90vh',
         data: assignment,
-        autoFocus: false
+        autoFocus: false,
+        restoreFocus: false,
+        panelClass: 'kidway-dialog-panel'
       })
       .afterClosed()
       .pipe(take(1))
@@ -190,10 +196,13 @@ export class AssignmentManagementPageComponent {
 
   openDetailDialog(assignment: AssignmentEntity): void {
     this.dialog.open(AssignmentDetailDialogComponent, {
-      width: '760px',
-      maxWidth: '94vw',
+      width: '860px',
+      maxWidth: '96vw',
+      maxHeight: '90vh',
       data: assignment,
-      autoFocus: false
+      autoFocus: false,
+      restoreFocus: false,
+      panelClass: 'kidway-dialog-panel'
     });
   }
 

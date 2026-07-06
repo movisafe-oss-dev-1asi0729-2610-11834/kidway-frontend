@@ -722,3 +722,9 @@ td small {
     grid-template-columns: 1fr;
   }
 }
+.assignment-page, .content-grid, .bottom-grid, .primary-card { max-width: 100%; min-width: 0; }
+.assignment-card, .assignment-details div, .assignment-meta span { min-width: 0; overflow-wrap: anywhere; }
+.assignment-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1380px) { .assignment-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .assignment-cards { grid-template-columns: 1fr; } }
+.table-scroll { max-width: 100%; overflow-x: auto; }

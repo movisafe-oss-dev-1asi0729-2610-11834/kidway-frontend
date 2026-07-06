@@ -3,6 +3,7 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { AttendanceFacadeService } from '../../../application/services/attendance-facade.service';
 import { AttendanceFilterState } from '../../../application/state/attendance-filter.state';
@@ -20,6 +21,7 @@ import { AttendanceStatusCardComponent } from '../../components/attendance-statu
   imports: [
     AsyncPipe,
     MatIconModule,
+    TranslateModule,
     AttendanceKpiCardComponent,
     AttendanceStatusCardComponent,
     AttendanceReadinessPanelComponent

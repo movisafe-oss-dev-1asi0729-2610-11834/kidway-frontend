@@ -55,7 +55,7 @@
             <p class="eyebrow">{{ 'fleet.inventory.eyebrow' | translate }}</p>
             <h2>{{ 'fleet.inventory.title' | translate }}</h2>
           </div>
-          <button type="button" class="primary-action">
+          <button type="button" class="primary-action" (click)="openRegisterVehicle()">
             <mat-icon>add</mat-icon>
             {{ 'fleet.actions.registerVehicle' | translate }}
           </button>
@@ -131,7 +131,7 @@
           <p class="eyebrow">{{ 'fleet.table.eyebrow' | translate }}</p>
           <h2>{{ 'fleet.table.title' | translate }}</h2>
         </div>
-        <button type="button" class="secondary-action">
+        <button type="button" class="secondary-action" (click)="exportList()">
           <mat-icon>download</mat-icon>
           {{ 'fleet.actions.export' | translate }}
         </button>
@@ -165,7 +165,7 @@
                 </td>
                 <td><span class="table-status" [ngClass]="vehicle.status">{{ 'fleet.status.' + vehicle.status | translate }}</span></td>
                 <td>{{ vehicle.lastInspectionDate | date: 'dd MMM yyyy' }}</td>
-                <td><button type="button" class="icon-action" [attr.aria-label]="'fleet.actions.viewDetails' | translate"><mat-icon>arrow_forward</mat-icon></button></td>
+                <td><button type="button" class="icon-action" (click)="openVehicleDetails(vehicle)" [attr.aria-label]="'fleet.actions.viewDetails' | translate"><mat-icon>arrow_forward</mat-icon></button></td>
               </tr>
             }
           </tbody>
@@ -173,4 +173,62 @@
       </div>
     </article>
   </section>
+
+
+  @if (showRegisterVehicle()) {
+    <div class="kw-modal-backdrop" (click)="closeRegisterVehicle()">
+      <section class="kw-modal-card" (click)="$event.stopPropagation()">
+        <header>
+          <div>
+            <p>{{ 'fleet.dialog.registerTitle' | translate }}</p>
+            <h2>{{ 'fleet.actions.registerVehicle' | translate }}</h2>
+          </div>
+          <button class="kw-close-btn" type="button" (click)="closeRegisterVehicle()"><mat-icon>close</mat-icon></button>
+        </header>
+        <div class="kw-modal-body">
+          <div class="kw-form-grid">
+            <label><span>{{ 'fleet.dialog.code' | translate }}</span><input [(ngModel)]="vehicleDraft.code" /></label>
+            <label><span>{{ 'fleet.dialog.plate' | translate }}</span><input [(ngModel)]="vehicleDraft.plate" /></label>
+            <label><span>{{ 'fleet.dialog.brand' | translate }}</span><input [(ngModel)]="vehicleDraft.brand" /></label>
+            <label><span>{{ 'fleet.dialog.model' | translate }}</span><input [(ngModel)]="vehicleDraft.model" /></label>
+            <label><span>{{ 'fleet.dialog.year' | translate }}</span><input type="number" [(ngModel)]="vehicleDraft.year" /></label>
+            <label><span>{{ 'fleet.dialog.capacity' | translate }}</span><input type="number" [(ngModel)]="vehicleDraft.capacity" /></label>
+            <label><span>{{ 'fleet.dialog.driver' | translate }}</span><input [(ngModel)]="vehicleDraft.driverName" /></label>
+            <label><span>{{ 'fleet.dialog.route' | translate }}</span><input [(ngModel)]="vehicleDraft.routeName" /></label>
+            <label><span>{{ 'fleet.dialog.status' | translate }}</span><select [(ngModel)]="vehicleDraft.status"><option value="available">{{ 'fleet.status.available' | translate }}</option><option value="onRoute">{{ 'fleet.status.onRoute' | translate }}</option><option value="maintenance">{{ 'fleet.status.maintenance' | translate }}</option><option value="inactive">{{ 'fleet.status.inactive' | translate }}</option></select></label>
+            <label><span>{{ 'fleet.dialog.mileage' | translate }}</span><input type="number" [(ngModel)]="vehicleDraft.mileageKm" /></label>
+          </div>
+          <div class="kw-modal-actions"><button class="secondary" type="button" (click)="closeRegisterVehicle()">{{ 'shared.cancel' | translate }}</button><button class="primary" type="button" (click)="saveVehicle()">{{ 'fleet.dialog.create' | translate }}</button></div>
+        </div>
+      </section>
+    </div>
+  }
+
+  @if (selectedVehicle(); as vehicle) {
+    <div class="kw-modal-backdrop" (click)="closeVehicleDetails()">
+      <section class="kw-modal-card" (click)="$event.stopPropagation()">
+        <header>
+          <div>
+            <p>{{ 'fleet.dialog.detailTitle' | translate }}</p>
+            <h2>{{ vehicle.code }} · {{ vehicle.plate }}</h2>
+          </div>
+          <button class="kw-close-btn" type="button" (click)="closeVehicleDetails()"><mat-icon>close</mat-icon></button>
+        </header>
+        <div class="kw-modal-body">
+          <div class="kw-detail-grid">
+            <article><small>{{ 'fleet.dialog.brand' | translate }}</small><strong>{{ vehicle.brand }} {{ vehicle.model }} · {{ vehicle.year }}</strong></article>
+            <article><small>{{ 'fleet.dialog.driver' | translate }}</small><strong>{{ vehicle.driverName }}</strong></article>
+            <article><small>{{ 'fleet.dialog.route' | translate }}</small><strong>{{ vehicle.routeName }}</strong></article>
+            <article><small>{{ 'fleet.dialog.status' | translate }}</small><strong>{{ 'fleet.status.' + vehicle.status | translate }}</strong></article>
+            <article><small>{{ 'fleet.dialog.capacity' | translate }}</small><strong>{{ vehicle.assignedStudents }} / {{ vehicle.capacity }}</strong></article>
+            <article><small>{{ 'fleet.dialog.availability' | translate }}</small><strong>{{ vehicle.availabilityScore }}%</strong></article>
+            <article><small>{{ 'fleet.dialog.lastInspection' | translate }}</small><strong>{{ vehicle.lastInspectionDate | date:'dd MMM yyyy' }}</strong></article>
+            <article><small>{{ 'fleet.dialog.nextMaintenance' | translate }}</small><strong>{{ vehicle.nextMaintenanceDate | date:'dd MMM yyyy' }}</strong></article>
+          </div>
+          <div class="kw-modal-actions"><button class="primary" type="button" (click)="closeVehicleDetails()">{{ 'shared.close' | translate }}</button></div>
+        </div>
+      </section>
+    </div>
+  }
+
 }

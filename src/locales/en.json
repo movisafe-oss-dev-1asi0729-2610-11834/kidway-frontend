@@ -17,14 +17,17 @@
     "no_actions": "No actions available",
     "status_in_progress": "In progress",
     "status_delayed": "Delayed",
-    "status_canceled": "Canceled"
+    "status_canceled": "Canceled",
+    "start_time": "Start time",
+    "avg_speed": "Average speed"
   },
   "actions": {
     "viewDetails": "View details",
     "openProfile": "Open profile",
     "toggleMenu": "Toggle menu",
     "toggleTheme": "Toggle theme",
-    "search": "Search modules or views..."
+    "search": "Search modules or views...",
+    "cancel": "Cancel"
   },
   "topbar": {
     "notifications": "Notifications",
@@ -34,12 +37,14 @@
   "layout": {
     "home": "Home",
     "coreModules": "Core modules",
-    "rolePreview": "Role preview"
+    "rolePreview": "Role preview",
+    "signOut": "Sign out",
+    "homeAria": "Go to home overview"
   },
   "home": {
-    "eyebrow": "KIDWAY FRONTEND",
-    "title": "Control Panel",
-    "subtitle": "Operational overview for school transport monitoring, safety, trips and attendance.",
+    "eyebrow": "Home overview",
+    "title": "Role-based operational overview",
+    "subtitle": "Quick access to indicators, enabled modules and pending tasks based on the current role.",
     "summary": "Operational summary",
     "coverage": "Route coverage",
     "recent": "Recent notifications",
@@ -51,7 +56,13 @@
     "fleet": "Fleet availability",
     "quick": "Quick module overview",
     "performance": "Performance indicators",
-    "cta": "View details"
+    "cta": "Open dashboard",
+    "roleTitle": "Current role view",
+    "roleDescription": "Visible modules will change according to the role selected in IAM.",
+    "enabledModules": "Enabled modules",
+    "nextActions": "Next actions",
+    "quickAccess": "Quick access",
+    "staticVersion": "Static frontend version"
   },
   "development": {
     "status": "In development",
@@ -95,7 +106,7 @@
     "profiles": "User Profiles"
   },
   "subscriptions": {
-    "eyebrow": "3BC · Subscription & Payments",
+    "eyebrow": "Billing & Plans",
     "breadcrumb": "Account / Billing & plan",
     "title": "Billing & Plan",
     "subtitle": "Review the active company plan, payment method, billing status and receipt history. Plan changes are handled by KidWay support, not directly from this screen.",
@@ -275,6 +286,132 @@
       },
       "table_title": "Active Transport Assignments",
       "no_data": "No assignments found for your children."
+    },
+    "hero": {
+      "eyebrow": "Assignment Management",
+      "title": "Assignment Management",
+      "subtitle": "Validate student, route, vehicle, driver and schedule assignments before daily operations.",
+      "readiness": "Assignment readiness"
+    },
+    "metrics": {
+      "total": "Total assignments",
+      "totalDescription": "Active and review records",
+      "validated": "Validated",
+      "validatedDescription": "Ready for operation",
+      "pending": "Pending",
+      "pendingDescription": "Missing required information",
+      "conflicts": "Conflicts",
+      "conflictsDescription": "Require correction",
+      "capacity": "Average capacity",
+      "capacityDescription": "Assigned vehicle usage"
+    },
+    "banner": {
+      "title": "Assignments require review",
+      "description": "Some assignments have schedule, route or capacity conflicts before daily service.",
+      "action": "Review conflicts"
+    },
+    "roster": {
+      "eyebrow": "Assignment control",
+      "title": "Operational assignments"
+    },
+    "actions": {
+      "new": "New assignment",
+      "export": "Export list",
+      "edit": "Edit assignment",
+      "view": "View details"
+    },
+    "filters": {
+      "search": "Search by student, route, vehicle, driver or pickup point...",
+      "allStatuses": "All statuses",
+      "allShifts": "All shifts"
+    },
+    "status": {
+      "validated": "Validated",
+      "pending": "Pending",
+      "conflict": "Conflict",
+      "inactive": "Inactive"
+    },
+    "shift": {
+      "morning": "Morning",
+      "afternoon": "Afternoon"
+    },
+    "validation": {
+      "ready": "Ready",
+      "capacity-risk": "Capacity risk",
+      "schedule-conflict": "Schedule conflict",
+      "missing-route": "Missing route",
+      "inactive": "Inactive"
+    },
+    "card": {
+      "pickupPoint": "Pickup point",
+      "pickupWindow": "Pickup window",
+      "validation": "Validation",
+      "validationScore": "Validation score",
+      "ready": "Ready for operation",
+      "needsReview": "Needs review"
+    },
+    "empty": {
+      "title": "No assignments found",
+      "description": "Try another filter or search term."
+    },
+    "readiness": {
+      "eyebrow": "Readiness",
+      "title": "Assignment readiness",
+      "caption": "Ready records"
+    },
+    "reviews": {
+      "eyebrow": "Reviews",
+      "title": "Pending reviews",
+      "items": "items"
+    },
+    "registry": {
+      "eyebrow": "Operational records",
+      "title": "Assignment registry"
+    },
+    "table": {
+      "student": "Student",
+      "route": "Route",
+      "vehicle": "Vehicle",
+      "driver": "Driver",
+      "score": "Score",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "timeline": {
+      "eyebrow": "Latest activity",
+      "title": "Assignment timeline",
+      "today": "Today"
+    },
+    "detail": {
+      "eyebrow": "Assignment detail",
+      "route": "Route",
+      "vehicle": "Vehicle",
+      "pickup": "Pickup",
+      "guardian": "Guardian",
+      "score": "Score",
+      "capacity": "Capacity"
+    },
+    "form": {
+      "eyebrow": "Assignment",
+      "createTitle": "New assignment",
+      "editTitle": "Edit assignment",
+      "subtitle": "Complete the student-route-vehicle relation before saving.",
+      "studentCode": "Student code",
+      "studentName": "Student name",
+      "grade": "Grade",
+      "guardianName": "Guardian",
+      "routeCode": "Route code",
+      "routeName": "Route",
+      "vehiclePlate": "Vehicle",
+      "driverName": "Driver",
+      "shift": "Shift",
+      "status": "Status",
+      "pickupPoint": "Pickup point",
+      "pickupWindow": "Pickup window",
+      "validation": "Validation",
+      "validationScore": "Validation score",
+      "capacityUsage": "Capacity usage",
+      "notes": "Notes"
     }
   },
   "attendance": {
@@ -434,7 +571,7 @@
     }
   },
   "dashboardPage": {
-    "eyebrow": "4BC · DASHBOARD",
+    "eyebrow": "Dashboard",
     "rolePreview": "Role preview",
     "roles": {
       "operator": {
@@ -506,7 +643,7 @@
     }
   },
   "fleet": {
-    "eyebrow": "5BC · Fleet Management",
+    "eyebrow": "Fleet Management",
     "title": "Fleet Management",
     "subtitle": "Monitor vehicle availability, capacity, documentation and maintenance readiness for safe school transport operations.",
     "heroAvailability": "Fleet availability",
@@ -581,10 +718,30 @@
     "empty": {
       "title": "No vehicles found",
       "message": "Try another search term or status filter."
+    },
+    "dialog": {
+      "registerTitle": "Register vehicle",
+      "detailTitle": "Vehicle details",
+      "code": "Code",
+      "plate": "Plate",
+      "brand": "Brand",
+      "model": "Model",
+      "year": "Year",
+      "capacity": "Capacity",
+      "driver": "Driver",
+      "route": "Route",
+      "mileage": "Mileage",
+      "status": "Status",
+      "energy": "Energy type",
+      "documents": "Documents",
+      "create": "Save vehicle",
+      "lastInspection": "Last inspection",
+      "nextMaintenance": "Next maintenance",
+      "availability": "Availability"
     }
   },
   "drivers": {
-    "eyebrow": "6BC · Driver Management",
+    "eyebrow": "Driver Management",
     "title": "Driver Management",
     "subtitle": "Supervise driver availability, licenses, route assignments and operational readiness for safe school transport services.",
     "heroSafety": "Driver safety score",
@@ -664,10 +821,26 @@
       "eyebrow": "Latest activity",
       "title": "Driver timeline",
       "today": "Today"
+    },
+    "dialog": {
+      "registerTitle": "Register driver",
+      "detailTitle": "Driver details",
+      "fullName": "Full name",
+      "license": "License",
+      "licenseClass": "License class",
+      "phone": "Phone",
+      "email": "Email",
+      "vehicle": "Assigned vehicle",
+      "route": "Assigned route",
+      "status": "Status",
+      "safety": "Safety",
+      "punctuality": "Punctuality",
+      "experience": "Experience",
+      "create": "Save driver"
     }
   },
   "routesPage": {
-    "eyebrow": "7BC • ROUTE MANAGEMENT",
+    "eyebrow": "Route Management",
     "title": "Route Management",
     "subtitle": "Plan route schedules, stops, coverage areas and optimization readiness for safe school transport operations.",
     "heroBadge": "Route coverage",
@@ -710,10 +883,44 @@
       "coverage": "Coverage",
       "status": "Status",
       "actions": "Actions"
+    },
+    "dialog": {
+      "createTitle": "Create route",
+      "detailTitle": "Route details",
+      "name": "Route name",
+      "code": "Code",
+      "district": "District",
+      "school": "School",
+      "driver": "Driver",
+      "vehicle": "Vehicle",
+      "students": "Students",
+      "capacity": "Capacity",
+      "stops": "Stops",
+      "schedule": "Schedule",
+      "coverage": "Coverage",
+      "optimization": "Optimization",
+      "status": "Status",
+      "checkpoints": "Checkpoints",
+      "create": "Save route"
+    },
+    "status": {
+      "active": "Active",
+      "scheduled": "Scheduled",
+      "review": "Review",
+      "inactive": "Inactive"
+    },
+    "card": {
+      "stops": "Stops",
+      "students": "Students",
+      "duration": "Duration",
+      "coverage": "Coverage",
+      "capacityUsage": "Capacity usage",
+      "optimizationNeeded": "Optimization needed",
+      "optimizedRoute": "Optimized route"
     }
   },
   "studentsPage": {
-    "eyebrow": "8BC · Student Management",
+    "eyebrow": "Student Management",
     "title": "Student Management",
     "subtitle": "Manage student records, guardians, route assignment, pickup points and transport readiness.",
     "heroBadge": "Attendance reliability",
@@ -790,10 +997,33 @@
     "today": "Today",
     "emptyValue": "Not assigned",
     "pendingAssignment": "Pending",
-    "unassignedRoute": "Route not assigned"
+    "unassignedRoute": "Route not assigned",
+    "dialogs": {
+      "formEyebrow": "Student registry",
+      "detailEyebrow": "Student detail",
+      "registerTitle": "Register student",
+      "editTitle": "Edit student",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "grade": "Grade",
+      "school": "School",
+      "guardianName": "Guardian name",
+      "guardianPhone": "Guardian phone",
+      "guardianEmail": "Guardian email",
+      "emergencyContact": "Emergency contact",
+      "route": "Route",
+      "pickupPoint": "Pickup point",
+      "pickupWindow": "Pickup window",
+      "status": "Status",
+      "notes": "Notes",
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "register": "Register",
+      "close": "Close"
+    }
   },
   "trackingBc": {
-    "eyebrow": "Real-time tracking",
+    "eyebrow": "Real-Time Tracking",
     "title": "Real-Time Tracking",
     "subtitle": "Monitor live vehicle locations, route progress, ETA, GPS signal and operational deviations.",
     "signalScore": "GPS signal",
@@ -853,7 +1083,12 @@
   "shared": {
     "cancel": "Cancel",
     "save": "Save",
-    "close": "Close"
+    "close": "Close",
+    "viewDetails": "View details",
+    "exportList": "Export list",
+    "create": "Create",
+    "sendReceipt": "Send receipt",
+    "staticNotice": "Static view prepared for backend connection."
   },
   "tripsBc": {
     "title": "Trip Management",
@@ -865,7 +1100,8 @@
     "activeTrips": "Active trips",
     "scheduledTrips": "Scheduled trips",
     "delayedTrips": "Delayed trips",
-    "completedTrips": "Completed trips"
+    "completedTrips": "Completed trips",
+    "eyebrow": "Trip Management"
   },
   "attendanceBc": {
     "title": "Attendance Tracking",
@@ -875,7 +1111,7 @@
   },
   "alertsCenter": {
     "hero": {
-      "eyebrow": "13BC · ALERTS & NOTIFICATIONS",
+      "eyebrow": "Alerts & Notifications",
       "title": "Alerts & Notifications",
       "subtitle": "Centralized alert center for delays, incidents, attendance updates, route changes and operational notifications.",
       "unread": "Unread"
@@ -951,7 +1187,7 @@
   },
   "incidents": {
     "hero": {
-      "eyebrow": "14BC · Incident Management",
+      "eyebrow": "Incident Management",
       "title": "Incident Management",
       "subtitle": "Track, escalate and resolve operational incidents affecting routes, students, drivers and vehicles.",
       "safetyScore": "Safety score"
@@ -1064,7 +1300,7 @@
   },
   "analyticsBc": {
     "hero": {
-      "eyebrow": "15BC · Monitoring & Analytics",
+      "eyebrow": "Monitoring & Analytics",
       "title": "Monitoring & Analytics",
       "subtitle": "Unify live operational monitoring, historical analytics and exportable reports for school transport service quality.",
       "score": "Service quality"
@@ -1163,7 +1399,7 @@
   },
   "companiesBc": {
     "hero": {
-      "eyebrow": "16BC · Company Management",
+      "eyebrow": "Company Management",
       "title": "Company Management",
       "subtitle": "Manage company profile, operating scope, school contracts, administrative team and compliance readiness.",
       "score": "Compliance score"
@@ -1291,7 +1527,7 @@
     "logout": "Log out"
   },
   "userProfiles": {
-    "eyebrow": "2BC · USER PROFILES",
+    "eyebrow": "User Profiles",
     "title": "User Profile Settings",
     "subtitle": "Manage personal data, account preferences, password changes, notification rules and role-based access from one modern account view.",
     "loading": "Loading profile settings...",

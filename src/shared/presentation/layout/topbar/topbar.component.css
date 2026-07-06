@@ -44,3 +44,46 @@
 
 @media (max-width: 900px) { .topbar { left: 0; padding: 12px 14px; gap: 10px; } :host-context(.sidebar-collapsed) .topbar { left: 0; } .search-box { max-width: none; } .profile-button span, .profile-button mat-icon { display: none; } .profile-button { min-width: auto; width: 54px; justify-content: center; padding: 8px; } }
 @media (max-width: 640px) { .search-box { display: none; } .top-actions { gap: 8px; } .language-pill button { padding: 7px 10px; } .notification-menu { width: calc(100vw - 24px); } }
+/* Prevent topbar notification/profile menus from overflowing horizontally on narrow desktop windows. */
+::ng-deep .kw-notification-menu-panel.mat-mdc-menu-panel,
+::ng-deep .kw-profile-menu-panel.mat-mdc-menu-panel {
+  max-width: calc(100vw - 32px) !important;
+  overflow: hidden !important;
+}
+.notification-menu { max-width: calc(100vw - 32px); overflow: hidden; }
+.menu-notification { grid-template-columns: auto minmax(0, 1fr) auto; }
+.menu-notification div, .menu-notification strong, .menu-notification p, .menu-notification small { min-width: 0; }
+.menu-notification strong, .menu-notification p, .menu-notification small {
+  display: block; overflow: hidden; text-overflow: ellipsis;
+}
+.menu-notification p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.notification-menu-list { overflow-y: auto; overflow-x: hidden; }
+
+/* Final polish: topbar without search, compact and dark-mode ready. */
+.topbar { justify-content: space-between; }
+.top-actions { margin-left: auto; }
+:host-context(body.dark-theme) .topbar {
+  background: rgba(10, 18, 30, .86);
+  border-bottom-color: rgba(255, 255, 255, .08);
+}
+:host-context(body.dark-theme) .menu-button,
+:host-context(body.dark-theme) .round-button,
+:host-context(body.dark-theme) .language-pill,
+:host-context(body.dark-theme) .profile-button {
+  background: rgba(15, 23, 42, .94);
+  color: #e5eefb;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .34);
+}
+:host-context(body.dark-theme) .profile-button small,
+:host-context(body.dark-theme) .language-pill button:not(.active) { color: #9fb0c7; }
+:host-context(body.dark-theme) .notification-menu,
+:host-context(body.dark-theme) .profile-menu-head { background: rgba(15, 23, 42, .98); color: #e5eefb; }
+:host-context(body.dark-theme) .notification-menu-head strong,
+:host-context(body.dark-theme) .profile-menu-head strong { color: #f8fafc; }
+:host-context(body.dark-theme) .notification-menu-head small,
+:host-context(body.dark-theme) .profile-menu-head small { color: #aab8cc; }
+:host-context(body.dark-theme) .menu-notification { background: rgba(17, 24, 39, .98); border-color: rgba(255,255,255,.08); }
+:host-context(body.dark-theme) .menu-notification strong { color: #f8fafc; }
+:host-context(body.dark-theme) .menu-notification p,
+:host-context(body.dark-theme) .menu-notification small { color: #aab8cc; }
+@media (max-width: 640px) { .topbar { gap: 8px; } }

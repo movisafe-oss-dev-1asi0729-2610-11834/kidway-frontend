@@ -61,6 +61,9 @@ export class StudentManagementPageComponent {
       StudentFormDialogComponent,
       {
         data: null,
+        width: '980px',
+        maxWidth: '96vw',
+        maxHeight: '90vh',
         autoFocus: false,
         restoreFocus: false,
         panelClass: 'kidway-dialog-panel'
@@ -79,6 +82,9 @@ export class StudentManagementPageComponent {
   openStudentDetails(student: StudentEntity): void {
     this.dialog.open<StudentDetailDialogComponent, StudentEntity>(StudentDetailDialogComponent, {
       data: student,
+      width: '820px',
+      maxWidth: '96vw',
+      maxHeight: '90vh',
       autoFocus: false,
       restoreFocus: false,
       panelClass: 'kidway-dialog-panel'

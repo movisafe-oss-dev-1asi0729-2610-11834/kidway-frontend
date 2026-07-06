@@ -1,5 +1,5 @@
 <aside class="sidebar" aria-label="KidWay navigation">
-  <a class="brand" routerLink="/app/home" (click)="sidebarState.closeMobile()" aria-label="KidWay home">
+  <a class="brand" routerLink="/app/home" (click)="sidebarState.closeMobile()" [attr.aria-label]="'layout.homeAria' | translate">
     <img src="assets/images/kidway-shield.png" alt="KidWay logo">
     <span>
       <strong>{{ 'app.name' | translate }}</strong>
@@ -18,8 +18,8 @@
     }
   </nav>
 
-  <div class="role-card">
-    <small>{{ 'layout.rolePreview' | translate }}</small>
-    <strong>Company Admin</strong>
-  </div>
+  <button class="sign-out-button" type="button">
+    <mat-icon>logout</mat-icon>
+    <span>{{ 'layout.signOut' | translate }}</span>
+  </button>
 </aside>

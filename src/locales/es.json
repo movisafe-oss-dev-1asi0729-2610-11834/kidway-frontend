@@ -8,7 +8,8 @@
     "openProfile": "Abrir perfil",
     "toggleMenu": "Mostrar u ocultar menú",
     "toggleTheme": "Cambiar tema",
-    "search": "Buscar módulos o vistas..."
+    "search": "Buscar módulos o vistas...",
+    "cancel": "Cancelar"
   },
   "topbar": {
     "notifications": "Notificaciones",
@@ -18,12 +19,14 @@
   "layout": {
     "home": "Inicio",
     "coreModules": "Módulos principales",
-    "rolePreview": "Vista previa de rol"
+    "rolePreview": "Vista previa de rol",
+    "signOut": "Cerrar sesión",
+    "homeAria": "Ir al resumen inicial"
   },
   "home": {
-    "eyebrow": "KIDWAY FRONTEND",
-    "title": "Panel de Control",
-    "subtitle": "Resumen operativo para monitoreo de transporte escolar, seguridad, viajes y asistencia.",
+    "eyebrow": "Resumen inicial",
+    "title": "Resumen operativo por rol",
+    "subtitle": "Acceso rápido a indicadores, módulos habilitados y pendientes según el perfil actual.",
     "summary": "Resumen operativo",
     "coverage": "Cobertura de rutas",
     "recent": "Notificaciones recientes",
@@ -35,7 +38,13 @@
     "fleet": "Disponibilidad de flota",
     "quick": "Resumen rápido de módulos",
     "performance": "Indicadores de rendimiento",
-    "cta": "Ver detalles"
+    "cta": "Ir al dashboard",
+    "roleTitle": "Vista actual",
+    "roleDescription": "Los módulos visibles cambian según el rol que se seleccione en IAM.",
+    "enabledModules": "Módulos habilitados",
+    "nextActions": "Próximas acciones",
+    "quickAccess": "Acceso rápido",
+    "staticVersion": "Versión frontend estática"
   },
   "development": {
     "status": "En desarrollo",
@@ -56,7 +65,9 @@
     "no_actions": "Sin acciones disponibles",
     "status_in_progress": "En progreso",
     "status_delayed": "Retrasado",
-    "status_canceled": "Cancelado"
+    "status_canceled": "Cancelado",
+    "start_time": "Hora de inicio",
+    "avg_speed": "Velocidad promedio"
   },
   "profile": {
     "title": "Perfil de Usuario",
@@ -95,7 +106,7 @@
     "profiles": "Perfiles de usuario"
   },
   "subscriptions": {
-    "eyebrow": "3BC · Suscripciones y pagos",
+    "eyebrow": "Facturación y planes",
     "breadcrumb": "Cuenta / Facturación y plan",
     "title": "Facturación y plan",
     "subtitle": "Consulta el plan activo de la empresa, método de pago, estado de facturación e historial de recibos. Los cambios de plan se gestionan con soporte KidWay, no directamente desde esta pantalla.",
@@ -275,6 +286,132 @@
       },
       "table_title": "Asignaciones de Transporte Activas",
       "no_data": "No se encontraron asignaciones para sus hijos."
+    },
+    "hero": {
+      "eyebrow": "Gestión de asignaciones",
+      "title": "Gestión de asignaciones",
+      "subtitle": "Valida asignaciones de estudiantes, rutas, vehículos, conductores y horarios antes de la operación diaria.",
+      "readiness": "Preparación de asignaciones"
+    },
+    "metrics": {
+      "total": "Asignaciones totales",
+      "totalDescription": "Registros activos y en revisión",
+      "validated": "Validadas",
+      "validatedDescription": "Listas para operar",
+      "pending": "Pendientes",
+      "pendingDescription": "Falta completar información",
+      "conflicts": "Conflictos",
+      "conflictsDescription": "Requieren corrección",
+      "capacity": "Capacidad promedio",
+      "capacityDescription": "Uso de vehículos asignados"
+    },
+    "banner": {
+      "title": "Asignaciones requieren revisión",
+      "description": "Algunas asignaciones presentan conflictos de horario, ruta o capacidad antes del servicio diario.",
+      "action": "Revisar conflictos"
+    },
+    "roster": {
+      "eyebrow": "Control de asignaciones",
+      "title": "Asignaciones operativas"
+    },
+    "actions": {
+      "new": "Nueva asignación",
+      "export": "Exportar lista",
+      "edit": "Editar asignación",
+      "view": "Ver detalle"
+    },
+    "filters": {
+      "search": "Buscar por estudiante, ruta, vehículo, conductor o punto de recojo...",
+      "allStatuses": "Todos los estados",
+      "allShifts": "Todos los turnos"
+    },
+    "status": {
+      "validated": "Validada",
+      "pending": "Pendiente",
+      "conflict": "Conflicto",
+      "inactive": "Inactiva"
+    },
+    "shift": {
+      "morning": "Mañana",
+      "afternoon": "Tarde"
+    },
+    "validation": {
+      "ready": "Lista",
+      "capacity-risk": "Riesgo de capacidad",
+      "schedule-conflict": "Conflicto de horario",
+      "missing-route": "Ruta faltante",
+      "inactive": "Inactiva"
+    },
+    "card": {
+      "pickupPoint": "Punto de recojo",
+      "pickupWindow": "Ventana de recojo",
+      "validation": "Validación",
+      "validationScore": "Puntaje de validación",
+      "ready": "Lista para operar",
+      "needsReview": "Requiere revisión"
+    },
+    "empty": {
+      "title": "No se encontraron asignaciones",
+      "description": "Prueba con otro filtro o término de búsqueda."
+    },
+    "readiness": {
+      "eyebrow": "Preparación",
+      "title": "Preparación de asignaciones",
+      "caption": "Registros listos"
+    },
+    "reviews": {
+      "eyebrow": "Revisiones",
+      "title": "Revisiones pendientes",
+      "items": "ítems"
+    },
+    "registry": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de asignaciones"
+    },
+    "table": {
+      "student": "Estudiante",
+      "route": "Ruta",
+      "vehicle": "Vehículo",
+      "driver": "Conductor",
+      "score": "Puntaje",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "timeline": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo de asignaciones",
+      "today": "Hoy"
+    },
+    "detail": {
+      "eyebrow": "Detalle de asignación",
+      "route": "Ruta",
+      "vehicle": "Vehículo",
+      "pickup": "Recojo",
+      "guardian": "Apoderado",
+      "score": "Puntaje",
+      "capacity": "Capacidad"
+    },
+    "form": {
+      "eyebrow": "Asignación",
+      "createTitle": "Nueva asignación",
+      "editTitle": "Editar asignación",
+      "subtitle": "Completa la relación estudiante-ruta-vehículo antes de guardar.",
+      "studentCode": "Código del estudiante",
+      "studentName": "Nombre del estudiante",
+      "grade": "Grado",
+      "guardianName": "Apoderado",
+      "routeCode": "Código de ruta",
+      "routeName": "Ruta",
+      "vehiclePlate": "Vehículo",
+      "driverName": "Conductor",
+      "shift": "Turno",
+      "status": "Estado",
+      "pickupPoint": "Punto de recojo",
+      "pickupWindow": "Ventana de recojo",
+      "validation": "Validación",
+      "validationScore": "Puntaje de validación",
+      "capacityUsage": "Uso de capacidad",
+      "notes": "Notas"
     }
   },
   "attendance": {
@@ -434,7 +571,7 @@
     }
   },
   "dashboardPage": {
-    "eyebrow": "4BC · DASHBOARD",
+    "eyebrow": "Panel",
     "rolePreview": "Vista por rol",
     "roles": {
       "operator": {
@@ -506,7 +643,7 @@
     }
   },
   "fleet": {
-    "eyebrow": "5BC · Gestión de flota",
+    "eyebrow": "Gestión de flota",
     "title": "Gestión de flota",
     "subtitle": "Monitorea disponibilidad vehicular, capacidad, documentación y mantenimiento para operaciones seguras de transporte escolar.",
     "heroAvailability": "Disponibilidad de flota",
@@ -581,10 +718,30 @@
     "empty": {
       "title": "No se encontraron vehículos",
       "message": "Prueba otro término de búsqueda o filtro de estado."
+    },
+    "dialog": {
+      "registerTitle": "Registrar vehículo",
+      "detailTitle": "Detalle del vehículo",
+      "code": "Código",
+      "plate": "Placa",
+      "brand": "Marca",
+      "model": "Modelo",
+      "year": "Año",
+      "capacity": "Capacidad",
+      "driver": "Conductor",
+      "route": "Ruta",
+      "mileage": "Kilometraje",
+      "status": "Estado",
+      "energy": "Tipo de energía",
+      "documents": "Documentos",
+      "create": "Guardar vehículo",
+      "lastInspection": "Última inspección",
+      "nextMaintenance": "Próximo mantenimiento",
+      "availability": "Disponibilidad"
     }
   },
   "drivers": {
-    "eyebrow": "6BC · Gestión de Conductores",
+    "eyebrow": "Gestión de conductores",
     "title": "Gestión de Conductores",
     "subtitle": "Supervisa disponibilidad de conductores, licencias, asignaciones de ruta y preparación operativa para servicios seguros de transporte escolar.",
     "heroSafety": "Puntaje de seguridad",
@@ -664,10 +821,26 @@
       "eyebrow": "Actividad reciente",
       "title": "Línea de tiempo de conductores",
       "today": "Hoy"
+    },
+    "dialog": {
+      "registerTitle": "Registrar conductor",
+      "detailTitle": "Detalle del conductor",
+      "fullName": "Nombre completo",
+      "license": "Licencia",
+      "licenseClass": "Clase de licencia",
+      "phone": "Teléfono",
+      "email": "Correo",
+      "vehicle": "Vehículo asignado",
+      "route": "Ruta asignada",
+      "status": "Estado",
+      "safety": "Seguridad",
+      "punctuality": "Puntualidad",
+      "experience": "Experiencia",
+      "create": "Guardar conductor"
     }
   },
   "routesPage": {
-    "eyebrow": "7BC • GESTIÓN DE RUTAS",
+    "eyebrow": "Gestión de rutas",
     "title": "Gestión de Rutas",
     "subtitle": "Planifica horarios, paradas, zonas de cobertura y optimización de rutas para operaciones seguras de transporte escolar.",
     "heroBadge": "Cobertura de ruta",
@@ -710,10 +883,44 @@
       "coverage": "Cobertura",
       "status": "Estado",
       "actions": "Acciones"
+    },
+    "dialog": {
+      "createTitle": "Crear ruta",
+      "detailTitle": "Detalle de ruta",
+      "name": "Nombre de ruta",
+      "code": "Código",
+      "district": "Distrito",
+      "school": "Colegio",
+      "driver": "Conductor",
+      "vehicle": "Vehículo",
+      "students": "Estudiantes",
+      "capacity": "Capacidad",
+      "stops": "Paradas",
+      "schedule": "Horario",
+      "coverage": "Cobertura",
+      "optimization": "Optimización",
+      "status": "Estado",
+      "checkpoints": "Puntos de control",
+      "create": "Guardar ruta"
+    },
+    "status": {
+      "active": "Activa",
+      "scheduled": "Programada",
+      "review": "Revisión",
+      "inactive": "Inactiva"
+    },
+    "card": {
+      "stops": "Paradas",
+      "students": "Estudiantes",
+      "duration": "Duración",
+      "coverage": "Cobertura",
+      "capacityUsage": "Uso de capacidad",
+      "optimizationNeeded": "Optimización requerida",
+      "optimizedRoute": "Ruta optimizada"
     }
   },
   "studentsPage": {
-    "eyebrow": "8BC · Gestión de Estudiantes",
+    "eyebrow": "Gestión de estudiantes",
     "title": "Gestión de Estudiantes",
     "subtitle": "Administra registros de estudiantes, apoderados, asignación de rutas, puntos de recojo y preparación del servicio.",
     "heroBadge": "Confiabilidad de asistencia",
@@ -790,7 +997,30 @@
     "today": "Hoy",
     "emptyValue": "No asignado",
     "pendingAssignment": "Pendiente",
-    "unassignedRoute": "Ruta no asignada"
+    "unassignedRoute": "Ruta no asignada",
+    "dialogs": {
+      "formEyebrow": "Registro estudiantil",
+      "detailEyebrow": "Detalle de estudiante",
+      "registerTitle": "Registrar estudiante",
+      "editTitle": "Editar estudiante",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "grade": "Grado",
+      "school": "Colegio",
+      "guardianName": "Apoderado",
+      "guardianPhone": "Teléfono del apoderado",
+      "guardianEmail": "Correo del apoderado",
+      "emergencyContact": "Contacto de emergencia",
+      "route": "Ruta",
+      "pickupPoint": "Punto de recojo",
+      "pickupWindow": "Ventana de recojo",
+      "status": "Estado",
+      "notes": "Notas",
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "register": "Registrar",
+      "close": "Cerrar"
+    }
   },
   "trackingBc": {
     "eyebrow": "Seguimiento en tiempo real",
@@ -853,7 +1083,12 @@
   "shared": {
     "cancel": "Cancelar",
     "save": "Guardar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "viewDetails": "Ver detalles",
+    "exportList": "Exportar lista",
+    "create": "Crear",
+    "sendReceipt": "Enviar recibo",
+    "staticNotice": "Vista estática preparada para conexión con backend."
   },
   "tripsBc": {
     "title": "Gestión de viajes",
@@ -865,7 +1100,8 @@
     "activeTrips": "Viajes activos",
     "scheduledTrips": "Viajes programados",
     "delayedTrips": "Viajes retrasados",
-    "completedTrips": "Viajes completados"
+    "completedTrips": "Viajes completados",
+    "eyebrow": "Gestión de viajes"
   },
   "attendanceBc": {
     "title": "Control de asistencia",
@@ -875,7 +1111,7 @@
   },
   "alertsCenter": {
     "hero": {
-      "eyebrow": "13BC · ALERTAS Y NOTIFICACIONES",
+      "eyebrow": "Alertas y notificaciones",
       "title": "Alertas y Notificaciones",
       "subtitle": "Centro unificado para retrasos, incidentes, asistencia, cambios de ruta y notificaciones operativas.",
       "unread": "Sin leer"
@@ -951,7 +1187,7 @@
   },
   "incidents": {
     "hero": {
-      "eyebrow": "14BC · Gestión de incidentes",
+      "eyebrow": "Gestión de incidentes",
       "title": "Gestión de Incidentes",
       "subtitle": "Controla, escala y resuelve incidentes operativos que afectan rutas, estudiantes, conductores y vehículos.",
       "safetyScore": "Puntaje de seguridad"
@@ -1064,7 +1300,7 @@
   },
   "analyticsBc": {
     "hero": {
-      "eyebrow": "15BC · Monitoreo y analítica",
+      "eyebrow": "Monitoreo y analítica",
       "title": "Monitoreo y analítica",
       "subtitle": "Unifica monitoreo operativo en vivo, analítica histórica y reportes exportables para medir la calidad del transporte escolar.",
       "score": "Calidad del servicio"
@@ -1163,7 +1399,7 @@
   },
   "companiesBc": {
     "hero": {
-      "eyebrow": "16BC · Gestión de empresas",
+      "eyebrow": "Gestión de empresas",
       "title": "Gestión de empresas",
       "subtitle": "Administra el perfil empresarial, alcance operativo, contratos escolares, equipo administrativo y preparación documental.",
       "score": "Puntaje de cumplimiento"
@@ -1291,7 +1527,7 @@
     "logout": "Cerrar sesión"
   },
   "userProfiles": {
-    "eyebrow": "2BC · PERFILES DE USUARIO",
+    "eyebrow": "Perfiles de usuario",
     "title": "Configuración del perfil",
     "subtitle": "Administra datos personales, preferencias de cuenta, cambio de contraseña, reglas de notificación y accesos por rol desde una vista moderna de cuenta.",
     "loading": "Cargando configuración del perfil...",

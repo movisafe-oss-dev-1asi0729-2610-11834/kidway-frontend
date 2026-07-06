@@ -117,11 +117,11 @@ export interface StudentFormResult {
     </section>
   `,
   styles: [`
-    .student-form-dialog { width: min(720px, 94vw); color: #10233f; }
+    .student-form-dialog { width: min(940px, 94vw); max-width: 100%; color: var(--kw-ink); overflow: hidden; }
     header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding: 4px 2px 12px; }
     header p { margin: 0 0 4px; color: #1682c6; font-size: .74rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
-    header h2 { margin: 0; color: #0f172a; font-size: 1.7rem; letter-spacing: -.04em; }
-    .student-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 10px; }
+    header h2 { margin: 0; color: var(--kw-ink); font-size: 1.8rem; letter-spacing: -.05em; }
+    .student-form { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 12px; padding-top: 10px; min-width: 0; }
     mat-icon { width: 18px; height: 18px; font-size: 18px; }
     @media (max-width: 640px) { .student-form { grid-template-columns: 1fr; } }
   `]

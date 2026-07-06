@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 import { SchoolRouteEntity } from '../../../domain/entities/school-route.entity';
 
 @Component({
   selector: 'kw-route-status-card',
   standalone: true,
-  imports: [NgClass, MatIconModule],
+  imports: [NgClass, MatIconModule, TranslateModule],
   templateUrl: './route-status-card.component.html',
   styleUrl: './route-status-card.component.css'
 })

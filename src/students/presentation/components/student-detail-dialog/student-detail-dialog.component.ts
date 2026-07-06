@@ -84,7 +84,7 @@ import { StudentEntity } from '../../../domain/entities/student.entity';
     </section>
   `,
   styles: [`
-    .student-detail-dialog { width: min(620px, 92vw); color: #10233f; }
+    .student-detail-dialog { width: min(760px, 94vw); max-width: 100%; color: var(--kw-ink); overflow: hidden; }
     header { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 4px 2px 14px; }
     .avatar { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 18px; color: #fff; background: linear-gradient(135deg, #1c84c7, #126199); font-weight: 900; }
     h2, p, small { margin: 0; }
@@ -100,7 +100,7 @@ import { StudentEntity } from '../../../domain/entities/student.entity';
     .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     article, .progress-block, .notes { border: 1px solid #e5eef7; border-radius: 16px; background: #f8fbfe; padding: 14px; }
     article small, .notes small { display: block; color: #718096; font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
-    article strong { display: block; color: #10233f; font-size: .95rem; }
+    article strong { display: block; color: var(--kw-ink); font-size: .95rem; }
     .progress-block { display: grid; gap: 9px; margin-top: 14px; }
     .progress-block div { display: flex; justify-content: space-between; font-weight: 900; }
     .progress-block strong { color: #0f5f98; }

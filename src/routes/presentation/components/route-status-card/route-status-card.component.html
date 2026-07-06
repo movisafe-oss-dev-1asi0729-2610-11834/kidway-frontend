@@ -7,7 +7,7 @@
         <p>{{ route.code }} · {{ route.district }}</p>
       </div>
     </div>
-    <span class="status-pill" [ngClass]="route.status">{{ statusLabel() }}</span>
+    <span class="status-pill" [ngClass]="route.status">{{ 'routesPage.status.' + route.status | translate }}</span>
   </header>
 
   <div class="meta-row">
@@ -18,22 +18,22 @@
 
   <div class="metrics-row">
     <div>
-      <small>Stops</small>
+      <small>{{ 'routesPage.card.stops' | translate }}</small>
       <strong>{{ route.stops }}</strong>
     </div>
     <div>
-      <small>Students</small>
+      <small>{{ 'routesPage.card.students' | translate }}</small>
       <strong>{{ route.assignedStudents }}/{{ route.vehicleCapacity }}</strong>
     </div>
     <div>
-      <small>Duration</small>
+      <small>{{ 'routesPage.card.duration' | translate }}</small>
       <strong>{{ route.estimatedDuration }}</strong>
     </div>
   </div>
 
   <section class="progress-group">
     <div class="progress-label">
-      <span>Coverage</span>
+      <span>{{ 'routesPage.card.coverage' | translate }}</span>
       <strong>{{ route.coveragePercentage }}%</strong>
     </div>
     <div class="progress-track">
@@ -43,7 +43,7 @@
 
   <section class="progress-group compact">
     <div class="progress-label">
-      <span>Capacity usage</span>
+      <span>{{ 'routesPage.card.capacityUsage' | translate }}</span>
       <strong>{{ capacityUsage() }}%</strong>
     </div>
     <div class="progress-track capacity">
@@ -54,9 +54,9 @@
   <footer>
     <span><mat-icon>schedule</mat-icon>{{ route.scheduleLabel }} · {{ route.startTime }} - {{ route.endTime }}</span>
     @if (route.needsOptimization) {
-      <strong class="warning"><mat-icon>warning</mat-icon>Optimization needed</strong>
+      <strong class="warning"><mat-icon>warning</mat-icon>{{ 'routesPage.card.optimizationNeeded' | translate }}</strong>
     } @else {
-      <strong class="valid"><mat-icon>verified</mat-icon>Optimized route</strong>
+      <strong class="valid"><mat-icon>verified</mat-icon>{{ 'routesPage.card.optimizedRoute' | translate }}</strong>
     }
   </footer>
 </article>

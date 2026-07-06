@@ -70,6 +70,9 @@ export class TripManagementPageComponent {
     const dialogRef = this.dialog.open<TripFormDialogComponent, TripEntity | null, TripFormResult>(
       TripFormDialogComponent,
       {
+        width: '980px',
+        maxWidth: '96vw',
+        maxHeight: '90vh',
         data: null,
         autoFocus: false,
         restoreFocus: false,
@@ -90,6 +93,9 @@ export class TripManagementPageComponent {
     const dialogRef = this.dialog.open<TripFormDialogComponent, TripEntity, TripFormResult>(
       TripFormDialogComponent,
       {
+        width: '980px',
+        maxWidth: '96vw',
+        maxHeight: '90vh',
         data: trip,
         autoFocus: false,
         restoreFocus: false,
@@ -108,6 +114,9 @@ export class TripManagementPageComponent {
 
   openTripDetails(trip: TripEntity): void {
     this.dialog.open<TripDetailDialogComponent, TripEntity>(TripDetailDialogComponent, {
+      width: '820px',
+      maxWidth: '96vw',
+      maxHeight: '90vh',
       data: trip,
       autoFocus: false,
       restoreFocus: false,
