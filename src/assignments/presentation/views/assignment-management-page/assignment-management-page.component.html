@@ -1,0 +1,277 @@
+<section class="assignment-page">
+  <header class="hero-panel">
+    <div>
+      <small>9BC · {{ 'assignments.hero.eyebrow' | translate }}</small>
+      <h1>{{ 'assignments.hero.title' | translate }}</h1>
+      <p>{{ 'assignments.hero.subtitle' | translate }}</p>
+    </div>
+    <div class="hero-badge">
+      <span>{{ 'assignments.hero.readiness' | translate }}</span>
+      <strong>{{ dashboard().summary.assignmentReadiness }}%</strong>
+    </div>
+  </header>
+
+  <section class="metrics-grid" aria-label="Assignment KPIs">
+    @for (metric of summaryCards(); track metric.titleKey) {
+      <article class="metric-card" [ngClass]="metric.tone">
+        <div class="metric-icon"><mat-icon>{{ metric.icon }}</mat-icon></div>
+        <span>{{ metric.titleKey | translate }}</span>
+        <strong>{{ metric.value }}</strong>
+        <small>{{ metric.descriptionKey | translate }}</small>
+      </article>
+    }
+  </section>
+
+  <section class="review-banner" *ngIf="dashboard().summary.pendingAssignments + dashboard().summary.conflictsDetected > 0">
+    <div class="banner-icon"><mat-icon>warning</mat-icon></div>
+    <div>
+      <strong>{{ 'assignments.banner.title' | translate }}</strong>
+      <p>{{ 'assignments.banner.description' | translate }}</p>
+    </div>
+    <button mat-flat-button (click)="selectStatus('conflict')">
+      {{ 'assignments.banner.action' | translate }}
+    </button>
+  </section>
+
+  <main class="content-grid">
+    <section class="primary-card roster-card">
+      <div class="section-heading">
+        <div>
+          <small>{{ 'assignments.roster.eyebrow' | translate }}</small>
+          <h2>{{ 'assignments.roster.title' | translate }}</h2>
+        </div>
+        <button mat-flat-button color="primary" (click)="openCreateDialog()">
+          <mat-icon>add</mat-icon>
+          {{ 'assignments.actions.new' | translate }}
+        </button>
+      </div>
+
+      <div class="filters-row">
+        <label class="search-box">
+          <mat-icon>search</mat-icon>
+          <input
+            type="search"
+            [placeholder]="'assignments.filters.search' | translate"
+            [value]="searchTerm()"
+            (input)="updateSearch($any($event.target).value)"
+          />
+        </label>
+        <div class="filter-pills">
+          @for (status of statusFilters; track status) {
+            <button
+              type="button"
+              class="filter-pill"
+              [class.active]="selectedStatus() === status"
+              (click)="selectStatus(status)"
+            >
+              <mat-icon>{{ status === 'all' ? 'groups' : status === 'validated' ? 'verified' : status === 'pending' ? 'pending_actions' : status === 'conflict' ? 'report_problem' : 'block' }}</mat-icon>
+              {{ status === 'all' ? ('assignments.filters.allStatuses' | translate) : (statusLabelKey(status) | translate) }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="shift-tabs">
+        @for (shift of shiftFilters; track shift) {
+          <button
+            type="button"
+            [class.active]="selectedShift() === shift"
+            (click)="selectShift(shift)"
+          >
+            {{ shift === 'all' ? ('assignments.filters.allShifts' | translate) : (shiftLabelKey(shift) | translate) }}
+          </button>
+        }
+      </div>
+
+      <div class="assignment-cards">
+        @for (assignment of filteredAssignments(); track assignment.id) {
+          <article class="assignment-card" [ngClass]="'status-' + assignment.status">
+            <div class="card-topline">
+              <div class="student-avatar">{{ assignment.studentName.charAt(0) }}</div>
+              <div>
+                <h3>{{ assignment.studentName }}</h3>
+                <p>{{ assignment.studentCode }} · {{ assignment.grade }}</p>
+              </div>
+              <span class="status-pill" [ngClass]="'status-' + assignment.status">
+                {{ statusLabelKey(assignment.status) | translate }}
+              </span>
+            </div>
+
+            <div class="assignment-meta">
+              <span><mat-icon>route</mat-icon>{{ assignment.routeName }}</span>
+              <span><mat-icon>directions_bus</mat-icon>{{ assignment.vehiclePlate }}</span>
+              <span><mat-icon>person</mat-icon>{{ assignment.driverName }}</span>
+              <span><mat-icon>schedule</mat-icon>{{ shiftLabelKey(assignment.shift) | translate }}</span>
+            </div>
+
+            <div class="assignment-details">
+              <div>
+                <span>{{ 'assignments.card.pickupPoint' | translate }}</span>
+                <strong>{{ assignment.pickupPoint }}</strong>
+              </div>
+              <div>
+                <span>{{ 'assignments.card.pickupWindow' | translate }}</span>
+                <strong>{{ assignment.pickupWindow }}</strong>
+              </div>
+              <div>
+                <span>{{ 'assignments.card.validation' | translate }}</span>
+                <strong>{{ validationLabelKey(assignment.validation) | translate }}</strong>
+              </div>
+            </div>
+
+            <div class="progress-line">
+              <div>
+                <span>{{ 'assignments.card.validationScore' | translate }}</span>
+                <strong>{{ assignment.validationScore }}%</strong>
+              </div>
+              <div class="progress-track"><span [style.width.%]="assignment.validationScore"></span></div>
+            </div>
+
+            <footer>
+              <span [class.warn]="assignment.status !== 'validated'">
+                <mat-icon>{{ assignment.status === 'validated' ? 'verified' : 'priority_high' }}</mat-icon>
+                {{ assignment.status === 'validated' ? ('assignments.card.ready' | translate) : ('assignments.card.needsReview' | translate) }}
+              </span>
+              <div class="card-actions">
+                <button type="button" class="icon-action" (click)="openEditDialog(assignment)" [attr.aria-label]="'assignments.actions.edit' | translate">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button type="button" class="icon-action" (click)="openDetailDialog(assignment)" [attr.aria-label]="'assignments.actions.view' | translate">
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+              </div>
+            </footer>
+          </article>
+        } @empty {
+          <article class="empty-state">
+            <mat-icon>search_off</mat-icon>
+            <h3>{{ 'assignments.empty.title' | translate }}</h3>
+            <p>{{ 'assignments.empty.description' | translate }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <aside class="side-stack">
+      <article class="primary-card readiness-card">
+        <div class="section-heading compact">
+          <div>
+            <small>{{ 'assignments.readiness.eyebrow' | translate }}</small>
+            <h2>{{ 'assignments.readiness.title' | translate }}</h2>
+          </div>
+          <span>{{ dashboard().summary.assignmentReadiness }}%</span>
+        </div>
+        <div class="donut" [style.--percentage]="dashboard().summary.assignmentReadiness">
+          <strong>{{ dashboard().summary.assignmentReadiness }}%</strong>
+          <span>{{ 'assignments.readiness.caption' | translate }}</span>
+        </div>
+        <div class="legend-row">
+          <span><i class="ok"></i>{{ 'assignments.status.validated' | translate }}</span>
+          <span><i class="pending"></i>{{ 'assignments.status.pending' | translate }}</span>
+          <span><i class="conflict"></i>{{ 'assignments.status.conflict' | translate }}</span>
+        </div>
+      </article>
+
+      <article class="primary-card reviews-card">
+        <div class="section-heading compact">
+          <div>
+            <small>{{ 'assignments.reviews.eyebrow' | translate }}</small>
+            <h2>{{ 'assignments.reviews.title' | translate }}</h2>
+          </div>
+          <span>{{ dashboard().reviews.length }} {{ 'assignments.reviews.items' | translate }}</span>
+        </div>
+        <div class="review-list">
+          @for (review of dashboard().reviews; track review.id) {
+            <article class="review-item" [ngClass]="review.severity">
+              <div class="review-icon"><mat-icon>{{ review.severity === 'high' ? 'priority_high' : 'rule' }}</mat-icon></div>
+              <div>
+                <h3>{{ review.title }}</h3>
+                <p>{{ review.description }}</p>
+                <strong>{{ review.assignmentCode }}</strong>
+              </div>
+              <span>{{ review.severity }}</span>
+            </article>
+          }
+        </div>
+      </article>
+    </aside>
+  </main>
+
+  <section class="bottom-grid">
+    <article class="primary-card table-card">
+      <div class="section-heading">
+        <div>
+          <small>{{ 'assignments.registry.eyebrow' | translate }}</small>
+          <h2>{{ 'assignments.registry.title' | translate }}</h2>
+        </div>
+        <button mat-stroked-button (click)="exportList()">
+          <mat-icon>download</mat-icon>
+          {{ 'assignments.actions.export' | translate }}
+        </button>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'assignments.table.student' | translate }}</th>
+              <th>{{ 'assignments.table.route' | translate }}</th>
+              <th>{{ 'assignments.table.vehicle' | translate }}</th>
+              <th>{{ 'assignments.table.driver' | translate }}</th>
+              <th>{{ 'assignments.table.score' | translate }}</th>
+              <th>{{ 'assignments.table.status' | translate }}</th>
+              <th>{{ 'assignments.table.actions' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (assignment of filteredAssignments(); track assignment.id) {
+              <tr>
+                <td><strong>{{ assignment.studentName }}</strong><small>{{ assignment.studentCode }}</small></td>
+                <td>{{ assignment.routeName }}</td>
+                <td>{{ assignment.vehiclePlate }}</td>
+                <td>{{ assignment.driverName }}</td>
+                <td>
+                  <div class="table-score">
+                    <span>{{ assignment.validationScore }}%</span>
+                    <i><b [style.width.%]="assignment.validationScore"></b></i>
+                  </div>
+                </td>
+                <td><span class="status-pill" [ngClass]="'status-' + assignment.status">{{ statusLabelKey(assignment.status) | translate }}</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button type="button" (click)="openDetailDialog(assignment)"><mat-icon>visibility</mat-icon></button>
+                    <button type="button" (click)="openEditDialog(assignment)"><mat-icon>edit</mat-icon></button>
+                    <button type="button" (click)="markValidated(assignment)"><mat-icon>check_circle</mat-icon></button>
+                    <button type="button" class="danger" (click)="removeAssignment(assignment)"><mat-icon>delete</mat-icon></button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="primary-card timeline-card">
+      <div class="section-heading compact">
+        <div>
+          <small>{{ 'assignments.timeline.eyebrow' | translate }}</small>
+          <h2>{{ 'assignments.timeline.title' | translate }}</h2>
+        </div>
+        <span>{{ 'assignments.timeline.today' | translate }}</span>
+      </div>
+      <div class="timeline-list">
+        @for (activity of dashboard().activities; track activity.id) {
+          <article class="timeline-item" [ngClass]="activity.status">
+            <i></i>
+            <div>
+              <strong>{{ activity.time }}</strong>
+              <h3>{{ activity.title }}</h3>
+              <p>{{ activity.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </article>
+  </section>
+</section>
