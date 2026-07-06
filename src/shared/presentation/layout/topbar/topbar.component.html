@@ -64,10 +64,39 @@
       </section>
     </mat-menu>
 
-    <a class="profile-button" routerLink="/app/profile" [attr.aria-label]="'actions.openProfile' | translate">
-      <strong>ML</strong>
-      <span><b>Dr. Maria Lopez</b><small>Company Admin</small></span>
-      <mat-icon aria-hidden="true">chevron_right</mat-icon>
-    </a>
+    <button class="profile-button" type="button" [matMenuTriggerFor]="profileMenu" [attr.aria-label]="'actions.openProfile' | translate">
+      <strong>{{ accountUser.initials }}</strong>
+      <span><b>{{ accountUser.displayName }}</b><small>{{ accountUser.role }}</small></span>
+      <mat-icon aria-hidden="true">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #profileMenu="matMenu" xPosition="before" class="kw-profile-menu-panel">
+      <section class="profile-menu-head" (click)="$event.stopPropagation()">
+        <strong>{{ accountUser.displayName }}</strong>
+        <small>{{ accountUser.role }}</small>
+      </section>
+      <a mat-menu-item routerLink="/app/profile">
+        <mat-icon>person</mat-icon>
+        <span>{{ 'profileMenu.myProfile' | translate }}</span>
+      </a>
+      <a mat-menu-item routerLink="/app/profile">
+        <mat-icon>tune</mat-icon>
+        <span>{{ 'profileMenu.preferences' | translate }}</span>
+      </a>
+      <a mat-menu-item routerLink="/app/profile">
+        <mat-icon>lock</mat-icon>
+        <span>{{ 'profileMenu.security' | translate }}</span>
+      </a>
+      @if (canAccessBilling()) {
+        <a mat-menu-item routerLink="/app/subscriptions">
+          <mat-icon>payments</mat-icon>
+          <span>{{ 'profileMenu.billing' | translate }}</span>
+        </a>
+      }
+      <button mat-menu-item type="button">
+        <mat-icon>logout</mat-icon>
+        <span>{{ 'profileMenu.logout' | translate }}</span>
+      </button>
+    </mat-menu>
   </div>
 </header>

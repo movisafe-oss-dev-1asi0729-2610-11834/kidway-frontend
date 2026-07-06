@@ -10,7 +10,7 @@
 .language-pill button.active { color: #fff; background: var(--kw-blue-700); }
 .notification-trigger { position: relative; display: inline-flex; align-items: center; justify-content: center; }
 .notification-dot { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; display: grid; place-items: center; color: #fff; background: #ef4444; border: 2px solid #fff; border-radius: 999px; font-size: .68rem; font-weight: 900; line-height: 1; }
-.profile-button { min-width: 238px; height: 54px; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 20px; background: var(--kw-card); box-shadow: 0 10px 24px rgba(16, 52, 89, .08); }
+.profile-button { min-width: 238px; height: 54px; border: 0; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 20px; background: var(--kw-card); color: var(--kw-ink); box-shadow: 0 10px 24px rgba(16, 52, 89, .08); cursor: pointer; text-align: left; }
 .profile-button strong { width: 38px; height: 38px; border-radius: 14px; display: grid; place-items: center; color: #fff; background: var(--kw-blue-700); }
 .profile-button span { display: grid; line-height: 1.1; }
 .profile-button b { font-size: .96rem; }
@@ -36,5 +36,11 @@
 .notification-menu-empty { min-height: 120px; display: grid; place-items: center; text-align: center; color: #64748b; }
 .notification-menu-footer { height: 42px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 14px; color: #fff; background: var(--kw-blue-700); font-weight: 900; }
 ::ng-deep .kw-notification-menu-panel .mat-mdc-menu-content { padding: 0 !important; }
+.profile-menu-head { display: grid; gap: 3px; padding: 14px 18px 10px; border-bottom: 1px solid var(--kw-border); }
+.profile-menu-head strong { color: #0f172a; }
+.profile-menu-head small { color: #64748b; font-weight: 800; }
+::ng-deep .kw-profile-menu-panel .mat-mdc-menu-content { min-width: 246px; padding: 0 0 8px !important; }
+::ng-deep .kw-profile-menu-panel .mat-mdc-menu-item mat-icon { color: var(--kw-blue-700); }
+
 @media (max-width: 900px) { .topbar { left: 0; padding: 12px 14px; gap: 10px; } :host-context(.sidebar-collapsed) .topbar { left: 0; } .search-box { max-width: none; } .profile-button span, .profile-button mat-icon { display: none; } .profile-button { min-width: auto; width: 54px; justify-content: center; padding: 8px; } }
 @media (max-width: 640px) { .search-box { display: none; } .top-actions { gap: 8px; } .language-pill button { padding: 7px 10px; } .notification-menu { width: calc(100vw - 24px); } }

@@ -3117,5 +3117,113 @@
         "status": "active"
       }
     ]
+  },
+  "userProfileDashboard": {
+    "profile": {
+      "id": "usr-company-admin-001",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "displayName": "Dr. Maria Lopez",
+      "username": "maria.lopez",
+      "email": "maria.lopez@movisafe.pe",
+      "phone": "+51 951 111 222",
+      "country": "Peru",
+      "city": "Lima",
+      "timezone": "America/Lima",
+      "preferredLanguage": "es",
+      "role": "Company Admin",
+      "company": "MoviSafe Transport",
+      "avatarInitials": "ML",
+      "accountStatus": "active",
+      "joinedAt": "2026-01-15",
+      "lastUpdatedAt": "2026-07-05",
+      "bio": "Responsable de operaciones de transporte escolar, usuarios de empresa, preparación de flota y calidad diaria del servicio.",
+      "profileCompletion": 88
+    },
+    "preferences": {
+      "theme": "system",
+      "emailNotifications": true,
+      "smsNotifications": true,
+      "pushNotifications": true,
+      "weeklyReports": true,
+      "routeAlerts": true,
+      "incidentAlerts": true,
+      "marketingUpdates": false
+    },
+    "security": {
+      "passwordLastChangedAt": "2026-06-18",
+      "twoFactorEnabled": true,
+      "emailVerified": true,
+      "phoneVerified": true,
+      "recoveryEmail": "operations@movisafe.pe",
+      "activeSessions": [
+        {
+          "id": "session-001",
+          "device": "Windows · Chrome",
+          "location": "Lima, Peru",
+          "lastAccessAt": "Today, 8:41 AM",
+          "trusted": true
+        },
+        {
+          "id": "session-002",
+          "device": "Android · KidWay App",
+          "location": "Lima, Peru",
+          "lastAccessAt": "Yesterday, 6:20 PM",
+          "trusted": true
+        }
+      ]
+    },
+    "access": [
+      {
+        "id": "company-admin",
+        "title": "Administración de empresa",
+        "description": "Puede gestionar perfil empresarial, usuarios operativos, contratos y configuración del servicio.",
+        "icon": "business_center",
+        "status": "enabled"
+      },
+      {
+        "id": "operations",
+        "title": "Módulos operativos",
+        "description": "Puede acceder a flota, conductores, rutas, estudiantes, viajes, asistencia, incidentes y analítica.",
+        "icon": "dashboard_customize",
+        "status": "enabled"
+      },
+      {
+        "id": "guardian-view",
+        "title": "Visibilidad de apoderados",
+        "description": "Las cuentas padre solo ven seguimiento de estudiante asignado, alertas y configuración de perfil.",
+        "icon": "supervisor_account",
+        "status": "limited"
+      }
+    ],
+    "billingAccess": {
+      "canManageBilling": true,
+      "route": "/app/subscriptions",
+      "planName": "Plan Pro",
+      "helper": "La facturación solo está disponible para administradores de empresa, operadores independientes y administradores de plataforma."
+    },
+    "activities": [
+      {
+        "id": "profile-act-001",
+        "time": "Today, 8:41 AM",
+        "title": "Perfil abierto",
+        "description": "La vista de configuración de cuenta fue abierta desde el menú de perfil de la topbar.",
+        "status": "active"
+      },
+      {
+        "id": "profile-act-002",
+        "time": "Yesterday, 6:20 PM",
+        "title": "Revisión de seguridad completada",
+        "description": "Se confirmó la verificación de dos factores y el correo de recuperación.",
+        "status": "completed"
+      },
+      {
+        "id": "profile-act-003",
+        "time": "Jul 04, 2026",
+        "title": "Preferencias actualizadas",
+        "description": "Las alertas de ruta e incidentes permanecen activadas para este administrador de empresa.",
+        "status": "completed"
+      }
+    ]
   }
 }

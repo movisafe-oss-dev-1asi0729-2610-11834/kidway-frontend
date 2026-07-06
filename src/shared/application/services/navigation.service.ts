@@ -5,7 +5,6 @@ import { NavigationItem } from '../../domain/models/navigation-item.model';
 export class NavigationService {
   readonly items: NavigationItem[] = [
     { labelKey: 'nav.dashboard', route: '/app/dashboard', icon: 'dashboard', featureKey: 'dashboard', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
-    { labelKey: 'nav.subscriptions', route: '/app/subscriptions', icon: 'payments', featureKey: 'subscriptions', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.fleet', route: '/app/fleet', icon: 'directions_bus', featureKey: 'fleet', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.drivers', route: '/app/drivers', icon: 'badge', featureKey: 'drivers', roles: ['Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.routes', route: '/app/routes', icon: 'alt_route', featureKey: 'routes', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
