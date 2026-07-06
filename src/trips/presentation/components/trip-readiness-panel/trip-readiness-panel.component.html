@@ -1,0 +1,37 @@
+<section class="panel readiness-panel">
+  <header>
+    <span>Readiness</span>
+    <small>{{ score }}%</small>
+  </header>
+  <h2>Trip readiness</h2>
+  <div class="donut" [style.--score.%]="score">
+    <div class="donut-center">
+      <strong>{{ score }}%</strong>
+      <span>Safe trips</span>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i class="ok"></i>Ready</span>
+    <span><i class="warn"></i>Delayed</span>
+    <span><i class="bad"></i>Review</span>
+  </div>
+</section>
+
+<section class="panel reviews-panel">
+  <header>
+    <span>Trip control</span>
+    <small>{{ reviews.length }} items</small>
+  </header>
+  <h2>Pending reviews</h2>
+  @for (review of reviews; track review.id) {
+    <article class="review-card" [class.high]="review.severity === 'high'">
+      <div class="review-icon">!</div>
+      <div>
+        <strong>{{ review.title }}</strong>
+        <p>{{ review.description }}</p>
+        <small>{{ review.tripCode }} · {{ review.dueDate }}</small>
+      </div>
+      <b>{{ review.severity }}</b>
+    </article>
+  }
+</section>
