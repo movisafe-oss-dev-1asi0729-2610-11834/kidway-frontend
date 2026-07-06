@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
-import { NotificationListComponent } from './views/notification-list/notification-list.component';
+import { AlertNotificationCenterComponent } from './views/alert-notification-center/alert-notification-center.component';
 
 export const NOTIFICATIONS_ROUTES: Routes = [
   {
     path: '',
-    component: NotificationListComponent,
-    data: { titleKey: 'notifications.title', boundedContext: 'Alerts', icon: 'notifications' }
+    component: AlertNotificationCenterComponent,
+    data: {
+      titleKey: 'alertsCenter.hero.title',
+      boundedContext: 'Alerts & Notifications',
+      icon: 'campaign'
+    }
   }
 ];

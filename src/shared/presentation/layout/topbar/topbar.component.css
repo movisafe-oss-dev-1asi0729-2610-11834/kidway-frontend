@@ -8,12 +8,33 @@
 .language-pill { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--kw-card); box-shadow: 0 10px 24px rgba(16, 52, 89, .08); }
 .language-pill button { border: 0; background: transparent; color: var(--kw-muted); border-radius: 999px; padding: 8px 13px; font-weight: 900; cursor: pointer; }
 .language-pill button.active { color: #fff; background: var(--kw-blue-700); }
-.notification { position: relative; display: inline-flex; align-items: center; justify-content: center; }
-.notification span { position: absolute; top: 8px; right: 8px; width: 9px; height: 9px; background: #ef4444; border-radius: 999px; border: 2px solid #fff; }
+.notification-trigger { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.notification-dot { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; display: grid; place-items: center; color: #fff; background: #ef4444; border: 2px solid #fff; border-radius: 999px; font-size: .68rem; font-weight: 900; line-height: 1; }
 .profile-button { min-width: 238px; height: 54px; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 20px; background: var(--kw-card); box-shadow: 0 10px 24px rgba(16, 52, 89, .08); }
 .profile-button strong { width: 38px; height: 38px; border-radius: 14px; display: grid; place-items: center; color: #fff; background: var(--kw-blue-700); }
 .profile-button span { display: grid; line-height: 1.1; }
 .profile-button b { font-size: .96rem; }
 .profile-button small { color: var(--kw-muted); margin-top: 3px; }
+.notification-menu { width: min(420px, calc(100vw - 36px)); padding: 12px; display: grid; gap: 10px; }
+.notification-menu-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 6px 10px; }
+.notification-menu-head strong { display: block; color: #0f172a; font-size: 1rem; }
+.notification-menu-head small { color: #64748b; font-weight: 700; }
+.notification-menu-head button { border: 0; border-radius: 999px; padding: 8px 12px; background: #e0f2fe; color: #075985; font-weight: 900; cursor: pointer; }
+.notification-menu-list { display: grid; gap: 8px; max-height: 360px; overflow: auto; padding-right: 4px; }
+.menu-notification { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--kw-border); border-left: 4px solid var(--kw-blue-700); border-radius: 16px; background: rgba(255,255,255,.94); }
+.menu-notification.alert { border-left-color: #f59e0b; }
+.menu-notification.critical { border-left-color: #ef4444; }
+.menu-notification.acknowledged { opacity: .72; }
+.menu-notification > span { width: 36px; height: 36px; border-radius: 13px; display: grid; place-items: center; background: #e0f2fe; color: var(--kw-blue-700); }
+.menu-notification.alert > span { background: #fef3c7; color: #d97706; }
+.menu-notification.critical > span { background: #fee2e2; color: #dc2626; }
+.menu-notification strong { display: block; color: #0f172a; font-size: .9rem; }
+.menu-notification p { margin: 3px 0 0; color: #64748b; font-size: .82rem; line-height: 1.35; }
+.menu-notification small { display: block; margin-top: 6px; color: #94a3b8; font-weight: 800; }
+.menu-notification button { width: 34px; height: 34px; border: 0; border-radius: 12px; display: grid; place-items: center; background: #dcfce7; color: #047857; cursor: pointer; }
+.menu-notification button mat-icon { font-size: 18px; width: 18px; height: 18px; }
+.notification-menu-empty { min-height: 120px; display: grid; place-items: center; text-align: center; color: #64748b; }
+.notification-menu-footer { height: 42px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 14px; color: #fff; background: var(--kw-blue-700); font-weight: 900; }
+::ng-deep .kw-notification-menu-panel .mat-mdc-menu-content { padding: 0 !important; }
 @media (max-width: 900px) { .topbar { left: 0; padding: 12px 14px; gap: 10px; } :host-context(.sidebar-collapsed) .topbar { left: 0; } .search-box { max-width: none; } .profile-button span, .profile-button mat-icon { display: none; } .profile-button { min-width: auto; width: 54px; justify-content: center; padding: 8px; } }
-@media (max-width: 640px) { .search-box { display: none; } .top-actions { gap: 8px; } .language-pill button { padding: 7px 10px; } }
+@media (max-width: 640px) { .search-box { display: none; } .top-actions { gap: 8px; } .language-pill button { padding: 7px 10px; } .notification-menu { width: calc(100vw - 24px); } }
