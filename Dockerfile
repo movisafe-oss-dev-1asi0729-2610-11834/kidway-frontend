@@ -10,13 +10,16 @@ RUN pnpm install --no-frozen-lockfile
 
 COPY . .
 
-RUN pnpm run build -- --configuration development
+RUN pnpm exec ng build --configuration development \
+    && SITE_DIR="$(dirname "$(find dist -name index.html | head -n 1)")" \
+    && mkdir -p /tmp/site \
+    && cp -R "$SITE_DIR"/. /tmp/site/
 
 FROM nginx:1.27-alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build /app/dist/kidway-frontend/browser /usr/share/nginx/html
+COPY --from=build /tmp/site /usr/share/nginx/html
 
 EXPOSE 80
 
