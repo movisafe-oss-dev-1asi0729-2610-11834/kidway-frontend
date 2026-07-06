@@ -2,20 +2,20 @@ FROM node:22.12.0-alpine AS build
 
 WORKDIR /app
 
-COPY pom.xml .
-RUN mvn -q -DskipTests dependency:go-offline
+COPY package*.json ./
 
-COPY src ./src
-RUN mvn -q clean package -DskipTests \
-    && JAR_FILE=$(find target -maxdepth 1 -type f -name "*.jar" ! -name "original-*.jar" | head -n 1) \
-    && cp "$JAR_FILE" app.jar
+RUN npm install --legacy-peer-deps --no-audit --no-fund
 
-FROM eclipse-temurin:21-jre
+COPY . .
 
-WORKDIR /app
+RUN npm run build -- --configuration development
 
-COPY --from=build /app/app.jar app.jar
+FROM nginx:1.27-alpine
 
-EXPOSE 8080
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-ENTRYPOINT ["sh", "-c", "java ${JAVA_TOOL_OPTIONS:-} -Dserver.port=${PORT:-8080} -jar /app/app.jar"]
+COPY --from=build /app/dist/kidway-frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
