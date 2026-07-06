@@ -1240,5 +1240,155 @@
       "title": "No se encontraron contratos",
       "message": "Ajusta los filtros o criterios de búsqueda para revisar el alcance empresarial."
     }
+  },
+  "profileMenu": {
+    "myProfile": "Mi perfil",
+    "preferences": "Preferencias",
+    "security": "Seguridad",
+    "billing": "Facturación y plan",
+    "logout": "Cerrar sesión"
+  },
+  "userProfiles": {
+    "eyebrow": "2BC · PERFILES DE USUARIO",
+    "title": "Configuración del perfil",
+    "subtitle": "Administra datos personales, preferencias de cuenta, cambio de contraseña, reglas de notificación y accesos por rol desde una vista moderna de cuenta.",
+    "loading": "Cargando configuración del perfil...",
+    "sections": {
+      "profile": "Perfil",
+      "security": "Seguridad",
+      "notifications": "Notificaciones",
+      "access": "Accesos"
+    },
+    "status": {
+      "active": "Cuenta activa",
+      "pending": "Revisión pendiente",
+      "suspended": "Suspendida"
+    },
+    "actions": {
+      "saveChanges": "Guardar cambios",
+      "saveProfile": "Guardar perfil",
+      "savePreferences": "Guardar preferencias",
+      "saved": "Guardado"
+    },
+    "hero": {
+      "memberSince": "Miembro desde",
+      "completion": "Perfil completado",
+      "completionHelper": "Mantén actualizados los datos de contacto, seguridad y preferencias para una operación más segura."
+    },
+    "billing": {
+      "eyebrow": "Facturación de cuenta",
+      "title": "Facturación y plan activo",
+      "open": "Abrir facturación",
+      "restrictedTitle": "Facturación oculta para este rol",
+      "restrictedHelper": "Los padres y usuarios operativos no administradores no gestionan pagos ni configuración de suscripción."
+    },
+    "profileForm": {
+      "eyebrow": "Datos personales",
+      "title": "Información editable del perfil"
+    },
+    "fields": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "displayName": "Nombre visible",
+      "username": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "country": "País",
+      "city": "Ciudad",
+      "timezone": "Zona horaria",
+      "language": "Idioma preferido",
+      "bio": "Nota breve del perfil"
+    },
+    "role": {
+      "eyebrow": "Rol y empresa",
+      "title": "Identidad operativa",
+      "helper": "Los permisos se asignan desde IAM. Esta vista solo muestra el contexto actual del rol."
+    },
+    "account": {
+      "eyebrow": "Detalles de cuenta",
+      "title": "Metadatos de cuenta",
+      "lastUpdated": "Última actualización",
+      "recoveryEmail": "Correo de recuperación"
+    },
+    "security": {
+      "lastChanged": "Último cambio de contraseña:",
+      "password": {
+        "eyebrow": "Seguridad de credenciales",
+        "title": "Cambiar contraseña",
+        "helper": "Usa una contraseña segura y confirma el código temporal de verificación antes de aplicar el cambio.",
+        "current": "Contraseña actual",
+        "new": "Nueva contraseña",
+        "confirm": "Confirmar contraseña",
+        "code": "Código de verificación",
+        "action": "Actualizar contraseña",
+        "invalid": "Completa todos los campos de contraseña e ingresa un código de 6 dígitos.",
+        "mismatch": "La nueva contraseña y su confirmación no coinciden.",
+        "success": "Solicitud de cambio de contraseña validada localmente para esta versión de práctica."
+      },
+      "verification": {
+        "eyebrow": "Verificación",
+        "title": "Protección de cuenta",
+        "email": "Correo electrónico verificado",
+        "phone": "Número telefónico verificado",
+        "twoFactor": "Autenticación de dos factores activada"
+      },
+      "sessions": {
+        "eyebrow": "Sesiones activas",
+        "title": "Dispositivos confiables"
+      }
+    },
+    "preferences": {
+      "eyebrow": "Preferencias",
+      "title": "Notificaciones e interfaz",
+      "theme": "Preferencia de tema",
+      "themeOptions": {
+        "system": "Usar configuración del sistema",
+        "light": "Modo claro",
+        "dark": "Modo oscuro"
+      },
+      "options": {
+        "email": {
+          "title": "Notificaciones por correo",
+          "helper": "Recibe resúmenes de cuenta y operación por correo."
+        },
+        "sms": {
+          "title": "Notificaciones SMS",
+          "helper": "Recibe mensajes urgentes de ruta, seguridad o cuenta por SMS."
+        },
+        "push": {
+          "title": "Notificaciones push",
+          "helper": "Activa alertas internas para eventos operativos importantes."
+        },
+        "weekly": {
+          "title": "Reportes semanales",
+          "helper": "Envía resúmenes semanales para gestión y seguimiento."
+        },
+        "routes": {
+          "title": "Alertas de ruta",
+          "helper": "Notifícame retrasos, cambios y riesgos de ruta."
+        },
+        "incidents": {
+          "title": "Alertas de incidentes",
+          "helper": "Notifícame cuando un incidente requiera seguimiento."
+        },
+        "marketing": {
+          "title": "Actualizaciones del producto",
+          "helper": "Recibe novedades no críticas del producto y campañas."
+        }
+      }
+    },
+    "activity": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo del perfil"
+    },
+    "access": {
+      "eyebrow": "Acceso por rol",
+      "title": "Resumen de permisos",
+      "status": {
+        "enabled": "Habilitado",
+        "limited": "Limitado",
+        "restricted": "Restringido"
+      }
+    }
   }
 }
