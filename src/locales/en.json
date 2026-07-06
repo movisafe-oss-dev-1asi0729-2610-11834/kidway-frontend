@@ -1668,5 +1668,68 @@
         "restricted": "Restricted"
       }
     }
+  },
+  "identityAccess": {
+    "login": {
+      "eyebrow": "Identity & Access Management",
+      "title": "Welcome back",
+      "subtitle": "Sign in with your assigned KidWay account. Module access changes automatically according to your role.",
+      "submit": "Sign in",
+      "loading": "Checking access...",
+      "remember": "Keep session active",
+      "forgot": "Forgot username or password?",
+      "invalid": "Invalid username, email or password. Check the demo accounts or try again.",
+      "validation": "Complete username and password before signing in.",
+      "noAccount": "Need a new account?",
+      "demoEyebrow": "Static demo access",
+      "demoTitle": "Role-based test users",
+      "demoHelper": "These credentials are stored in db.json for the static frontend. The same structure can later be replaced by the backend IAM API."
+    },
+    "register": {
+      "eyebrow": "Account request",
+      "title": "Create account",
+      "subtitle": "Register a basic profile request. In this static version the form validates data but does not write to db.json.",
+      "submit": "Create mock account",
+      "validation": "Complete all required fields and accept the terms.",
+      "passwordMismatch": "Both passwords must match before creating the request.",
+      "terms": "I understand this is a mock registration and the account will be validated by KidWay.",
+      "hasAccount": "Already have an account?",
+      "successTitle": "Registration request ready",
+      "successText": "This mock request was validated visually. In the backend version it will be sent to IAM for approval.",
+      "backendReady": "Register is intentionally frontend-only for now. It is prepared for a future backend endpoint."
+    },
+    "fields": {
+      "username": "Username or email",
+      "password": "Password",
+      "confirmPassword": "Repeat password",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phone": "Mobile phone",
+      "country": "Country",
+      "email": "Email"
+    },
+    "placeholders": {
+      "username": "maria.lopez",
+      "password": "Enter your password",
+      "email": "name@example.com"
+    },
+    "recovery": {
+      "eyebrow": "Account recovery",
+      "title": "Recover access",
+      "subtitle": "Enter your account email. This static version only simulates the recovery flow.",
+      "send": "Send recovery instructions",
+      "sentTitle": "Recovery request sent",
+      "sentText": "A backend service would send the secure reset link to the registered email."
+    },
+    "security": {
+      "eyebrow": "Frontend security",
+      "title": "Prepared for backend IAM",
+      "item1Title": "Protected routes",
+      "item1Text": "Users cannot open app modules by typing the URL without logging in.",
+      "item2Title": "Role-based access",
+      "item2Text": "Sidebar and routes are filtered according to the authenticated role.",
+      "item3Title": "Session control",
+      "item3Text": "Sign out clears the local session and returns to login."
+    }
   }
 }

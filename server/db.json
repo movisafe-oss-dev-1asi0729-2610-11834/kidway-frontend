@@ -3224,5 +3224,67 @@
         "status": "completed"
       }
     ]
-  }
+  },
+  "identityUsers": [
+    {
+      "id": "usr-company-admin-001",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "displayName": "Dr. Maria Lopez",
+      "username": "maria.lopez",
+      "email": "maria.lopez@movisafe.pe",
+      "phone": "+51 951 111 222",
+      "country": "Peru",
+      "role": "Company Admin",
+      "company": "MoviSafe Transport",
+      "avatarInitials": "ML",
+      "accountStatus": "active",
+      "password": "KidWay123$"
+    },
+    {
+      "id": "usr-parent-001",
+      "firstName": "Juan",
+      "lastName": "Ruiz",
+      "displayName": "Juan Ruiz",
+      "username": "juan.ruiz",
+      "email": "juan.ruiz@example.com",
+      "phone": "+51 953 333 444",
+      "country": "Peru",
+      "role": "Parent / Guardian",
+      "company": "Guardian Account",
+      "avatarInitials": "JR",
+      "accountStatus": "active",
+      "password": "Parent123$"
+    },
+    {
+      "id": "usr-operator-001",
+      "firstName": "Carlos",
+      "lastName": "Pérez",
+      "displayName": "Carlos Pérez",
+      "username": "carlos.perez",
+      "email": "carlos.perez@kidway.pe",
+      "phone": "+51 987 221 104",
+      "country": "Peru",
+      "role": "Independent Operator",
+      "company": "Independent Transport Service",
+      "avatarInitials": "CP",
+      "accountStatus": "active",
+      "password": "Driver123$"
+    },
+    {
+      "id": "usr-kidway-admin-001",
+      "firstName": "Ana",
+      "lastName": "Torres",
+      "displayName": "Ana Torres",
+      "username": "admin.kidway",
+      "email": "admin@kidway.pe",
+      "phone": "+51 900 100 200",
+      "country": "Peru",
+      "role": "KidWay Administrator",
+      "company": "KidWay Platform",
+      "avatarInitials": "AT",
+      "accountStatus": "active",
+      "password": "Admin123$"
+    }
+  ]
 }
