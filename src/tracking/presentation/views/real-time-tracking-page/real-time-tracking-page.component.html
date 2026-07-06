@@ -1,0 +1,231 @@
+<section class="tracking-page">
+  <header class="hero-card">
+    <div>
+      <p class="eyebrow">10BC · {{ 'trackingBc.eyebrow' | translate }}</p>
+      <h1>{{ 'trackingBc.title' | translate }}</h1>
+      <p>{{ 'trackingBc.subtitle' | translate }}</p>
+    </div>
+    <div class="hero-score">
+      <span>{{ 'trackingBc.signalScore' | translate }}</span>
+      <strong>{{ summary()?.gpsSignal ?? 0 }}%</strong>
+    </div>
+  </header>
+
+  <section class="kpi-grid" aria-label="Tracking KPIs">
+    <article class="kpi-card">
+      <span class="icon-wrap"><mat-icon>directions_bus</mat-icon></span>
+      <p>{{ 'trackingBc.kpis.activeUnits' | translate }}</p>
+      <strong>{{ summary()?.activeUnits ?? 0 }}</strong>
+      <small>{{ 'trackingBc.kpis.activeUnitsHint' | translate }}</small>
+    </article>
+    <article class="kpi-card">
+      <span class="icon-wrap warning"><mat-icon>schedule</mat-icon></span>
+      <p>{{ 'trackingBc.kpis.delayedUnits' | translate }}</p>
+      <strong>{{ summary()?.delayedUnits ?? 0 }}</strong>
+      <small>{{ 'trackingBc.kpis.delayedUnitsHint' | translate }}</small>
+    </article>
+    <article class="kpi-card">
+      <span class="icon-wrap"><mat-icon>speed</mat-icon></span>
+      <p>{{ 'trackingBc.kpis.averageSpeed' | translate }}</p>
+      <strong>{{ summary()?.averageSpeed | number:'1.1-1' }} km/h</strong>
+      <small>{{ 'trackingBc.kpis.averageSpeedHint' | translate }}</small>
+    </article>
+    <article class="kpi-card">
+      <span class="icon-wrap"><mat-icon>timeline</mat-icon></span>
+      <p>{{ 'trackingBc.kpis.routeProgress' | translate }}</p>
+      <strong>{{ summary()?.routeProgress ?? 0 }}%</strong>
+      <small>{{ 'trackingBc.kpis.routeProgressHint' | translate }}</small>
+    </article>
+    <article class="kpi-card">
+      <span class="icon-wrap danger"><mat-icon>notifications_active</mat-icon></span>
+      <p>{{ 'trackingBc.kpis.activeAlerts' | translate }}</p>
+      <strong>{{ summary()?.activeAlerts ?? 0 }}</strong>
+      <small>{{ 'trackingBc.kpis.activeAlertsHint' | translate }}</small>
+    </article>
+  </section>
+
+  <section class="tracking-toolbar">
+    <div class="search-box">
+      <mat-icon>search</mat-icon>
+      <input
+        type="search"
+        [placeholder]="'trackingBc.search' | translate"
+        [ngModel]="filters.query()"
+        (ngModelChange)="filters.query.set($event)"
+      />
+    </div>
+    <div class="filter-group" aria-label="Tracking filters">
+      <button type="button" [class.active]="filters.status() === 'all'" (click)="setStatus('all')">
+        <mat-icon>public</mat-icon> {{ 'trackingBc.filters.all' | translate }}
+      </button>
+      <button type="button" [class.active]="filters.status() === 'on-route'" (click)="setStatus('on-route')">
+        <mat-icon>near_me</mat-icon> {{ 'trackingBc.filters.onRoute' | translate }}
+      </button>
+      <button type="button" [class.active]="filters.status() === 'delayed'" (click)="setStatus('delayed')">
+        <mat-icon>schedule</mat-icon> {{ 'trackingBc.filters.delayed' | translate }}
+      </button>
+      <button type="button" [class.active]="filters.status() === 'stopped'" (click)="setStatus('stopped')">
+        <mat-icon>pause_circle</mat-icon> {{ 'trackingBc.filters.stopped' | translate }}
+      </button>
+    </div>
+    <button class="primary-action" type="button" (click)="refresh()">
+      <mat-icon [class.spin]="isRefreshing()">sync</mat-icon>
+      {{ 'trackingBc.refresh' | translate }}
+    </button>
+  </section>
+
+  <section class="content-grid">
+    <article class="panel map-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">{{ 'trackingBc.liveOperation' | translate }}</p>
+          <h2>{{ 'trackingBc.mapTitle' | translate }}</h2>
+        </div>
+        <span class="live-pill"><span></span>{{ 'trackingBc.liveTracking' | translate }}</span>
+      </div>
+      <div class="map-layout">
+        <div class="leaflet-map" #mapContainer></div>
+        <aside class="selected-unit" *ngIf="selectedVehicle() as vehicle">
+          <div class="vehicle-head">
+            <span class="avatar">{{ vehicle.vehicleId.slice(-3) }}</span>
+            <div>
+              <h3>{{ vehicle.vehicleId }}</h3>
+              <p>{{ vehicle.routeName }}</p>
+            </div>
+            <span class="status-chip" [ngClass]="statusBadgeClass(vehicle.status)">{{ statusText(vehicle.status) }}</span>
+          </div>
+          <div class="detail-grid">
+            <div><span>{{ 'trackingBc.unit.driver' | translate }}</span><strong>{{ vehicle.driverName }}</strong></div>
+            <div><span>{{ 'trackingBc.unit.district' | translate }}</span><strong>{{ vehicle.district }}</strong></div>
+            <div><span>{{ 'trackingBc.unit.nextStop' | translate }}</span><strong>{{ vehicle.nextStop }}</strong></div>
+            <div><span>{{ 'trackingBc.unit.eta' | translate }}</span><strong>{{ vehicle.etaMinutes }} min</strong></div>
+          </div>
+          <div class="progress-line">
+            <div class="progress-title">
+              <span>{{ 'trackingBc.unit.progress' | translate }}</span><strong>{{ vehicle.progressPercent }}%</strong>
+            </div>
+            <div class="bar"><span [style.width.%]="vehicle.progressPercent"></span></div>
+          </div>
+          <div class="signal-row">
+            <span><mat-icon>gps_fixed</mat-icon>{{ vehicle.signalStrength }}% GPS</span>
+            <span><mat-icon>speed</mat-icon>{{ vehicle.speedKmh | number:'1.1-1' }} km/h</span>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <aside class="panel unit-list-panel">
+      <div class="panel-header compact">
+        <div>
+          <p class="eyebrow">{{ 'trackingBc.unitsEyebrow' | translate }}</p>
+          <h2>{{ 'trackingBc.unitsTitle' | translate }}</h2>
+        </div>
+        <span class="count-pill">{{ filteredVehicles().length }}</span>
+      </div>
+      <div class="unit-list">
+        @for (vehicle of filteredVehicles(); track vehicle.id) {
+          <button type="button" class="unit-card" [class.selected]="selectedVehicle()?.id === vehicle.id" (click)="selectVehicle(vehicle)">
+            <span class="unit-dot" [ngClass]="statusBadgeClass(vehicle.status)"></span>
+            <div>
+              <strong>{{ vehicle.vehicleId }}</strong>
+              <small>{{ vehicle.driverName }} · {{ vehicle.etaMinutes }} min ETA</small>
+              <small>{{ vehicle.routeName }}</small>
+            </div>
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        } @empty {
+          <p class="empty-state">{{ 'trackingBc.empty' | translate }}</p>
+        }
+      </div>
+    </aside>
+  </section>
+
+  <section class="lower-grid">
+    <article class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">{{ 'trackingBc.alertsEyebrow' | translate }}</p>
+          <h2>{{ 'trackingBc.alertsTitle' | translate }}</h2>
+        </div>
+        <span class="count-pill">{{ alerts().length }} {{ 'trackingBc.items' | translate }}</span>
+      </div>
+      <div class="alert-list">
+        @for (alert of alerts(); track alert.id) {
+          <article class="alert-card" [ngClass]="alert.severity">
+            <mat-icon>{{ alert.type === 'delay' ? 'schedule' : alert.type === 'deviation' ? 'wrong_location' : 'notifications_active' }}</mat-icon>
+            <div>
+              <h3>{{ alert.title }}</h3>
+              <p>{{ alert.description }}</p>
+              <small>{{ alert.vehicleId }} · {{ alert.time }}</small>
+            </div>
+            <span>{{ alert.severity }}</span>
+          </article>
+        }
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">{{ 'trackingBc.activityEyebrow' | translate }}</p>
+          <h2>{{ 'trackingBc.activityTitle' | translate }}</h2>
+        </div>
+        <span class="count-pill">{{ 'trackingBc.today' | translate }}</span>
+      </div>
+      <div class="timeline-list">
+        @for (activity of activities(); track activity.id) {
+          <article class="timeline-item" [ngClass]="activity.status">
+            <span class="timeline-dot"></span>
+            <div>
+              <small>{{ activity.time }}</small>
+              <h3>{{ activity.title }}</h3>
+              <p>{{ activity.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </article>
+  </section>
+
+  <section class="panel registry-panel">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow">{{ 'trackingBc.recordsEyebrow' | translate }}</p>
+        <h2>{{ 'trackingBc.recordsTitle' | translate }}</h2>
+      </div>
+      <button class="ghost-action" type="button" (click)="exportTrackingSnapshot()">
+        <mat-icon>download</mat-icon>{{ 'trackingBc.export' | translate }}
+      </button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{{ 'trackingBc.table.vehicle' | translate }}</th>
+            <th>{{ 'trackingBc.table.driver' | translate }}</th>
+            <th>{{ 'trackingBc.table.route' | translate }}</th>
+            <th>{{ 'trackingBc.table.speed' | translate }}</th>
+            <th>{{ 'trackingBc.table.progress' | translate }}</th>
+            <th>{{ 'trackingBc.table.status' | translate }}</th>
+            <th>{{ 'trackingBc.table.updated' | translate }}</th>
+            <th>{{ 'trackingBc.table.actions' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vehicle of filteredVehicles(); track vehicle.id) {
+            <tr>
+              <td><strong>{{ vehicle.vehicleId }}</strong><small>{{ vehicle.plate }} · {{ vehicle.district }}</small></td>
+              <td>{{ vehicle.driverName }}</td>
+              <td>{{ vehicle.routeName }}</td>
+              <td>{{ vehicle.speedKmh | number:'1.1-1' }} km/h</td>
+              <td><div class="table-progress"><span [style.width.%]="vehicle.progressPercent"></span></div>{{ vehicle.progressPercent }}%</td>
+              <td><span class="status-chip" [ngClass]="statusBadgeClass(vehicle.status)">{{ statusText(vehicle.status) }}</span></td>
+              <td>{{ vehicle.lastUpdate }}</td>
+              <td><button type="button" class="icon-action" (click)="selectVehicle(vehicle)" matTooltip="Focus unit"><mat-icon>my_location</mat-icon></button></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
