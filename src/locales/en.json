@@ -387,5 +387,77 @@
       "new_title": "Register New Student",
       "unassigned": "Unassigned"
     }
+  },
+  "dashboardPage": {
+    "eyebrow": "4BC · DASHBOARD",
+    "rolePreview": "Role preview",
+    "roles": {
+      "operator": {
+        "label": "Independent driver",
+        "title": "Driver Operations Dashboard",
+        "subtitle": "Personal route, student attendance, trip progress and safety alerts for the current service."
+      },
+      "company": {
+        "label": "Company admin",
+        "title": "Company Operations Dashboard",
+        "subtitle": "Real-time overview of fleet, routes, students, trips, attendance and service quality."
+      },
+      "admin": {
+        "label": "KidWay admin",
+        "title": "Platform Monitoring Dashboard",
+        "subtitle": "Global supervision of companies, operational activity, incidents and system health."
+      }
+    },
+    "hero": {
+      "operator": "Assigned vehicle",
+      "company": "Attendance reliability",
+      "admin": "Active companies"
+    },
+    "metrics": {
+      "activeTrips": "Active trips",
+      "studentsOnBoard": "Students on board",
+      "openAlerts": "Open alerts",
+      "attendanceRate": "Attendance rate",
+      "fleetAvailability": "Fleet availability",
+      "routeCoverage": "Route coverage",
+      "activeCompanies": "Active companies",
+      "platformTrips": "Platform trips",
+      "serviceHealth": "Service health"
+    },
+    "helpers": {
+      "operatorTrips": "Current route in progress",
+      "activeTrips": "Routes in progress today",
+      "students": "Morning service confirmed",
+      "alerts": "Requires operational review",
+      "attendance": "Boarding and drop-off control",
+      "fleet": "Vehicles ready for service",
+      "coverage": "Stops covered by active routes",
+      "companies": "Companies with active service",
+      "platformTrips": "Trips monitored today",
+      "serviceHealth": "Stable platform operation"
+    },
+    "map": {
+      "eyebrow": "Live operation",
+      "title": "Fleet location map",
+      "live": "Live tracking",
+      "loading": "Loading route map...",
+      "activeUnits": "Active units"
+    },
+    "kpis": {
+      "eyebrow": "Operational KPIs",
+      "title": "Performance summary"
+    },
+    "alerts": {
+      "eyebrow": "Priority alerts",
+      "title": "Recent alerts",
+      "items": "items",
+      "emptyTitle": "Everything is under control",
+      "emptyMessage": "There are no active alerts for this role."
+    },
+    "activity": {
+      "eyebrow": "Latest activity",
+      "title": "Operational timeline",
+      "today": "Today"
+    }
   }
 }
