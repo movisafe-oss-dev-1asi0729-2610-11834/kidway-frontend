@@ -1,100 +1,163 @@
-import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
-import { Student } from '../../../domain/entities/student.entity';
+import { StudentEntity } from '../../../domain/entities/student.entity';
+import { StudentStatus } from '../../../domain/models/student-status.type';
+
+export interface StudentFormResult {
+  firstName: string;
+  lastName: string;
+  grade: string;
+  school: string;
+  guardianName: string;
+  guardianPhone: string;
+  guardianEmail: string;
+  emergencyContact: string;
+  routeName: string | null;
+  pickupPoint: string | null;
+  pickupWindow: string | null;
+  status: StudentStatus;
+}
 
 @Component({
-    selector: 'app-student-form-dialog',
-    standalone: true,
-    imports: [CommonModule, MatDialogModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, TranslateModule],
-    template: `
-        <h2 mat-dialog-title>{{ (isEdit ? 'students.dialogs.edit_title' : 'students.dialogs.new_title') | translate }}</h2>
-        <mat-dialog-content>
-            <form [formGroup]="studentForm" class="edit-form">
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.name' | translate }}</mat-label>
-                    <input matInput formControlName="firstName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.last_name' | translate }}</mat-label>
-                    <input matInput formControlName="lastName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.grade' | translate }}</mat-label>
-                    <input matInput formControlName="grade">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.tutor' | translate }}</mat-label>
-                    <input matInput formControlName="tutorName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.contact' | translate }}</mat-label>
-                    <input matInput formControlName="tutorContact">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.status' | translate }}</mat-label>
-                    <mat-select formControlName="status">
-                        <mat-option value="Activo">{{ 'students.management.status.active' | translate }}</mat-option>
-                        <mat-option value="Sin ruta">{{ 'students.management.status.unassigned' | translate }}</mat-option>
-                        <mat-option value="Inactivo">{{ 'students.management.status.inactive' | translate }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.route' | translate }}</mat-label>
-                    <input matInput formControlName="routeAssigned">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>{{ 'students.dialogs.stop' | translate }}</mat-label>
-                    <input matInput formControlName="stopName">
-                </mat-form-field>
-            </form>
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close>{{ 'students.dialogs.cancel' | translate }}</button>
-            <button mat-flat-button color="primary" [disabled]="studentForm.invalid" (click)="save()">
-                {{ (isEdit ? 'students.dialogs.save' : 'students.dialogs.register') | translate }}
-            </button>
-        </mat-dialog-actions>
-    `,
-    styles: [`.edit-form { display: flex; flex-direction: column; gap: 4px; margin-top: 16px; min-width: 380px; }`]
+  selector: 'kw-student-form-dialog',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    TranslateModule
+  ],
+  template: `
+    <section class="student-form-dialog">
+      <header>
+        <div>
+          <p>{{ 'studentsPage.dialogs.formEyebrow' | translate }}</p>
+          <h2>{{ (data ? 'studentsPage.dialogs.editTitle' : 'studentsPage.dialogs.registerTitle') | translate }}</h2>
+        </div>
+        <button mat-icon-button type="button" mat-dialog-close aria-label="Close student form">
+          <mat-icon>close</mat-icon>
+        </button>
+      </header>
+
+      <mat-dialog-content>
+        <form [formGroup]="studentForm" class="student-form">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.firstName' | translate }}</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.lastName' | translate }}</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.grade' | translate }}</mat-label>
+            <input matInput formControlName="grade" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.school' | translate }}</mat-label>
+            <input matInput formControlName="school" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.guardianName' | translate }}</mat-label>
+            <input matInput formControlName="guardianName" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.guardianPhone' | translate }}</mat-label>
+            <input matInput formControlName="guardianPhone" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.guardianEmail' | translate }}</mat-label>
+            <input matInput formControlName="guardianEmail" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.emergencyContact' | translate }}</mat-label>
+            <input matInput formControlName="emergencyContact" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.route' | translate }}</mat-label>
+            <input matInput formControlName="routeName" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.pickupPoint' | translate }}</mat-label>
+            <input matInput formControlName="pickupPoint" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.pickupWindow' | translate }}</mat-label>
+            <input matInput formControlName="pickupWindow" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'studentsPage.dialogs.status' | translate }}</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="active">{{ 'studentsPage.status.active' | translate }}</mat-option>
+              <mat-option value="unassigned">{{ 'studentsPage.status.unassigned' | translate }}</mat-option>
+              <mat-option value="review">{{ 'studentsPage.status.review' | translate }}</mat-option>
+              <mat-option value="inactive">{{ 'studentsPage.status.inactive' | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </mat-dialog-content>
+
+      <mat-dialog-actions align="end">
+        <button mat-button type="button" mat-dialog-close>{{ 'studentsPage.dialogs.cancel' | translate }}</button>
+        <button mat-flat-button color="primary" type="button" [disabled]="studentForm.invalid" (click)="save()">
+          {{ (data ? 'studentsPage.dialogs.save' : 'studentsPage.dialogs.register') | translate }}
+        </button>
+      </mat-dialog-actions>
+    </section>
+  `,
+  styles: [`
+    .student-form-dialog { width: min(720px, 94vw); color: #10233f; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding: 4px 2px 12px; }
+    header p { margin: 0 0 4px; color: #1682c6; font-size: .74rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    header h2 { margin: 0; color: #0f172a; font-size: 1.7rem; letter-spacing: -.04em; }
+    .student-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 10px; }
+    mat-icon { width: 18px; height: 18px; font-size: 18px; }
+    @media (max-width: 640px) { .student-form { grid-template-columns: 1fr; } }
+  `]
 })
 export class StudentFormDialogComponent {
-    studentForm: FormGroup;
-    isEdit: boolean;
+  private readonly fb = inject(FormBuilder);
+  private readonly dialogRef = inject<MatDialogRef<StudentFormDialogComponent, StudentFormResult>>(MatDialogRef);
+  protected readonly data = inject<StudentEntity | null>(MAT_DIALOG_DATA, { optional: true });
 
-    constructor(
-        private fb: FormBuilder,
-        public dialogRef: MatDialogRef<StudentFormDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Student | null
-    ) {
-        this.isEdit = !!data;
-        this.studentForm = this.fb.group({
-            firstName: [data?.firstName || '', Validators.required],
-            lastName: [data?.lastName || '', Validators.required],
-            grade: [data?.grade || '', Validators.required],
-            tutorName: [data?.tutorName || '', Validators.required],
-            tutorContact: [data?.tutorContact || '', Validators.required],
-            status: [data?.status || 'Sin ruta', Validators.required],
-            code: [data?.code || `#AL-00${Math.floor(Math.random() * 1000)}`],
-            routeAssigned: [data?.routeAssigned || null],
-            stopName: [data?.stopName || null]
-        });
+  protected readonly studentForm = this.fb.nonNullable.group({
+    firstName: [this.data?.firstName ?? '', Validators.required],
+    lastName: [this.data?.lastName ?? '', Validators.required],
+    grade: [this.data?.grade ?? '', Validators.required],
+    school: [this.data?.school ?? '', Validators.required],
+    guardianName: [this.data?.guardianName ?? '', Validators.required],
+    guardianPhone: [this.data?.guardianPhone ?? '', Validators.required],
+    guardianEmail: [this.data?.guardianEmail ?? '', [Validators.required, Validators.email]],
+    emergencyContact: [this.data?.emergencyContact ?? '', Validators.required],
+    routeName: [this.data?.routeName ?? ''],
+    pickupPoint: [this.data?.pickupPoint ?? ''],
+    pickupWindow: [this.data?.pickupWindow ?? ''],
+    status: [this.data?.status ?? 'unassigned' as StudentStatus, Validators.required]
+  });
+
+  protected save(): void {
+    if (this.studentForm.invalid) {
+      this.studentForm.markAllAsTouched();
+      return;
     }
 
-    save() {
-        if (this.studentForm.valid) {
-            const formData = this.studentForm.value;
-            const updatedStudent = {
-                ...(this.data || {}),
-                ...formData
-            };
-            this.dialogRef.close(updatedStudent);
-        }
-    }
+    const value = this.studentForm.getRawValue();
+    this.dialogRef.close({
+      ...value,
+      routeName: value.routeName.trim() || null,
+      pickupPoint: value.pickupPoint.trim() || null,
+      pickupWindow: value.pickupWindow.trim() || null
+    });
+  }
 }
