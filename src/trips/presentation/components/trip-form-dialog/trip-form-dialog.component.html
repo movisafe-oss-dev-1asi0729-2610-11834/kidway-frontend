@@ -1,0 +1,44 @@
+<section class="trip-form-dialog">
+  <header>
+    <div>
+      <span>Trip operation</span>
+      <h2>{{ data ? 'Edit trip' : 'Schedule new trip' }}</h2>
+    </div>
+    <button type="button" class="close-btn" (click)="close()" aria-label="Close"><mat-icon>close</mat-icon></button>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <label>Route name<input formControlName="routeName" /></label>
+    <label>Vehicle plate<input formControlName="vehiclePlate" /></label>
+    <label>Driver name<input formControlName="driverName" /></label>
+    <label>School<input formControlName="school" /></label>
+    <label>District<input formControlName="district" /></label>
+    <label>Next stop<input formControlName="nextStop" /></label>
+    <label>Students<input type="number" formControlName="students" /></label>
+    <label>Capacity<input type="number" formControlName="capacity" /></label>
+    <label>Start time<input formControlName="startTime" /></label>
+    <label>Estimated end<input formControlName="estimatedEndTime" /></label>
+    <label>Total stops<input type="number" formControlName="totalStops" /></label>
+    <label>Shift
+      <select formControlName="shift">
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="return">Return</option>
+      </select>
+    </label>
+    <label>Status
+      <select formControlName="status">
+        <option value="scheduled">Scheduled</option>
+        <option value="in_progress">In progress</option>
+        <option value="delayed">Delayed</option>
+        <option value="completed">Completed</option>
+        <option value="canceled">Canceled</option>
+      </select>
+    </label>
+
+    <footer>
+      <button type="button" class="secondary" (click)="close()">Cancel</button>
+      <button type="submit" class="primary">Save trip</button>
+    </footer>
+  </form>
+</section>

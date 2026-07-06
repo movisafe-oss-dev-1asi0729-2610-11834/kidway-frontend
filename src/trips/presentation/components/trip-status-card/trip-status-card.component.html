@@ -1,0 +1,55 @@
+<article class="trip-status-card" [ngClass]="trip.status">
+  <header>
+    <div class="trip-identity">
+      <span class="trip-avatar">{{ trip.code.split('-')[1] }}</span>
+      <div>
+        <h3>{{ trip.routeName }}</h3>
+        <p>{{ trip.code }} · {{ trip.school }}</p>
+      </div>
+    </div>
+    <span class="status-pill" [ngClass]="trip.status">{{ trip.status.replace('_', ' ') }}</span>
+  </header>
+
+  <div class="trip-meta">
+    <span><mat-icon>directions_bus</mat-icon>{{ trip.vehiclePlate }}</span>
+    <span><mat-icon>person</mat-icon>{{ trip.driverName }}</span>
+    <span><mat-icon>schedule</mat-icon>{{ trip.shift }}</span>
+  </div>
+
+  <section class="mini-grid">
+    <div>
+      <small>Students</small>
+      <strong>{{ trip.students }}/{{ trip.capacity }}</strong>
+    </div>
+    <div>
+      <small>Stops</small>
+      <strong>{{ trip.completedStops }}/{{ trip.totalStops }}</strong>
+    </div>
+    <div>
+      <small>ETA</small>
+      <strong>{{ trip.estimatedEndTime }}</strong>
+    </div>
+  </section>
+
+  <div class="progress-row">
+    <span>Trip progress</span>
+    <b>{{ trip.progress }}%</b>
+  </div>
+  <div class="progress-track"><span [style.width.%]="trip.progress"></span></div>
+
+  <footer>
+    <span class="validation"><mat-icon>{{ trip.trackingStatus === 'enabled' ? 'gps_fixed' : 'fact_check' }}</mat-icon>{{ trip.validationMessage }}</span>
+    <div class="actions">
+      @if (trip.status === 'scheduled') {
+        <button type="button" class="icon-action start" (click)="startTrip.emit(trip)" aria-label="Start trip"><mat-icon>play_arrow</mat-icon></button>
+      }
+      @if (trip.status === 'in_progress' || trip.status === 'delayed') {
+        <button type="button" class="icon-action complete" (click)="completeTrip.emit(trip)" aria-label="Complete trip"><mat-icon>check</mat-icon></button>
+      }
+      @if (trip.status !== 'completed' && trip.status !== 'canceled') {
+        <button type="button" class="icon-action cancel" (click)="cancelTrip.emit(trip)" aria-label="Cancel trip"><mat-icon>close</mat-icon></button>
+      }
+      <button type="button" class="icon-action" (click)="viewTrip.emit(trip)" aria-label="View trip details"><mat-icon>arrow_forward</mat-icon></button>
+    </div>
+  </footer>
+</article>
