@@ -12,4 +12,10 @@ export interface CurrentSubscriptionModel {
   vehiclesUsed: number;
   studentsUsed: number;
   usersUsed: number;
+  startedOn?: string;
+  contractOwner?: string;
+  billingEmail?: string;
+  renewalMode?: 'automatic' | 'manual' | 'assisted';
+  supportContact?: string;
+  planScope?: string;
 }

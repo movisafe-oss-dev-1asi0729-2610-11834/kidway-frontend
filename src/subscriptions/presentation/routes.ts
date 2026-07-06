@@ -5,6 +5,6 @@ export const SUBSCRIPTIONS_ROUTES: Routes = [
   {
     path: '',
     component: SubscriptionPaymentsPageComponent,
-    title: 'KidWay | Subscriptions & Payments'
+    title: 'KidWay | Billing & Plan'
   }
 ];

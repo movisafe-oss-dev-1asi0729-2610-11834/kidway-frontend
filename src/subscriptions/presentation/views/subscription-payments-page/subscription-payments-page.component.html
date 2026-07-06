@@ -1,44 +1,165 @@
 @if (dashboard$ | async; as vm) {
-  <section class="subscriptions-page" aria-labelledby="subscriptions-title">
-    <header class="page-heading">
+  <section class="billing-page" aria-labelledby="billing-title">
+    <header class="billing-heading">
       <div>
-        <p class="breadcrumb">{{ 'subscriptions.breadcrumb' | translate }}</p>
-        <h1 id="subscriptions-title">{{ 'subscriptions.title' | translate }}</h1>
+        <p class="eyebrow">{{ 'subscriptions.eyebrow' | translate }}</p>
+        <h1 id="billing-title">{{ 'subscriptions.title' | translate }}</h1>
         <p>{{ 'subscriptions.subtitle' | translate }}</p>
+      </div>
+      <div class="heading-actions">
+        <span class="status-chip" [ngClass]="vm.currentSubscription.status">
+          <mat-icon>verified</mat-icon>
+          {{ 'subscriptions.status.' + vm.currentSubscription.status | translate }}
+        </span>
+        <button class="primary-action" type="button" (click)="toggleCardForm()">
+          <mat-icon>add_card</mat-icon>
+          {{ 'subscriptions.actions.addCard' | translate }}
+        </button>
       </div>
     </header>
 
-    <article class="current-plan">
-      <div>
-        <span class="status-pill">{{ 'subscriptions.status.' + vm.currentSubscription.status | translate }}</span>
-        <h2>{{ vm.currentSubscription.planName }}</h2>
-        <p>{{ 'subscriptions.planDescription' | translate }}</p>
-      </div>
-      <div class="current-price">
-        <strong>{{ vm.currentSubscription.price | currency: vm.currentSubscription.currency : 'symbol' : '1.0-0' }}</strong>
-        <span>/{{ 'subscriptions.month' | translate }}</span>
-        <small>{{ 'subscriptions.renewsOn' | translate }} {{ vm.currentSubscription.renewsOn | date: 'dd MMM yyyy' }}</small>
-        <button type="button">{{ 'subscriptions.managePlan' | translate }}</button>
-      </div>
-    </article>
+    <section class="billing-hero">
+      <article class="plan-summary panel-card">
+        <div class="plan-main">
+          <span class="readonly-pill">{{ 'subscriptions.readonly.badge' | translate }}</span>
+          <h2>{{ vm.currentSubscription.planName }}</h2>
+          <p>{{ vm.currentSubscription.planScope || ('subscriptions.readonly.scopeFallback' | translate) }}</p>
+        </div>
+        <div class="price-box">
+          <strong>{{ vm.currentSubscription.price | currency: vm.currentSubscription.currency : 'symbol' : '1.0-0' }}</strong>
+          <span>/{{ 'subscriptions.month' | translate }}</span>
+          <small>{{ 'subscriptions.renewsOn' | translate }} {{ vm.currentSubscription.renewsOn | date: 'dd MMM yyyy' }}</small>
+        </div>
+      </article>
 
-    <h2 class="section-title">{{ 'subscriptions.availablePlans' | translate }}</h2>
-    <section class="plans-grid" aria-label="Available subscription plans">
-      @for (plan of vm.plans; track plan.id) {
-        <kw-plan-card [plan]="plan" (selected)="selectPlan($event)" />
-      }
+      <article class="support-note panel-card">
+        <span><mat-icon>support_agent</mat-icon></span>
+        <div>
+          <strong>{{ 'subscriptions.readonly.title' | translate }}</strong>
+          <p>{{ 'subscriptions.readonly.message' | translate }}</p>
+          <small>{{ 'subscriptions.readonly.contact' | translate }} {{ vm.currentSubscription.supportContact || 'billing@kidway.pe' }}</small>
+        </div>
+      </article>
+    </section>
+
+    <section class="summary-grid">
+      <article class="metric-card">
+        <span><mat-icon>calendar_month</mat-icon></span>
+        <div>
+          <small>{{ 'subscriptions.metrics.usingPlan' | translate }}</small>
+          <strong>{{ serviceDays(vm.currentSubscription) }} {{ 'subscriptions.metrics.days' | translate }}</strong>
+          <p>{{ 'subscriptions.metrics.started' | translate }} {{ (vm.currentSubscription.startedOn || '2026-01-15') | date: 'dd MMM yyyy' }}</p>
+        </div>
+      </article>
+      <article class="metric-card">
+        <span><mat-icon>event_repeat</mat-icon></span>
+        <div>
+          <small>{{ 'subscriptions.metrics.nextCharge' | translate }}</small>
+          <strong>{{ daysUntilRenewal(vm.currentSubscription.renewsOn) }} {{ 'subscriptions.metrics.days' | translate }}</strong>
+          <p>{{ vm.currentSubscription.renewalMode ? ('subscriptions.renewal.' + vm.currentSubscription.renewalMode | translate) : ('subscriptions.renewal.assisted' | translate) }}</p>
+        </div>
+      </article>
+      <article class="metric-card">
+        <span><mat-icon>receipt_long</mat-icon></span>
+        <div>
+          <small>{{ 'subscriptions.metrics.lastPayment' | translate }}</small>
+          @if (lastPayment(vm.billingHistory); as payment) {
+            <strong>{{ payment.amount | currency: payment.currency : 'symbol' : '1.0-0' }}</strong>
+            <p>{{ payment.date | date: 'dd MMM yyyy' }} · {{ 'subscriptions.status.' + payment.status | translate }}</p>
+          }
+        </div>
+      </article>
+      <article class="metric-card">
+        <span><mat-icon>alternate_email</mat-icon></span>
+        <div>
+          <small>{{ 'subscriptions.metrics.receiptEmail' | translate }}</small>
+          <strong>{{ vm.currentSubscription.billingEmail || 'operations@movisafe.pe' }}</strong>
+          <p>{{ 'subscriptions.metrics.receiptHelper' | translate }}</p>
+        </div>
+      </article>
     </section>
 
     <section class="details-grid">
-      <article class="panel payment-panel">
-        <div class="panel-header">
-          <h2>{{ 'subscriptions.paymentMethod' | translate }}</h2>
-          <button type="button">+ {{ 'subscriptions.add' | translate }}</button>
+      <article class="panel-card usage-panel">
+        <header class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'subscriptions.usage.eyebrow' | translate }}</p>
+            <h2>{{ 'subscriptions.currentUsage' | translate }}</h2>
+          </div>
+        </header>
+
+        <div class="usage-row">
+          <div>
+            <span>{{ 'subscriptions.usage.vehicles' | translate }}</span>
+            <strong>{{ vm.currentSubscription.vehiclesUsed }} / {{ vm.currentSubscription.vehicleLimit }}</strong>
+          </div>
+          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.vehiclesUsed, vm.currentSubscription.vehicleLimit)"></i></div>
         </div>
+        <div class="usage-row">
+          <div>
+            <span>{{ 'subscriptions.usage.students' | translate }}</span>
+            <strong>{{ vm.currentSubscription.studentsUsed }} / {{ vm.currentSubscription.studentLimit }}</strong>
+          </div>
+          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.studentsUsed, vm.currentSubscription.studentLimit)"></i></div>
+        </div>
+        <div class="usage-row">
+          <div>
+            <span>{{ 'subscriptions.usage.users' | translate }}</span>
+            <strong>{{ vm.currentSubscription.usersUsed }} / {{ vm.currentSubscription.userLimit === null ? ('subscriptions.unlimited' | translate) : vm.currentSubscription.userLimit }}</strong>
+          </div>
+          <div class="progress success"><i [style.width.%]="percentage(vm.currentSubscription.usersUsed, vm.currentSubscription.userLimit)"></i></div>
+        </div>
+      </article>
+
+      <article class="panel-card payment-panel">
+        <header class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'subscriptions.payment.eyebrow' | translate }}</p>
+            <h2>{{ 'subscriptions.paymentMethod' | translate }}</h2>
+          </div>
+          <button type="button" class="ghost-action" (click)="toggleCardForm()">
+            <mat-icon>add</mat-icon>
+            {{ 'subscriptions.add' | translate }}
+          </button>
+        </header>
+
+        @if (cardSavedMessage()) {
+          <p class="success-banner"><mat-icon>check_circle</mat-icon>{{ 'subscriptions.payment.cardSaved' | translate }}</p>
+        }
+
+        @if (showCardForm()) {
+          <form class="card-form" [formGroup]="cardForm" (ngSubmit)="submitMockCard()">
+            <label>
+              {{ 'subscriptions.payment.form.holder' | translate }}
+              <input type="text" formControlName="holder" autocomplete="cc-name">
+            </label>
+            <label>
+              {{ 'subscriptions.payment.form.brand' | translate }}
+              <select formControlName="brand">
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">Amex</option>
+              </select>
+            </label>
+            <label>
+              {{ 'subscriptions.payment.form.number' | translate }}
+              <input type="text" formControlName="cardNumber" inputmode="numeric" placeholder="•••• •••• •••• ••••">
+            </label>
+            <label>
+              {{ 'subscriptions.payment.form.expires' | translate }}
+              <input type="text" formControlName="expiresOn" placeholder="MM/YYYY" autocomplete="cc-exp">
+            </label>
+            <div class="form-actions">
+              <button type="button" class="secondary-action" (click)="toggleCardForm()">{{ 'subscriptions.payment.form.cancel' | translate }}</button>
+              <button type="submit" class="primary-action">{{ 'subscriptions.payment.form.save' | translate }}</button>
+            </div>
+          </form>
+        }
+
         <div class="payment-list">
           @for (method of vm.paymentMethods; track method.id) {
             <div class="payment-method" [class.primary]="method.primary">
-              <span class="brand" [ngClass]="method.brand">{{ method.brand === 'visa' ? 'VISA' : 'MC' }}</span>
+              <span class="brand" [ngClass]="method.brand">{{ method.brand === 'visa' ? 'VISA' : method.brand === 'mastercard' ? 'MC' : 'AMEX' }}</span>
               <div>
                 <strong>•••• •••• •••• {{ method.last4 }}</strong>
                 <p>{{ 'subscriptions.expires' | translate }} {{ method.expiresOn }} · {{ method.holder }}</p>
@@ -46,38 +167,27 @@
               @if (method.primary) {
                 <small>{{ 'subscriptions.primary' | translate }}</small>
               } @else {
-                <button type="button" class="text-button">{{ 'subscriptions.delete' | translate }}</button>
+                <button type="button" class="text-button">{{ 'subscriptions.payment.setPrimary' | translate }}</button>
               }
             </div>
           }
         </div>
       </article>
-
-      <article class="panel usage-panel">
-        <h2>{{ 'subscriptions.currentUsage' | translate }}</h2>
-        <div class="usage-row">
-          <span>{{ 'subscriptions.usage.vehicles' | translate }}</span>
-          <strong>{{ vm.currentSubscription.vehiclesUsed }} / {{ vm.currentSubscription.vehicleLimit }}</strong>
-          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.vehiclesUsed, vm.currentSubscription.vehicleLimit)"></i></div>
-        </div>
-        <div class="usage-row">
-          <span>{{ 'subscriptions.usage.students' | translate }}</span>
-          <strong>{{ vm.currentSubscription.studentsUsed }} / {{ vm.currentSubscription.studentLimit }}</strong>
-          <div class="progress"><i [style.width.%]="percentage(vm.currentSubscription.studentsUsed, vm.currentSubscription.studentLimit)"></i></div>
-        </div>
-        <div class="usage-row">
-          <span>{{ 'subscriptions.usage.users' | translate }}</span>
-          <strong>{{ vm.currentSubscription.usersUsed }} / {{ vm.currentSubscription.userLimit === null ? ('subscriptions.unlimited' | translate) : vm.currentSubscription.userLimit }}</strong>
-          <div class="progress success"><i [style.width.%]="percentage(vm.currentSubscription.usersUsed, vm.currentSubscription.userLimit)"></i></div>
-        </div>
-      </article>
     </section>
 
-    <article class="panel billing-panel">
-      <div class="panel-header">
-        <h2>{{ 'subscriptions.billingHistory' | translate }}</h2>
-        <button type="button">{{ 'subscriptions.exportPdf' | translate }}</button>
-      </div>
+    <article class="panel-card history-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">{{ 'subscriptions.history.eyebrow' | translate }}</p>
+          <h2>{{ 'subscriptions.billingHistory' | translate }}</h2>
+        </div>
+        <button type="button" class="ghost-action"><mat-icon>download</mat-icon>{{ 'subscriptions.exportPdf' | translate }}</button>
+      </header>
+
+      @if (receiptMessage(); as receiptId) {
+        <p class="success-banner"><mat-icon>mark_email_read</mat-icon>{{ 'subscriptions.history.receiptSent' | translate }} {{ receiptId }}</p>
+      }
+
       <div class="table-wrap">
         <table>
           <thead>
@@ -94,11 +204,16 @@
             @for (record of vm.billingHistory; track record.id) {
               <tr>
                 <td>{{ record.date | date: 'dd MMM yyyy' }}</td>
-                <td>{{ record.description }}</td>
+                <td>
+                  <strong>{{ record.description }}</strong>
+                  <small>{{ record.id }}</small>
+                </td>
                 <td>{{ record.amount | currency: record.currency : 'symbol' : '1.0-0' }}</td>
                 <td>{{ record.method }}</td>
-                <td><span class="paid">{{ 'subscriptions.status.' + record.status | translate }}</span></td>
-                <td><a [href]="record.invoiceUrl">{{ 'subscriptions.download' | translate }}</a></td>
+                <td><span class="status-pill" [ngClass]="record.status">{{ 'subscriptions.status.' + record.status | translate }}</span></td>
+                <td>
+                  <button type="button" class="receipt-link" (click)="requestReceipt(record)">{{ 'subscriptions.history.requestReceipt' | translate }}</button>
+                </td>
               </tr>
             }
           </tbody>

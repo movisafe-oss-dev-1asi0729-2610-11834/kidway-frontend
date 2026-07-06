@@ -78,7 +78,7 @@
   },
   "nav": {
     "dashboard": "Dashboard",
-    "subscriptions": "Subscriptions & Payments",
+    "subscriptions": "Billing & Plan",
     "fleet": "Fleet Management",
     "drivers": "Driver Management",
     "routes": "Route Management",
@@ -95,10 +95,11 @@
     "profiles": "User Profiles"
   },
   "subscriptions": {
-    "breadcrumb": "System / Billing & Plans",
-    "title": "Subscriptions & Payments",
-    "subtitle": "Manage your plan, payment methods and billing history.",
-    "planDescription": "Up to 10 vehicles · Real-time tracking · Priority support",
+    "eyebrow": "3BC · Subscription & Payments",
+    "breadcrumb": "Account / Billing & plan",
+    "title": "Billing & Plan",
+    "subtitle": "Review the active company plan, payment method, billing status and receipt history. Plan changes are handled by KidWay support, not directly from this screen.",
+    "planDescription": "Company fleet contract assigned by KidWay sales team",
     "currentPlan": "Current plan",
     "customPrice": "Custom",
     "month": "month",
@@ -115,8 +116,53 @@
     "exportPdf": "Export PDF",
     "download": "Download",
     "unlimited": "unlimited",
+    "readonly": {
+      "badge": "Read-only plan",
+      "title": "Plan changes require support",
+      "message": "This account cannot change its business role or plan automatically by paying. Any plan, role or account-type update must be coordinated with the company administrator or KidWay commercial support.",
+      "contact": "Support contact:",
+      "scopeFallback": "Assigned plan for school transport operations. Billing visibility is enabled only for authorized administrators."
+    },
+    "metrics": {
+      "usingPlan": "Using this plan for",
+      "days": "days",
+      "started": "Started on",
+      "nextCharge": "Next billing cycle",
+      "lastPayment": "Last payment",
+      "receiptEmail": "Receipt email",
+      "receiptHelper": "Receipts are sent to this billing contact."
+    },
+    "renewal": {
+      "automatic": "Automatic renewal enabled",
+      "manual": "Manual renewal review",
+      "assisted": "Assisted renewal with KidWay support"
+    },
+    "payment": {
+      "eyebrow": "Payment control",
+      "cardSaved": "Payment method saved as a mock update.",
+      "setPrimary": "Set primary",
+      "form": {
+        "holder": "Card holder",
+        "brand": "Brand",
+        "number": "Card number",
+        "expires": "Expiration",
+        "cancel": "Cancel",
+        "save": "Save card"
+      }
+    },
+    "history": {
+      "eyebrow": "Billing records",
+      "requestReceipt": "Send receipt",
+      "receiptSent": "Receipt request registered for"
+    },
+    "actions": {
+      "addCard": "Add card",
+      "upgrade": "Switch to Basic",
+      "current": "Current plan",
+      "contact": "Contact sales"
+    },
     "status": {
-      "active": "Active plan",
+      "active": "Active account",
       "paid": "Paid",
       "pending": "Pending",
       "failed": "Failed",
@@ -154,12 +200,8 @@
       "support247": "24/7 support",
       "accountManager": "Account manager"
     },
-    "actions": {
-      "upgrade": "Switch to Basic",
-      "current": "Current plan",
-      "contact": "Contact sales"
-    },
     "usage": {
+      "eyebrow": "Plan limits",
       "vehicles": "Vehicles",
       "students": "Students",
       "users": "Users"
@@ -170,7 +212,7 @@
       "amount": "Amount",
       "method": "Method",
       "status": "Status",
-      "invoice": "Invoice"
+      "invoice": "Receipt"
     }
   },
   "notifications": {
