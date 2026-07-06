@@ -1,0 +1,23 @@
+<article class="maintenance-panel">
+  <header>
+    <div>
+      <p>{{ 'fleet.maintenance.eyebrow' | translate }}</p>
+      <h2>{{ 'fleet.maintenance.title' | translate }}</h2>
+    </div>
+    <span>{{ alerts.length }} {{ 'fleet.maintenance.items' | translate }}</span>
+  </header>
+
+  <div class="alerts-list">
+    @for (alert of alerts; track alert.id) {
+      <section class="maintenance-alert" [ngClass]="alert.priority">
+        <span class="alert-icon"><mat-icon>build_circle</mat-icon></span>
+        <div>
+          <h3>{{ alert.title }}</h3>
+          <p>{{ alert.description }}</p>
+          <small>{{ alert.vehicleCode }} · {{ 'fleet.maintenance.due' | translate }} {{ alert.dueDate }}</small>
+        </div>
+        <strong>{{ 'fleet.priority.' + alert.priority | translate }}</strong>
+      </section>
+    }
+  </div>
+</article>

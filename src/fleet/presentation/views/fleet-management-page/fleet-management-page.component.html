@@ -1,0 +1,176 @@
+@if (dashboard$ | async; as vm) {
+  <section class="fleet-page" aria-labelledby="fleet-title">
+    <header class="fleet-hero">
+      <div>
+        <p class="eyebrow">{{ 'fleet.eyebrow' | translate }}</p>
+        <h1 id="fleet-title">{{ 'fleet.title' | translate }}</h1>
+        <p class="hero-copy">{{ 'fleet.subtitle' | translate }}</p>
+      </div>
+      <div class="hero-indicator" aria-label="Fleet availability">
+        <span>{{ 'fleet.heroAvailability' | translate }}</span>
+        <strong>{{ vm.summary.averageAvailability }}%</strong>
+      </div>
+    </header>
+
+    <section class="kpi-grid" aria-label="Fleet indicators">
+      <kw-fleet-kpi-card
+        icon="directions_bus"
+        [label]="'fleet.kpis.totalVehicles' | translate"
+        [value]="vm.summary.totalVehicles"
+        [helper]="'fleet.kpis.registeredUnits' | translate"
+      />
+      <kw-fleet-kpi-card
+        icon="verified"
+        tone="green"
+        [label]="'fleet.kpis.availableVehicles' | translate"
+        [value]="vm.summary.availableVehicles"
+        [helper]="'fleet.kpis.readyForService' | translate"
+      />
+      <kw-fleet-kpi-card
+        icon="route"
+        [label]="'fleet.kpis.onRouteVehicles' | translate"
+        [value]="vm.summary.onRouteVehicles"
+        [helper]="'fleet.kpis.activeRoutes' | translate"
+      />
+      <kw-fleet-kpi-card
+        icon="construction"
+        tone="amber"
+        [label]="'fleet.kpis.maintenanceVehicles' | translate"
+        [value]="vm.summary.maintenanceVehicles"
+        [helper]="'fleet.kpis.requiresReview' | translate"
+      />
+      <kw-fleet-kpi-card
+        icon="groups"
+        tone="blue"
+        [label]="'fleet.kpis.capacityUsage' | translate"
+        [value]="vm.summary.averageCapacityUsage + '%'"
+        [helper]="'fleet.kpis.studentCapacity' | translate"
+      />
+    </section>
+
+    <section class="fleet-content-grid">
+      <article class="fleet-panel vehicles-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">{{ 'fleet.inventory.eyebrow' | translate }}</p>
+            <h2>{{ 'fleet.inventory.title' | translate }}</h2>
+          </div>
+          <button type="button" class="primary-action">
+            <mat-icon>add</mat-icon>
+            {{ 'fleet.actions.registerVehicle' | translate }}
+          </button>
+        </div>
+
+        <div class="fleet-toolbar">
+          <label class="search-box">
+            <mat-icon>search</mat-icon>
+            <input
+              type="search"
+              [placeholder]="'fleet.filters.searchPlaceholder' | translate"
+              [value]="filters.searchTerm()"
+              (input)="onSearch($event)"
+            />
+          </label>
+
+          <div class="status-filters" aria-label="Fleet status filters">
+            @for (status of statusFilters; track status) {
+              <button type="button" [class.active]="filters.selectedStatus() === status" (click)="setStatus(status)">
+                @if (status !== 'all') {
+                  <mat-icon>{{ statusIcon(status) }}</mat-icon>
+                }
+                {{ 'fleet.filters.' + status | translate }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="vehicle-cards">
+          @for (vehicle of filters.filteredVehicles(); track vehicle.id) {
+            <kw-vehicle-status-card [vehicle]="vehicle" />
+          } @empty {
+            <div class="empty-state">
+              <mat-icon>search_off</mat-icon>
+              <h3>{{ 'fleet.empty.title' | translate }}</h3>
+              <p>{{ 'fleet.empty.message' | translate }}</p>
+            </div>
+          }
+        </div>
+      </article>
+
+      <aside class="fleet-side">
+        <article class="fleet-panel availability-panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="eyebrow">{{ 'fleet.availability.eyebrow' | translate }}</p>
+              <h2>{{ 'fleet.availability.title' | translate }}</h2>
+            </div>
+            <span>{{ vm.summary.averageAvailability }}%</span>
+          </div>
+
+          <div class="availability-chart">
+            <div class="donut" [style.background]="availabilityGradient(vm.summary.averageAvailability)">
+              <strong>{{ vm.summary.averageAvailability }}%</strong>
+              <small>{{ 'fleet.availability.ready' | translate }}</small>
+            </div>
+          </div>
+
+          <div class="legend-list">
+            <span><i class="available"></i>{{ 'fleet.status.available' | translate }}</span>
+            <span><i class="on-route"></i>{{ 'fleet.status.onRoute' | translate }}</span>
+            <span><i class="maintenance"></i>{{ 'fleet.status.maintenance' | translate }}</span>
+          </div>
+        </article>
+
+        <kw-fleet-maintenance-panel [alerts]="vm.maintenanceAlerts" />
+      </aside>
+    </section>
+
+    <article class="fleet-panel table-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">{{ 'fleet.table.eyebrow' | translate }}</p>
+          <h2>{{ 'fleet.table.title' | translate }}</h2>
+        </div>
+        <button type="button" class="secondary-action">
+          <mat-icon>download</mat-icon>
+          {{ 'fleet.actions.export' | translate }}
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'fleet.table.vehicle' | translate }}</th>
+              <th>{{ 'fleet.table.driver' | translate }}</th>
+              <th>{{ 'fleet.table.route' | translate }}</th>
+              <th>{{ 'fleet.table.capacity' | translate }}</th>
+              <th>{{ 'fleet.table.status' | translate }}</th>
+              <th>{{ 'fleet.table.inspection' | translate }}</th>
+              <th>{{ 'fleet.table.actions' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (vehicle of filters.filteredVehicles(); track vehicle.id) {
+              <tr>
+                <td>
+                  <strong>{{ vehicle.code }}</strong>
+                  <small>{{ vehicle.plate }} · {{ vehicle.brand }} {{ vehicle.model }}</small>
+                </td>
+                <td>{{ vehicle.driverName }}</td>
+                <td>{{ vehicle.routeName }}</td>
+                <td>
+                  <span>{{ vehicle.assignedStudents }} / {{ vehicle.capacity }}</span>
+                  <div class="mini-progress"><i [style.width.%]="capacityUsage(vehicle)"></i></div>
+                </td>
+                <td><span class="table-status" [ngClass]="vehicle.status">{{ 'fleet.status.' + vehicle.status | translate }}</span></td>
+                <td>{{ vehicle.lastInspectionDate | date: 'dd MMM yyyy' }}</td>
+                <td><button type="button" class="icon-action" [attr.aria-label]="'fleet.actions.viewDetails' | translate"><mat-icon>arrow_forward</mat-icon></button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+}

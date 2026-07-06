@@ -459,5 +459,155 @@
       "title": "Operational timeline",
       "today": "Today"
     }
+  },
+  "dashboardPage": {
+    "eyebrow": "4BC · DASHBOARD",
+    "rolePreview": "Role preview",
+    "roles": {
+      "operator": {
+        "label": "Independent driver",
+        "title": "Driver Operations Dashboard",
+        "subtitle": "Personal route, student attendance, trip progress and safety alerts for the current service."
+      },
+      "company": {
+        "label": "Company admin",
+        "title": "Company Operations Dashboard",
+        "subtitle": "Real-time overview of fleet, routes, students, trips, attendance and service quality."
+      },
+      "admin": {
+        "label": "KidWay admin",
+        "title": "Platform Monitoring Dashboard",
+        "subtitle": "Global supervision of companies, operational activity, incidents and system health."
+      }
+    },
+    "hero": {
+      "operator": "Assigned vehicle",
+      "company": "Attendance reliability",
+      "admin": "Active companies"
+    },
+    "metrics": {
+      "activeTrips": "Active trips",
+      "studentsOnBoard": "Students on board",
+      "openAlerts": "Open alerts",
+      "attendanceRate": "Attendance rate",
+      "fleetAvailability": "Fleet availability",
+      "routeCoverage": "Route coverage",
+      "activeCompanies": "Active companies",
+      "platformTrips": "Platform trips",
+      "serviceHealth": "Service health"
+    },
+    "helpers": {
+      "operatorTrips": "Current route in progress",
+      "activeTrips": "Routes in progress today",
+      "students": "Morning service confirmed",
+      "alerts": "Requires operational review",
+      "attendance": "Boarding and drop-off control",
+      "fleet": "Vehicles ready for service",
+      "coverage": "Stops covered by active routes",
+      "companies": "Companies with active service",
+      "platformTrips": "Trips monitored today",
+      "serviceHealth": "Stable platform operation"
+    },
+    "map": {
+      "eyebrow": "Live operation",
+      "title": "Fleet location map",
+      "live": "Live tracking",
+      "loading": "Loading route map...",
+      "activeUnits": "Active units"
+    },
+    "kpis": {
+      "eyebrow": "Operational KPIs",
+      "title": "Performance summary"
+    },
+    "alerts": {
+      "eyebrow": "Priority alerts",
+      "title": "Recent alerts",
+      "items": "items",
+      "emptyTitle": "Everything is under control",
+      "emptyMessage": "There are no active alerts for this role."
+    },
+    "activity": {
+      "eyebrow": "Latest activity",
+      "title": "Operational timeline",
+      "today": "Today"
+    }
+  },
+  "fleet": {
+    "eyebrow": "5BC · Fleet Management",
+    "title": "Fleet Management",
+    "subtitle": "Monitor vehicle availability, capacity, documentation and maintenance readiness for safe school transport operations.",
+    "heroAvailability": "Fleet availability",
+    "kpis": {
+      "totalVehicles": "Total vehicles",
+      "registeredUnits": "Registered units in company records",
+      "availableVehicles": "Available vehicles",
+      "readyForService": "Ready for route assignment",
+      "onRouteVehicles": "On-route vehicles",
+      "activeRoutes": "Currently supporting active routes",
+      "maintenanceVehicles": "In maintenance",
+      "requiresReview": "Requires operational review",
+      "capacityUsage": "Capacity usage",
+      "studentCapacity": "Average student seat usage"
+    },
+    "inventory": {
+      "eyebrow": "Fleet inventory",
+      "title": "Vehicle operational status"
+    },
+    "actions": {
+      "registerVehicle": "Register vehicle",
+      "export": "Export list",
+      "viewDetails": "View vehicle details"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by plate, driver, route or model...",
+      "all": "All units",
+      "available": "Available",
+      "onRoute": "On route",
+      "maintenance": "Maintenance",
+      "inactive": "Inactive"
+    },
+    "status": {
+      "available": "Available",
+      "onRoute": "On route",
+      "maintenance": "Maintenance",
+      "inactive": "Inactive"
+    },
+    "vehicle": {
+      "capacityUsage": "Capacity usage",
+      "nextMaintenance": "Next maintenance:",
+      "documentsValid": "Documents valid",
+      "documentsPending": "Document review pending"
+    },
+    "availability": {
+      "eyebrow": "Availability",
+      "title": "Fleet readiness",
+      "ready": "Ready for service"
+    },
+    "maintenance": {
+      "eyebrow": "Maintenance control",
+      "title": "Upcoming reviews",
+      "items": "items",
+      "due": "Due:"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "table": {
+      "eyebrow": "Operational records",
+      "title": "Fleet registry",
+      "vehicle": "Vehicle",
+      "driver": "Driver",
+      "route": "Route",
+      "capacity": "Capacity",
+      "status": "Status",
+      "inspection": "Last inspection",
+      "actions": "Actions"
+    },
+    "empty": {
+      "title": "No vehicles found",
+      "message": "Try another search term or status filter."
+    }
   }
 }
