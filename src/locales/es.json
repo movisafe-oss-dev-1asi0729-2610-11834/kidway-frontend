@@ -824,5 +824,11 @@
     "scheduledTrips": "Viajes programados",
     "delayedTrips": "Viajes retrasados",
     "completedTrips": "Viajes completados"
+  },
+  "attendanceBc": {
+    "title": "Control de asistencia",
+    "subtitle": "Controla abordajes, llegadas, ausencias y confirmaciones de apoderados durante la operación diaria de transporte escolar.",
+    "export": "Exportar lista",
+    "search": "Buscar por estudiante, ruta, vehículo, apoderado o punto de recojo..."
   }
 }

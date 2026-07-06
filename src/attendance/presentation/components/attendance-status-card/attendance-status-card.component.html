@@ -1,0 +1,33 @@
+<article class="student-card" [ngClass]="record.status">
+  <div class="student-head">
+    <div class="avatar">{{ record.studentName[0] }}</div>
+    <div>
+      <h3>{{ record.studentName }}</h3>
+      <p>{{ record.studentCode }} · {{ record.grade }}</p>
+    </div>
+    <span class="status-pill">{{ statusLabel(record.status) }}</span>
+  </div>
+
+  <div class="meta-grid">
+    <div><small>Route</small><strong>{{ record.routeName }}</strong></div>
+    <div><small>Vehicle</small><strong>{{ record.vehiclePlate }}</strong></div>
+    <div><small>Pickup point</small><strong>{{ record.pickupPoint }}</strong></div>
+    <div><small>ETA</small><strong>{{ record.estimatedArrival }}</strong></div>
+  </div>
+
+  <div class="progress-row">
+    <span>Attendance reliability</span>
+    <strong>{{ record.reliability }}%</strong>
+  </div>
+  <div class="progress"><span [style.width.%]="record.reliability"></span></div>
+
+  <footer>
+    <small><mat-icon>verified_user</mat-icon>{{ record.lastEvent }}</small>
+    <div class="actions">
+      <button type="button" title="Mark on board" (click)="statusChange.emit({ record, status: 'on_board' })"><mat-icon>directions_bus</mat-icon></button>
+      <button type="button" title="Mark arrived" (click)="statusChange.emit({ record, status: 'arrived' })"><mat-icon>where_to_vote</mat-icon></button>
+      <button type="button" title="Mark absent" (click)="statusChange.emit({ record, status: 'absent' })"><mat-icon>cancel</mat-icon></button>
+      <button type="button" title="View detail" (click)="view.emit(record)"><mat-icon>arrow_forward</mat-icon></button>
+    </div>
+  </footer>
+</article>

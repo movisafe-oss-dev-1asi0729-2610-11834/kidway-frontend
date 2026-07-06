@@ -1,0 +1,16 @@
+<section class="dialog">
+  <header>
+    <div class="avatar">{{ record.studentName[0] }}</div>
+    <div><span>Attendance detail</span><h2>{{ record.studentName }}</h2><p>{{ record.studentCode }} · {{ record.grade }}</p></div>
+  </header>
+  <div class="grid">
+    <div><small>Route</small><strong>{{ record.routeName }}</strong></div>
+    <div><small>Vehicle</small><strong>{{ record.vehiclePlate }}</strong></div>
+    <div><small>Driver</small><strong>{{ record.driverName }}</strong></div>
+    <div><small>Guardian</small><strong>{{ record.guardianName }}</strong></div>
+    <div><small>Pickup point</small><strong>{{ record.pickupPoint }}</strong></div>
+    <div><small>Estimated arrival</small><strong>{{ record.estimatedArrival }}</strong></div>
+  </div>
+  <article><mat-icon>notes</mat-icon><p>{{ record.notes }}</p></article>
+  <footer><button type="button" (click)="close()">Close</button></footer>
+</section>

@@ -1,17 +1,15 @@
 import { Routes } from '@angular/router';
-import {AttendanceListComponent} from "./views/attendance-list/attendance-list.component";
-import {ParentAttendanceListComponent} from "./views/parent-attendance-list/parent-attendance-list.component";
+import { AttendanceManagementPageComponent } from './views/attendance-management-page/attendance-management-page.component';
 
 export const ATTENDANCE_ROUTES: Routes = [
-    {//management
-        path: '',
-        component: AttendanceListComponent,
-        data: { titleKey: 'nav.attendance_mgmt', boundedContext: 'Attendance Tracking', icon: 'fact_check' }
-    },
-    {//tracking
-        path: 'tracking',
-        component: ParentAttendanceListComponent,
-        data: { titleKey: 'nav.attendance_tracking', boundedContext: 'My Kids Tracking', icon: 'family_restroom' }
-    }
+  {
+    path: '',
+    component: AttendanceManagementPageComponent,
+    data: { titleKey: 'nav.attendance', boundedContext: 'Attendance Tracking', icon: 'fact_check' }
+  },
+  {
+    path: 'tracking',
+    component: AttendanceManagementPageComponent,
+    data: { titleKey: 'nav.attendance', boundedContext: 'Attendance Tracking', icon: 'family_restroom' }
+  }
 ];
-
