@@ -1,0 +1,48 @@
+<section class="side-card readiness-card">
+  <header>
+    <div>
+      <p>READINESS</p>
+      <h2>Route readiness</h2>
+    </div>
+    <span>{{ optimizationScore }}%</span>
+  </header>
+
+  <div class="donut" [style.background]="readinessGradient()">
+    <div>
+      <strong>{{ optimizationScore }}%</strong>
+      <small>Optimized flow</small>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="available"></i> Active</span>
+    <span><i class="scheduled"></i> Scheduled</span>
+    <span><i class="review"></i> Review</span>
+  </div>
+</section>
+
+<section class="side-card review-card">
+  <header>
+    <div>
+      <p>OPTIMIZATION CONTROL</p>
+      <h2>Route reviews</h2>
+    </div>
+    <span>{{ reviews.length }} items</span>
+  </header>
+
+  <div class="review-list">
+    @for (review of reviews; track review.id) {
+      <article>
+        <div class="review-icon" [ngClass]="review.priority">
+          <mat-icon>{{ review.priority === 'high' ? 'priority_high' : 'tune' }}</mat-icon>
+        </div>
+        <div>
+          <h3>{{ review.title }}</h3>
+          <p>{{ review.description }}</p>
+          <strong>{{ review.routeCode }} · {{ review.dueDate | date: 'yyyy-MM-dd' }}</strong>
+        </div>
+        <span [ngClass]="review.priority">{{ review.priority }}</span>
+      </article>
+    }
+  </div>
+</section>

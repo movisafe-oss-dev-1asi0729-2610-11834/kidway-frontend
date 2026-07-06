@@ -1,0 +1,180 @@
+.route-card {
+  padding: 20px;
+  border: 1px solid #e4edf6;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(11, 52, 86, 0.07);
+}
+
+header,
+.route-id,
+.meta-row,
+.metrics-row,
+.progress-label,
+footer {
+  display: flex;
+  align-items: center;
+}
+
+header {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.route-id {
+  gap: 12px;
+}
+
+.icon-circle {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #e3f2fd;
+  color: #1b83c9;
+}
+
+h3 {
+  margin: 0;
+  color: #11365b;
+  font-size: 1.02rem;
+  font-weight: 900;
+}
+
+p {
+  margin: 4px 0 0;
+  color: #6b7890;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.status-pill.active { background: #dcfce7; color: #15803d; }
+.status-pill.scheduled { background: #e3f2fd; color: #1b83c9; }
+.status-pill.review { background: #fef3c7; color: #b45309; }
+.status-pill.inactive { background: #e5e7eb; color: #4b5563; }
+
+.meta-row {
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 18px 0;
+  color: #536177;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.meta-row span,
+footer span,
+footer strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+mat-icon {
+  width: 17px;
+  height: 17px;
+  font-size: 17px;
+}
+
+.metrics-row {
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.metrics-row div {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f6f9fc;
+}
+
+small {
+  display: block;
+  color: #7a8798;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.metrics-row strong {
+  display: block;
+  margin-top: 4px;
+  color: #10233f;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.progress-group {
+  margin-top: 12px;
+}
+
+.progress-group.compact {
+  margin-top: 10px;
+}
+
+.progress-label {
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #5e6c7f;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.progress-label strong {
+  color: #0f5284;
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eff7;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1b83c9, #22c3b6);
+}
+
+.progress-track.capacity span {
+  background: linear-gradient(90deg, #34a8eb, #fbbf24);
+}
+
+footer {
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  color: #6b7890;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.warning {
+  color: #d97706;
+}
+
+.valid {
+  color: #607080;
+}
+
+@media (max-width: 720px) {
+  header,
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .metrics-row {
+    flex-direction: column;
+  }
+}

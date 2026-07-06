@@ -1,0 +1,34 @@
+<section class="map-card">
+  <header>
+    <div>
+      <p>ROUTE COVERAGE</p>
+      <h2>Service coverage map</h2>
+    </div>
+    <span><mat-icon>near_me</mat-icon> Planning view</span>
+  </header>
+
+  <div class="map-preview" aria-label="Route coverage visual preview">
+    <div class="district district-one">Miraflores</div>
+    <div class="district district-two">San Isidro</div>
+    <div class="district district-three">Surco</div>
+    <div class="line line-one"></div>
+    <div class="line line-two"></div>
+    <div class="line line-three"></div>
+    <span class="stop stop-one"><mat-icon>home_pin</mat-icon></span>
+    <span class="stop stop-two"><mat-icon>school</mat-icon></span>
+    <span class="stop stop-three"><mat-icon>directions_bus</mat-icon></span>
+  </div>
+
+  <div class="route-mini-list">
+    @for (route of routes.slice(0, 3); track route.id) {
+      <article>
+        <span [ngClass]="route.status"></span>
+        <div>
+          <strong>{{ route.code }}</strong>
+          <p>{{ route.name }}</p>
+        </div>
+        <small>{{ route.coveragePercentage }}%</small>
+      </article>
+    }
+  </div>
+</section>
