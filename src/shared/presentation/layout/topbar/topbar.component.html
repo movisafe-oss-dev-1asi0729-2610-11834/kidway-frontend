@@ -19,9 +19,50 @@
       <mat-icon>{{ darkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
 
-    <a mat-icon-button routerLink="/app/notifications" class="round-button notification" [attr.aria-label]="'topbar.notifications' | translate">
-      <mat-icon>notifications</mat-icon><span aria-hidden="true"></span>
-    </a>
+    <button mat-icon-button type="button" class="round-button notification-trigger" [matMenuTriggerFor]="notificationMenu" [attr.aria-label]="'topbar.notifications' | translate">
+      <mat-icon>notifications</mat-icon>
+      @if (notificationService.unreadCount() > 0) {
+        <span class="notification-dot">{{ notificationService.unreadCount() }}</span>
+      }
+    </button>
+
+    <mat-menu #notificationMenu="matMenu" xPosition="before" class="kw-notification-menu-panel">
+      <section class="notification-menu" (click)="$event.stopPropagation()">
+        <header class="notification-menu-head">
+          <div>
+            <strong>{{ 'topbar.notifications' | translate }}</strong>
+            <small>{{ notificationService.unreadCount() }} {{ 'alertsCenter.topbar.unread' | translate }}</small>
+          </div>
+          <button type="button" (click)="notificationService.markAllAsRead()">{{ 'alertsCenter.actions.markAllShort' | translate }}</button>
+        </header>
+
+        <div class="notification-menu-list">
+          @for (item of notificationService.topbarItems(); track item.id) {
+            <article class="menu-notification" [ngClass]="[item.category, item.priority, item.status]">
+              <span><mat-icon>{{ notificationService.iconFor(item) }}</mat-icon></span>
+              <div>
+                <strong>{{ item.title }}</strong>
+                <p>{{ item.message }}</p>
+                <small>{{ item.time }} · {{ item.sourceBc }}</small>
+              </div>
+              @if (item.status === 'new') {
+                <button type="button" [attr.aria-label]="'alertsCenter.actions.markRead' | translate" (click)="markAsRead(item, $event)"><mat-icon>done</mat-icon></button>
+              }
+            </article>
+          } @empty {
+            <div class="notification-menu-empty">
+              <mat-icon>notifications_off</mat-icon>
+              <span>{{ 'notifications.empty' | translate }}</span>
+            </div>
+          }
+        </div>
+
+        <a class="notification-menu-footer" routerLink="/app/notifications">
+          {{ 'alertsCenter.topbar.openCenter' | translate }}
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </section>
+    </mat-menu>
 
     <a class="profile-button" routerLink="/app/profile" [attr.aria-label]="'actions.openProfile' | translate">
       <strong>ML</strong>

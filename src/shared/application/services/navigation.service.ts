@@ -14,7 +14,7 @@ export class NavigationService {
     { labelKey: 'nav.tracking', route: '/app/tracking', icon: 'location_on', featureKey: 'tracking', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.trips', route: '/app/trips', icon: 'route', featureKey: 'trips', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.attendance', route: '/app/attendance', icon: 'fact_check', featureKey: 'attendance', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
-    { labelKey: 'nav.notifications', route: '/app/notifications', icon: 'notifications', featureKey: 'notifications', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator', 'Parent / Guardian'] },
+    { labelKey: 'nav.notifications', route: '/app/notifications', icon: 'campaign', featureKey: 'notifications', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator', 'Parent / Guardian'] },
     { labelKey: 'nav.incidents', route: '/app/incidents', icon: 'report_problem', featureKey: 'incidents', roles: ['Independent Operator', 'Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.analytics', route: '/app/analytics', icon: 'bar_chart', featureKey: 'analytics', roles: ['Company Admin', 'KidWay Administrator'] },
     { labelKey: 'nav.companies', route: '/app/companies', icon: 'business', featureKey: 'companies', roles: ['Company Admin', 'KidWay Administrator'] }
