@@ -1,0 +1,11 @@
+<section class="panel">
+  <header>
+    <span>READINESS</span>
+    <strong>{{ percentage }}%</strong>
+  </header>
+  <h2>Attendance readiness</h2>
+  <div class="donut" [style.--value.%]="percentage">
+    <div><strong>{{ percentage }}%</strong><small>Safe boarding</small></div>
+  </div>
+  <footer><span></span> Confirmed <span></span> On board <span></span> Review</footer>
+</section>

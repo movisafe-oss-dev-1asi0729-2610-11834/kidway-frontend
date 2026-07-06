@@ -2257,5 +2257,11 @@
     "scheduledTrips": "Scheduled trips",
     "delayedTrips": "Delayed trips",
     "completedTrips": "Completed trips"
+  },
+  "attendanceBc": {
+    "title": "Attendance Tracking",
+    "subtitle": "Control student boarding, drop-off, absences and guardian confirmations during daily school transport operations.",
+    "export": "Export list",
+    "search": "Search by student, route, vehicle, guardian or pickup point..."
   }
 }
