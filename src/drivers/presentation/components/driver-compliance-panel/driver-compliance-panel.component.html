@@ -1,0 +1,25 @@
+<article class="driver-panel compliance-panel">
+  <div class="panel-header compact">
+    <div>
+      <p class="eyebrow">{{ 'drivers.compliance.eyebrow' | translate }}</p>
+      <h2>{{ 'drivers.compliance.title' | translate }}</h2>
+    </div>
+    <span>{{ reviews.length }} {{ 'drivers.compliance.items' | translate }}</span>
+  </div>
+
+  <div class="review-list">
+    @for (review of reviews; track review.id) {
+      <article class="review-item" [ngClass]="review.priority">
+        <mat-icon>{{ review.priority === 'high' ? 'priority_high' : 'task_alt' }}</mat-icon>
+        <div>
+          <div class="review-title">
+            <strong>{{ review.title }}</strong>
+            <span>{{ 'drivers.priority.' + review.priority | translate }}</span>
+          </div>
+          <p>{{ review.description }}</p>
+          <small>{{ review.driverCode }} · {{ review.driverName }} · {{ review.dueDate | date: 'yyyy-MM-dd' }}</small>
+        </div>
+      </article>
+    }
+  </div>
+</article>

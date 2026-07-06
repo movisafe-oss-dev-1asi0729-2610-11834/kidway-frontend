@@ -1,0 +1,37 @@
+<article class="driver-card">
+  <div class="driver-topline">
+    <div class="driver-identity">
+      <span class="avatar">{{ driver.photoInitials }}</span>
+      <div>
+        <h3>{{ driver.fullName }}</h3>
+        <p>{{ driver.code }} · {{ driver.licenseClass }} · {{ driver.yearsOfExperience }} {{ 'drivers.card.years' | translate }}</p>
+      </div>
+    </div>
+    <span class="status" [ngClass]="driver.status">{{ 'drivers.status.' + driver.status | translate }}</span>
+  </div>
+
+  <div class="driver-meta">
+    <span><mat-icon>directions_bus</mat-icon>{{ driver.assignedVehicle }}</span>
+    <span><mat-icon>route</mat-icon>{{ driver.assignedRoute }}</span>
+    <span><mat-icon>groups</mat-icon>{{ driver.studentsAssigned }} {{ 'drivers.card.students' | translate }}</span>
+  </div>
+
+  <div class="score-row">
+    <div>
+      <span>{{ 'drivers.card.safetyScore' | translate }}</span>
+      <strong>{{ driver.safetyScore }}%</strong>
+    </div>
+    <i [style.background]="scoreGradient(driver.safetyScore)"></i>
+  </div>
+
+  <div class="card-footer">
+    <span>
+      <mat-icon>schedule</mat-icon>
+      {{ driver.lastCheckIn | date: 'shortTime' }} · {{ driver.availabilityLabel }}
+    </span>
+    <span [class.invalid]="!driver.documentsValid">
+      <mat-icon>{{ driver.documentsValid ? 'verified' : 'warning' }}</mat-icon>
+      {{ driver.documentsValid ? ('drivers.card.documentsValid' | translate) : ('drivers.card.documentsPending' | translate) }}
+    </span>
+  </div>
+</article>
