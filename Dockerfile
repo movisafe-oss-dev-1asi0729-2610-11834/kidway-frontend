@@ -2,13 +2,15 @@ FROM node:22.12.0-alpine AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
 
-RUN npm install --legacy-peer-deps --no-audit --no-fund
+COPY package.json package-lock.json ./
+
+RUN pnpm install --no-frozen-lockfile
 
 COPY . .
 
-RUN npm run build -- --configuration development
+RUN pnpm run build -- --configuration development
 
 FROM nginx:1.27-alpine
 
