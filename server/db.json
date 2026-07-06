@@ -13,7 +13,8 @@
     "alerts": 4,
     "attendanceRate": 96.8,
     "fleetAvailability": 88,
-    "routeCoverage": 92
+    "routeCoverage": 92,
+    "serviceHealth": 97.2
   },
   "notifications": [
     {
@@ -551,5 +552,1097 @@
       "stopName": null,
       "status": "Activo"
     }
-  ]
+  ],
+  "dashboardViews": [
+    {
+      "id": "operator",
+      "role": "operator",
+      "titleKey": "dashboardPage.roles.operator.title",
+      "subtitleKey": "dashboardPage.roles.operator.subtitle",
+      "heroValue": "1",
+      "heroLabelKey": "dashboardPage.hero.operator",
+      "metrics": [
+        {
+          "id": "trips",
+          "icon": "route",
+          "value": "1",
+          "labelKey": "dashboardPage.metrics.activeTrips",
+          "helperKey": "dashboardPage.helpers.operatorTrips",
+          "trend": "+1",
+          "trendDirection": "up"
+        },
+        {
+          "id": "students",
+          "icon": "school",
+          "value": "18",
+          "labelKey": "dashboardPage.metrics.studentsOnBoard",
+          "helperKey": "dashboardPage.helpers.students",
+          "trend": "stable",
+          "trendDirection": "stable"
+        },
+        {
+          "id": "alerts",
+          "icon": "notifications_active",
+          "value": "1",
+          "labelKey": "dashboardPage.metrics.openAlerts",
+          "helperKey": "dashboardPage.helpers.alerts",
+          "trend": "-1",
+          "trendDirection": "down"
+        },
+        {
+          "id": "attendance",
+          "icon": "fact_check",
+          "value": "98%",
+          "labelKey": "dashboardPage.metrics.attendanceRate",
+          "helperKey": "dashboardPage.helpers.attendance",
+          "trend": "+2%",
+          "trendDirection": "up"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "kw-204",
+          "plate": "KW-204",
+          "driverName": "Carlos Pérez",
+          "lat": -12.0464,
+          "lng": -77.0428,
+          "status": "on-route",
+          "route": "Miraflores School Route",
+          "students": 18,
+          "etaMinutes": 7,
+          "lastUpdate": "2 min ago"
+        }
+      ],
+      "alerts": [
+        {
+          "id": 2,
+          "type": "attendance",
+          "priority": "medium",
+          "title": "Attendance confirmation pending",
+          "message": "Three students still require boarding confirmation before route closure.",
+          "timestamp": "Today, 7:39 AM",
+          "read": false
+        }
+      ],
+      "operationItems": [
+        {
+          "id": "attendance",
+          "label": "Attendance reliability",
+          "value": "96.8%",
+          "helper": "184 students already confirmed",
+          "progress": 96.8,
+          "icon": "fact_check"
+        },
+        {
+          "id": "fleet",
+          "label": "Fleet availability",
+          "value": "88%",
+          "helper": "22 of 25 vehicles ready",
+          "progress": 88,
+          "icon": "directions_bus"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a1",
+          "time": "7:18 AM",
+          "title": "Route started",
+          "description": "Miraflores School Route started on time.",
+          "status": "completed"
+        },
+        {
+          "id": "a2",
+          "time": "7:34 AM",
+          "title": "Boarding updated",
+          "description": "18 students marked as boarded.",
+          "status": "completed"
+        },
+        {
+          "id": "a3",
+          "time": "7:42 AM",
+          "title": "Next stop approaching",
+          "description": "Estimated arrival in 7 minutes.",
+          "status": "in-progress"
+        }
+      ]
+    },
+    {
+      "id": "company",
+      "role": "company",
+      "titleKey": "dashboardPage.roles.company.title",
+      "subtitleKey": "dashboardPage.roles.company.subtitle",
+      "heroValue": "96.8%",
+      "heroLabelKey": "dashboardPage.hero.company",
+      "metrics": [
+        {
+          "id": "trips",
+          "icon": "route",
+          "value": "12",
+          "labelKey": "dashboardPage.metrics.activeTrips",
+          "helperKey": "dashboardPage.helpers.activeTrips",
+          "trend": "+3",
+          "trendDirection": "up"
+        },
+        {
+          "id": "students",
+          "icon": "school",
+          "value": "184",
+          "labelKey": "dashboardPage.metrics.studentsOnBoard",
+          "helperKey": "dashboardPage.helpers.students",
+          "trend": "+24",
+          "trendDirection": "up"
+        },
+        {
+          "id": "alerts",
+          "icon": "notifications_active",
+          "value": "4",
+          "labelKey": "dashboardPage.metrics.openAlerts",
+          "helperKey": "dashboardPage.helpers.alerts",
+          "trend": "-2",
+          "trendDirection": "down"
+        },
+        {
+          "id": "attendance",
+          "icon": "fact_check",
+          "value": "96.8%",
+          "labelKey": "dashboardPage.metrics.attendanceRate",
+          "helperKey": "dashboardPage.helpers.attendance",
+          "trend": "+1.4%",
+          "trendDirection": "up"
+        },
+        {
+          "id": "fleet",
+          "icon": "directions_bus",
+          "value": "88%",
+          "labelKey": "dashboardPage.metrics.fleetAvailability",
+          "helperKey": "dashboardPage.helpers.fleet",
+          "trend": "stable",
+          "trendDirection": "stable"
+        },
+        {
+          "id": "coverage",
+          "icon": "alt_route",
+          "value": "92%",
+          "labelKey": "dashboardPage.metrics.routeCoverage",
+          "helperKey": "dashboardPage.helpers.coverage",
+          "trend": "+4%",
+          "trendDirection": "up"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "kw-204",
+          "plate": "KW-204",
+          "driverName": "Carlos Pérez",
+          "lat": -12.0464,
+          "lng": -77.0428,
+          "status": "on-route",
+          "route": "Miraflores School Route",
+          "students": 18,
+          "etaMinutes": 7,
+          "lastUpdate": "2 min ago"
+        },
+        {
+          "id": "kw-118",
+          "plate": "KW-118",
+          "driverName": "María Gómez",
+          "lat": -12.0931,
+          "lng": -77.0465,
+          "status": "delayed",
+          "route": "San Isidro Morning Route",
+          "students": 21,
+          "etaMinutes": 12,
+          "lastUpdate": "1 min ago"
+        },
+        {
+          "id": "kw-076",
+          "plate": "KW-076",
+          "driverName": "Luis Torres",
+          "lat": -12.0712,
+          "lng": -77.0308,
+          "status": "stopped",
+          "route": "Surco Pickup Route",
+          "students": 14,
+          "etaMinutes": 4,
+          "lastUpdate": "4 min ago"
+        }
+      ],
+      "alerts": [
+        {
+          "id": 1,
+          "type": "delay",
+          "priority": "high",
+          "title": "Route delay detected",
+          "message": "Vehicle KW-118 is 8 minutes behind schedule on San Isidro Morning Route.",
+          "timestamp": "Today, 7:45 AM",
+          "read": false,
+          "relatedVehicle": "KW-118"
+        },
+        {
+          "id": 2,
+          "type": "attendance",
+          "priority": "medium",
+          "title": "Attendance confirmation pending",
+          "message": "Three students still require boarding confirmation before route closure.",
+          "timestamp": "Today, 7:39 AM",
+          "read": false
+        },
+        {
+          "id": 3,
+          "type": "incident",
+          "priority": "critical",
+          "title": "Minor incident follow-up",
+          "message": "An incident report from KW-204 requires company admin review.",
+          "timestamp": "Today, 7:26 AM",
+          "read": true,
+          "relatedVehicle": "KW-204"
+        }
+      ],
+      "operationItems": [
+        {
+          "id": "attendance",
+          "label": "Attendance reliability",
+          "value": "96.8%",
+          "helper": "184 students already confirmed",
+          "progress": 96.8,
+          "icon": "fact_check"
+        },
+        {
+          "id": "fleet",
+          "label": "Fleet availability",
+          "value": "88%",
+          "helper": "22 of 25 vehicles ready",
+          "progress": 88,
+          "icon": "directions_bus"
+        },
+        {
+          "id": "coverage",
+          "label": "Route coverage",
+          "value": "92%",
+          "helper": "Most planned stops covered",
+          "progress": 92,
+          "icon": "alt_route"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a1",
+          "time": "7:10 AM",
+          "title": "Morning dispatch completed",
+          "description": "12 routes started with assigned drivers and vehicles.",
+          "status": "completed"
+        },
+        {
+          "id": "a2",
+          "time": "7:31 AM",
+          "title": "Attendance updated",
+          "description": "184 students confirmed on board across active trips.",
+          "status": "completed"
+        },
+        {
+          "id": "a3",
+          "time": "7:45 AM",
+          "title": "Delay requires attention",
+          "description": "KW-118 is behind schedule and needs follow-up.",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "id": "admin",
+      "role": "admin",
+      "titleKey": "dashboardPage.roles.admin.title",
+      "subtitleKey": "dashboardPage.roles.admin.subtitle",
+      "heroValue": "24",
+      "heroLabelKey": "dashboardPage.hero.admin",
+      "metrics": [
+        {
+          "id": "companies",
+          "icon": "business",
+          "value": "24",
+          "labelKey": "dashboardPage.metrics.activeCompanies",
+          "helperKey": "dashboardPage.helpers.companies",
+          "trend": "+2",
+          "trendDirection": "up"
+        },
+        {
+          "id": "trips",
+          "icon": "route",
+          "value": "138",
+          "labelKey": "dashboardPage.metrics.platformTrips",
+          "helperKey": "dashboardPage.helpers.platformTrips",
+          "trend": "+18",
+          "trendDirection": "up"
+        },
+        {
+          "id": "alerts",
+          "icon": "notifications_active",
+          "value": "17",
+          "labelKey": "dashboardPage.metrics.openAlerts",
+          "helperKey": "dashboardPage.helpers.alerts",
+          "trend": "-5",
+          "trendDirection": "down"
+        },
+        {
+          "id": "service",
+          "icon": "verified",
+          "value": "97.2%",
+          "labelKey": "dashboardPage.metrics.serviceHealth",
+          "helperKey": "dashboardPage.helpers.serviceHealth",
+          "trend": "+0.8%",
+          "trendDirection": "up"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "kw-204",
+          "plate": "KW-204",
+          "driverName": "Carlos Pérez",
+          "lat": -12.0464,
+          "lng": -77.0428,
+          "status": "on-route",
+          "route": "Miraflores School Route",
+          "students": 18,
+          "etaMinutes": 7,
+          "lastUpdate": "2 min ago"
+        },
+        {
+          "id": "kw-118",
+          "plate": "KW-118",
+          "driverName": "María Gómez",
+          "lat": -12.0931,
+          "lng": -77.0465,
+          "status": "delayed",
+          "route": "San Isidro Morning Route",
+          "students": 21,
+          "etaMinutes": 12,
+          "lastUpdate": "1 min ago"
+        },
+        {
+          "id": "kw-076",
+          "plate": "KW-076",
+          "driverName": "Luis Torres",
+          "lat": -12.0712,
+          "lng": -77.0308,
+          "status": "stopped",
+          "route": "Surco Pickup Route",
+          "students": 14,
+          "etaMinutes": 4,
+          "lastUpdate": "4 min ago"
+        },
+        {
+          "id": "kw-401",
+          "plate": "KW-401",
+          "driverName": "External Operator",
+          "lat": -12.11,
+          "lng": -77.02,
+          "status": "on-route",
+          "route": "Platform Route Review",
+          "students": 16,
+          "etaMinutes": 9,
+          "lastUpdate": "2 min ago"
+        }
+      ],
+      "alerts": [
+        {
+          "id": 1,
+          "type": "delay",
+          "priority": "high",
+          "title": "Route delay detected",
+          "message": "Vehicle KW-118 is 8 minutes behind schedule on San Isidro Morning Route.",
+          "timestamp": "Today, 7:45 AM",
+          "read": false,
+          "relatedVehicle": "KW-118"
+        },
+        {
+          "id": 2,
+          "type": "attendance",
+          "priority": "medium",
+          "title": "Attendance confirmation pending",
+          "message": "Three students still require boarding confirmation before route closure.",
+          "timestamp": "Today, 7:39 AM",
+          "read": false
+        },
+        {
+          "id": 3,
+          "type": "incident",
+          "priority": "critical",
+          "title": "Minor incident follow-up",
+          "message": "An incident report from KW-204 requires company admin review.",
+          "timestamp": "Today, 7:26 AM",
+          "read": true,
+          "relatedVehicle": "KW-204"
+        },
+        {
+          "id": 4,
+          "type": "system",
+          "priority": "medium",
+          "title": "Company subscription review",
+          "message": "One company is close to its plan vehicle limit.",
+          "timestamp": "Today, 7:12 AM",
+          "read": false
+        }
+      ],
+      "operationItems": [
+        {
+          "id": "health",
+          "label": "Service health",
+          "value": "97.2%",
+          "helper": "Platform services operating normally",
+          "progress": 97.2,
+          "icon": "verified"
+        },
+        {
+          "id": "companies",
+          "label": "Active companies",
+          "value": "24",
+          "helper": "2 new companies this month",
+          "progress": 86,
+          "icon": "business"
+        },
+        {
+          "id": "incidents",
+          "label": "Critical incident follow-up",
+          "value": "91%",
+          "helper": "Most incidents reviewed within SLA",
+          "progress": 91,
+          "icon": "report"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a1",
+          "time": "7:05 AM",
+          "title": "Platform synchronization completed",
+          "description": "Latest operational summaries were updated.",
+          "status": "completed"
+        },
+        {
+          "id": "a2",
+          "time": "7:22 AM",
+          "title": "Company review pending",
+          "description": "MoviSafe Transport has one open incident follow-up.",
+          "status": "warning"
+        },
+        {
+          "id": "a3",
+          "time": "7:40 AM",
+          "title": "Global KPI refreshed",
+          "description": "Dashboard metrics recalculated for active companies.",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "fleetSummary": {
+    "totalVehicles": 25,
+    "availableVehicles": 22,
+    "onRouteVehicles": 12,
+    "maintenanceVehicles": 3,
+    "averageAvailability": 88,
+    "averageCapacityUsage": 83
+  },
+  "fleetVehicles": [
+    {
+      "id": "veh-kw-204",
+      "plate": "KW-204",
+      "code": "KW-204",
+      "brand": "Hyundai",
+      "model": "H1 School Van",
+      "year": 2022,
+      "capacity": 18,
+      "assignedStudents": 16,
+      "driverName": "Carlos Pérez",
+      "routeName": "Miraflores School Route",
+      "status": "onRoute",
+      "energyType": "diesel",
+      "ownershipType": "company",
+      "nextMaintenanceDate": "2026-07-18",
+      "lastInspectionDate": "2026-05-28",
+      "mileageKm": 48320,
+      "availabilityScore": 92,
+      "documentsValid": true
+    },
+    {
+      "id": "veh-kw-118",
+      "plate": "KW-118",
+      "code": "KW-118",
+      "brand": "Toyota",
+      "model": "Hiace",
+      "year": 2021,
+      "capacity": 15,
+      "assignedStudents": 13,
+      "driverName": "María Gómez",
+      "routeName": "San Isidro Morning Route",
+      "status": "available",
+      "energyType": "gasoline",
+      "ownershipType": "company",
+      "nextMaintenanceDate": "2026-08-05",
+      "lastInspectionDate": "2026-06-01",
+      "mileageKm": 39210,
+      "availabilityScore": 96,
+      "documentsValid": true
+    },
+    {
+      "id": "veh-kw-076",
+      "plate": "KW-076",
+      "code": "KW-076",
+      "brand": "Mercedes-Benz",
+      "model": "Sprinter",
+      "year": 2020,
+      "capacity": 22,
+      "assignedStudents": 20,
+      "driverName": "Luis Torres",
+      "routeName": "Surco Pickup Route",
+      "status": "maintenance",
+      "energyType": "diesel",
+      "ownershipType": "company",
+      "nextMaintenanceDate": "2026-07-08",
+      "lastInspectionDate": "2026-05-19",
+      "mileageKm": 58740,
+      "availabilityScore": 74,
+      "documentsValid": false
+    },
+    {
+      "id": "veh-kw-311",
+      "plate": "KW-311",
+      "code": "KW-311",
+      "brand": "Nissan",
+      "model": "Urvan",
+      "year": 2023,
+      "capacity": 17,
+      "assignedStudents": 11,
+      "driverName": "Andrea Rojas",
+      "routeName": "La Molina Afternoon Route",
+      "status": "available",
+      "energyType": "gasoline",
+      "ownershipType": "company",
+      "nextMaintenanceDate": "2026-09-11",
+      "lastInspectionDate": "2026-06-05",
+      "mileageKm": 25480,
+      "availabilityScore": 98,
+      "documentsValid": true
+    },
+    {
+      "id": "veh-op-019",
+      "plate": "OP-019",
+      "code": "OP-019",
+      "brand": "Kia",
+      "model": "Grand Carnival",
+      "year": 2022,
+      "capacity": 11,
+      "assignedStudents": 9,
+      "driverName": "Juan Rojas",
+      "routeName": "Independent Driver Route",
+      "status": "onRoute",
+      "energyType": "gasoline",
+      "ownershipType": "independent",
+      "nextMaintenanceDate": "2026-08-21",
+      "lastInspectionDate": "2026-06-03",
+      "mileageKm": 31890,
+      "availabilityScore": 91,
+      "documentsValid": true
+    },
+    {
+      "id": "veh-kw-404",
+      "plate": "KW-404",
+      "code": "KW-404",
+      "brand": "Toyota",
+      "model": "Coaster",
+      "year": 2019,
+      "capacity": 28,
+      "assignedStudents": 0,
+      "driverName": "Not assigned",
+      "routeName": "Backup unit",
+      "status": "inactive",
+      "energyType": "diesel",
+      "ownershipType": "company",
+      "nextMaintenanceDate": "2026-07-30",
+      "lastInspectionDate": "2026-04-30",
+      "mileageKm": 72410,
+      "availabilityScore": 61,
+      "documentsValid": false
+    }
+  ],
+  "fleetMaintenanceAlerts": [
+    {
+      "id": "maint-001",
+      "vehicleCode": "KW-076",
+      "plate": "KW-076",
+      "title": "Technical inspection pending",
+      "dueDate": "2026-07-08",
+      "priority": "high",
+      "description": "Document validation is required before assigning this unit to a new route."
+    },
+    {
+      "id": "maint-002",
+      "vehicleCode": "KW-204",
+      "plate": "KW-204",
+      "title": "Preventive maintenance scheduled",
+      "dueDate": "2026-07-18",
+      "priority": "medium",
+      "description": "Oil change and brake review should be confirmed this month."
+    },
+    {
+      "id": "maint-003",
+      "vehicleCode": "KW-404",
+      "plate": "KW-404",
+      "title": "Inactive unit review",
+      "dueDate": "2026-07-30",
+      "priority": "low",
+      "description": "This backup unit needs documentation review before being reactivated."
+    }
+  ],
+  "driverSummary": {
+    "totalDrivers": 18,
+    "availableDrivers": 14,
+    "onRouteDrivers": 9,
+    "pendingReviews": 3,
+    "licenseCompliance": 94,
+    "averageSafetyScore": 91
+  },
+  "drivers": [
+    {
+      "id": "drv-001",
+      "code": "DRV-001",
+      "fullName": "Carlos Pérez",
+      "photoInitials": "CP",
+      "licenseNumber": "AIIb-458721",
+      "licenseClass": "A-IIb",
+      "licenseExpiresAt": "2027-04-15",
+      "phone": "+51 987 221 104",
+      "email": "carlos.perez@kidway.pe",
+      "assignedVehicle": "KW-204",
+      "assignedRoute": "Miraflores School Route",
+      "status": "onRoute",
+      "availabilityLabel": "Morning route active",
+      "tripsToday": 2,
+      "studentsAssigned": 16,
+      "safetyScore": 96,
+      "punctualityScore": 92,
+      "lastCheckIn": "2026-07-05T07:10:00",
+      "documentsValid": true,
+      "yearsOfExperience": 8
+    },
+    {
+      "id": "drv-002",
+      "code": "DRV-002",
+      "fullName": "María Gómez",
+      "photoInitials": "MG",
+      "licenseNumber": "AIIb-884213",
+      "licenseClass": "A-IIb",
+      "licenseExpiresAt": "2026-12-02",
+      "phone": "+51 955 420 771",
+      "email": "maria.gomez@kidway.pe",
+      "assignedVehicle": "KW-118",
+      "assignedRoute": "San Isidro Morning Route",
+      "status": "available",
+      "availabilityLabel": "Ready for next assignment",
+      "tripsToday": 1,
+      "studentsAssigned": 13,
+      "safetyScore": 94,
+      "punctualityScore": 89,
+      "lastCheckIn": "2026-07-05T07:32:00",
+      "documentsValid": true,
+      "yearsOfExperience": 6
+    },
+    {
+      "id": "drv-003",
+      "code": "DRV-003",
+      "fullName": "Luis Torres",
+      "photoInitials": "LT",
+      "licenseNumber": "AIIIc-321908",
+      "licenseClass": "A-IIIc",
+      "licenseExpiresAt": "2026-08-18",
+      "phone": "+51 940 118 300",
+      "email": "luis.torres@kidway.pe",
+      "assignedVehicle": "KW-076",
+      "assignedRoute": "Surco Pickup Route",
+      "status": "review",
+      "availabilityLabel": "Document review pending",
+      "tripsToday": 0,
+      "studentsAssigned": 20,
+      "safetyScore": 78,
+      "punctualityScore": 84,
+      "lastCheckIn": "2026-07-04T18:20:00",
+      "documentsValid": false,
+      "yearsOfExperience": 10
+    },
+    {
+      "id": "drv-004",
+      "code": "DRV-004",
+      "fullName": "Andrea Rojas",
+      "photoInitials": "AR",
+      "licenseNumber": "AIIb-675410",
+      "licenseClass": "A-IIb",
+      "licenseExpiresAt": "2028-02-27",
+      "phone": "+51 922 540 961",
+      "email": "andrea.rojas@kidway.pe",
+      "assignedVehicle": "KW-311",
+      "assignedRoute": "La Molina Afternoon Route",
+      "status": "available",
+      "availabilityLabel": "Afternoon route available",
+      "tripsToday": 1,
+      "studentsAssigned": 11,
+      "safetyScore": 98,
+      "punctualityScore": 95,
+      "lastCheckIn": "2026-07-05T08:05:00",
+      "documentsValid": true,
+      "yearsOfExperience": 5
+    }
+  ],
+  "driverReviews": [
+    {
+      "id": "rev-001",
+      "driverCode": "DRV-003",
+      "driverName": "Luis Torres",
+      "title": "License document review",
+      "description": "Administrative validation is required before assigning new routes.",
+      "dueDate": "2026-07-09",
+      "priority": "high"
+    },
+    {
+      "id": "rev-002",
+      "driverCode": "DRV-002",
+      "driverName": "María Gómez",
+      "title": "Annual safety refresh",
+      "description": "Schedule the annual safety training checkpoint for the driver profile.",
+      "dueDate": "2026-07-16",
+      "priority": "medium"
+    }
+  ],
+  "driverShifts": [
+    {
+      "id": "shift-001",
+      "time": "7:10 AM",
+      "title": "Morning dispatch confirmed",
+      "description": "Carlos Pérez started the Miraflores School Route with vehicle KW-204.",
+      "driverName": "Carlos Pérez",
+      "status": "completed"
+    },
+    {
+      "id": "shift-002",
+      "time": "7:32 AM",
+      "title": "Driver availability updated",
+      "description": "María Gómez is available for the next route assignment.",
+      "driverName": "María Gómez",
+      "status": "active"
+    },
+    {
+      "id": "shift-003",
+      "time": "8:05 AM",
+      "title": "Afternoon route prepared",
+      "description": "Andrea Rojas confirmed route readiness for La Molina Afternoon Route.",
+      "driverName": "Andrea Rojas",
+      "status": "pending"
+    }
+  ],
+  "routeSummary": {
+    "totalRoutes": 18,
+    "activeRoutes": 14,
+    "scheduledStops": 126,
+    "districtsCovered": 9,
+    "routeCoverage": 92,
+    "optimizationScore": 87
+  },
+  "schoolRoutes": [
+    {
+      "id": "route-001",
+      "code": "RT-001",
+      "name": "Miraflores School Route",
+      "district": "Miraflores",
+      "school": "Lima Norte School",
+      "scheduleLabel": "Morning service",
+      "startTime": "06:45",
+      "endTime": "07:45",
+      "assignedDriver": "Carlos Pérez",
+      "assignedVehicle": "KW-204",
+      "assignedStudents": 16,
+      "vehicleCapacity": 18,
+      "stops": 12,
+      "coveragePercentage": 96,
+      "optimizationScore": 94,
+      "estimatedDuration": "58 min",
+      "status": "active",
+      "nextServiceAt": "2026-07-06T06:45:00",
+      "lastOptimizedAt": "2026-07-04",
+      "needsOptimization": false,
+      "checkpoints": [
+        "Av. Pardo",
+        "Óvalo Gutierrez",
+        "Colegio Lima Norte"
+      ]
+    },
+    {
+      "id": "route-002",
+      "code": "RT-002",
+      "name": "San Isidro Morning Route",
+      "district": "San Isidro",
+      "school": "Santa María School",
+      "scheduleLabel": "Morning service",
+      "startTime": "06:50",
+      "endTime": "07:55",
+      "assignedDriver": "María Gómez",
+      "assignedVehicle": "KW-118",
+      "assignedStudents": 13,
+      "vehicleCapacity": 15,
+      "stops": 10,
+      "coveragePercentage": 91,
+      "optimizationScore": 88,
+      "estimatedDuration": "64 min",
+      "status": "scheduled",
+      "nextServiceAt": "2026-07-06T06:50:00",
+      "lastOptimizedAt": "2026-07-03",
+      "needsOptimization": false,
+      "checkpoints": [
+        "Javier Prado",
+        "Av. Salaverry",
+        "Santa María School"
+      ]
+    },
+    {
+      "id": "route-003",
+      "code": "RT-003",
+      "name": "Surco Pickup Route",
+      "district": "Santiago de Surco",
+      "school": "Cambridge School",
+      "scheduleLabel": "Morning service",
+      "startTime": "06:35",
+      "endTime": "07:50",
+      "assignedDriver": "Luis Torres",
+      "assignedVehicle": "KW-076",
+      "assignedStudents": 20,
+      "vehicleCapacity": 22,
+      "stops": 15,
+      "coveragePercentage": 84,
+      "optimizationScore": 76,
+      "estimatedDuration": "75 min",
+      "status": "review",
+      "nextServiceAt": "2026-07-06T06:35:00",
+      "lastOptimizedAt": "2026-06-28",
+      "needsOptimization": true,
+      "checkpoints": [
+        "Caminos del Inca",
+        "Benavides",
+        "Cambridge School"
+      ]
+    },
+    {
+      "id": "route-004",
+      "code": "RT-004",
+      "name": "La Molina Afternoon Route",
+      "district": "La Molina",
+      "school": "Newton College",
+      "scheduleLabel": "Afternoon return",
+      "startTime": "15:10",
+      "endTime": "16:15",
+      "assignedDriver": "Andrea Rojas",
+      "assignedVehicle": "KW-311",
+      "assignedStudents": 11,
+      "vehicleCapacity": 17,
+      "stops": 9,
+      "coveragePercentage": 94,
+      "optimizationScore": 91,
+      "estimatedDuration": "62 min",
+      "status": "active",
+      "nextServiceAt": "2026-07-05T15:10:00",
+      "lastOptimizedAt": "2026-07-02",
+      "needsOptimization": false,
+      "checkpoints": [
+        "Av. La Molina",
+        "Molicentro",
+        "Newton College"
+      ]
+    }
+  ],
+  "routeReviews": [
+    {
+      "id": "route-rev-001",
+      "routeCode": "RT-003",
+      "routeName": "Surco Pickup Route",
+      "title": "Route optimization required",
+      "description": "The route has exceeded the expected duration during the last three services.",
+      "dueDate": "2026-07-08",
+      "priority": "high"
+    },
+    {
+      "id": "route-rev-002",
+      "routeCode": "RT-002",
+      "routeName": "San Isidro Morning Route",
+      "title": "Stop sequence review",
+      "description": "Two stops can be reordered to reduce waiting time and fuel consumption.",
+      "dueDate": "2026-07-12",
+      "priority": "medium"
+    }
+  ],
+  "routeActivities": [
+    {
+      "id": "route-act-001",
+      "time": "6:45 AM",
+      "title": "Route dispatch confirmed",
+      "description": "RT-001 started with 16 assigned students and vehicle KW-204.",
+      "routeName": "Miraflores School Route",
+      "status": "completed"
+    },
+    {
+      "id": "route-act-002",
+      "time": "7:12 AM",
+      "title": "Coverage checkpoint updated",
+      "description": "RT-002 confirmed the second checkpoint near Javier Prado.",
+      "routeName": "San Isidro Morning Route",
+      "status": "active"
+    },
+    {
+      "id": "route-act-003",
+      "time": "8:05 AM",
+      "title": "Optimization suggestion generated",
+      "description": "RT-003 requires review due to accumulated delays and additional stops.",
+      "routeName": "Surco Pickup Route",
+      "status": "pending"
+    }
+  ],
+  "trackingDashboard": {
+    "summary": {
+      "activeUnits": 12,
+      "delayedUnits": 2,
+      "averageSpeed": 32.8,
+      "routeProgress": 76,
+      "gpsSignal": 98,
+      "activeAlerts": 3
+    },
+    "vehicles": [
+      {
+        "id": "trk-001",
+        "vehicleId": "KW-204",
+        "plate": "B7K-204",
+        "driverName": "Carlos Pérez",
+        "routeName": "Miraflores School Route",
+        "schoolName": "Lima Norte School",
+        "district": "Miraflores",
+        "status": "on-route",
+        "latitude": -12.1195,
+        "longitude": -77.0308,
+        "speedKmh": 31.4,
+        "etaMinutes": 7,
+        "progressPercent": 84,
+        "signalStrength": 99,
+        "studentCount": 16,
+        "nextStop": "Calle Pino 42",
+        "deviationMeters": 0,
+        "lastUpdate": "Today, 7:45 AM"
+      },
+      {
+        "id": "trk-002",
+        "vehicleId": "KW-118",
+        "plate": "D4M-118",
+        "driverName": "María Gómez",
+        "routeName": "San Isidro Morning Route",
+        "schoolName": "Santa Maria School",
+        "district": "San Isidro",
+        "status": "delayed",
+        "latitude": -12.0968,
+        "longitude": -77.0312,
+        "speedKmh": 18.6,
+        "etaMinutes": 12,
+        "progressPercent": 61,
+        "signalStrength": 96,
+        "studentCount": 13,
+        "nextStop": "Av. Robles 115",
+        "deviationMeters": 180,
+        "lastUpdate": "Today, 7:43 AM"
+      },
+      {
+        "id": "trk-003",
+        "vehicleId": "KW-076",
+        "plate": "F1P-076",
+        "driverName": "Luis Torres",
+        "routeName": "Surco Pickup Route",
+        "schoolName": "Cambridge School",
+        "district": "Santiago de Surco",
+        "status": "stopped",
+        "latitude": -12.1358,
+        "longitude": -76.9932,
+        "speedKmh": 0,
+        "etaMinutes": 4,
+        "progressPercent": 72,
+        "signalStrength": 92,
+        "studentCount": 20,
+        "nextStop": "Javier Prado checkpoint",
+        "deviationMeters": 45,
+        "lastUpdate": "Today, 7:42 AM"
+      },
+      {
+        "id": "trk-004",
+        "vehicleId": "KW-311",
+        "plate": "H8R-311",
+        "driverName": "Andrea Rojas",
+        "routeName": "La Molina Afternoon Route",
+        "schoolName": "Newton College",
+        "district": "La Molina",
+        "status": "on-route",
+        "latitude": -12.0812,
+        "longitude": -76.9469,
+        "speedKmh": 34.1,
+        "etaMinutes": 9,
+        "progressPercent": 48,
+        "signalStrength": 97,
+        "studentCount": 11,
+        "nextStop": "Plaza Norte",
+        "deviationMeters": 0,
+        "lastUpdate": "Today, 7:40 AM"
+      }
+    ],
+    "alerts": [
+      {
+        "id": "ta-001",
+        "type": "delay",
+        "title": "Route delay detected",
+        "description": "KW-118 is 8 minutes behind schedule near San Isidro.",
+        "severity": "high",
+        "vehicleId": "KW-118",
+        "time": "7:45 AM"
+      },
+      {
+        "id": "ta-002",
+        "type": "deviation",
+        "title": "Possible route deviation",
+        "description": "KW-076 reported a short stop outside the expected path.",
+        "severity": "medium",
+        "vehicleId": "KW-076",
+        "time": "7:41 AM"
+      },
+      {
+        "id": "ta-003",
+        "type": "arrival",
+        "title": "Next stop approaching",
+        "description": "KW-204 will arrive at Calle Pino 42 in approximately 7 minutes.",
+        "severity": "low",
+        "vehicleId": "KW-204",
+        "time": "7:39 AM"
+      }
+    ],
+    "activities": [
+      {
+        "id": "tac-001",
+        "time": "7:45 AM",
+        "title": "Live position synchronized",
+        "description": "12 active units reported valid GPS coordinates.",
+        "status": "active"
+      },
+      {
+        "id": "tac-002",
+        "time": "7:43 AM",
+        "title": "Delay alert generated",
+        "description": "The system flagged KW-118 as delayed after ETA recalculation.",
+        "status": "pending"
+      },
+      {
+        "id": "tac-003",
+        "time": "7:40 AM",
+        "title": "Route progress updated",
+        "description": "Average trip progress reached 76% across active morning routes.",
+        "status": "completed"
+      }
+    ]
+  }
 }
