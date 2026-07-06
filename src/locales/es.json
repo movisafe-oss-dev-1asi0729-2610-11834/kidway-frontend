@@ -177,59 +177,134 @@
     "mark_all": "Marcar todas como leídas"
   },
   "assignments": {
-    "management": {
-      "breadcrumbs": "Operaciones / Asignaciones",
+    "hero": {
+      "eyebrow": "Gestión de asignaciones",
       "title": "Gestión de Asignaciones",
-      "subtitle": "Administra las asignaciones de alumnos a rutas y vehículos",
-      "stats": {
-        "total": "Asignaciones Totales",
-        "active": "Asignaciones Activas",
-        "inactive": "Inactivas",
-        "morning": "Turno Mañana"
-      },
-      "search_placeholder": "Buscar por alumno o ruta...",
-      "filter_shift": "Todos los Turnos",
-      "filter_status": "Todos los Estados",
-      "new_assignment": "Nueva Asignación",
-      "table": {
-        "student": "ALUMNO",
-        "route": "RUTA",
-        "vehicle": "VEHÍCULO",
-        "shift": "TURNO",
-        "status": "ESTADO",
-        "actions": "ACCIONES"
-      },
-      "shift": {
-        "morning": "Mañana",
-        "afternoon": "Tarde"
-      },
-      "status": {
-        "active": "Activo",
-        "inactive": "Inactivo"
-      },
-      "actions": {
-        "edit": "Editar Asignación",
-        "toggle_status": "Cambiar Estado",
-        "delete": "Eliminar Asignación"
-      },
-      "form": {
-        "add_title": "Agregar Nueva Asignación",
-        "edit_title": "Editar Asignación",
-        "code": "Código del Alumno",
-        "tutor": "Nombre del Tutor",
-        "cancel": "Cancelar",
-        "save": "Guardar"
-      }
+      "subtitle": "Valida asignaciones de estudiante, ruta, vehículo y conductor antes de cada operación de transporte escolar.",
+      "readiness": "Preparación de asignaciones"
+    },
+    "metrics": {
+      "total": "Asignaciones totales",
+      "totalDescription": "Estudiantes vinculados a recursos operativos",
+      "validated": "Asignaciones validadas",
+      "validatedDescription": "Listas para ejecutar ruta",
+      "pending": "Asignaciones pendientes",
+      "pendingDescription": "Falta ruta o vehículo",
+      "conflicts": "Conflictos detectados",
+      "conflictsDescription": "Requieren revisión operativa",
+      "capacity": "Uso de capacidad",
+      "capacityDescription": "Promedio de asientos asignados"
+    },
+    "banner": {
+      "title": "Las asignaciones requieren validación operativa",
+      "description": "Algunos registros aún necesitan validar ruta, vehículo, conductor u horario antes de usarse en viajes diarios.",
+      "action": "Revisar conflictos"
+    },
+    "roster": {
+      "eyebrow": "Lista de asignaciones",
+      "title": "Estado operativo de asignaciones"
+    },
+    "filters": {
+      "search": "Buscar por estudiante, ruta, vehículo, conductor o punto de recojo...",
+      "allStatuses": "Todas",
+      "allShifts": "Todos los turnos"
+    },
+    "status": {
+      "validated": "Validada",
+      "pending": "Pendiente",
+      "conflict": "Conflicto",
+      "inactive": "Inactiva"
+    },
+    "shift": {
+      "morning": "Mañana",
+      "afternoon": "Tarde"
+    },
+    "validation": {
+      "ready": "Lista para operar",
+      "capacity-risk": "Riesgo de capacidad",
+      "schedule-conflict": "Conflicto de horario",
+      "missing-route": "Ruta faltante",
+      "inactive": "Asignación inactiva"
+    },
+    "actions": {
+      "new": "Nueva asignación",
+      "edit": "Editar asignación",
+      "view": "Ver detalles",
+      "export": "Exportar lista"
+    },
+    "card": {
+      "pickupPoint": "Punto de recojo",
+      "pickupWindow": "Ventana de recojo",
+      "validation": "Validación",
+      "validationScore": "Puntaje de validación",
+      "ready": "Asignación lista",
+      "needsReview": "Requiere revisión"
+    },
+    "readiness": {
+      "eyebrow": "Preparación",
+      "title": "Preparación de asignaciones",
+      "caption": "Planificación segura"
+    },
+    "reviews": {
+      "eyebrow": "Control de validación",
+      "title": "Revisiones pendientes",
+      "items": "ítems"
+    },
+    "registry": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de asignaciones"
+    },
+    "table": {
+      "student": "Estudiante",
+      "route": "Ruta",
+      "vehicle": "Vehículo",
+      "driver": "Conductor",
+      "score": "Puntaje",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "timeline": {
+      "eyebrow": "Actividad reciente",
+      "title": "Timeline de asignaciones",
+      "today": "Hoy"
+    },
+    "empty": {
+      "title": "No se encontraron asignaciones",
+      "description": "Prueba cambiando el texto de búsqueda o el filtro seleccionado."
+    },
+    "detail": {
+      "eyebrow": "Detalle de asignación",
+      "route": "Ruta",
+      "vehicle": "Vehículo y conductor",
+      "pickup": "Punto de recojo",
+      "guardian": "Apoderado y turno",
+      "score": "Puntaje de validación",
+      "capacity": "Uso de capacidad"
+    },
+    "form": {
+      "eyebrow": "Formulario de asignación",
+      "createTitle": "Crear asignación",
+      "editTitle": "Editar asignación",
+      "subtitle": "Registra o actualiza la asignación del estudiante con datos de ruta, vehículo, conductor y validación.",
+      "studentCode": "Código del estudiante",
+      "studentName": "Nombre del estudiante",
+      "grade": "Grado",
+      "guardianName": "Nombre del apoderado",
+      "routeCode": "Código de ruta",
+      "routeName": "Nombre de ruta",
+      "vehiclePlate": "Placa del vehículo",
+      "driverName": "Nombre del conductor",
+      "shift": "Turno",
+      "status": "Estado",
+      "pickupPoint": "Punto de recojo",
+      "pickupWindow": "Ventana de recojo",
+      "validation": "Resultado de validación",
+      "validationScore": "Puntaje de validación",
+      "capacityUsage": "Uso de capacidad",
+      "notes": "Notas operativas"
     },
     "tracking": {
-      "breadcrumbs": "MoviSafe / Mis Hijos",
-      "title": "Asignaciones de mis Hijos",
-      "subtitle": "Revisa los detalles de transporte asignados a",
-      "stats": {
-        "total_kids": "Hijos Asignados"
-      },
-      "table_title": "Asignaciones de Transporte Activas",
-      "no_data": "No se encontraron asignaciones para sus hijos."
+      "title": "Asignaciones de mis hijos"
     }
   },
   "attendance": {
@@ -387,5 +462,369 @@
       "new_title": "Registrar Nuevo Alumno",
       "unassigned": "Sin asignar"
     }
+  },
+  "dashboardPage": {
+    "eyebrow": "4BC · DASHBOARD",
+    "rolePreview": "Vista por rol",
+    "roles": {
+      "operator": {
+        "label": "Conductor independiente",
+        "title": "Panel operativo del conductor",
+        "subtitle": "Resumen de ruta personal, asistencia de estudiantes, avance del viaje y alertas de seguridad del servicio actual."
+      },
+      "company": {
+        "label": "Admin de empresa",
+        "title": "Panel operativo de empresa",
+        "subtitle": "Vista en tiempo real de flota, rutas, estudiantes, viajes, asistencia y calidad del servicio."
+      },
+      "admin": {
+        "label": "Admin KidWay",
+        "title": "Panel de monitoreo de plataforma",
+        "subtitle": "Supervisión global de empresas, actividad operativa, incidencias y salud del sistema."
+      }
+    },
+    "hero": {
+      "operator": "Vehículo asignado",
+      "company": "Confiabilidad de asistencia",
+      "admin": "Empresas activas"
+    },
+    "metrics": {
+      "activeTrips": "Viajes activos",
+      "studentsOnBoard": "Estudiantes a bordo",
+      "openAlerts": "Alertas abiertas",
+      "attendanceRate": "Tasa de asistencia",
+      "fleetAvailability": "Disponibilidad de flota",
+      "routeCoverage": "Cobertura de ruta",
+      "activeCompanies": "Empresas activas",
+      "platformTrips": "Viajes en plataforma",
+      "serviceHealth": "Salud del servicio"
+    },
+    "helpers": {
+      "operatorTrips": "Ruta actual en progreso",
+      "activeTrips": "Rutas en progreso hoy",
+      "students": "Servicio de mañana confirmado",
+      "alerts": "Requiere revisión operativa",
+      "attendance": "Control de abordaje y bajada",
+      "fleet": "Vehículos listos para operar",
+      "coverage": "Paradas cubiertas por rutas activas",
+      "companies": "Empresas con servicio activo",
+      "platformTrips": "Viajes monitoreados hoy",
+      "serviceHealth": "Operación estable de la plataforma"
+    },
+    "map": {
+      "eyebrow": "Operación en vivo",
+      "title": "Mapa de ubicación de flota",
+      "live": "Seguimiento activo",
+      "loading": "Cargando mapa de rutas...",
+      "activeUnits": "Unidades activas"
+    },
+    "kpis": {
+      "eyebrow": "KPIs operativos",
+      "title": "Resumen de rendimiento"
+    },
+    "alerts": {
+      "eyebrow": "Alertas prioritarias",
+      "title": "Alertas recientes",
+      "items": "ítems",
+      "emptyTitle": "Todo está bajo control",
+      "emptyMessage": "No existen alertas activas para este rol."
+    },
+    "activity": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo operativa",
+      "today": "Hoy"
+    }
+  },
+  "fleet": {
+    "eyebrow": "5BC · Gestión de flota",
+    "title": "Gestión de flota",
+    "subtitle": "Monitorea disponibilidad vehicular, capacidad, documentación y mantenimiento para operaciones seguras de transporte escolar.",
+    "heroAvailability": "Disponibilidad de flota",
+    "kpis": {
+      "totalVehicles": "Vehículos totales",
+      "registeredUnits": "Unidades registradas en la empresa",
+      "availableVehicles": "Vehículos disponibles",
+      "readyForService": "Listos para asignación de ruta",
+      "onRouteVehicles": "Vehículos en ruta",
+      "activeRoutes": "Actualmente apoyan rutas activas",
+      "maintenanceVehicles": "En mantenimiento",
+      "requiresReview": "Requiere revisión operativa",
+      "capacityUsage": "Uso de capacidad",
+      "studentCapacity": "Uso promedio de asientos"
+    },
+    "inventory": {
+      "eyebrow": "Inventario de flota",
+      "title": "Estado operativo de vehículos"
+    },
+    "actions": {
+      "registerVehicle": "Registrar vehículo",
+      "export": "Exportar lista",
+      "viewDetails": "Ver detalle del vehículo"
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar por placa, conductor, ruta o modelo...",
+      "all": "Todas las unidades",
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "maintenance": "Mantenimiento",
+      "inactive": "Inactivo"
+    },
+    "status": {
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "maintenance": "Mantenimiento",
+      "inactive": "Inactivo"
+    },
+    "vehicle": {
+      "capacityUsage": "Uso de capacidad",
+      "nextMaintenance": "Próximo mantenimiento:",
+      "documentsValid": "Documentos válidos",
+      "documentsPending": "Revisión documental pendiente"
+    },
+    "availability": {
+      "eyebrow": "Disponibilidad",
+      "title": "Preparación de flota",
+      "ready": "Lista para servicio"
+    },
+    "maintenance": {
+      "eyebrow": "Control de mantenimiento",
+      "title": "Próximas revisiones",
+      "items": "elementos",
+      "due": "Vence:"
+    },
+    "priority": {
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta"
+    },
+    "table": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de flota",
+      "vehicle": "Vehículo",
+      "driver": "Conductor",
+      "route": "Ruta",
+      "capacity": "Capacidad",
+      "status": "Estado",
+      "inspection": "Última inspección",
+      "actions": "Acciones"
+    },
+    "empty": {
+      "title": "No se encontraron vehículos",
+      "message": "Prueba otro término de búsqueda o filtro de estado."
+    }
+  },
+  "drivers": {
+    "eyebrow": "6BC · Gestión de Conductores",
+    "title": "Gestión de Conductores",
+    "subtitle": "Supervisa disponibilidad de conductores, licencias, asignaciones de ruta y preparación operativa para servicios seguros de transporte escolar.",
+    "heroSafety": "Puntaje de seguridad",
+    "kpis": {
+      "totalDrivers": "Conductores totales",
+      "registeredDrivers": "Conductores registrados",
+      "availableDrivers": "Conductores disponibles",
+      "readyForRoutes": "Listos para asignación",
+      "onRouteDrivers": "Conductores en ruta",
+      "currentlyOperating": "Apoyando viajes activos",
+      "pendingReviews": "Revisiones pendientes",
+      "requiresValidation": "Requiere validación administrativa",
+      "licenseCompliance": "Cumplimiento de licencias",
+      "validLicenses": "Licencias y documentos válidos"
+    },
+    "inventory": {
+      "eyebrow": "Registro de conductores",
+      "title": "Estado operativo de conductores"
+    },
+    "actions": {
+      "registerDriver": "Registrar conductor",
+      "export": "Exportar lista",
+      "viewDetails": "Ver detalle del conductor"
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar por conductor, licencia, vehículo, ruta o correo...",
+      "all": "Todos",
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "review": "Revisión",
+      "offDuty": "Fuera de turno"
+    },
+    "empty": {
+      "title": "No se encontraron conductores",
+      "message": "Intenta cambiar el texto de búsqueda o el filtro seleccionado."
+    },
+    "status": {
+      "available": "Disponible",
+      "onRoute": "En ruta",
+      "offDuty": "Fuera de turno",
+      "review": "Revisión"
+    },
+    "card": {
+      "years": "años",
+      "students": "estudiantes",
+      "safetyScore": "Puntaje de seguridad",
+      "documentsValid": "Documentos válidos",
+      "documentsPending": "Revisión documental pendiente"
+    },
+    "readiness": {
+      "eyebrow": "Preparación",
+      "title": "Preparación de conductores",
+      "safeOperation": "Operación segura"
+    },
+    "compliance": {
+      "eyebrow": "Control de cumplimiento",
+      "title": "Próximas revisiones",
+      "items": "ítems"
+    },
+    "priority": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "table": {
+      "eyebrow": "Registros operativos",
+      "title": "Registro de conductores",
+      "driver": "Conductor",
+      "license": "Licencia",
+      "vehicle": "Vehículo",
+      "route": "Ruta",
+      "punctuality": "Puntualidad",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "timeline": {
+      "eyebrow": "Actividad reciente",
+      "title": "Línea de tiempo de conductores",
+      "today": "Hoy"
+    }
+  },
+  "routesPage": {
+    "eyebrow": "7BC • GESTIÓN DE RUTAS",
+    "title": "Gestión de Rutas",
+    "subtitle": "Planifica horarios, paradas, zonas de cobertura y optimización de rutas para operaciones seguras de transporte escolar.",
+    "heroBadge": "Cobertura de ruta",
+    "inventoryEyebrow": "PLANIFICACIÓN DE RUTAS",
+    "operationalStatus": "Estado operativo de rutas",
+    "searchPlaceholder": "Buscar por ruta, distrito, conductor, vehículo o colegio...",
+    "recordsEyebrow": "REGISTROS OPERATIVOS",
+    "registryTitle": "Registro de rutas",
+    "timelineEyebrow": "ACTIVIDAD RECIENTE",
+    "timelineTitle": "Línea de tiempo de rutas",
+    "today": "Hoy",
+    "actions": {
+      "createRoute": "Crear ruta",
+      "exportList": "Exportar lista"
+    },
+    "kpis": {
+      "totalRoutes": "Rutas totales",
+      "totalRoutesHelper": "Rutas operativas registradas",
+      "activeRoutes": "Rutas activas",
+      "activeRoutesHelper": "Listas para servicio diario",
+      "scheduledStops": "Paradas programadas",
+      "scheduledStopsHelper": "Puntos de recojo y llegada",
+      "districts": "Distritos cubiertos",
+      "districtsHelper": "Cobertura urbana del servicio",
+      "optimization": "Puntaje de optimización",
+      "optimizationHelper": "Eficiencia promedio de rutas"
+    },
+    "filters": {
+      "all": "Todas",
+      "active": "Activas",
+      "scheduled": "Programadas",
+      "review": "Revisión",
+      "inactive": "Inactivas"
+    },
+    "table": {
+      "route": "Ruta",
+      "driver": "Conductor",
+      "vehicle": "Vehículo",
+      "stops": "Paradas",
+      "coverage": "Cobertura",
+      "status": "Estado",
+      "actions": "Acciones"
+    }
+  },
+  "studentsPage": {
+    "eyebrow": "8BC · Gestión de Estudiantes",
+    "title": "Gestión de Estudiantes",
+    "subtitle": "Administra registros de estudiantes, apoderados, asignación de rutas, puntos de recojo y preparación del servicio.",
+    "heroBadge": "Confiabilidad de asistencia",
+    "kpis": {
+      "totalStudents": "Total de estudiantes",
+      "totalStudentsHelper": "Registrados en la empresa",
+      "activeStudents": "Estudiantes activos",
+      "activeStudentsHelper": "Listos para transporte diario",
+      "assignedStudents": "Estudiantes asignados",
+      "assignedStudentsHelper": "Vinculados a una ruta activa",
+      "unassignedStudents": "Pendientes de asignación",
+      "unassignedStudentsHelper": "Requieren ruta o punto de recojo",
+      "guardianVerified": "Apoderados verificados",
+      "guardianVerifiedHelper": "Contacto y autorización válidos"
+    },
+    "bannerTitle": "Estudiantes requieren revisión operativa",
+    "bannerText": "Algunos estudiantes aún necesitan una ruta, punto de recojo o autorización del apoderado antes de incluirse en viajes diarios.",
+    "inventoryEyebrow": "Registro de estudiantes",
+    "operationalStatus": "Estado operativo de estudiantes",
+    "searchPlaceholder": "Buscar por estudiante, apoderado, ruta, vehículo o colegio...",
+    "actions": {
+      "registerStudent": "Registrar estudiante",
+      "reviewUnassigned": "Revisar pendientes",
+      "exportList": "Exportar lista"
+    },
+    "filters": {
+      "all": "Todos",
+      "active": "Activos",
+      "unassigned": "Sin asignar",
+      "review": "Revisión",
+      "inactive": "Inactivos"
+    },
+    "status": {
+      "active": "Activo",
+      "unassigned": "Sin asignar",
+      "review": "Revisión",
+      "inactive": "Inactivo"
+    },
+    "authorization": {
+      "verified": "Apoderado verificado",
+      "pending": "Autorización pendiente",
+      "expired": "Autorización vencida"
+    },
+    "card": {
+      "route": "Ruta asignada",
+      "driver": "Conductor",
+      "window": "Horario de recojo",
+      "attendance": "Confiabilidad de asistencia"
+    },
+    "readinessEyebrow": "Preparación",
+    "readinessTitle": "Preparación estudiantil",
+    "readinessLabel": "Registros seguros",
+    "readiness": {
+      "assigned": "Asignados",
+      "verified": "Verificados",
+      "review": "Revisión"
+    },
+    "reviewEyebrow": "Control estudiantil",
+    "reviewTitle": "Revisiones pendientes",
+    "items": "items",
+    "recordsEyebrow": "Registros operativos",
+    "registryTitle": "Registro de estudiantes",
+    "table": {
+      "student": "Estudiante",
+      "guardian": "Apoderado",
+      "school": "Colegio",
+      "route": "Ruta",
+      "attendance": "Asistencia",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "timelineEyebrow": "Actividad reciente",
+    "timelineTitle": "Timeline de estudiantes",
+    "today": "Hoy",
+    "emptyValue": "No asignado",
+    "pendingAssignment": "Pendiente",
+    "unassignedRoute": "Ruta no asignada"
+  },
+  "shared": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar"
   }
 }
