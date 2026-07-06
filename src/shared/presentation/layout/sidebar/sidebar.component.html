@@ -10,7 +10,7 @@
   <p class="section-label">{{ 'layout.coreModules' | translate }}</p>
 
   <nav class="nav-list">
-    @for (item of navigation.items; track item.route) {
+    @for (item of navigation.visibleItems(); track item.route) {
       <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" (click)="sidebarState.closeMobile()">
         <mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
         <span>{{ item.labelKey | translate }}</span>
@@ -18,7 +18,7 @@
     }
   </nav>
 
-  <button class="sign-out-button" type="button">
+  <button class="sign-out-button" type="button" (click)="auth.logout()">
     <mat-icon>logout</mat-icon>
     <span>{{ 'layout.signOut' | translate }}</span>
   </button>

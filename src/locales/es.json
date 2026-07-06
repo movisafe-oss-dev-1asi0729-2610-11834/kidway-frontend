@@ -1668,5 +1668,68 @@
         "restricted": "Restringido"
       }
     }
+  },
+  "identityAccess": {
+    "login": {
+      "eyebrow": "Identity & Access Management",
+      "title": "Bienvenido de vuelta",
+      "subtitle": "Inicia sesión con tu cuenta asignada de KidWay. El acceso a módulos cambia automáticamente según tu rol.",
+      "submit": "Iniciar sesión",
+      "loading": "Validando acceso...",
+      "remember": "Mantener sesión activa",
+      "forgot": "¿Olvidaste tu usuario o contraseña?",
+      "invalid": "Usuario, correo o contraseña inválidos. Revisa las cuentas demo o intenta nuevamente.",
+      "validation": "Completa usuario y contraseña antes de iniciar sesión.",
+      "noAccount": "¿Necesitas una cuenta?",
+      "demoEyebrow": "Acceso demo estático",
+      "demoTitle": "Usuarios de prueba por rol",
+      "demoHelper": "Estas credenciales están guardadas en db.json para el frontend estático. Luego se puede reemplazar por la API IAM del backend."
+    },
+    "register": {
+      "eyebrow": "Solicitud de cuenta",
+      "title": "Crear cuenta",
+      "subtitle": "Registra una solicitud básica de perfil. En esta versión estática el formulario valida datos, pero no escribe en db.json.",
+      "submit": "Crear solicitud mock",
+      "validation": "Completa todos los campos requeridos y acepta los términos.",
+      "passwordMismatch": "Las dos contraseñas deben coincidir antes de crear la solicitud.",
+      "terms": "Entiendo que este registro es mock y la cuenta será validada por KidWay.",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "successTitle": "Solicitud de registro lista",
+      "successText": "Esta solicitud mock fue validada visualmente. En la versión backend se enviará a IAM para aprobación.",
+      "backendReady": "El registro es intencionalmente solo frontend por ahora. Está preparado para un futuro endpoint backend."
+    },
+    "fields": {
+      "username": "Usuario o correo",
+      "password": "Contraseña",
+      "confirmPassword": "Repetir contraseña",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "phone": "Celular",
+      "country": "País",
+      "email": "Correo"
+    },
+    "placeholders": {
+      "username": "maria.lopez",
+      "password": "Ingresa tu contraseña",
+      "email": "nombre@ejemplo.com"
+    },
+    "recovery": {
+      "eyebrow": "Recuperación de cuenta",
+      "title": "Recuperar acceso",
+      "subtitle": "Ingresa el correo de tu cuenta. Esta versión estática solo simula el flujo de recuperación.",
+      "send": "Enviar instrucciones",
+      "sentTitle": "Solicitud enviada",
+      "sentText": "Un servicio backend enviaría el enlace seguro al correo registrado."
+    },
+    "security": {
+      "eyebrow": "Seguridad frontend",
+      "title": "Preparado para IAM backend",
+      "item1Title": "Rutas protegidas",
+      "item1Text": "No se pueden abrir módulos escribiendo la URL sin iniciar sesión.",
+      "item2Title": "Acceso por rol",
+      "item2Text": "La sidebar y las rutas se filtran según el rol autenticado.",
+      "item3Title": "Control de sesión",
+      "item3Text": "Cerrar sesión limpia la sesión local y vuelve al login."
+    }
   }
 }
